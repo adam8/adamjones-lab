@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Adam Jones is a JavaScript developer and designer. This is a home for projects and experiments."
+    />
+    <meta name="theme-color" content="#f4f0e8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Adam Jones — JavaScript developer and designer</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Adam Jones, home">AJ<span aria-hidden="true">/</span></a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Projects + experiments</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">JavaScript developer <span aria-hidden="true">&amp;</span> designer</p>
+          <h1 id="hero-title"><span>Adam</span> <span>Jones</span></h1>
+          <p class="intro" id="about">
+            I make things for the web. This site is a home for projects,
+            prototypes, and small experiments.
+          </p>
+        </div>
+
+        <div class="accent-stage" aria-label="Interactive decoration">
+          <button class="accent-button" type="button" aria-label="Rearrange the accent" data-state="0">
+            <span class="accent-shape accent-shape--disc" aria-hidden="true"></span>
+            <span class="accent-shape accent-shape--bar" aria-hidden="true"></span>
+            <span class="accent-shape accent-shape--dot" aria-hidden="true"></span>
+            <span class="accent-hint" aria-hidden="true">shift it</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="work" id="work" aria-labelledby="work-title">
+        <header class="section-heading">
+          <p class="section-number" aria-hidden="true">01</p>
+          <h2 id="work-title">Projects + experiments</h2>
+        </header>
+        <div class="work-grid">
+          <p class="work-lede">A growing space for web projects, prototypes, and ideas in progress.</p>
+          <p class="work-note">
+            The first entries are still taking shape. For now, the accent above is a small experiment:
+            press it and see where it lands.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Adam Jones</p>
+      <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
