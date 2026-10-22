@@ -28,7 +28,7 @@ npm run test:browser
 npm run cloudflare:dry-run
 ```
 
-Generated production files are written to `dist/`. Browser tests cover supplied content, keyboard interaction, reduced motion, and horizontal overflow at desktop and mobile sizes.
+Generated production files are written to `dist/`. Browser tests cover supplied content, catalogue semantics, keyboard interaction, reduced motion, responsive stacking, and horizontal overflow at desktop and mobile sizes.
 
 ## Cloudflare static assets
 
@@ -42,4 +42,4 @@ Publishing, custom-domain setup, and DNS changes require Adam's explicit approva
 
 ## Review images
 
-Desktop and mobile captures from the pilot implementation are kept in `docs/review/` when local Chromium is available.
+Desktop and mobile captures of the current implementation are kept in `docs/review/` when local Chromium is available.

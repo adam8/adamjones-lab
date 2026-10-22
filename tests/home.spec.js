@@ -19,6 +19,26 @@ test('presents the supplied identity and introductory content', async ({ page })
   await expect(page.getByText(/home for projects/i).first()).toBeVisible();
 });
 
+test('renders the project and experiment catalogue as a labelled semantic list', async ({ page }) => {
+  await page.goto('/');
+
+  const catalogue = page.getByRole('list', { name: 'Project and experiment catalogue' });
+  const entries = catalogue.getByRole('listitem');
+
+  await expect(entries).toHaveCount(2);
+  await expect(entries.nth(0).getByText('Project', { exact: true })).toBeVisible();
+  await expect(entries.nth(0).getByRole('heading', { level: 3, name: 'Adam Jones Lab' })).toBeVisible();
+  await expect(
+    entries.nth(0).getByText('A lightweight home for projects, prototypes, and small web experiments.'),
+  ).toBeVisible();
+  await expect(entries.nth(1).getByText('Experiment', { exact: true })).toBeVisible();
+  await expect(entries.nth(1).getByRole('heading', { level: 3, name: 'Interactive accent' })).toBeVisible();
+  await expect(entries.nth(1).getByText('A composition that rearranges when activated.')).toBeVisible();
+  await expect(catalogue.getByRole('article')).toHaveCount(2);
+  await expect(catalogue.getByRole('link')).toHaveCount(0);
+  await expect(page.getByText(/first entries are still taking shape/i)).toHaveCount(0);
+});
+
 test('supports pointer use, visible keyboard navigation, and native button activation', async ({ page }) => {
   await page.goto('/');
 
@@ -66,7 +86,19 @@ test.describe('responsive layout', () => {
       await page.goto('/');
 
       await expect(page.locator('main')).toBeVisible();
+      await expect(page.locator('.catalogue-item')).toHaveCount(2);
       await expectNoHorizontalOverflow(page);
+
+      if (viewport.name === 'mobile') {
+        const positions = await page.locator('.catalogue-item').evaluateAll((items) =>
+          items.map((item) => {
+            const bounds = item.getBoundingClientRect();
+            return { top: bounds.top, bottom: bounds.bottom };
+          }),
+        );
+
+        expect(positions[1].top).toBeGreaterThanOrEqual(positions[0].bottom);
+      }
     });
   }
 });
