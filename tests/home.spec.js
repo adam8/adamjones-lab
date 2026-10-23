@@ -19,6 +19,54 @@ test('presents the supplied identity and introductory content', async ({ page })
   await expect(page.getByText(/home for projects/i).first()).toBeVisible();
 });
 
+test('uses semantic paragraphs with a bounded, readable introduction', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+
+  const intro = page.locator('#about.prose');
+  const paragraphs = intro.locator(':scope > p');
+
+  await expect(paragraphs).toHaveCount(2);
+  await expect(paragraphs.nth(0)).toHaveText('I make things for the web.');
+  await expect(paragraphs.nth(1)).toHaveText(
+    'This site is a home for projects, prototypes, and small experiments.',
+  );
+
+  const desktopMetrics = await intro.evaluate((element) => {
+    const styles = getComputedStyle(element);
+    const fontSize = Number.parseFloat(styles.fontSize);
+    const lineHeight = Number.parseFloat(styles.lineHeight);
+    const bounds = element.getBoundingClientRect();
+    const containerWidth = element.parentElement?.getBoundingClientRect().width ?? bounds.width;
+
+    return {
+      width: bounds.width,
+      containerWidth,
+      leadingRatio: lineHeight / fontSize,
+    };
+  });
+
+  expect(desktopMetrics.width).toBeLessThanOrEqual(600);
+  expect(desktopMetrics.width).toBeLessThan(desktopMetrics.containerWidth * 0.8);
+  expect(desktopMetrics.leadingRatio).toBeGreaterThanOrEqual(1.5);
+
+  await page.setViewportSize({ width: 375, height: 812 });
+
+  const mobileMetrics = await paragraphs.evaluateAll((elements) =>
+    elements.map((element) => {
+      const bounds = element.getBoundingClientRect();
+      return { left: bounds.left, right: bounds.right, top: bounds.top, bottom: bounds.bottom };
+    }),
+  );
+
+  expect(mobileMetrics[0].left).toBeGreaterThanOrEqual(0);
+  expect(mobileMetrics[1].left).toBeGreaterThanOrEqual(0);
+  expect(mobileMetrics[0].right).toBeLessThanOrEqual(375);
+  expect(mobileMetrics[1].right).toBeLessThanOrEqual(375);
+  expect(mobileMetrics[1].top - mobileMetrics[0].bottom).toBeGreaterThan(8);
+  await expectNoHorizontalOverflow(page);
+});
+
 test('renders the project and experiment catalogue as a labelled semantic list', async ({ page }) => {
   await page.goto('/');
 
