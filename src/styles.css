@@ -50,6 +50,18 @@ button:focus-visible {
   outline-offset: 5px;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .skip-link {
   position: fixed;
   z-index: 20;
@@ -212,6 +224,15 @@ h1 span:last-child {
 
 .accent-button:hover::before {
   border-color: var(--ink);
+}
+
+.accent-composition {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform: translate3d(var(--accent-x, 0px), var(--accent-y, 0px), 0)
+    rotate(var(--accent-rotation, 0deg));
+  transition: transform 180ms var(--ease);
 }
 
 .accent-shape {
@@ -453,6 +474,7 @@ h2 {
     scroll-behavior: auto;
   }
 
+  .accent-composition,
   .accent-shape {
     transition: none;
   }

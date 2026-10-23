@@ -36,12 +36,24 @@
         </div>
 
         <div class="accent-stage" aria-label="Interactive decoration">
-          <button class="accent-button" type="button" aria-label="Rearrange the accent" data-state="0">
-            <span class="accent-shape accent-shape--disc" aria-hidden="true"></span>
-            <span class="accent-shape accent-shape--bar" aria-hidden="true"></span>
-            <span class="accent-shape accent-shape--dot" aria-hidden="true"></span>
+          <button
+            class="accent-button"
+            type="button"
+            aria-label="Rearrange the accent"
+            aria-describedby="accent-instructions"
+            data-state="0"
+          >
+            <span class="accent-composition" aria-hidden="true">
+              <span class="accent-shape accent-shape--disc"></span>
+              <span class="accent-shape accent-shape--bar"></span>
+              <span class="accent-shape accent-shape--dot"></span>
+            </span>
             <span class="accent-hint" aria-hidden="true">shift it</span>
           </button>
+          <p class="visually-hidden" id="accent-instructions">
+            Move the pointer or use the arrow keys to nudge the accent. Activate to rearrange it. Press Escape
+            to reset its position.
+          </p>
         </div>
       </section>
 
