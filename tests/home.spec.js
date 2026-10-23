@@ -39,7 +39,7 @@ test('renders the project and experiment catalogue as a labelled semantic list',
   await expect(page.getByText(/first entries are still taking shape/i)).toHaveCount(0);
 });
 
-test('supports pointer use, visible keyboard navigation, and native button activation', async ({ page }) => {
+test('supports visible keyboard navigation and skip navigation', async ({ page }) => {
   await page.goto('/');
 
   await page.keyboard.press('Tab');
@@ -53,27 +53,126 @@ test('supports pointer use, visible keyboard navigation, and native button activ
   const projectsLink = page.getByRole('link', { name: 'Projects + experiments' });
   await projectsLink.focus();
   await expect(projectsLink).toHaveCSS('outline-style', 'solid');
+});
+
+test('accent pointer movement is subtle, bounded, and resets on exit', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
 
   const accent = page.getByRole('button', { name: 'Rearrange the accent' });
-  await accent.click();
-  await expect(accent).toHaveAttribute('data-state', '1');
+  const composition = page.locator('.accent-composition');
+  const bounds = await accent.boundingBox();
 
-  await projectsLink.focus();
-  await page.keyboard.press('Tab');
+  expect(bounds).not.toBeNull();
+  if (!bounds) return;
+
+  const readOffset = () =>
+    composition.evaluate((element) => {
+      const styles = getComputedStyle(element);
+      return {
+        x: Number.parseFloat(styles.getPropertyValue('--accent-x')) || 0,
+        y: Number.parseFloat(styles.getPropertyValue('--accent-y')) || 0,
+      };
+    });
+
+  await page.mouse.move(bounds.x + bounds.width - 2, bounds.y + bounds.height / 2);
+  let offset = await readOffset();
+  expect(offset.x).toBeGreaterThan(6);
+  expect(Math.abs(offset.x)).toBeLessThanOrEqual(8);
+  expect(Math.abs(offset.y)).toBeLessThanOrEqual(8);
+
+  await page.mouse.move(bounds.x + 2, bounds.y + bounds.height / 2);
+  offset = await readOffset();
+  expect(offset.x).toBeLessThan(-6);
+  expect(Math.abs(offset.x)).toBeLessThanOrEqual(8);
+  expect(Math.abs(offset.y)).toBeLessThanOrEqual(8);
+
+  await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + 2);
+  offset = await readOffset();
+  expect(offset.y).toBeLessThan(-6);
+  expect(Math.abs(offset.x)).toBeLessThanOrEqual(8);
+  expect(Math.abs(offset.y)).toBeLessThanOrEqual(8);
+
+  await page.mouse.move(0, 0);
+  await expect.poll(readOffset).toEqual({ x: 0, y: 0 });
+});
+
+test('accent keyboard input nudges without scrolling and native activation cycles once', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+
+  const accent = page.getByRole('button', { name: 'Rearrange the accent' });
+  const composition = page.locator('.accent-composition');
+  const instructions = page.locator('#accent-instructions');
+  const readOffset = () =>
+    composition.evaluate((element) => {
+      const styles = getComputedStyle(element);
+      return {
+        x: Number.parseFloat(styles.getPropertyValue('--accent-x')) || 0,
+        y: Number.parseFloat(styles.getPropertyValue('--accent-y')) || 0,
+      };
+    });
+
+  await expect(accent).toHaveAttribute('aria-describedby', 'accent-instructions');
+  await expect(instructions).toContainText(/arrow keys.*Activate.*Escape/s);
+
+  await accent.focus();
   await expect(accent).toBeFocused();
   await expect(accent).toHaveCSS('outline-style', 'solid');
+  const initialScroll = await page.evaluate(() => window.scrollY);
+
+  await accent.press('ArrowRight');
+  await expect.poll(readOffset).toEqual({ x: 2, y: 0 });
+  await accent.press('ArrowDown');
+  await expect.poll(readOffset).toEqual({ x: 2, y: 2 });
+  await accent.press('ArrowLeft');
+  await expect.poll(readOffset).toEqual({ x: 0, y: 2 });
+  await accent.press('ArrowUp');
+  await expect.poll(readOffset).toEqual({ x: 0, y: 0 });
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(initialScroll);
+
+  for (let step = 0; step < 10; step += 1) await accent.press('ArrowRight');
+  await expect.poll(readOffset).toEqual({ x: 8, y: 0 });
+
+  await accent.press('Escape');
+  await expect.poll(readOffset).toEqual({ x: 0, y: 0 });
+
   await accent.press('Enter');
-  await expect(accent).toHaveAttribute('data-state', '2');
+  await expect(accent).toHaveAttribute('data-state', '1');
   await accent.press('Space');
+  await expect(accent).toHaveAttribute('data-state', '2');
+  await accent.click();
   await expect(accent).toHaveAttribute('data-state', '0');
 });
 
-test('removes decorative transitions when reduced motion is preferred', async ({ page }) => {
+test('accent ignores touch movement while ordinary activation remains available', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/');
+
+  const accent = page.getByRole('button', { name: 'Rearrange the accent' });
+  const composition = page.locator('.accent-composition');
+  const bounds = await accent.boundingBox();
+
+  expect(bounds).not.toBeNull();
+  if (!bounds) return;
+
+  await accent.dispatchEvent('pointermove', {
+    pointerType: 'touch',
+    clientX: bounds.x + bounds.width,
+    clientY: bounds.y + bounds.height,
+  });
+  await expect(composition).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+
+  await accent.click();
+  await expect(accent).toHaveAttribute('data-state', '1');
+});
+
+test('accent and shape transitions are removed when reduced motion is preferred', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
 
-  const disc = page.locator('.accent-shape--disc');
-  await expect(disc).toHaveCSS('transition-duration', '0s');
+  await expect(page.locator('.accent-composition')).toHaveCSS('transition-duration', '0s');
+  await expect(page.locator('.accent-shape--disc')).toHaveCSS('transition-duration', '0s');
 });
 
 test.describe('responsive layout', () => {
