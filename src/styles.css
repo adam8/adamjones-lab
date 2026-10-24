@@ -229,7 +229,7 @@ button:focus-visible {
   vertical-align: -0.05rem;
 }
 
-h1 {
+.hero h1 {
   max-width: 6ch;
   margin: 0;
   font-size: var(--display);
@@ -238,11 +238,11 @@ h1 {
   line-height: 0.76;
 }
 
-h1 span {
+.hero h1 span {
   display: block;
 }
 
-h1 span:last-child {
+.hero h1 span:last-child {
   margin-left: 0.42em;
   color: transparent;
   -webkit-text-stroke: max(2px, 0.018em) var(--ink);
@@ -451,6 +451,136 @@ h2 {
   line-height: 1.6;
 }
 
+.catalogue-link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.16em;
+}
+
+.catalogue-link:hover {
+  text-decoration-thickness: 0.12em;
+}
+
+.catalogue-link-arrow {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 0.72em;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.project-page {
+  padding: clamp(3rem, 7vw, 6rem) var(--page-gutter) clamp(5rem, 11vw, 10rem);
+}
+
+.project-sheet {
+  max-width: 100rem;
+  margin-inline: auto;
+}
+
+.project-grid {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(8rem, 1fr) minmax(0, 3fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.project-navigation {
+  align-items: start;
+}
+
+.project-navigation a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  align-self: start;
+  font-size: 0.8rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.project-masthead {
+  align-items: start;
+  margin-top: clamp(2.5rem, 6vw, 5.5rem);
+  padding-block: clamp(2rem, 5vw, 4.5rem) clamp(4rem, 9vw, 8rem);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+.project-type {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--type-label);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.project-type::before {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.65rem;
+  background: var(--accent);
+  content: "";
+  vertical-align: -0.08rem;
+}
+
+.project-heading {
+  min-width: 0;
+}
+
+.project-title {
+  max-width: 11ch;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: clamp(3.5rem, 8vw, 8rem);
+  font-weight: 850;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+}
+
+.project-summary {
+  max-width: 31ch;
+  margin: clamp(2rem, 4vw, 3.5rem) 0 0;
+  color: var(--muted);
+  font-size: clamp(1.2rem, 1rem + 0.8vw, 1.75rem);
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+}
+
+.project-overview {
+  align-items: start;
+  padding-block: clamp(4rem, 9vw, 8rem);
+}
+
+.project-overview h2 {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--type-label);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.project-copy {
+  min-width: 0;
+}
+
+.project-navigation--bottom {
+  padding-top: clamp(2rem, 5vw, 4rem);
+  border-top: 1px solid var(--ink);
+}
+
+.project-navigation--bottom a {
+  grid-column: 2;
+  justify-self: start;
+}
+
 .site-footer {
   min-height: 8rem;
   border-top: 1px solid var(--line);
@@ -489,7 +619,7 @@ h2 {
     padding-block: 4rem 3.5rem;
   }
 
-  h1 {
+  .hero h1 {
     font-size: clamp(4.1rem, 23vw, 7rem);
   }
 
@@ -527,6 +657,37 @@ h2 {
 
   .catalogue-summary {
     margin-top: 0;
+  }
+
+  .project-page {
+    padding-top: 2.5rem;
+  }
+
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-masthead {
+    margin-top: 2rem;
+    padding-block: 1.75rem 4.5rem;
+  }
+
+  .project-title {
+    max-width: none;
+    font-size: clamp(3.25rem, 17vw, 5.5rem);
+  }
+
+  .project-summary {
+    margin-top: 2rem;
+  }
+
+  .project-overview {
+    padding-block: 4.5rem;
+  }
+
+  .project-navigation--bottom a {
+    grid-column: 1;
   }
 }
 
