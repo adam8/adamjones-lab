@@ -83,7 +83,12 @@ test('renders the project and experiment catalogue as a labelled semantic list',
   await expect(entries.nth(1).getByRole('heading', { level: 3, name: 'Interactive accent' })).toBeVisible();
   await expect(entries.nth(1).getByText('A composition that rearranges when activated.')).toBeVisible();
   await expect(catalogue.getByRole('article')).toHaveCount(2);
-  await expect(catalogue.getByRole('link')).toHaveCount(0);
+
+  const projectLink = entries.nth(0).getByRole('link', { name: 'Adam Jones Lab' });
+  await expect(catalogue.getByRole('link')).toHaveCount(1);
+  await expect(projectLink).toHaveAttribute('href', '/projects/adam-jones-lab/');
+  await expect(projectLink).toHaveCSS('text-decoration-line', 'underline');
+  await expect(entries.nth(1).getByRole('link')).toHaveCount(0);
   await expect(page.getByText(/first entries are still taking shape/i)).toHaveCount(0);
 });
 
@@ -101,6 +106,11 @@ test('supports visible keyboard navigation and skip navigation', async ({ page }
   const projectsLink = page.getByRole('link', { name: 'Projects + experiments' });
   await projectsLink.focus();
   await expect(projectsLink).toHaveCSS('outline-style', 'solid');
+
+  const catalogueLink = page.getByRole('link', { name: 'Adam Jones Lab' });
+  await catalogueLink.focus();
+  await expect(catalogueLink).toHaveCSS('outline-style', 'solid');
+  await expect(catalogueLink).toHaveCSS('outline-color', 'rgb(255, 79, 31)');
 });
 
 test('accent pointer movement is subtle, bounded, and resets on exit', async ({ page }) => {

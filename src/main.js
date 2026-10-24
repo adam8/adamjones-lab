@@ -19,8 +19,24 @@ if (catalogueMount) {
     summary.className = 'catalogue-summary';
 
     type.textContent = entry.type;
-    title.textContent = entry.title;
     summary.textContent = entry.summary;
+
+    if (entry.href) {
+      const link = document.createElement('a');
+      const arrow = document.createElement('span');
+
+      link.className = 'catalogue-link';
+      link.href = entry.href;
+      link.append(entry.title);
+
+      arrow.className = 'catalogue-link-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = '↗';
+      link.append(' ', arrow);
+      title.append(link);
+    } else {
+      title.textContent = entry.title;
+    }
 
     article.append(type, title, summary);
     item.append(article);

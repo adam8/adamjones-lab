@@ -3,6 +3,7 @@ export const catalogue = [
     type: 'Project',
     title: 'Adam Jones Lab',
     summary: 'A lightweight home for projects, prototypes, and small web experiments.',
+    href: '/projects/adam-jones-lab/',
   },
   {
     type: 'Experiment',
