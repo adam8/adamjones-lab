@@ -128,6 +128,13 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .elsewhere a:focus-visible { outline-color: var(--coral); box-shadow: 0 0 0 7px var(--cream); }
 .back-to-top { position: absolute; right: var(--gutter); bottom: 2rem; }
 
+@media (max-width: 960px) {
+  .project-stage { grid-template-columns: minmax(0, 1fr); }
+  .project-controls { display: none; }
+  .project-panel { min-height: auto; grid-template-columns: 1fr; }
+  .project-object { max-width: 34rem; margin-inline: auto; }
+}
+
 @media (max-width: 800px) {
   .site-header { align-items: flex-start; }
   .wordmark, .nav-list a, .hero-invitation, .external-link, .back-to-top { display: inline-flex; min-width: 2.75rem; min-height: 2.75rem; align-items: center; }
@@ -145,10 +152,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .intro-copy p { margin-left: 8%; }
   .work-header { align-items: start; }
   .work-header > p:last-child { margin-left: 12%; }
-  .project-stage { grid-template-columns: minmax(0, 1fr); }
-  .project-controls { display: none; }
-  .project-panel { min-height: auto; grid-template-columns: 1fr; }
-  .project-object { max-width: 34rem; margin-inline: auto; }
   .outside-copy > p:last-child { margin-left: 8%; }
   .island-frame { max-width: 36rem; justify-self: center; }
   .about-list div { grid-template-columns: 1fr; gap: .5rem; }
@@ -182,7 +185,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .hero-track, .js.motion-ok .hero-track, .js.motion-ok .project-track { height: auto; }
   .hero-scene, .js.motion-ok .hero-scene, .js.motion-ok .project-stage { position: relative; top: auto; height: auto; }
-  .js.motion-ok .project-stage { display: grid; }
+  .project-stage, .js.motion-ok .project-stage { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .project-panels { grid-column: 1 / -1; }
   .js.motion-ok .hero-name, .js.motion-ok .hero-specimens { transform: none; }
   .hero-invitation { position: relative; bottom: auto; left: auto; display: inline-block; margin-top: 2rem; }
   .scroll-cue { display: none; }
@@ -190,6 +194,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .project-controls { display: none; }
 }
 
-@media (min-width: 801px) and (min-height: 641px) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 961px) and (min-height: 641px) and (prefers-reduced-motion: no-preference) {
   .js.motion-ok .project-panel { transition: opacity 180ms ease, transform 180ms ease; }
 }

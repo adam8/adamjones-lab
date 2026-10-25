@@ -64,7 +64,35 @@ test('reduced motion releases sticky scenes and shows every project in normal fl
     await expect(panel).not.toHaveAttribute('inert');
   }
 
+  const fallbackWidths = await page.locator('.project-stage, .project-panels').evaluateAll(([stage, panels]) => ({
+    stage: stage.getBoundingClientRect().width,
+    panels: panels.getBoundingClientRect().width,
+  }));
+  expect(fallbackWidths.panels).toBeGreaterThan(fallbackWidths.stage * 0.9);
+
   await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
+});
+
+test('intermediate widths stack project content without clipping illustrations', async ({ page }) => {
+  await page.setViewportSize({ width: 844, height: 900 });
+  await page.goto('/');
+
+  await expect(page.locator('html')).not.toHaveClass(/motion-ok/);
+  await expect(page.locator('.project-stage')).toHaveCSS('grid-template-columns', /844|[7-8]\d\d/);
+  await expect(page.locator('#project-boss-hog')).toHaveCSS('grid-template-columns', /\d+px/);
+
+  const bounds = await page.locator('#project-boss-hog .project-object').evaluate((object) => {
+    const objectBounds = object.getBoundingClientRect();
+    const stageBounds = object.closest('.project-stage').getBoundingClientRect();
+    return {
+      objectLeft: objectBounds.left,
+      objectRight: objectBounds.right,
+      stageLeft: stageBounds.left,
+      stageRight: stageBounds.right,
+    };
+  });
+  expect(bounds.objectLeft).toBeGreaterThanOrEqual(bounds.stageLeft - 1);
+  expect(bounds.objectRight).toBeLessThanOrEqual(bounds.stageRight + 1);
 });
 
 test('short viewports use normal flow rather than sticky storytelling', async ({ page }) => {

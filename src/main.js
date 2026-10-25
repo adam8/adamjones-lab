@@ -7,7 +7,7 @@ const projectTrack = document.querySelector('.project-track');
 const projectButtons = [...document.querySelectorAll('[data-project-button]')];
 const projectPanels = [...document.querySelectorAll('[data-project-panel]')];
 const motionQuery = window.matchMedia(
-  '(min-width: 801px) and (min-height: 641px) and (prefers-reduced-motion: no-preference)',
+  '(min-width: 961px) and (min-height: 641px) and (prefers-reduced-motion: no-preference)',
 );
 
 const geometry = {
