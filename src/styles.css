@@ -80,7 +80,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .work-header > p:last-child { max-width: 31ch; margin: 0; font-size: 1.05rem; }
 .project-track { position: relative; }
 .project-stage { display: grid; grid-template-columns: minmax(13rem, .42fr) minmax(0, 1.58fr); gap: clamp(2rem, 5vw, 6rem); padding-bottom: clamp(5rem, 10vw, 9rem); }
-.project-controls { display: flex; flex-direction: column; align-self: start; border-top: 1px solid var(--green); }
+.project-controls { display: none; flex-direction: column; align-self: start; border-top: 1px solid var(--green); }
 .project-controls button { display: grid; min-height: 4.5rem; grid-template-columns: 2.5rem 1fr; align-items: center; border: 0; border-bottom: 1px solid rgb(41 60 43 / 40%); background: transparent; color: var(--green); cursor: pointer; font-size: .85rem; font-weight: 750; text-align: left; }
 .project-controls button[aria-pressed="true"] { border-left: .45rem solid var(--green); padding-left: .75rem; box-shadow: inset .16rem 0 var(--coral); font-family: var(--serif); font-size: 1.1rem; font-style: italic; }
 .project-controls button span { font-family: var(--mono); font-size: .68rem; font-style: normal; }
@@ -100,6 +100,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .js.motion-ok .hero-name { transform: translate3d(0, var(--hero-name-y, 0), 0) scale(var(--hero-name-scale, 1)); transform-origin: 50% 40%; }
 .js.motion-ok .hero-specimens { transform: translate3d(0, var(--hero-object-y, 0), 0) rotate(var(--hero-object-rotate, 0deg)); }
 .js.motion-ok .project-track { height: 300svh; }
+.js.motion-ok .project-controls { display: flex; }
 .js.motion-ok .project-stage { position: sticky; top: 0; height: 100svh; align-items: center; padding-block: clamp(2rem, 5vh, 4rem); }
 .js.motion-ok .project-panels { position: relative; min-height: min(45rem, 78vh); }
 .js.motion-ok .project-panel { position: absolute; inset: 0; min-height: 100%; margin: 0; opacity: 0; pointer-events: none; transform: translateY(2rem); }
@@ -135,9 +136,12 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .project-object { max-width: 34rem; margin-inline: auto; }
 }
 
+@media (max-width: 960px), (max-height: 640px), (pointer: coarse) {
+  .wordmark, .nav-list a, .hero-invitation, .external-link, .back-to-top { display: inline-flex; min-width: 2.75rem; min-height: 2.75rem; align-items: center; }
+}
+
 @media (max-width: 800px) {
   .site-header { align-items: flex-start; }
-  .wordmark, .nav-list a, .hero-invitation, .external-link, .back-to-top { display: inline-flex; min-width: 2.75rem; min-height: 2.75rem; align-items: center; }
   .nav-list { max-width: 15rem; }
   .hero-scene { padding-top: 8.5rem; }
   .hero-name { width: 100%; margin-top: 16vh; }

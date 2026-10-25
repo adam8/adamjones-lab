@@ -13,6 +13,7 @@ test.describe('without JavaScript', () => {
     await expect(page.getByRole('heading', { name: 'Interface studies' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Island time' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'A short specification' })).toBeVisible();
+    await expect(page.locator('.project-controls')).toBeHidden();
     await expect(page.getByRole('link', { name: /View repository/ })).toBeVisible();
     await expect(page.getByRole('link', { name: 'GitHub' })).toBeVisible();
   });
