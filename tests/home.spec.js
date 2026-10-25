@@ -9,253 +9,100 @@ async function expectNoHorizontalOverflow(page) {
   expect(dimensions.content).toBeLessThanOrEqual(dimensions.viewport);
 }
 
-test('presents the supplied identity and introductory content', async ({ page }) => {
+test('opens with Adam Jones, his role, and Vancouver Island location', async ({ page }) => {
   await page.goto('/');
 
   await expect(page).toHaveTitle(/Adam Jones/);
   await expect(page.getByRole('heading', { level: 1, name: 'Adam Jones' })).toBeVisible();
-  await expect(page.getByText('JavaScript developer & designer')).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Projects + experiments' })).toBeVisible();
-  await expect(page.getByText(/home for projects/i).first()).toBeVisible();
+  await expect(page.getByText('Design & development.')).toBeVisible();
+  await expect(page.getByText('Vancouver Island, BC.')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 2, name: 'I design interfaces. And build them.' })).toBeVisible();
 });
 
-test('uses semantic paragraphs with a bounded, readable introduction', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
+test('contains the six-part story and exactly three approved project entries', async ({ page }) => {
   await page.goto('/');
 
-  const intro = page.locator('#about.prose');
-  const paragraphs = intro.locator(':scope > p');
+  await expect(page.locator('main > section')).toHaveCount(5);
+  await expect(page.locator('footer#elsewhere')).toHaveCount(1);
 
-  await expect(paragraphs).toHaveCount(2);
-  await expect(paragraphs.nth(0)).toHaveText('I make things for the web.');
-  await expect(paragraphs.nth(1)).toHaveText(
-    'This site is a home for projects, prototypes, and small experiments.',
+  const projects = page.locator('[data-project-panel]');
+  await expect(projects).toHaveCount(3);
+  await expect(projects.nth(0).locator('h3')).toHaveText('Boss Hog');
+  await expect(projects.nth(1).locator('h3')).toHaveText('Agent experiments');
+  await expect(projects.nth(2).locator('h3')).toHaveText('Interface studies');
+
+  await expect(page.getByRole('link', { name: /View repository/ })).toHaveAttribute(
+    'href',
+    'https://github.com/adam8/boss-hog',
   );
-
-  const desktopMetrics = await intro.evaluate((element) => {
-    const styles = getComputedStyle(element);
-    const fontSize = Number.parseFloat(styles.fontSize);
-    const lineHeight = Number.parseFloat(styles.lineHeight);
-    const bounds = element.getBoundingClientRect();
-    const containerWidth = element.parentElement?.getBoundingClientRect().width ?? bounds.width;
-
-    return {
-      width: bounds.width,
-      containerWidth,
-      leadingRatio: lineHeight / fontSize,
-    };
-  });
-
-  expect(desktopMetrics.width).toBeLessThanOrEqual(600);
-  expect(desktopMetrics.width).toBeLessThan(desktopMetrics.containerWidth * 0.8);
-  expect(desktopMetrics.leadingRatio).toBeGreaterThanOrEqual(1.5);
-
-  await page.setViewportSize({ width: 375, height: 812 });
-
-  const mobileMetrics = await paragraphs.evaluateAll((elements) =>
-    elements.map((element) => {
-      const bounds = element.getBoundingClientRect();
-      return { left: bounds.left, right: bounds.right, top: bounds.top, bottom: bounds.bottom };
-    }),
-  );
-
-  expect(mobileMetrics[0].left).toBeGreaterThanOrEqual(0);
-  expect(mobileMetrics[1].left).toBeGreaterThanOrEqual(0);
-  expect(mobileMetrics[0].right).toBeLessThanOrEqual(375);
-  expect(mobileMetrics[1].right).toBeLessThanOrEqual(375);
-  expect(mobileMetrics[1].top - mobileMetrics[0].bottom).toBeGreaterThan(8);
-  await expectNoHorizontalOverflow(page);
+  await expect(page.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/adam8');
+  await expect(page.getByRole('link', { name: 'adamjones.ca' })).toHaveAttribute('href', 'https://adamjones.ca');
+  await expect(page.locator('a[href*="/projects/"]')).toHaveCount(0);
 });
 
-test('renders the project and experiment catalogue as a labelled semantic list', async ({ page }) => {
-  await page.goto('/');
-
-  const catalogue = page.getByRole('list', { name: 'Project and experiment catalogue' });
-  const entries = catalogue.getByRole('listitem');
-
-  await expect(entries).toHaveCount(2);
-  await expect(entries.nth(0).getByText('Project', { exact: true })).toBeVisible();
-  await expect(entries.nth(0).getByRole('heading', { level: 3, name: 'Adam Jones Lab' })).toBeVisible();
-  await expect(
-    entries.nth(0).getByText('A lightweight home for projects, prototypes, and small web experiments.'),
-  ).toBeVisible();
-  await expect(entries.nth(1).getByText('Experiment', { exact: true })).toBeVisible();
-  await expect(entries.nth(1).getByRole('heading', { level: 3, name: 'Interactive accent' })).toBeVisible();
-  await expect(entries.nth(1).getByText('A composition that rearranges when activated.')).toBeVisible();
-  await expect(catalogue.getByRole('article')).toHaveCount(2);
-
-  const projectLink = entries.nth(0).getByRole('link', { name: 'Adam Jones Lab' });
-  await expect(catalogue.getByRole('link')).toHaveCount(1);
-  await expect(projectLink).toHaveAttribute('href', '/projects/adam-jones-lab/');
-  await expect(projectLink).toHaveCSS('text-decoration-line', 'underline');
-  await expect(entries.nth(1).getByRole('link')).toHaveCount(0);
-  await expect(page.getByText(/first entries are still taking shape/i)).toHaveCount(0);
-});
-
-test('supports visible keyboard navigation and skip navigation', async ({ page }) => {
+test('supports skip navigation and visible focus for primary controls and links', async ({ page }) => {
   await page.goto('/');
 
   await page.keyboard.press('Tab');
   const skipLink = page.getByRole('link', { name: 'Skip to main content' });
   await expect(skipLink).toBeFocused();
   await expect(skipLink).toHaveCSS('opacity', '1');
-
   await skipLink.press('Enter');
   await expect(page.locator('#main-content')).toBeFocused();
 
-  const projectsLink = page.getByRole('link', { name: 'Projects + experiments' });
-  await projectsLink.focus();
-  await expect(projectsLink).toHaveCSS('outline-style', 'solid');
-
-  const catalogueLink = page.getByRole('link', { name: 'Adam Jones Lab' });
-  await catalogueLink.focus();
-  await expect(catalogueLink).toHaveCSS('outline-style', 'solid');
-  await expect(catalogueLink).toHaveCSS('outline-color', 'rgb(255, 79, 31)');
-});
-
-test('accent pointer movement is subtle, bounded, and resets on exit', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/');
-
-  const accent = page.getByRole('button', { name: 'Rearrange the accent' });
-  const composition = page.locator('.accent-composition');
-  const bounds = await accent.boundingBox();
-
-  expect(bounds).not.toBeNull();
-  if (!bounds) return;
-
-  const readOffset = () =>
-    composition.evaluate((element) => {
-      const styles = getComputedStyle(element);
-      return {
-        x: Number.parseFloat(styles.getPropertyValue('--accent-x')) || 0,
-        y: Number.parseFloat(styles.getPropertyValue('--accent-y')) || 0,
-      };
-    });
-
-  await page.mouse.move(bounds.x + bounds.width - 2, bounds.y + bounds.height / 2);
-  let offset = await readOffset();
-  expect(offset.x).toBeGreaterThan(6);
-  expect(Math.abs(offset.x)).toBeLessThanOrEqual(8);
-  expect(Math.abs(offset.y)).toBeLessThanOrEqual(8);
-
-  await page.mouse.move(bounds.x + 2, bounds.y + bounds.height / 2);
-  offset = await readOffset();
-  expect(offset.x).toBeLessThan(-6);
-  expect(Math.abs(offset.x)).toBeLessThanOrEqual(8);
-  expect(Math.abs(offset.y)).toBeLessThanOrEqual(8);
-
-  await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + 2);
-  offset = await readOffset();
-  expect(offset.y).toBeLessThan(-6);
-  expect(Math.abs(offset.x)).toBeLessThanOrEqual(8);
-  expect(Math.abs(offset.y)).toBeLessThanOrEqual(8);
-
-  await page.mouse.move(0, 0);
-  await expect.poll(readOffset).toEqual({ x: 0, y: 0 });
-});
-
-test('accent keyboard input nudges without scrolling and native activation cycles once', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/');
-
-  const accent = page.getByRole('button', { name: 'Rearrange the accent' });
-  const composition = page.locator('.accent-composition');
-  const instructions = page.locator('#accent-instructions');
-  const readOffset = () =>
-    composition.evaluate((element) => {
-      const styles = getComputedStyle(element);
-      return {
-        x: Number.parseFloat(styles.getPropertyValue('--accent-x')) || 0,
-        y: Number.parseFloat(styles.getPropertyValue('--accent-y')) || 0,
-      };
-    });
-
-  await expect(accent).toHaveAttribute('aria-describedby', 'accent-instructions');
-  await expect(instructions).toContainText(/arrow keys.*Activate.*Escape/s);
-
-  await accent.focus();
-  await expect(accent).toBeFocused();
-  await expect(accent).toHaveCSS('outline-style', 'solid');
-  const initialScroll = await page.evaluate(() => window.scrollY);
-
-  await accent.press('ArrowRight');
-  await expect.poll(readOffset).toEqual({ x: 2, y: 0 });
-  await accent.press('ArrowDown');
-  await expect.poll(readOffset).toEqual({ x: 2, y: 2 });
-  await accent.press('ArrowLeft');
-  await expect.poll(readOffset).toEqual({ x: 0, y: 2 });
-  await accent.press('ArrowUp');
-  await expect.poll(readOffset).toEqual({ x: 0, y: 0 });
-  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(initialScroll);
-
-  for (let step = 0; step < 10; step += 1) await accent.press('ArrowRight');
-  await expect.poll(readOffset).toEqual({ x: 8, y: 0 });
-
-  await accent.press('Escape');
-  await expect.poll(readOffset).toEqual({ x: 0, y: 0 });
-
-  await accent.press('Enter');
-  await expect(accent).toHaveAttribute('data-state', '1');
-  await accent.press('Space');
-  await expect(accent).toHaveAttribute('data-state', '2');
-  await accent.click();
-  await expect(accent).toHaveAttribute('data-state', '0');
-});
-
-test('accent ignores touch movement while ordinary activation remains available', async ({ page }) => {
-  await page.setViewportSize({ width: 375, height: 812 });
-  await page.goto('/');
-
-  const accent = page.getByRole('button', { name: 'Rearrange the accent' });
-  const composition = page.locator('.accent-composition');
-  const bounds = await accent.boundingBox();
-
-  expect(bounds).not.toBeNull();
-  if (!bounds) return;
-
-  await accent.dispatchEvent('pointermove', {
-    pointerType: 'touch',
-    clientX: bounds.x + bounds.width,
-    clientY: bounds.y + bounds.height,
-  });
-  await expect(composition).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
-
-  await accent.click();
-  await expect(accent).toHaveAttribute('data-state', '1');
-});
-
-test('accent and shape transitions are removed when reduced motion is preferred', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
-
-  await expect(page.locator('.accent-composition')).toHaveCSS('transition-duration', '0s');
-  await expect(page.locator('.accent-shape--disc')).toHaveCSS('transition-duration', '0s');
-});
-
-test.describe('responsive layout', () => {
-  for (const viewport of [
-    { name: 'mobile', width: 375, height: 812 },
-    { name: 'desktop', width: 1440, height: 900 },
+  for (const locator of [
+    page.getByRole('link', { name: 'View selected work' }),
+    page.getByRole('button', { name: /01 Boss Hog/ }),
+    page.getByRole('link', { name: /View repository/ }),
+    page.getByRole('link', { name: 'GitHub' }),
+    page.getByRole('link', { name: /Back to top/ }),
   ]) {
-    test(`has no horizontal overflow at ${viewport.name} size`, async ({ page }) => {
+    await locator.focus();
+    await expect(locator).toHaveCSS('outline-style', 'solid');
+    await expect(locator).not.toHaveCSS('outline-width', '0px');
+  }
+});
+
+test.describe('responsive overflow', () => {
+  for (const viewport of [
+    { width: 390, height: 844 },
+    { width: 768, height: 1024 },
+    { width: 1440, height: 900 },
+    { width: 844, height: 390 },
+  ]) {
+    test(`has no horizontal overflow at ${viewport.width}x${viewport.height}`, async ({ page }) => {
       await page.setViewportSize(viewport);
       await page.goto('/');
-
       await expect(page.locator('main')).toBeVisible();
-      await expect(page.locator('.catalogue-item')).toHaveCount(2);
       await expectNoHorizontalOverflow(page);
-
-      if (viewport.name === 'mobile') {
-        const positions = await page.locator('.catalogue-item').evaluateAll((items) =>
-          items.map((item) => {
-            const bounds = item.getBoundingClientRect();
-            return { top: bounds.top, bottom: bounds.bottom };
-          }),
-        );
-
-        expect(positions[1].top).toBeGreaterThanOrEqual(positions[0].bottom);
-      }
     });
+  }
+});
+
+test('loads without browser errors, missing assets, or broken internal anchors', async ({ page }) => {
+  const browserErrors = [];
+  const failedRequests = [];
+
+  page.on('pageerror', (error) => browserErrors.push(error.message));
+  page.on('requestfailed', (request) => failedRequests.push(request.url()));
+
+  await page.goto('/');
+
+  const missingTargets = await page.locator('a[href^="#"]').evaluateAll((links) =>
+    links
+      .map((link) => link.getAttribute('href'))
+      .filter((href) => href && !document.querySelector(href)),
+  );
+
+  expect(browserErrors).toEqual([]);
+  expect(failedRequests).toEqual([]);
+  expect(missingTargets).toEqual([]);
+});
+
+test('obsolete and unknown routes return 404 without rendering the homepage', async ({ page }) => {
+  for (const path of ['/projects/adam-jones-lab/', '/not-a-real-route/']) {
+    const response = await page.goto(path);
+    expect(response?.status()).toBe(404);
+    await expect(page.getByRole('heading', { level: 1, name: 'Adam Jones' })).toHaveCount(0);
   }
 });
