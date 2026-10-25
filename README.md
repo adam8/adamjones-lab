@@ -1,6 +1,6 @@
-# Adam Jones Lab
+# Adam Island Workshop
 
-A lightweight personal homepage for Adam Jones, a JavaScript developer and designer, and a home for projects and experiments.
+A lightweight one-page site for Adam Jones, a JavaScript developer and designer. It is a home for projects and experiments, presented as a native-scroll editorial story.
 
 ## Local setup
 
@@ -12,15 +12,17 @@ npx playwright install chromium
 npm run dev
 ```
 
-Vite prints the local development URL. No external service is required at runtime.
+Vite prints the local URL. The site uses static HTML, CSS, inline SVG, and a small vanilla JavaScript enhancement; it has no runtime service or remote font dependency.
 
 ## Validation
+
+Run the complete local validation sequence:
 
 ```bash
 npm run validate
 ```
 
-This builds the static site, runs the focused Chromium suite, and asks Wrangler to package the static assets as a dry run. The individual commands are:
+Or run its parts separately:
 
 ```bash
 npm run build
@@ -28,18 +30,28 @@ npm run test:browser
 npm run cloudflare:dry-run
 ```
 
-Generated production files are written to `dist/`. Browser tests cover supplied content, catalogue semantics, keyboard interaction, reduced motion, responsive stacking, and horizontal overflow at desktop and mobile sizes.
+The browser suite checks the core story with and without JavaScript, project-selector keyboard and scroll behavior, reduced-motion and short-viewport fallbacks, external destinations, focus visibility, idle animation scheduling, responsive overflow, and 404 responses.
+
+## Implementation notes
+
+- Essential copy and links live in `index.html` and remain available without JavaScript.
+- Sticky hero and project storytelling is enabled only on viewports at least 801px wide and 641px tall when reduced motion is not requested.
+- `src/main.js` uses one passive-scroll/requestAnimationFrame scheduler for reading progress, hero transforms, and project selection. It requests no frames while idle.
+- Narrow, short, and reduced-motion layouts show projects sequentially in normal document flow.
+- Project graphics and the Vancouver Island illustration are lightweight inline SVG studies, not product screenshots or live data.
 
 ## Cloudflare static assets
 
-`wrangler.jsonc` points Cloudflare Workers static assets at `./dist`. It contains no Worker backend, hostname, or route. The repository intentionally exposes only a dry-run command:
+`wrangler.jsonc` packages `dist/` as Workers static assets with `404-page` handling. The Worker remains named `adamjones-lab`, top-level branch previews remain configured, and there are no routes, custom hostnames, Worker backend, or deployment commands in this workflow.
+
+The repository supports dry-run packaging only:
 
 ```bash
 npm run cloudflare:dry-run
 ```
 
-Publishing, custom-domain setup, and DNS changes require Adam's explicit approval and are not part of this repository workflow.
+Publishing, DNS, custom-domain setup, Access policy changes, and production deployment are outside this task and require Adam’s explicit approval.
 
 ## Review images
 
-Desktop and mobile captures of the current implementation are kept in `docs/review/` when local Chromium is available.
+Desktop and mobile captures of the current homepage are stored in `docs/review/` when local Chromium is available.
