@@ -63,6 +63,25 @@ test('supports skip navigation and visible focus for primary controls and links'
   }
 });
 
+test('mobile navigation and utility links have comfortable touch targets', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+
+  const targets = [
+    ...await page.locator('.nav-list a').all(),
+    page.getByRole('link', { name: 'View selected work' }),
+    page.getByRole('link', { name: /View repository/ }),
+    page.getByRole('link', { name: /Back to top/ }),
+  ];
+
+  for (const target of targets) {
+    const bounds = await target.boundingBox();
+    expect(bounds).not.toBeNull();
+    expect(bounds.width).toBeGreaterThanOrEqual(44);
+    expect(bounds.height).toBeGreaterThanOrEqual(44);
+  }
+});
+
 test.describe('responsive overflow', () => {
   for (const viewport of [
     { width: 390, height: 844 },

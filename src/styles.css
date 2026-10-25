@@ -28,7 +28,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 
 .skip-link { position: fixed; z-index: 100; top: .75rem; left: .75rem; padding: .7rem 1rem; background: var(--green); color: var(--cream); font-weight: 800; opacity: 0; pointer-events: none; transform: translateY(-150%); }
 .skip-link:focus { opacity: 1; pointer-events: auto; transform: none; }
-.reading-progress { position: fixed; z-index: 90; top: 0; left: 0; width: 100%; height: 5px; background: var(--coral); transform: scaleX(0); transform-origin: left; }
+.reading-progress { position: fixed; z-index: 90; top: 0; left: 0; display: none; width: 100%; height: 5px; background: var(--coral); transform-origin: left; }
+.js.motion-ok .reading-progress { display: block; transform: scaleX(0); }
 .label { font-family: var(--mono); font-size: clamp(.66rem, .62rem + .15vw, .78rem); font-weight: 700; letter-spacing: .12em; line-height: 1.4; text-transform: uppercase; }
 
 .site-header { position: absolute; z-index: 20; top: 0; left: 0; display: flex; width: 100%; min-height: 6rem; align-items: center; justify-content: space-between; gap: 2rem; padding: 1.25rem var(--gutter); }
@@ -129,6 +130,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 
 @media (max-width: 800px) {
   .site-header { align-items: flex-start; }
+  .wordmark, .nav-list a, .hero-invitation, .external-link, .back-to-top { display: inline-flex; min-width: 2.75rem; min-height: 2.75rem; align-items: center; }
   .nav-list { max-width: 15rem; }
   .hero-scene { padding-top: 8.5rem; }
   .hero-name { width: 100%; margin-top: 16vh; }

@@ -77,6 +77,28 @@ test('short viewports use normal flow rather than sticky storytelling', async ({
   await expect(page.locator('[data-project-panel]').nth(2)).toBeVisible();
 });
 
+for (const mode of [
+  { name: 'reduced-motion', viewport: { width: 1440, height: 900 }, reducedMotion: true },
+  { name: 'narrow', viewport: { width: 390, height: 844 }, reducedMotion: false },
+  { name: 'short', viewport: { width: 844, height: 390 }, reducedMotion: false },
+]) {
+  test(`${mode.name} fallback does not run a scroll-linked progress transform`, async ({ page }) => {
+    if (mode.reducedMotion) await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize(mode.viewport);
+    await page.goto('/');
+
+    const progress = page.locator('.reading-progress');
+    await expect(progress).toHaveCSS('display', 'none');
+    await expect(progress).toHaveCSS('transform', 'none');
+
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight / 2));
+    await page.waitForTimeout(50);
+
+    await expect(progress).toHaveCSS('transform', 'none');
+    expect(await progress.evaluate((element) => element.style.transform)).toBe('');
+  });
+}
+
 test('the requestAnimationFrame scheduler becomes idle after updates settle', async ({ page }) => {
   await page.addInitScript(() => {
     const nativeRequest = window.requestAnimationFrame.bind(window);

@@ -104,11 +104,11 @@ function paint() {
   const direction = Math.sign(scrollY - previousScrollY);
   previousScrollY = scrollY;
 
+  if (!motionEnabled) return;
+
   if (progressRule) {
     progressRule.style.transform = `scaleX(${clamp(scrollY / geometry.documentRange)})`;
   }
-
-  if (!motionEnabled) return;
 
   const heroProgress = clamp((scrollY - geometry.heroStart) / geometry.heroRange);
   root.style.setProperty('--hero-name-y', `${(-heroProgress * 10).toFixed(3)}vh`);
@@ -132,6 +132,7 @@ function applyMotionPreference() {
   projectSelectionReady = false;
 
   if (!motionEnabled) {
+    progressRule?.style.removeProperty('transform');
     root.style.removeProperty('--hero-name-y');
     root.style.removeProperty('--hero-name-scale');
     root.style.removeProperty('--hero-object-y');
