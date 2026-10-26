@@ -99,6 +99,32 @@ test('project permalinks have meaningful names, visible focus, and 44px targets'
   expect(dimensions.content).toBeLessThanOrEqual(dimensions.viewport);
 });
 
+test('long project headings keep their permalink beside the first line', async ({ page }) => {
+  for (const viewport of [
+    { width: 1440, height: 900 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto('/');
+
+    for (const project of projects.slice(1)) {
+      const layout = await page.locator(`${project.hash} .project-heading`).evaluate((row) => {
+        const heading = row.querySelector('h3').getBoundingClientRect();
+        const permalink = row.querySelector('.project-permalink').getBoundingClientRect();
+        return {
+          headingTop: heading.top,
+          headingRight: heading.right,
+          permalinkTop: permalink.top,
+          permalinkLeft: permalink.left,
+        };
+      });
+
+      expect(Math.abs(layout.permalinkTop - layout.headingTop)).toBeLessThanOrEqual(1);
+      expect(layout.permalinkLeft).toBeGreaterThanOrEqual(layout.headingRight - 1);
+    }
+  }
+});
+
 test('project buttons activate chapters, retain focus, update history once, and synchronize with native scroll', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
