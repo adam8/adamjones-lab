@@ -1,11 +1,15 @@
-import './styles.css';
-
 const root = document.documentElement;
 const progressRule = document.querySelector('.reading-progress');
 const heroTrack = document.querySelector('.hero-track');
 const projectTrack = document.querySelector('.project-track');
 const projectButtons = [...document.querySelectorAll('[data-project-button]')];
 const projectPanels = [...document.querySelectorAll('[data-project-panel]')];
+const projectPermalinks = [...document.querySelectorAll('.project-permalink')];
+const projectIndexByFragment = new Map([
+  ['#project-boss-hog', 0],
+  ['#project-agents', 1],
+  ['#project-interface', 2],
+]);
 const motionQuery = window.matchMedia(
   '(min-width: 961px) and (min-height: 641px) and (prefers-reduced-motion: no-preference)',
 );
@@ -23,6 +27,7 @@ let needsMeasurement = true;
 let motionEnabled = false;
 let activeProject = 0;
 let projectSelectionReady = false;
+let pendingProjectIndex = projectIndexByFragment.get(window.location.hash) ?? null;
 let previousScrollY = window.scrollY;
 
 const clamp = (value, minimum = 0, maximum = 1) => Math.min(maximum, Math.max(minimum, value));
@@ -47,6 +52,24 @@ function measureGeometry() {
   }
 
   needsMeasurement = false;
+}
+
+function projectScrollPosition(index) {
+  return geometry.projectStart + (index / Math.max(1, projectPanels.length - 1)) * geometry.projectRange;
+}
+
+function scrollToProject(index, behavior) {
+  const top = projectScrollPosition(index);
+
+  if (behavior === 'smooth') {
+    window.scrollTo({ top, behavior });
+    return;
+  }
+
+  const previousScrollBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';
+  window.scrollTo({ top, behavior: 'auto' });
+  root.style.scrollBehavior = previousScrollBehavior;
 }
 
 function setActiveProject(nextIndex) {
@@ -96,9 +119,20 @@ function projectIndexForProgress(progress, direction) {
   return nextIndex;
 }
 
+function applyPendingProject() {
+  if (!motionEnabled || pendingProjectIndex === null) return;
+
+  const nextIndex = pendingProjectIndex;
+  pendingProjectIndex = null;
+  setActiveProject(nextIndex);
+  projectSelectionReady = true;
+  scrollToProject(nextIndex, 'auto');
+}
+
 function paint() {
   frameRequest = 0;
   if (needsMeasurement) measureGeometry();
+  applyPendingProject();
 
   const scrollY = window.scrollY;
   const direction = Math.sign(scrollY - previousScrollY);
@@ -126,17 +160,39 @@ function scheduleUpdate({ measure = false } = {}) {
   if (!frameRequest) frameRequest = window.requestAnimationFrame(paint);
 }
 
+function queueCurrentProjectFragment() {
+  const index = projectIndexByFragment.get(window.location.hash);
+  if (index === undefined || !motionEnabled) return;
+
+  pendingProjectIndex = index;
+  scheduleUpdate();
+}
+
+function updateProjectFragment(index) {
+  const hash = `#${projectPanels[index].id}`;
+  if (window.location.hash !== hash) history.pushState(null, '', hash);
+}
+
+function activateProject(index, behavior = 'smooth') {
+  setActiveProject(index);
+  projectSelectionReady = true;
+  scrollToProject(index, behavior);
+}
+
 function applyMotionPreference() {
   motionEnabled = motionQuery.matches;
   root.classList.toggle('motion-ok', motionEnabled);
   projectSelectionReady = false;
 
   if (!motionEnabled) {
+    pendingProjectIndex = null;
     progressRule?.style.removeProperty('transform');
     root.style.removeProperty('--hero-name-y');
     root.style.removeProperty('--hero-name-scale');
     root.style.removeProperty('--hero-object-y');
     root.style.removeProperty('--hero-object-rotate');
+  } else {
+    pendingProjectIndex = projectIndexByFragment.get(window.location.hash) ?? null;
   }
 
   setActiveProject(activeProject);
@@ -147,15 +203,36 @@ projectButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
     if (!motionEnabled) return;
 
-    setActiveProject(index);
-    projectSelectionReady = true;
-    const targetY = geometry.projectStart + (index / Math.max(1, projectPanels.length - 1)) * geometry.projectRange;
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
+    updateProjectFragment(index);
+    activateProject(index);
+  });
+});
+
+projectPermalinks.forEach((permalink) => {
+  permalink.addEventListener('click', (event) => {
+    if (
+      !motionEnabled ||
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) return;
+
+    const index = projectIndexByFragment.get(permalink.hash);
+    if (index === undefined) return;
+
+    event.preventDefault();
+    updateProjectFragment(index);
+    activateProject(index);
   });
 });
 
 window.addEventListener('scroll', scheduleUpdate, { passive: true });
 window.addEventListener('resize', () => scheduleUpdate({ measure: true }), { passive: true });
+window.addEventListener('hashchange', queueCurrentProjectFragment);
+window.addEventListener('popstate', queueCurrentProjectFragment);
 motionQuery.addEventListener('change', applyMotionPreference);
 
 root.classList.add('js');
