@@ -85,9 +85,12 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .project-controls button[aria-pressed="true"] { border-left: .45rem solid var(--green); padding-left: .75rem; box-shadow: inset .16rem 0 var(--coral); font-family: var(--serif); font-size: 1.1rem; font-style: italic; }
 .project-controls button span { font-family: var(--mono); font-size: .68rem; font-style: normal; }
 .project-panels { min-width: 0; }
-.project-panel { display: grid; min-height: min(45rem, 78vh); grid-template-columns: minmax(15rem, .85fr) minmax(18rem, 1.15fr); align-items: center; gap: clamp(2rem, 5vw, 6rem); border-top: 1px solid var(--green); padding: clamp(2.5rem, 5vw, 5rem) 0; }
+.project-panel { display: grid; min-height: min(45rem, 78vh); grid-template-columns: minmax(15rem, .85fr) minmax(18rem, 1.15fr); align-items: center; gap: clamp(2rem, 5vw, 6rem); border-top: 1px solid var(--green); padding: clamp(2.5rem, 5vw, 5rem) 0; scroll-margin-block-start: 2rem; }
 .project-panel + .project-panel { margin-top: 2rem; }
-.project-copy h3 { margin: 1rem 0 2rem; font-family: var(--serif); font-size: clamp(3.4rem, 6vw, 6.5rem); font-weight: 400; letter-spacing: -.07em; line-height: .85; }
+.project-heading { display: flex; flex-wrap: nowrap; align-items: flex-start; gap: .45rem; max-width: 100%; margin: 1rem 0 2rem; }
+.project-copy h3 { min-width: 0; max-width: calc(100% - 3.2rem); margin: 0; font-family: var(--serif); font-size: clamp(3.4rem, 6vw, 6.5rem); font-weight: 400; letter-spacing: -.07em; line-height: .85; }
+.project-permalink { display: inline-grid; width: 2.75rem; min-width: 2.75rem; height: 2.75rem; flex: 0 0 2.75rem; align-items: center; justify-items: center; color: var(--green); font-family: var(--mono); font-size: .9rem; font-weight: 800; line-height: 1; text-decoration: none; }
+.project-permalink:hover { color: #b84320; text-decoration: underline; text-decoration-thickness: 2px; }
 .project-copy > p:not(.label) { max-width: 34rem; margin: 0; font-size: clamp(1.05rem, 1.3vw, 1.3rem); line-height: 1.65; }
 .external-link { display: inline-block; margin-top: 2rem; font-family: var(--mono); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .project-object { width: 100%; max-height: 34rem; fill: none; stroke: var(--green); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }

@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:browser": "playwright test",
+    "test:browser": "node scripts/run-browser-tests.js",
     "cloudflare:dry-run": "wrangler deploy --dry-run",
     "validate": "npm run build && npm run test:browser && npm run cloudflare:dry-run"
   },
