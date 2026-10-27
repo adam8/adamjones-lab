@@ -10,9 +10,7 @@ const projectIndexByFragment = new Map([
   ['#project-agents', 1],
   ['#project-interface', 2],
 ]);
-const motionQuery = window.matchMedia(
-  '(min-width: 961px) and (min-height: 641px) and (prefers-reduced-motion: no-preference)',
-);
+const enhancementQuery = window.matchMedia('(min-width: 961px) and (min-height: 641px)');
 
 const geometry = {
   documentRange: 1,
@@ -179,8 +177,8 @@ function activateProject(index, behavior = 'smooth') {
   scrollToProject(index, behavior);
 }
 
-function applyMotionPreference() {
-  motionEnabled = motionQuery.matches;
+function applyEnhancementState() {
+  motionEnabled = enhancementQuery.matches;
   root.classList.toggle('motion-ok', motionEnabled);
   projectSelectionReady = false;
 
@@ -233,7 +231,7 @@ window.addEventListener('scroll', scheduleUpdate, { passive: true });
 window.addEventListener('resize', () => scheduleUpdate({ measure: true }), { passive: true });
 window.addEventListener('hashchange', queueCurrentProjectFragment);
 window.addEventListener('popstate', queueCurrentProjectFragment);
-motionQuery.addEventListener('change', applyMotionPreference);
+enhancementQuery.addEventListener('change', applyEnhancementState);
 
 root.classList.add('js');
-applyMotionPreference();
+applyEnhancementState();
