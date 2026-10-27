@@ -219,38 +219,44 @@ test('unknown fragments remain unchanged and do not force the project stage', as
   expect(position.scrollY).toBeLessThan(position.projectStart - 10);
 });
 
-test('reduced motion releases sticky scenes and shows every project in normal flow', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.setViewportSize({ width: 1440, height: 900 });
+test('enhancement boundaries switch sticky scenes and clear hidden project state', async ({ page }) => {
+  await page.setViewportSize({ width: 960, height: 900 });
   await page.goto('/');
 
   await expect(page.locator('html')).not.toHaveClass(/motion-ok/);
   await expect(page.locator('.hero-scene')).toHaveCSS('position', 'relative');
+  await expect(page.locator('.project-stage')).not.toHaveCSS('position', 'sticky');
+  await expect(page.locator('.project-controls')).toHaveCSS('display', 'none');
+  await expect(page.locator('.reading-progress')).toHaveCSS('display', 'none');
+
+  await page.setViewportSize({ width: 961, height: 641 });
+  await expect(page.locator('html')).toHaveClass(/motion-ok/);
+  await expect(page.locator('.hero-scene')).toHaveCSS('position', 'sticky');
+  await expect(page.locator('.project-stage')).toHaveCSS('position', 'sticky');
+  await expect(page.locator('.project-controls')).toHaveCSS('display', 'flex');
+  await expect(page.locator('.reading-progress')).toHaveCSS('display', 'block');
+  await expect(page.locator('#project-agents')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('#project-agents')).toHaveAttribute('inert', '');
+
+  await page.setViewportSize({ width: 1440, height: 640 });
+  await expect(page.locator('html')).not.toHaveClass(/motion-ok/);
+  await expect(page.locator('.hero-scene')).toHaveCSS('position', 'relative');
+  await expect(page.locator('.project-stage')).not.toHaveCSS('position', 'sticky');
+  await expect(page.locator('.hero-invitation')).toHaveCSS('position', 'relative');
+  await expect(page.locator('.scroll-cue')).toHaveCSS('display', 'none');
 
   for (const panel of await page.locator('[data-project-panel]').all()) {
-    await expect(panel).not.toHaveCSS('position', 'absolute');
-    await expect(panel).toHaveCSS('opacity', '1');
     await expect(panel).not.toHaveAttribute('aria-hidden');
     await expect(panel).not.toHaveAttribute('inert');
   }
-
-  const fallbackWidths = await page.locator('.project-stage, .project-panels').evaluateAll(([stage, panels]) => ({
-    stage: stage.getBoundingClientRect().width,
-    panels: panels.getBoundingClientRect().width,
-  }));
-  expect(fallbackWidths.panels).toBeGreaterThan(fallbackWidths.stage * 0.9);
-
-  await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
 });
 
 for (const mode of [
-  { name: 'narrow', viewport: { width: 390, height: 844 }, reducedMotion: false },
-  { name: 'short', viewport: { width: 844, height: 390 }, reducedMotion: false },
-  { name: 'reduced motion', viewport: { width: 1440, height: 900 }, reducedMotion: true },
+  { name: 'narrow', viewport: { width: 390, height: 844 } },
+  { name: 'short', viewport: { width: 844, height: 390 } },
 ]) {
   for (const project of projects) {
     test(`${mode.name} uses native anchoring for ${project.name}`, async ({ page }) => {
-      if (mode.reducedMotion) await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.setViewportSize(mode.viewport);
       await page.goto(`/${project.hash}`);
 
@@ -296,12 +302,10 @@ test('short viewports use normal flow rather than sticky storytelling', async ({
 });
 
 for (const mode of [
-  { name: 'reduced-motion', viewport: { width: 1440, height: 900 }, reducedMotion: true },
-  { name: 'narrow', viewport: { width: 390, height: 844 }, reducedMotion: false },
-  { name: 'short', viewport: { width: 844, height: 390 }, reducedMotion: false },
+  { name: 'narrow', viewport: { width: 390, height: 844 } },
+  { name: 'short', viewport: { width: 844, height: 390 } },
 ]) {
   test(`${mode.name} fallback does not run a scroll-linked progress transform`, async ({ page }) => {
-    if (mode.reducedMotion) await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.setViewportSize(mode.viewport);
     await page.goto('/');
 

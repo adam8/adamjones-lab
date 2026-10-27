@@ -187,9 +187,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .elsewhere-links a { font-size: 1.8rem; }
 }
 
-@media (prefers-reduced-motion: reduce), (max-height: 640px) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+@media (max-height: 640px) {
   .hero-track, .js.motion-ok .hero-track, .js.motion-ok .project-track { height: auto; }
   .hero-scene, .js.motion-ok .hero-scene, .js.motion-ok .project-stage { position: relative; top: auto; height: auto; }
   .project-stage, .js.motion-ok .project-stage { display: grid; grid-template-columns: minmax(0, 1fr); }
@@ -201,6 +199,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .project-controls { display: none; }
 }
 
-@media (min-width: 961px) and (min-height: 641px) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 961px) and (min-height: 641px) {
   .js.motion-ok .project-panel { transition: opacity 180ms ease, transform 180ms ease; }
 }
