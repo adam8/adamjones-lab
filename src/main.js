@@ -1,6 +1,16 @@
 const root = document.documentElement;
 const progressRule = document.querySelector('.reading-progress');
 const heroTrack = document.querySelector('.hero-track');
+const chapterIndexSlot = document.querySelector('.chapter-index-slot');
+const chapterIndexSentinel = document.querySelector('.chapter-index-sentinel');
+const chapterItems = [...document.querySelectorAll('[data-chapter-item]')];
+const chapterTargets = [
+  { key: 'introduction', element: document.querySelector('.introduction') },
+  { key: 'work', element: document.querySelector('#work') },
+  { key: 'outside', element: document.querySelector('#outside') },
+  { key: 'about', element: document.querySelector('#about') },
+  { key: 'elsewhere', element: document.querySelector('#elsewhere') },
+].filter(({ element }) => element);
 const projectTrack = document.querySelector('.project-track');
 const projectButtons = [...document.querySelectorAll('[data-project-button]')];
 const projectPanels = [...document.querySelectorAll('[data-project-panel]')];
@@ -29,6 +39,31 @@ let pendingProjectIndex = projectIndexByFragment.get(window.location.hash) ?? nu
 let previousScrollY = window.scrollY;
 
 const clamp = (value, minimum = 0, maximum = 1) => Math.min(maximum, Math.max(minimum, value));
+
+function setCurrentChapter(key) {
+  chapterItems.forEach((item) => item.removeAttribute('aria-current'));
+  chapterItems.find((item) => item.dataset.chapterItem === key)?.setAttribute('aria-current', 'location');
+}
+
+function resolveCurrentChapter() {
+  const referenceLine = window.innerHeight * 0.22;
+  let currentKey = 'introduction';
+
+  chapterTargets.forEach(({ key, element }) => {
+    if (element.getBoundingClientRect().top <= referenceLine) currentKey = key;
+  });
+
+  setCurrentChapter(currentKey);
+}
+
+function updateChapterPersistence() {
+  const shouldPersist = Boolean(
+    enhancementQuery.matches &&
+    chapterIndexSentinel &&
+    chapterIndexSentinel.getBoundingClientRect().top < 16
+  );
+  chapterIndexSlot?.classList.toggle('is-persistent', shouldPersist);
+}
 
 function measureGeometry() {
   const scrollY = window.scrollY;
@@ -180,6 +215,7 @@ function activateProject(index, behavior = 'smooth') {
 function applyEnhancementState() {
   motionEnabled = enhancementQuery.matches;
   root.classList.toggle('motion-ok', motionEnabled);
+  updateChapterPersistence();
   projectSelectionReady = false;
 
   if (!motionEnabled) {
@@ -233,5 +269,20 @@ window.addEventListener('hashchange', queueCurrentProjectFragment);
 window.addEventListener('popstate', queueCurrentProjectFragment);
 enhancementQuery.addEventListener('change', applyEnhancementState);
 
+const chapterObserver = new IntersectionObserver(resolveCurrentChapter, {
+  rootMargin: '-22% 0px -77% 0px',
+  threshold: 0,
+});
+chapterTargets.forEach(({ element }) => chapterObserver.observe(element));
+
+if (chapterIndexSentinel) {
+  const persistenceObserver = new IntersectionObserver(updateChapterPersistence, {
+    rootMargin: '-16px 0px 0px',
+    threshold: 0,
+  });
+  persistenceObserver.observe(chapterIndexSentinel);
+}
+
 root.classList.add('js');
+setCurrentChapter('introduction');
 applyEnhancementState();

@@ -60,6 +60,18 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .eye-planet ellipse { fill: none; }
 .orbital-flower { position: absolute; right: 24%; bottom: 4%; width: clamp(7rem, 11vw, 11rem); fill: var(--cream); stroke: var(--green); stroke-width: 1.5; transform: rotate(15deg); }
 
+.chapter-index-slot { position: relative; z-index: 10; display: flex; min-height: calc(44px + 1.5rem); justify-content: flex-end; padding: .75rem var(--gutter); background: var(--cream); }
+.chapter-index-sentinel { position: absolute; top: 0; right: 0; width: 1px; height: 1px; pointer-events: none; }
+.chapter-index { display: flex; max-width: 100%; align-items: center; gap: .35rem .75rem; border: 1px solid var(--green); padding: 0 .65rem; background: var(--cream); color: var(--green); }
+.chapter-index-title { flex: 0 0 auto; }
+.chapter-index-list { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .15rem; margin: 0; padding: 0; list-style: none; }
+.chapter-index-item { position: relative; display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; gap: .35rem; padding: .35rem .45rem; text-decoration: none; white-space: nowrap; }
+.chapter-index-item > span { color: inherit; font-weight: 700; }
+.chapter-index-item[aria-current="location"] { border-bottom: 2px solid var(--coral); font-weight: 900; }
+.chapter-index-item[aria-current="location"]::before { position: absolute; top: 50%; left: -.1rem; width: 3px; height: 1rem; background: var(--coral); content: ""; transform: translateY(-50%); }
+.chapter-index-item:is(a):hover { text-decoration: underline; text-decoration-thickness: 2px; }
+#work, #outside, #about, #elsewhere { scroll-margin-block-start: 6rem; }
+
 .chapter { position: relative; padding: clamp(5rem, 11vw, 11rem) var(--gutter); overflow: clip; }
 .chapter--cream { background: var(--cream); }
 .chapter--blue { background: var(--blue); }
@@ -167,6 +179,11 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 
 @media (max-width: 480px) {
   .site-header { min-height: 7rem; padding-top: 1rem; }
+  .chapter-index-slot { justify-content: stretch; }
+  .chapter-index { width: 100%; align-items: flex-start; gap: 0 .35rem; padding-inline: .45rem; }
+  .chapter-index-title { padding-top: .9rem; }
+  .chapter-index-list { flex: 1 1 auto; }
+  .chapter-index-item { padding-inline: .3rem; }
   .wordmark { font-size: 1.5rem; }
   .nav-list { width: 12rem; gap: .45rem 1rem; font-size: .61rem; }
   .hero-name { margin-top: 19vh; }
@@ -200,5 +217,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 
 @media (min-width: 961px) and (min-height: 641px) {
+  .js.motion-ok .chapter-index-slot.is-persistent .chapter-index { position: fixed; z-index: 70; top: 1rem; right: var(--gutter); }
   .js.motion-ok .project-panel { transition: opacity 180ms ease, transform 180ms ease; }
 }

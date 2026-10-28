@@ -30,13 +30,14 @@ npm run test:browser
 npm run cloudflare:dry-run
 ```
 
-The browser suite checks the core story with and without JavaScript, project-selector keyboard and scroll behavior, narrow- and short-viewport fallbacks, enhancement boundaries, external destinations, focus visibility, idle animation scheduling, responsive overflow, and 404 responses.
+The browser suite checks the core story with and without JavaScript, chapter-index semantics and persistence, current chapter and native anchors, project-selector keyboard and scroll behavior, narrow- and short-viewport fallbacks, enhancement boundaries, external destinations, focus visibility, idle animation scheduling, responsive overflow, and 404 responses.
 
 ## Implementation notes
 
 - Essential copy and links live in `index.html` and remain available without JavaScript.
 - Sticky hero and project storytelling is enabled only on viewports above 960px wide and above 640px tall.
-- `src/main.js` uses one passive-scroll/requestAnimationFrame scheduler for reading progress, hero transforms, and project selection. It requests no frames while idle.
+- The chapter index stays in normal flow by default and becomes persistent at that same wide/tall boundary after the hero clears.
+- `src/main.js` uses one passive-scroll/requestAnimationFrame scheduler for reading progress, hero transforms, and project selection. Chapter state and persistence use separate intersection observers, and no frames are requested while idle.
 - Narrow and short layouts show projects sequentially in normal document flow.
 - Project graphics and the Vancouver Island illustration are lightweight inline SVG studies, not product screenshots or live data.
 
