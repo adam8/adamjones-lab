@@ -1,5 +1,16 @@
 # F-012 review
 
+## Repair attempt 1 — current result
+
+- Fixed the 200% root-font overflow rather than skipping its assertion. The chapter index can wrap its title/list; fallback and constrained grids no longer force min-content/rem minimum widths beyond their available space. No text, destinations, project behavior, or clipping rules changed.
+- Restored unconditional document-overflow checking and added direct bounds checks for chapter links, project copy/permalinks, About, and Elsewhere so existing clipping cannot conceal these regressions. At 390px with 200% root font, document width is now 390px (formerly about 447px). All five enlarged-text sizes pass.
+- Added keyboard-driven focus-ring clearance checks at 390×844, 768×1024, 1440×900, 844×390, and 961×641. These check the full 7px outline/shadow extent against viewport and clipping ancestors. A small clamped hero-gap adjustment fixes a 0.44px focus-shadow overrun at 961×641, keeping the 1440px gap unchanged.
+- Added **real 200% Chromium tab zoom** using a temporary local validation extension and `chrome.tabs.setZoom`, not CSS/pinch/device emulation. Confirmed zoom factor 2, layout viewport 720px and devicePixelRatio 2 on the 1440×900 surface; normal flow, no document overflow, keyboard focus and Enter → Work pass. Extension/profile are deleted afterward; no shipped extension/dependency was added.
+- Final `npm run build` and `npm run test:browser`: **65 passed**, no retries needed. Existing native-navigation, JavaScript-disabled, boundary, and idle-scheduler tests remain passing. `git diff --check` passed. Wrangler configuration inspected and unchanged; no deployment or credential access.
+- Focus captures: `f-012-focus-desktop.png`, `f-012-focus-mobile.png`, `f-012-focus-boundary.png`. Capture succeeded, but the image reader rejected both PNG and reduced JPEG attempts. **Direct visual composition/focus-stroke review remains unavailable**; geometric focus clearance is verified, not a visual sign-off. iPhone/Safari and device performance remain unverified. The historical motion measurements below were not rerun.
+
+## Original implementation review (historical; repair results above supersede its overflow/zoom limits)
+
 ## Implementation
 
 Completed the partial implementation found in the supplied worktree. Hero copy now states the approved role and location. One decorative inline SVG connects the command key, wrapping ellipse, stem, and two leaves. Grid space reserves room for the object; narrow layouts place it in flow. The enhanced track is 145svh with intrinsic growth. Only the specimen lowers (0–4vh) and turns (0–4deg); identity copy no longer transforms. Worker configuration is unchanged.
