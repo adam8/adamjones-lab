@@ -14,7 +14,7 @@ test('opens with Adam Jones, his role, and Vancouver Island location', async ({ 
 
   await expect(page).toHaveTitle(/Adam Jones/);
   await expect(page.getByRole('heading', { level: 1, name: 'Adam Jones' })).toBeVisible();
-  await expect(page.getByText('Design & development.')).toBeVisible();
+  await expect(page.getByText('Front-end JavaScript developer.')).toBeVisible();
   await expect(page.getByText('Vancouver Island, BC.')).toBeVisible();
   await expect(page.getByRole('heading', { level: 2, name: 'I design interfaces. And build them.' })).toBeVisible();
 });
