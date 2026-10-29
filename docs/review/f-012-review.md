@@ -1,6 +1,20 @@
 # F-012 review
 
-## Repair attempt 1 — current result
+## Supervised correction — enlarged-header clearance (current result)
+
+Adam approved one narrowly scoped supervised correction after the automated repair limit; the factory repair count remains 2.
+
+- Reproduced the independent Reviewer's overlap at 390×844 with 200% root text: header bottom 467.17px, hero index top 272px. The new clearance assertion failed before the CSS fix.
+- Navigation now participates in normal flow on narrow and short viewports. Its content-dependent height reserves actual space above the hero instead of relying on absolute positioning and a fixed padding allowance. Existing desktop sticky behavior is unchanged.
+- After correction, the enlarged mobile header ends at 467.17px and the hero index begins at 515.17px; short landscape ends at 280px with the index beginning at 328px. Both retain 48px clearance and no horizontal overflow.
+- Added six enlarged-text tests across 390, 768, and 1440px with JavaScript enabled and disabled. Header/index and header-link hit-target clearance are also asserted in existing enlargement, first-viewport, boundary, and true 200% Chromium zoom tests.
+- `npm run validate` passed: build, **71 Chromium tests**, and Wrangler dry-run. All 22 focused hero tests pass. `git diff --check` passed.
+- Refreshed desktop/mobile hero images and all three focus captures. Added `f-012-enlarged-header-mobile.png` and `f-012-enlarged-header-short.png` for the repaired states.
+- Operator directly inspected desktop/mobile hero and enlarged mobile captures using the working image reader: no header/annotation collision, missing identity, or illustration overlap was found in those states. Fresh independent Tester and Reviewer gates are still required on the committed correction.
+- No reduced-motion feature was restored. Native scrolling, keyboard access, narrow/short fallbacks, and idle scheduling remain covered. Cloudflare configuration, content, and links are unchanged by this correction.
+- Earlier entries below are historical, including image-reader failures and acceptance gaps that subsequent repairs resolved. No on-device Safari/iPhone or animation-smoothness certification is claimed.
+
+## Repair attempt 1 — prior result
 
 - Fixed the 200% root-font overflow rather than skipping its assertion. The chapter index can wrap its title/list; fallback and constrained grids no longer force min-content/rem minimum widths beyond their available space. No text, destinations, project behavior, or clipping rules changed.
 - Restored unconditional document-overflow checking and added direct bounds checks for chapter links, project copy/permalinks, About, and Elsewhere so existing clipping cannot conceal these regressions. At 390px with 200% root font, document width is now 390px (formerly about 447px). All five enlarged-text sizes pass.

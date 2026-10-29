@@ -38,7 +38,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .nav-list a { text-decoration: none; }
 .nav-list a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 
-.hero-track { position: relative; min-height: 100svh; background: var(--paper); }
+.hero-track { --header-clearance: 6rem; position: relative; min-height: 100svh; background: var(--paper); }
 .hero-scene { position: relative; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); align-content: center; gap: clamp(1.75rem, 2vw, 2rem); min-height: 100svh; padding: clamp(7.5rem, 14vh, 10rem) var(--gutter) 3rem; }
 .hero-index { grid-column: 1 / -1; display: flex; justify-content: space-between; border-top: 1px solid currentColor; padding-top: .6rem; }
 .hero-name { position: relative; min-width: 0; margin: 2rem 0 0; }
@@ -149,9 +149,11 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 
 @media (max-width: 800px) {
-  .site-header { align-items: flex-start; }
+  /* Let wrapped/enlarged navigation reserve its own space above the hero. */
+  .site-header { position: relative; align-items: flex-start; }
   .nav-list { max-width: 15rem; }
-  .hero-scene { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; padding-top: 8.5rem; }
+  .hero-track { min-height: calc(100svh - var(--header-clearance)); }
+  .hero-scene { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; min-height: calc(100svh - var(--header-clearance)); padding-top: 2.5rem; }
   .hero-specimen { width: 9rem; justify-self: end; }
   .hero-role { margin-top: 2.5rem; }
   .scroll-cue { display: none; }
@@ -171,6 +173,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 
 @media (max-width: 480px) {
   .site-header { min-height: 7rem; padding-top: 1rem; }
+  .hero-track { --header-clearance: 7rem; }
+  .hero-scene { padding-top: 1.5rem; }
   .chapter-index-slot { justify-content: stretch; }
   .chapter-index { width: 100%; align-items: flex-start; gap: 0 .35rem; padding-inline: .45rem; }
   .chapter-index-title { padding-top: .9rem; }
@@ -190,8 +194,11 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 
 @media (max-height: 640px) {
-  .hero-track, .js.motion-ok .hero-track, .js.motion-ok .project-track { height: auto; min-height: 100svh; }
+  .site-header { position: relative; }
+  .hero-track, .js.motion-ok .hero-track { height: auto; min-height: calc(100svh - var(--header-clearance)); }
+  .js.motion-ok .project-track { height: auto; min-height: 100svh; }
   .hero-scene, .js.motion-ok .hero-scene, .js.motion-ok .project-stage { position: relative; top: auto; height: auto; }
+  .hero-scene { min-height: calc(100svh - var(--header-clearance)); padding-top: 1.5rem; }
   .project-stage, .js.motion-ok .project-stage { display: grid; grid-template-columns: minmax(0, 1fr); }
   .project-panels { grid-column: 1 / -1; }
   .hero-specimen { transform: none !important; }
