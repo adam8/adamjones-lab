@@ -36,7 +36,7 @@ The browser suite checks the core story with and without JavaScript, chapter-ind
 
 - Essential copy and links live in `index.html` and remain available without JavaScript.
 - Sticky hero and project storytelling is enabled only on viewports above 960px wide and above 640px tall.
-- The chapter index stays in normal flow by default and becomes persistent at that same wide/tall boundary after the hero clears.
+- The chapter index stays in normal flow by default and becomes persistent at that same wide/tall boundary after the hero clears. All five chapters, including Introduction (`#introduction`), use native anchor links with heading clearance and work without JavaScript.
 - `src/main.js` uses one passive-scroll/requestAnimationFrame scheduler for reading progress, hero transforms, and project selection. Chapter state and persistence use separate intersection observers, and no frames are requested while idle.
 - Narrow and short layouts show projects sequentially in normal document flow.
 - Project graphics and the Vancouver Island illustration are lightweight inline SVG studies, not product screenshots or live data.

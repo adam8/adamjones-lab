@@ -64,7 +64,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .chapter-index-item[aria-current="location"] { border-bottom: 2px solid var(--coral); font-weight: 900; }
 .chapter-index-item[aria-current="location"]::before { position: absolute; top: 50%; left: -.1rem; width: 3px; height: 1rem; background: var(--coral); content: ""; transform: translateY(-50%); }
 .chapter-index-item:is(a):hover { text-decoration: underline; text-decoration-thickness: 2px; }
-#work, #outside, #about, #elsewhere { scroll-margin-block-start: 6rem; }
+#introduction, #work, #outside, #about, #elsewhere { scroll-margin-block-start: 6rem; }
 
 .chapter { position: relative; padding: clamp(5rem, 11vw, 11rem) var(--gutter); overflow: clip; }
 .chapter--cream { background: var(--cream); }

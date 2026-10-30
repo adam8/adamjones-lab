@@ -1,6 +1,13 @@
 # F-012 review
 
-## Supervised correction — enlarged-header clearance (current result)
+## Adam-requested follow-up — Introduction link
+
+- The Introduction index entry was a noninteractive label. It is now a native `#introduction` anchor targeting the existing section, with the same scroll margin as other chapters; no custom click or focus handler was added.
+- Updated semantic assertions require five real chapter links instead of preserving the old label. The revised regression test failed before the markup fix (expected five links, received four).
+- Added direct-fragment coverage and six desktop/mobile/short-screen scenarios checking direct entry, pointer activation, actual keyboard focus/Enter, heading clearance, current state, and native Back navigation with JavaScript enabled and disabled.
+- All 20 focused chapter-index tests passed locally. Fresh full validation and independent review are required before updating PR #12.
+
+## Supervised correction — enlarged-header clearance
 
 Adam approved one narrowly scoped supervised correction after the automated repair limit; the factory repair count remains 2.
 
