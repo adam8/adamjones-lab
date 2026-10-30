@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const chapters = [
-  { key: 'introduction', text: '01 Introduction', target: '.introduction' },
+  { key: 'introduction', text: '01 Introduction', href: '#introduction', target: '#introduction' },
   { key: 'work', text: '02 Work', href: '#work', target: '#work' },
   { key: 'outside', text: '03 Outside', href: '#outside', target: '#outside' },
   { key: 'about', text: '04 About', href: '#about', target: '#about' },
@@ -20,10 +20,9 @@ test('chapter index follows the hero with its semantic label and exact destinati
   await expect(index).toBeVisible();
   await expect(page.locator('.hero-track + .chapter-index-slot .chapter-index')).toHaveCount(1);
   await expect(index.locator('li')).toHaveCount(5);
-  await expect(index.locator('[data-chapter-item="introduction"]')).toHaveText('01 Introduction');
-  await expect(index.locator('[data-chapter-item="introduction"]')).not.toHaveAttribute('href');
+  await expect(index.getByRole('link')).toHaveCount(5);
 
-  for (const chapter of chapters.slice(1)) {
+  for (const chapter of chapters) {
     await expect(index.getByRole('link', { name: chapter.text, exact: true })).toHaveAttribute('href', chapter.href);
   }
 
@@ -40,7 +39,9 @@ test.describe('chapter index without JavaScript', () => {
     await expect(page.getByRole('navigation', { name: 'Chapter index' })).toBeVisible();
     await expect(page.locator('.chapter-index')).toHaveCSS('position', 'static');
     await expect(page.locator('[data-chapter-item][aria-current]')).toHaveCount(0);
-    await expect(page.getByRole('link', { name: '02 Work', exact: true })).toHaveAttribute('href', '#work');
+    for (const chapter of chapters) {
+      await expect(page.getByRole('link', { name: chapter.text, exact: true })).toHaveAttribute('href', chapter.href);
+    }
   });
 });
 
@@ -148,7 +149,7 @@ test('native Enter activation uses no scripted focus and clears the fixed index'
   expect(clearance.headingTop).toBeGreaterThan(clearance.indexBottom);
 });
 
-for (const chapter of chapters.slice(1)) {
+for (const chapter of chapters) {
   test(`direct ${chapter.key} fragment settles on its chapter with visible heading clearance`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(`/${chapter.href}`);
@@ -160,6 +161,51 @@ for (const chapter of chapters.slice(1)) {
       headingTop: document.querySelector(selector).getBoundingClientRect().top,
     }), headingSelector);
     expect(positions.headingTop).toBeGreaterThan(positions.indexBottom);
+  });
+}
+
+for (const javaScriptEnabled of [true, false]) {
+  test.describe(`Introduction navigation with JavaScript ${javaScriptEnabled}`, () => {
+    test.use({ javaScriptEnabled });
+    for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 844, height: 390 }]) {
+      test(`direct, pointer, keyboard and history at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+        await page.setViewportSize(viewport);
+        await page.goto('/#introduction');
+        await expect(page.locator('#intro-title')).toBeInViewport();
+        if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
+
+        await page.goto('/#about');
+        await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+        const link = page.getByRole('link', { name: '01 Introduction', exact: true });
+        await link.click();
+        await expect(page).toHaveURL(/#introduction$/);
+        await expect(page.locator('#intro-title')).toBeInViewport();
+        if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
+
+        await page.goto('/#outside');
+        await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+        await link.focus();
+        // Switch from the earlier pointer interaction to actual keyboard focus.
+        await page.keyboard.press('Shift+Tab');
+        await page.keyboard.press('Tab');
+        await expect(link).toBeFocused();
+        await expect(link).toHaveCSS('outline-style', 'solid');
+        await link.press('Enter');
+        await expect(page).toHaveURL(/#introduction$/);
+        await expect(page.locator('#intro-title')).toBeInViewport();
+        if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
+        else await expect(page.locator('[data-chapter-item][aria-current]')).toHaveCount(0);
+
+        const bounds = await page.evaluate(() => ({
+          indexBottom: document.querySelector('.chapter-index').getBoundingClientRect().bottom,
+          headingTop: document.querySelector('#intro-title').getBoundingClientRect().top,
+        }));
+        expect(bounds.headingTop).toBeGreaterThan(bounds.indexBottom);
+        await page.goBack();
+        await expect(page).toHaveURL(/#outside$/);
+        await expect(page.locator('#outside-title')).toBeInViewport();
+      });
+    }
   });
 }
 

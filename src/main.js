@@ -178,9 +178,7 @@ function paint() {
   }
 
   const heroProgress = clamp((scrollY - geometry.heroStart) / geometry.heroRange);
-  root.style.setProperty('--hero-name-y', `${(-heroProgress * 10).toFixed(3)}vh`);
-  root.style.setProperty('--hero-name-scale', (1 - heroProgress * 0.08).toFixed(4));
-  root.style.setProperty('--hero-object-y', `${(heroProgress * 8).toFixed(3)}vh`);
+  root.style.setProperty('--hero-object-y', `${(heroProgress * 4).toFixed(3)}vh`);
   root.style.setProperty('--hero-object-rotate', `${(heroProgress * 4).toFixed(3)}deg`);
 
   const projectProgress = clamp((scrollY - geometry.projectStart) / geometry.projectRange);
@@ -221,8 +219,6 @@ function applyEnhancementState() {
   if (!motionEnabled) {
     pendingProjectIndex = null;
     progressRule?.style.removeProperty('transform');
-    root.style.removeProperty('--hero-name-y');
-    root.style.removeProperty('--hero-name-scale');
     root.style.removeProperty('--hero-object-y');
     root.style.removeProperty('--hero-object-rotate');
   } else {
