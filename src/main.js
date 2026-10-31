@@ -38,6 +38,7 @@ let activeProject = 0;
 let projectSelectionReady = false;
 let pendingProjectIndex = projectIndexByFragment.get(window.location.hash) ?? null;
 let previousScrollY = window.scrollY;
+let readingProjectVisible = false;
 
 const clamp = (value, minimum = 0, maximum = 1) => Math.min(maximum, Math.max(minimum, value));
 
@@ -69,8 +70,9 @@ function updateChapterPersistence() {
 function measureProjectFit() {
   const previousMode = projectsStaged;
   const focusedPanel = projectPanels.findIndex(panel => panel.contains(document.activeElement));
-  const oldBounds = projectPanels[activeProject]?.getBoundingClientRect();
-  const readingProject = oldBounds && oldBounds.top < innerHeight && oldBounds.bottom > 0;
+  // Use the last painted reading state: by the time ResizeObserver runs,
+  // text reflow may already have moved the passage outside the viewport.
+  const readingProject = readingProjectVisible;
   let fits = false;
   if (motionEnabled) {
     root.classList.add('projects-measuring');
@@ -222,6 +224,9 @@ function paint() {
     });
     if (next !== activeProject) setActiveProject(next);
   }
+
+  const readingBounds = projectPanels[activeProject]?.getBoundingClientRect();
+  readingProjectVisible = Boolean(readingBounds && readingBounds.top < innerHeight && readingBounds.bottom > 0);
 
   if (!motionEnabled) return;
 

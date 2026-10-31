@@ -132,6 +132,31 @@ test('flow selectors, same hash and history retain focus and a single explicit e
   expect(await page.evaluate(() => history.length)).toBe(initial + 1);
 });
 
+test('unfocused Agent survives live text enlargement and restoration without corrective navigation', async ({ page }) => {
+  await page.setViewportSize(sizes[0]);
+  await page.goto('/#project-agents');
+  const agent = page.locator('#project-agents');
+  const selected = page.locator('[data-project-button]').nth(1);
+  await expect(selected).toHaveAttribute('aria-pressed', 'true');
+  await expect(agent).toBeInViewport();
+  const historyLength = await page.evaluate(() => history.length);
+
+  for (const scale of [200, 100, 200, 100]) {
+    await page.evaluate(value => { document.documentElement.style.fontSize = `${value}%`; }, scale);
+    await expect(page.locator('html')).toHaveClass(scale === 100 ? /projects-staged/ : /motion-ok(?!.*projects-staged)/);
+    // Let ResizeObserver and scroll updates settle; do not focus or scroll to
+    // Agent, since either would mask a lost reading position.
+    await page.waitForTimeout(600);
+    await expect(selected).toHaveAttribute('aria-pressed', 'true');
+    await expect(agent).toBeInViewport();
+    await expect(agent).not.toHaveAttribute('inert');
+    await expect(agent).not.toHaveAttribute('aria-hidden', 'true');
+    expect(await page.evaluate(() => document.activeElement === document.body)).toBe(true);
+    expect(await page.evaluate(() => history.length)).toBe(historyLength);
+    await expect(page).toHaveURL(/#project-agents$/);
+  }
+});
+
 test('live enlargement and boundary crossings settle with full focus clearance and idle frames', async ({ page }) => {
   await page.addInitScript(() => {
     const request = window.requestAnimationFrame.bind(window);
