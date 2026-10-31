@@ -238,6 +238,18 @@ test('enhancement boundaries switch sticky scenes and clear hidden project state
   await expect(page.locator('#project-agents')).toHaveAttribute('aria-hidden', 'true');
   await expect(page.locator('#project-agents')).toHaveAttribute('inert', '');
 
+  // Project fit is independent of the wide/tall hero enhancement.
+  await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+  await expect(page.locator('.hero-scene')).toHaveCSS('position', 'sticky');
+  await expect(page.locator('.project-stage')).not.toHaveCSS('position', 'sticky');
+  await expect(page.locator('.project-controls')).toHaveCSS('display', 'flex');
+  for (const panel of await page.locator('[data-project-panel]').all()) {
+    await expect(panel).not.toHaveAttribute('aria-hidden');
+    await expect(panel).not.toHaveAttribute('inert');
+  }
+  await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
+  await expect(page.locator('.project-stage')).toHaveCSS('position', 'sticky');
+
   await page.setViewportSize({ width: 1440, height: 640 });
   await expect(page.locator('html')).not.toHaveClass(/motion-ok/);
   await expect(page.locator('.hero-scene')).toHaveCSS('position', 'relative');

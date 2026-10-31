@@ -1,0 +1,14 @@
+{
+  "baseline": {
+    "staged": true,
+    "panelHeight": 702,
+    "copyHeight": 974.46875,
+    "copyContained": false
+  },
+  "after": {
+    "staged": false,
+    "panelHeight": 1517.671875,
+    "copyHeight": 352.109375,
+    "copyContained": true
+  }
+}

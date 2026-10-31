@@ -210,6 +210,21 @@ test('true 200% Chromium tab zoom preserves flow, overflow and keyboard access',
     await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/#work$/);
     await expect(page.locator('#work-title')).toBeInViewport();
+    await page.goto(`${baseURL}/#project-agents`);
+    await expect(page.locator('#project-agents')).toBeInViewport();
+    await expect(page.locator('.project-stage')).not.toHaveCSS('position', 'sticky');
+    const agent = await page.locator('#project-agents').evaluate(el => ({
+      panel: el.getBoundingClientRect().bottom,
+      copy: el.querySelector('.project-copy').getBoundingClientRect().bottom,
+      art: el.querySelector('.project-object').getBoundingClientRect().bottom,
+      width: document.documentElement.scrollWidth,
+    }));
+    expect(agent.copy).toBeLessThanOrEqual(agent.panel);
+    expect(agent.art).toBeLessThanOrEqual(agent.panel);
+    expect(agent.width).toBe(720);
+    await page.locator('#project-agents .project-permalink').focus();
+    await expect(page.locator('#project-agents .project-permalink')).toHaveCSS('outline-style', 'solid');
+    console.log('Agent tab zoom:', { zoom, viewport: await page.evaluate(() => ({ width: innerWidth, height: innerHeight })) });
   } finally {
     await context?.close();
     await rm(directory, { recursive: true, force: true });

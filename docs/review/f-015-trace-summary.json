@@ -1,0 +1,14 @@
+{
+  "wheelDeltas": [
+    80,
+    80,
+    700,
+    -450,
+    -150,
+    100
+  ],
+  "startY": 4787,
+  "endY": 5147,
+  "animationFrameCallbacks": 6,
+  "maxCallbackMs": 2.106
+}

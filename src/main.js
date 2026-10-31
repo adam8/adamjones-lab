@@ -33,6 +33,7 @@ const geometry = {
 let frameRequest = 0;
 let needsMeasurement = true;
 let motionEnabled = false;
+let projectsStaged = false;
 let activeProject = 0;
 let projectSelectionReady = false;
 let pendingProjectIndex = projectIndexByFragment.get(window.location.hash) ?? null;
@@ -65,7 +66,41 @@ function updateChapterPersistence() {
   chapterIndexSlot?.classList.toggle('is-persistent', shouldPersist);
 }
 
+function measureProjectFit() {
+  const previousMode = projectsStaged;
+  const focusedPanel = projectPanels.findIndex(panel => panel.contains(document.activeElement));
+  const oldBounds = projectPanels[activeProject]?.getBoundingClientRect();
+  const readingProject = oldBounds && oldBounds.top < innerHeight && oldBounds.bottom > 0;
+  let fits = false;
+  if (motionEnabled) {
+    root.classList.add('projects-measuring');
+    const stage = document.querySelector('.project-stage');
+    const style = getComputedStyle(stage);
+    const panelSlot = document.querySelector('.project-panels').getBoundingClientRect();
+    const available = Math.min(panelSlot.height, innerHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom));
+    fits = projectPanels.every(panel => {
+      const heading = panel.querySelector('h3');
+      const copy = panel.querySelector('.project-copy');
+      return panel.getBoundingClientRect().height + 14 <= available &&
+        heading.scrollWidth <= heading.clientWidth + 1 && copy.scrollWidth <= copy.clientWidth + 1;
+    });
+    const controls = document.querySelector('.project-controls');
+    fits &&= controls.getBoundingClientRect().height + 14 <= innerHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+    root.classList.remove('projects-measuring');
+  }
+  // Do not re-enter staging if it would conceal a focused passage.
+  fits &&= focusedPanel < 0 || focusedPanel === activeProject;
+  projectsStaged = fits;
+  root.classList.toggle('projects-staged', fits);
+  if (previousMode !== fits) {
+    projectSelectionReady = false;
+    setActiveProject(activeProject);
+    if (readingProject) pendingProjectIndex = activeProject;
+  }
+}
+
 function measureGeometry() {
+  measureProjectFit();
   const scrollY = window.scrollY;
   const viewportHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
@@ -88,6 +123,10 @@ function measureGeometry() {
 }
 
 function projectScrollPosition(index) {
+  if (!projectsStaged) {
+    const panel = projectPanels[index];
+    return panel.getBoundingClientRect().top + window.scrollY - parseFloat(getComputedStyle(panel).scrollMarginBlockStart);
+  }
   return geometry.projectStart + (index / Math.max(1, projectPanels.length - 1)) * geometry.projectRange;
 }
 
@@ -107,6 +146,11 @@ function scrollToProject(index, behavior) {
 
 function setActiveProject(nextIndex) {
   const boundedIndex = clamp(nextIndex, 0, projectPanels.length - 1);
+  if (projectsStaged && projectPanels.some((panel, index) => index !== boundedIndex && panel.contains(document.activeElement))) {
+    projectsStaged = false;
+    root.classList.remove('projects-staged');
+    scheduleUpdate({ measure: true });
+  }
   activeProject = boundedIndex;
 
   projectButtons.forEach((button, index) => {
@@ -117,7 +161,7 @@ function setActiveProject(nextIndex) {
     const active = index === boundedIndex;
     panel.classList.toggle('is-active', active);
 
-    if (motionEnabled) {
+    if (projectsStaged) {
       panel.toggleAttribute('inert', !active);
       panel.setAttribute('aria-hidden', String(!active));
     } else {
@@ -153,7 +197,7 @@ function projectIndexForProgress(progress, direction) {
 }
 
 function applyPendingProject() {
-  if (!motionEnabled || pendingProjectIndex === null) return;
+  if (pendingProjectIndex === null) return;
 
   const nextIndex = pendingProjectIndex;
   pendingProjectIndex = null;
@@ -171,6 +215,14 @@ function paint() {
   const direction = Math.sign(scrollY - previousScrollY);
   previousScrollY = scrollY;
 
+  if (!projectsStaged) {
+    let next = 0;
+    projectPanels.forEach((panel, index) => {
+      if (panel.getBoundingClientRect().top <= innerHeight * .5) next = index;
+    });
+    if (next !== activeProject) setActiveProject(next);
+  }
+
   if (!motionEnabled) return;
 
   if (progressRule) {
@@ -181,9 +233,11 @@ function paint() {
   root.style.setProperty('--hero-object-y', `${(heroProgress * 4).toFixed(3)}vh`);
   root.style.setProperty('--hero-object-rotate', `${(heroProgress * 4).toFixed(3)}deg`);
 
+  if (!projectsStaged) return;
   const projectProgress = clamp((scrollY - geometry.projectStart) / geometry.projectRange);
   const nextProject = projectIndexForProgress(projectProgress, direction);
-  if (nextProject !== activeProject) setActiveProject(nextProject);
+  const focusedPanel = projectPanels.findIndex(panel => panel.contains(document.activeElement));
+  if (nextProject !== activeProject && focusedPanel < 0) setActiveProject(nextProject);
 }
 
 function scheduleUpdate({ measure = false } = {}) {
@@ -193,7 +247,7 @@ function scheduleUpdate({ measure = false } = {}) {
 
 function queueCurrentProjectFragment() {
   const index = projectIndexByFragment.get(window.location.hash);
-  if (index === undefined || !motionEnabled) return;
+  if (index === undefined) return;
 
   pendingProjectIndex = index;
   scheduleUpdate();
@@ -205,6 +259,7 @@ function updateProjectFragment(index) {
 }
 
 function activateProject(index, behavior = 'smooth') {
+  if (needsMeasurement) measureGeometry();
   setActiveProject(index);
   projectSelectionReady = true;
   scrollToProject(index, behavior);
@@ -217,7 +272,6 @@ function applyEnhancementState() {
   projectSelectionReady = false;
 
   if (!motionEnabled) {
-    pendingProjectIndex = null;
     progressRule?.style.removeProperty('transform');
     root.style.removeProperty('--hero-object-y');
     root.style.removeProperty('--hero-object-rotate');
@@ -231,8 +285,6 @@ function applyEnhancementState() {
 
 projectButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    if (!motionEnabled) return;
-
     updateProjectFragment(index);
     activateProject(index);
   });
@@ -241,7 +293,6 @@ projectButtons.forEach((button, index) => {
 projectPermalinks.forEach((permalink) => {
   permalink.addEventListener('click', (event) => {
     if (
-      !motionEnabled ||
       event.defaultPrevented ||
       event.button !== 0 ||
       event.metaKey ||
@@ -261,6 +312,7 @@ projectPermalinks.forEach((permalink) => {
 
 window.addEventListener('scroll', scheduleUpdate, { passive: true });
 window.addEventListener('resize', () => scheduleUpdate({ measure: true }), { passive: true });
+projectTrack?.addEventListener('focusout', () => scheduleUpdate({ measure: true }));
 window.addEventListener('hashchange', queueCurrentProjectFragment);
 window.addEventListener('popstate', queueCurrentProjectFragment);
 enhancementQuery.addEventListener('change', applyEnhancementState);
@@ -279,6 +331,23 @@ if (chapterIndexSentinel) {
   persistenceObserver.observe(chapterIndexSentinel);
 }
 
+// Observe content, not the stretched panel boxes. Guard equality to avoid
+// observation loops from our own probe and mode changes; never poll at idle.
+const observedSizes = new WeakMap();
+const contentObserver = new ResizeObserver(entries => {
+  let changed = false;
+  for (const entry of entries) {
+    const size = `${entry.contentRect.width}:${entry.contentRect.height}`;
+    if (observedSizes.get(entry.target) !== size) changed = true;
+    observedSizes.set(entry.target, size);
+  }
+  if (changed) scheduleUpdate({ measure: true });
+});
+document.querySelectorAll('.project-copy, .project-object, .project-controls').forEach(el => contentObserver.observe(el));
+
 root.classList.add('js');
 setCurrentChapter('introduction');
 applyEnhancementState();
+
+// Establish project geometry before the browser resolves its initial native chapter anchor.
+measureGeometry();
