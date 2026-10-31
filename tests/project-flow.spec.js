@@ -198,3 +198,28 @@ test('live enlargement and boundary crossings settle with full focus clearance a
     expect(clearance).toBe(true);
   }
 });
+
+test('flow fit probes preserve subsequent chapter reading position on resize', async ({ page }) => {
+  await page.setViewportSize(sizes[0]);
+  await page.goto('/#project-agents');
+  await page.addStyleTag({ content: 'html {font-size:200%; scroll-behavior:auto}' });
+  await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
+  await page.locator('[data-chapter-item="outside"]').click();
+  await expect(page.locator('#outside')).toBeInViewport();
+  await page.waitForTimeout(600);
+  const position = () => page.evaluate(() => ({
+    scrollY, top: document.querySelector('#outside').getBoundingClientRect().top,
+  }));
+  const before = await position();
+  const historyLength = await page.evaluate(() => history.length);
+  for (const width of [1439, 1440, 1439]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.waitForTimeout(600);
+    await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
+    const after = await position();
+    expect(Math.abs(after.scrollY - before.scrollY)).toBeLessThan(3);
+    expect(Math.abs(after.top - before.top)).toBeLessThan(3);
+    await expect(page.locator('#outside')).toBeInViewport();
+    expect(await page.evaluate(() => history.length)).toBe(historyLength);
+  }
+});

@@ -215,7 +215,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 
 /* Intrinsic probes use the desktop widths even while the real layout is in flow.
    No clone, assigned panel height, or flow geometry is used as evidence of fit. */
-.js.projects-measuring .project-track { height: 300svh; }
+.js.projects-measuring .project-track { height: var(--project-probe-height); }
 .js.projects-measuring .project-stage { position: sticky; top: 0; height: 100svh; grid-template-columns: minmax(13rem, .42fr) minmax(0, 1.58fr); padding-block: clamp(2rem, 5vh, 4rem); align-items: center; }
 .js.projects-measuring .project-panels { position: relative; min-height: min(45rem, 78vh); }
 .js.projects-measuring .project-panel { position: absolute; inset: 0 0 auto; min-height: 0; height: auto; margin: 0; transition: none; }

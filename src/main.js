@@ -75,6 +75,10 @@ function measureProjectFit() {
   const readingProject = readingProjectVisible;
   let fits = false;
   if (motionEnabled) {
+    // Keep subsequent chapters and the document scroll range stationary while
+    // probing intrinsic desktop content. A temporary 300svh track can otherwise
+    // trigger scroll anchoring/clamping even when the final mode is unchanged.
+    projectTrack.style.setProperty('--project-probe-height', `${projectTrack.getBoundingClientRect().height}px`);
     root.classList.add('projects-measuring');
     const stage = document.querySelector('.project-stage');
     const style = getComputedStyle(stage);
@@ -89,6 +93,7 @@ function measureProjectFit() {
     const controls = document.querySelector('.project-controls');
     fits &&= controls.getBoundingClientRect().height + 14 <= innerHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
     root.classList.remove('projects-measuring');
+    projectTrack.style.removeProperty('--project-probe-height');
   }
   // Do not re-enter staging if it would conceal a focused passage.
   fits &&= focusedPanel < 0 || focusedPanel === activeProject;
