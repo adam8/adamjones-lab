@@ -1,0 +1,54 @@
+{
+  "positions": [
+    {
+      "delta": 40,
+      "y": 1724
+    },
+    {
+      "delta": 40,
+      "y": 1764
+    },
+    {
+      "delta": 40,
+      "y": 1804
+    },
+    {
+      "delta": 650,
+      "y": 2454
+    },
+    {
+      "delta": -450,
+      "y": 2004
+    },
+    {
+      "delta": -160,
+      "y": 1844
+    },
+    {
+      "delta": 80,
+      "y": 1924
+    },
+    {
+      "key": "PageDown",
+      "y": 2711
+    },
+    {
+      "key": "PageUp",
+      "y": 1924
+    },
+    {
+      "key": "ArrowDown",
+      "y": 1964
+    },
+    {
+      "key": "ArrowUp",
+      "y": 1924
+    },
+    {
+      "key": "Tab",
+      "y": 2450
+    }
+  ],
+  "settledSampleMs": 600,
+  "settledFrameDelta": 0
+}

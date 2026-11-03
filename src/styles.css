@@ -72,11 +72,31 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .chapter--peach { background: var(--peach); }
 .chapter--paper { background: var(--paper); }
 .chapter-number { margin: 0; }
-.introduction { display: grid; min-height: 100svh; grid-template-columns: minmax(8rem, .55fr) minmax(0, 1.6fr); align-items: start; gap: 2rem; }
+.introduction { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 4rem 2rem; overflow: visible; }
+.introduction > .chapter-number { flex: .55 1 8rem; }
+.introduction > .intro-copy { flex: 1.6 1 48rem; min-width: 0; }
 .intro-copy h2, .work-header h2, .outside h2, .about h2, .elsewhere h2 { margin: 0; font-family: var(--serif); font-size: clamp(3.8rem, 9vw, 9rem); font-weight: 400; letter-spacing: -.075em; line-height: .82; }
 .intro-copy h2 em, .work-header h2 em, .outside h2 em, .about h2 em, .elsewhere h2 em { font-weight: 400; }
-.intro-copy p { max-width: 38rem; margin: clamp(4rem, 10vw, 9rem) 0 0 18%; font-size: clamp(1.15rem, 1.4vw, 1.45rem); line-height: 1.7; }
-.intro-drawing { position: absolute; right: -2rem; bottom: -3rem; width: clamp(13rem, 26vw, 27rem); fill: none; stroke: var(--green); stroke-width: 1.4; transform: rotate(-10deg); }
+/* Full-width lower composition: rem bases yield to complete text before art. */
+.introduction .intro-composition { flex: 0 0 100%; width: 100%; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4rem; }
+.introduction .intro-composition > p { flex: 1 1 32rem; min-width: 0; max-width: 38rem; margin: 0; font-size: clamp(1.15rem, 1.4vw, 1.45rem); line-height: 1.7; }
+.introduction .intro-sheet { order: -1; flex: 1 1 30rem; min-width: 0; width: 100%; max-width: 38rem; height: auto; fill: none; stroke: var(--green); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
+.introduction .sheet-paper { fill: var(--cream); }
+.introduction .sheet-coral { fill: var(--coral); }
+/* Container width also responds to root-font enlargement after load. */
+.introduction { container-type: inline-size; }
+@container (max-width: 66rem) {
+  .introduction .intro-composition { flex-direction: column; align-items: flex-start; }
+  .introduction .intro-composition > p { flex: none; }
+  .introduction .intro-sheet { order: 0; flex: none; align-self: center; }
+}
+@media (max-width: 66rem), (max-height: 640px) {
+  .introduction { flex-direction: column; }
+  .introduction > .chapter-number, .introduction > .intro-copy { flex: none; width: 100%; }
+  .introduction .intro-composition { flex-direction: column; align-items: flex-start; }
+  .introduction .intro-composition > p { flex: none; }
+  .introduction .intro-sheet { order: 0; flex: none; align-self: center; }
+}
 .accent-fill { fill: var(--coral); stroke: var(--green); }
 .accent-stroke { fill: none; stroke: var(--coral) !important; stroke-width: 5 !important; }
 
@@ -186,7 +206,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .hero-name h1 span:last-child { margin-left: .17em; }
   .introduction, .work-header, .outside, .about, .elsewhere { grid-template-columns: minmax(0, 1fr); }
   .introduction { min-height: auto; gap: 4rem; }
-  .intro-copy p { margin-left: 8%; }
   .work-header { align-items: start; }
   .work-header > p:last-child { margin-left: 12%; }
   .about-list div { grid-template-columns: 1fr; gap: .5rem; }
@@ -208,7 +227,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .scroll-cue { display: none; }
   .chapter { padding-block: 5rem; }
   .intro-copy h2, .work-header h2, .outside h2, .about h2, .elsewhere h2 { font-size: clamp(3.3rem, 17vw, 5rem); }
-  .intro-copy p, .outside-copy > p:last-child, .work-header > p:last-child { margin-left: 0; }
+  .outside-copy > p:last-child, .work-header > p:last-child { margin-left: 0; }
   .project-copy h3 { font-size: 3.5rem; overflow-wrap: break-word; }
   .project-object { max-height: 22rem; }
   .elsewhere-links a { font-size: 1.8rem; }
