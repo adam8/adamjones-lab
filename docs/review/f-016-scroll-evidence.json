@@ -1,0 +1,52 @@
+{
+  "positions": [
+    {
+      "delta": 40,
+      "y": 5396
+    },
+    {
+      "delta": 40,
+      "y": 5436
+    },
+    {
+      "delta": 40,
+      "y": 5476
+    },
+    {
+      "delta": 650,
+      "y": 6126
+    },
+    {
+      "delta": -450,
+      "y": 5676
+    },
+    {
+      "delta": -160,
+      "y": 5516
+    },
+    {
+      "delta": 80,
+      "y": 5596
+    },
+    {
+      "key": "PageDown",
+      "y": 6383
+    },
+    {
+      "key": "PageUp",
+      "y": 5596
+    },
+    {
+      "key": "ArrowDown",
+      "y": 5636
+    },
+    {
+      "key": "ArrowUp",
+      "y": 5596
+    }
+  ],
+  "animationFrameCallbacks": 39,
+  "maxCallbackMs": 3.938,
+  "settledSampleMs": 600,
+  "settledFrameDelta": 0
+}

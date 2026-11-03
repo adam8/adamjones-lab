@@ -160,23 +160,27 @@
           <h2 id="outside-title">Island<br /><em>time</em></h2>
           <p>Life on Vancouver Island includes running, gardening, family time outdoors, and small projects around the house.</p>
         </div>
-        <figure class="island-frame">
-          <svg viewBox="0 0 640 540" role="img" aria-labelledby="island-art-title">
-            <title id="island-art-title">An illustrated Vancouver Island landscape with mountains, water, and a garden</title>
-            <defs><clipPath id="arch"><path d="M70 476V232C70 105 170 35 320 35s250 70 250 197v244Z" /></clipPath></defs>
-            <g clip-path="url(#arch)">
-              <rect class="sky" width="640" height="540" />
-              <circle class="sun" cx="463" cy="126" r="46" />
-              <path class="mountain-back" d="M-20 350 160 155l75 99 95-125 196 221Z" />
-              <path class="mountain-front" d="M-5 387 137 239l89 91 92-125 188 182Z" />
-              <path class="water" d="M0 350h640v190H0Z" />
-              <path class="water-lines" d="M30 392h185M263 392h280M92 430h260M382 430h196M34 472h282M345 472h231" />
-              <path class="island" d="M79 438c89-47 195-39 271 7 75-39 165-26 233 27v68H79Z" />
-              <path class="plant" d="M173 499v-67m0 31-27-24m27 9 30-31m-30 61-37-19m37 4 39-23M471 512v-78m0 35-31-28m31 9 34-35" />
-            </g>
-            <path class="frame-line" d="M70 476V232C70 105 170 35 320 35s250 70 250 197v244Z" />
+        <figure class="island-diorama">
+          <svg viewBox="0 0 760 660" role="img" aria-labelledby="island-art-title">
+            <title id="island-art-title">Imagined floating island with mountains, projecting water, and exposed garden roots.</title>
+            <!-- The arch is a backdrop, not a clip: every layer has its own silhouette. -->
+            <path class="island-backdrop" d="M138 390V310a232 232 0 0 1 464 0v120Z" />
+            <circle class="sun" cx="517" cy="188" r="48" />
+            <path class="mountain-back" d="m116 365 130-207 60 61L389 18l150 239 65 84Z" />
+            <path class="mountain-facet" d="m389 18-24 221 74 50 100-8Z" />
+            <path class="mountain-front" d="m125 375 131-116 84 75 67-113 126 104 70 50Z" />
+            <!-- The water projects beyond both sides of the backdrop. -->
+            <path class="water-edge" d="m32 376 102-41 464 5 130 65-97 70-418-8Z" />
+            <path class="water" d="m32 365 102-41 464 5 130 65-97 59-418-8Z" />
+            <path class="water-lines" d="m91 366 125 2m-67 28 165 3m204-40 79 3m-38 35 100 2" />
+            <!-- Roots begin inside the earth plane so they remain visibly attached. -->
+            <path class="roots" d="M280 475c-3 49 25 64 11 113m0-41-33 20m126-76c-8 53 36 72 19 126m5-39 32-27m-51-30-28 20m137-67c10 32-18 56 3 83m-6-36 29-13" />
+            <path class="island-underside" d="m178 421 99-28 250 20 96 39-63 61-122 30-158-40Z" />
+            <path class="earth-facet" d="m438 463 185-11-63 61-122 30Z" />
+            <path class="island" d="M178 421c58-51 136-57 205-26 83-26 174 5 240 57l-185 11-158-17Z" />
+            <path class="garden" d="M296 415v-54m0 29-23-17m23 3 22-25m174 77v-44m0 22-21-16m21 7 22-24" />
           </svg>
-          <figcaption class="label">A field note from Vancouver Island</figcaption>
+          <figcaption class="label">An imagined island landscape.</figcaption>
         </figure>
       </section>
 

@@ -115,13 +115,36 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .js.projects-staged .project-panel { position: absolute; inset: 0; min-height: 100%; margin: 0; opacity: 0; pointer-events: none; transform: translateY(2rem); }
 .js.projects-staged .project-panel.is-active { opacity: 1; pointer-events: auto; transform: none; }
 
-.outside { display: grid; min-height: 100svh; grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); align-items: center; gap: clamp(3rem, 8vw, 9rem); }
+/* Intrinsic rem-based bases release the complete diorama below enlarged copy. */
+.outside { display: flex; flex-wrap: wrap; min-height: 100svh; align-items: flex-start; gap: clamp(3rem, 5vw, 5rem); overflow: visible; }
+.outside .outside-copy { flex: 1 1 22rem; min-width: 0; }
 .outside h2 { margin-top: 2rem; }
-.outside-copy > p:last-child { max-width: 31rem; margin: clamp(3rem, 7vw, 6rem) 0 0 15%; font-size: clamp(1.1rem, 1.4vw, 1.4rem); line-height: 1.7; }
-.island-frame { width: min(100%, 42rem); margin: 0; transform: rotate(3deg); }
-.island-frame svg { background: var(--cream); border: 1px solid var(--green); box-shadow: 1rem 1rem 0 rgb(41 60 43 / 16%); }
-.island-frame figcaption { margin-top: 1.5rem; text-align: center; }
-.sky { fill: var(--paper); }.sun { fill: var(--coral); }.mountain-back { fill: #a8bca7; }.mountain-front { fill: var(--green); }.water { fill: var(--blue); }.water-lines { fill: none; stroke: var(--green); stroke-width: 3; }.island { fill: #b86844; }.plant { fill: none; stroke: var(--paper); stroke-width: 8; }.frame-line { fill: none; stroke: var(--green); stroke-width: 5; }
+.outside .outside-copy > p:last-child { max-width: 31rem; margin: clamp(3rem, 7vw, 6rem) 0 0; font-size: clamp(1.1rem, 1.4vw, 1.4rem); line-height: 1.7; }
+.outside .island-diorama { flex: 1.6 1 36rem; min-width: 0; max-width: 48rem; margin: 4rem auto 0; }
+.outside .island-diorama svg { width: 100%; height: auto; overflow: visible; }
+.outside .island-diorama figcaption { margin-top: 1.5rem; text-align: center; }
+.outside .island-backdrop { fill: var(--cream); }
+.outside .sun { fill: var(--coral); }
+.outside .mountain-back { fill: #a8bca7; }
+.outside .mountain-facet { fill: #7f9a80; }
+.outside .mountain-front { fill: var(--green); }
+.outside .water { fill: var(--blue); }
+.outside .water-edge { fill: #a8bca7; }
+.outside .water-lines { fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; }
+.outside .island { fill: #b86844; }
+.outside .island-underside { fill: #8b4e35; }
+.outside .earth-facet { fill: #b86844; }
+.outside .roots { fill: none; stroke: #8b4e35; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+.outside .garden { fill: none; stroke: var(--green); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 960px), (max-height: 640px) {
+  .outside { flex-direction: column; }
+  .outside .outside-copy { flex: none; width: 100%; }
+  .outside .island-diorama { flex: none; width: min(100%, 40rem); margin-top: 0; }
+}
+
+@media (max-height: 640px) {
+  .outside#outside { scroll-margin-block-start: min(6rem, 20svh); }
+}
 
 .about { display: grid; grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); gap: clamp(3rem, 8vw, 9rem); }
 .about h2 { margin-top: 2rem; font-size: clamp(3.5rem, 7vw, 7rem); }
@@ -166,8 +189,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .intro-copy p { margin-left: 8%; }
   .work-header { align-items: start; }
   .work-header > p:last-child { margin-left: 12%; }
-  .outside-copy > p:last-child { margin-left: 8%; }
-  .island-frame { max-width: 36rem; justify-self: center; }
   .about-list div { grid-template-columns: 1fr; gap: .5rem; }
   .elsewhere { min-height: 100svh; align-content: center; }
 }
@@ -190,7 +211,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .intro-copy p, .outside-copy > p:last-child, .work-header > p:last-child { margin-left: 0; }
   .project-copy h3 { font-size: 3.5rem; overflow-wrap: break-word; }
   .project-object { max-height: 22rem; }
-  .island-frame { transform: rotate(1.5deg); }
   .elsewhere-links a { font-size: 1.8rem; }
 }
 
