@@ -173,13 +173,21 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .about-list dt { font-family: var(--mono); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .about-list dd { margin: 0; font-size: clamp(1rem, 1.2vw, 1.22rem); }
 
-.elsewhere { position: relative; display: grid; min-height: 92svh; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); align-items: center; gap: clamp(3rem, 8vw, 9rem); padding: clamp(5rem, 10vw, 10rem) var(--gutter); overflow: clip; background: var(--green); color: var(--cream); }
+#elsewhere { scroll-margin-block-start: min(6rem, 20svh); }
+.elsewhere { padding-bottom: 3rem; background: var(--green); color: var(--cream); }
+.elsewhere > div { padding: clamp(5rem, 10vw, 10rem) var(--gutter) clamp(4rem, 7vw, 7rem); }
 .elsewhere h2 { margin-top: 2rem; font-size: clamp(3.8rem, 8vw, 8rem); }
-.elsewhere-links { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--cream); }
-.elsewhere-links a { display: flex; justify-content: space-between; gap: 2rem; padding: clamp(1.5rem, 3vw, 2.5rem) 0; border-bottom: 1px solid rgb(244 240 229 / 50%); font-family: var(--serif); font-size: clamp(2rem, 4vw, 4.5rem); text-decoration: none; }
+.elsewhere-links { margin: 0; padding: 0; list-style: none; }
+/* Continuous fields, with rem-based bounds that still respond to enlarged text. */
+.elsewhere-links a { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .25em 1rem; padding: .45em var(--gutter) .55em; font-family: var(--serif); font-size: clamp(3rem, .9rem + 7vw, 9rem); line-height: 1.2; text-decoration: none; scroll-margin-block-start: 7rem; }
+.elsewhere-links li:first-child a { background: var(--cream); color: var(--green); }
+.elsewhere-links li:last-child a { padding-left: max(var(--gutter), calc((100% - 52rem) / 2)); }
+.elsewhere-links a span:first-child { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+.elsewhere-links a span[aria-hidden] { flex: none; margin-left: auto; font-size: 1.25em; }
 .elsewhere-links a:hover span:first-child { text-decoration: underline; text-decoration-thickness: 2px; }
-.elsewhere a:focus-visible { outline-color: var(--coral); box-shadow: 0 0 0 7px var(--cream); }
-.back-to-top { position: absolute; right: var(--gutter); bottom: 2rem; }
+.elsewhere-links a:focus-visible { outline: 3px solid currentColor; outline-offset: -7px; box-shadow: none; }
+.elsewhere .back-to-top { display: flex; width: max-content; max-width: calc(100% - 2 * var(--gutter)); min-height: 2.75rem; align-items: center; margin: 2rem var(--gutter) 0 auto; scroll-margin-block-start: 7rem; }
+.elsewhere .back-to-top:focus-visible { outline-color: var(--cream); box-shadow: none; }
 
 @media (max-width: 960px) {
   .project-stage { grid-template-columns: minmax(0, 1fr); }
@@ -204,12 +212,11 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .hero-name { margin-top: 1rem; }
   .hero-name h1 { font-size: clamp(5.2rem, 24vw, 9.5rem); line-height: .7; }
   .hero-name h1 span:last-child { margin-left: .17em; }
-  .introduction, .work-header, .outside, .about, .elsewhere { grid-template-columns: minmax(0, 1fr); }
+  .introduction, .work-header, .outside, .about { grid-template-columns: minmax(0, 1fr); }
   .introduction { min-height: auto; gap: 4rem; }
   .work-header { align-items: start; }
   .work-header > p:last-child { margin-left: 12%; }
   .about-list div { grid-template-columns: 1fr; gap: .5rem; }
-  .elsewhere { min-height: 100svh; align-content: center; }
 }
 
 @media (max-width: 480px) {
@@ -230,7 +237,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .outside-copy > p:last-child, .work-header > p:last-child { margin-left: 0; }
   .project-copy h3 { font-size: 3.5rem; overflow-wrap: break-word; }
   .project-object { max-height: 22rem; }
-  .elsewhere-links a { font-size: 1.8rem; }
 }
 
 @media (max-height: 640px) {
