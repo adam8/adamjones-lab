@@ -150,8 +150,49 @@ test('actual Chromium 200% tab zoom retains complete Elsewhere and keyboard acce
     await expect.poll(() => page.evaluate(() => innerWidth)).toBe(720);
     await geometry(page);
     await traversal(page);
-    await page.locator('#elsewhere').screenshot({ path: 'docs/review/f-018-after-browserzoom200-section.png' });
-    await page.screenshot({ path: 'docs/review/f-018-after-browserzoom200-focus.png' });
+    const cdp = await context.newCDPSession(page);
+    // CDP screenshot clips use device-independent pixels, not zoomed layout
+    // CSS pixels. Playwright's default/locator clips capture the wrong document
+    // region at tab zoom. Use explicit document clips for both evidence images.
+    const metrics = await cdp.send('Page.getLayoutMetrics');
+    const zoom = metrics.contentSize.width / metrics.cssContentSize.width;
+    expect(zoom).toBe(2);
+    const capture = async (path, clip) => {
+      const image = await cdp.send('Page.captureScreenshot', {
+        format: 'png', captureBeyondViewport: true,
+        clip: { x: clip.x * zoom, y: clip.y * zoom, width: clip.width * zoom, height: clip.height * zoom, scale: 1 },
+      });
+      // Check painted pixels, not only DOM bounds: reject the previously blank
+      // captures and require substantial ink and paper in each evidence image.
+      const colors = await page.evaluate(async data => {
+        const image = new Image(); image.src = `data:image/png;base64,${data}`;
+        await image.decode();
+        const canvas = document.createElement('canvas');
+        canvas.width = image.width; canvas.height = image.height;
+        const ctx = canvas.getContext('2d'); ctx.drawImage(image, 0, 0);
+        const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        let green = 0, cream = 0;
+        for (let i = 0; i < pixels.length; i += 4) {
+          if (pixels[i] === 41 && pixels[i + 1] === 60 && pixels[i + 2] === 43) green++;
+          if (pixels[i] === 244 && pixels[i + 1] === 240 && pixels[i + 2] === 229) cream++;
+        }
+        return { green: green / (pixels.length / 4), cream: cream / (pixels.length / 4) };
+      }, image.data);
+      expect(colors.green).toBeGreaterThan(.05);
+      expect(colors.cream).toBeGreaterThan(.05);
+      await writeFile(path, Buffer.from(image.data, 'base64'));
+    };
+    await page.locator(links).first().evaluate(a => a.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await expect(page.locator(links).first()).toBeFocused();
+    await expect(page.locator(links).first()).toHaveCSS('outline-style', 'solid');
+    await capture('docs/review/f-018-after-browserzoom200-focus.png', await page.evaluate(() => ({ x: 0, y: scrollY, width: innerWidth, height: innerHeight })));
+    await page.locator(links).first().evaluate(a => a.blur());
+    const footer = await page.locator('#elsewhere').evaluate(el => {
+      const r = el.getBoundingClientRect();
+      return { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
+    });
+    await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, 0); });
+    await capture('docs/review/f-018-after-browserzoom200-section.png', footer);
   } finally { await context?.close(); await rm(directory, { recursive: true, force: true }); }
 });
 

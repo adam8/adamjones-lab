@@ -40,3 +40,16 @@ Wheel sampling initially reaches the document end (positive deltas correctly cla
 Independent technical review, trusted matched visual review, and independent Greta/Rook judgments were not available through this execution's tools and remain pending. Do not treat this developer self-review as those approvals. Stop for Adam's A–E decision before any PR.
 
 No physical iPhone/Mobile Safari, Firefox/WebKit, on-device touch scrolling, or frame-pacing profiling was performed. Headless Chromium emulation and scroll samples are not device-performance evidence. Actual browser zoom was checked at desktop 200% only; the full 16-case matrix uses root-font enlargement. External activation was intercepted locally; no private sessions or live external-site checks were used. No Access, branch-preview build, or production publishing verification was attempted. No commit, push, PR, deployment, DNS, or other repository change was made.
+
+## Repair attempt 1 — actual-zoom evidence
+
+Resolved the tester's blank `browserzoom200` evidence finding without product or configuration changes. The tab really was zoomed to 200%, but the screenshot path used layout CSS coordinates where Chromium screenshot clips require device-independent document coordinates. The test now derives the conversion from CDP layout metrics and captures explicit document clips. The focus capture covers the current viewport with the keyboard-focused GitHub band centered; the separate section capture shows the complete unfocused footer. Neither hides or alters page content. Added decoded-image color-coverage assertions to reject blank captures rather than trusting DOM geometry alone.
+
+Checks run during repair:
+- Actual Chromium zoom test run in isolation: passed after correction (also reproduced the prior passing-but-invalid capture behavior before correction).
+- `npm run test:browser -- tests/elsewhere.spec.js tests/chapter-index.spec.js`: **41 passed**, including regenerated zoom evidence.
+- `git diff --check`: passed.
+- Product/configuration diff (`src/styles.css`, `src/main.js`, `index.html`, `wrangler.jsonc`, `TASTE.md`): empty.
+- Opened and visually inspected both corrected PNGs: the complete-footer image contains the heading, both complete destination labels/arrows, and Back to top; the viewport image contains the complete GitHub band with its full inset focus outline and legible text/arrow. This is developer self-inspection only, not an independent visual verdict.
+
+Build/full-suite/Wrangler results above belong to the earlier implementation run and supplied validation; they were not rerun for this evidence-only repair. No commit or publishing action was taken.
