@@ -131,7 +131,7 @@ test('live root enlargement expands footer naturally', async ({ page }) => {
   expect(after.height).toBeGreaterThan(before.height);
 });
 
-test('actual Chromium 200% tab zoom retains complete Elsewhere and keyboard access', async ({ baseURL }) => {
+test('actual Chromium 200% tab zoom retains complete Elsewhere and keyboard access', async ({ baseURL }, testInfo) => {
   const directory = await mkdtemp(join(tmpdir(), 'f018-zoom-'));
   const extension = join(directory, 'extension');
   await mkdir(extension);
@@ -185,14 +185,15 @@ test('actual Chromium 200% tab zoom retains complete Elsewhere and keyboard acce
     await page.locator(links).first().evaluate(a => a.scrollIntoView({ block: 'center', behavior: 'instant' }));
     await expect(page.locator(links).first()).toBeFocused();
     await expect(page.locator(links).first()).toHaveCSS('outline-style', 'solid');
-    await capture('docs/review/f-018-after-browserzoom200-focus.png', await page.evaluate(() => ({ x: 0, y: scrollY, width: innerWidth, height: innerHeight })));
+    // Validation artifacts belong to this test run, never committed review evidence.
+    await capture(testInfo.outputPath('browserzoom200-focus.png'), await page.evaluate(() => ({ x: 0, y: scrollY, width: innerWidth, height: innerHeight })));
     await page.locator(links).first().evaluate(a => a.blur());
     const footer = await page.locator('#elsewhere').evaluate(el => {
       const r = el.getBoundingClientRect();
       return { x: r.x, y: r.y + scrollY, width: r.width, height: r.height };
     });
     await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, 0); });
-    await capture('docs/review/f-018-after-browserzoom200-section.png', footer);
+    await capture(testInfo.outputPath('browserzoom200-section.png'), footer);
   } finally { await context?.close(); await rm(directory, { recursive: true, force: true }); }
 });
 
