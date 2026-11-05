@@ -353,7 +353,7 @@ const contentObserver = new ResizeObserver(entries => {
   }
   if (changed) scheduleUpdate({ measure: true });
 });
-document.querySelectorAll('.project-copy, .project-object, .project-controls').forEach(el => contentObserver.observe(el));
+document.querySelectorAll('.project-copy, .project-object, .project-controls, .about-forme').forEach(el => contentObserver.observe(el));
 
 root.classList.add('js');
 setCurrentChapter('introduction');
@@ -361,3 +361,8 @@ applyEnhancementState();
 
 // Establish project geometry before the browser resolves its initial native chapter anchor.
 measureGeometry();
+
+// About is an independent progressive enhancement, never a startup dependency.
+import('./about-typesetter.js').then(module => module.startAbout()).catch(() => {
+  document.querySelector('#about')?.removeAttribute('data-layout');
+});

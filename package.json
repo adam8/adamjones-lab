@@ -18,5 +18,8 @@
     "@playwright/test": "^1.56.1",
     "vite": "^7.1.12",
     "wrangler": "^4.152.0"
+  },
+  "dependencies": {
+    "@chenglou/pretext": "1.0.0"
   }
 }

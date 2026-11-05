@@ -98,7 +98,7 @@ for (const viewport of [{ width: 844, height: 390 }, { width: 961, height: 641 }
     await headerClearance(page);
     // Check readable downstream content directly: existing chapter clipping must
     // not conceal min-content grid overflow when text is enlarged.
-    for (const selector of ['.chapter-index', '.chapter-index-item', '.project-copy', '.project-permalink', '.about-list', '.elsewhere-links']) {
+    for (const selector of ['.chapter-index', '.chapter-index-item', '.project-copy', '.project-permalink', '.about-facts', '.elsewhere-links']) {
       for (const box of await page.locator(selector).all()) {
         const bounds = await box.boundingBox();
         expect(bounds.x).toBeGreaterThanOrEqual(0);
