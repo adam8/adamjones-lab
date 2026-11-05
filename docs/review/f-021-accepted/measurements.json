@@ -1,0 +1,5494 @@
+{
+  "phase": "accepted",
+  "revision": "990864060157cea6af641e2536ad8f0e6651768e",
+  "hashes": {
+    "index.html": "f0d04d841ed3a1f727605cbb677fa27175f52abb9c8050a0179c9a922b2e883f",
+    "src/styles.css": "f22acd52c080dfde4cfef4d90aa3095fc468460f34e2cd40acc0baab528c99ea",
+    "src/main.js": "ff998fc8cf51d9e26aa010e8d83f99c41a38d543bcd4ab78b8acf71ed5237c7e",
+    "src/about-typesetter.js": null,
+    "package-lock.json": "7662cc6a564fdadf73de2a53d6b29f44f45ef2fced8cb4053400cb757be0ae42",
+    "wrangler.jsonc": "cced38675ec94b2ff2aaf5a7892cf7e7e0c54ba7e41a771019f2977386e9382a"
+  },
+  "browser": "156.0.8078.4",
+  "platform": "linux",
+  "inkNote": "Canvas actualBoundingBox metrics per glyph plus DOM range bounds; not raster ink segmentation.",
+  "cases": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scale": 100,
+      "js": true,
+      "entryScrollY": 6513,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "rootFont": "16px",
+      "layout": "css",
+      "section": {
+        "x": 0,
+        "y": 6606.75,
+        "width": 1440,
+        "height": 750.25
+      },
+      "masthead": {
+        "x": 57.59375,
+        "y": 6765.140625,
+        "width": 435.453125,
+        "height": 433.46875
+      },
+      "title": {
+        "box": {
+          "x": 57.59375,
+          "y": 6814.046875,
+          "width": 435.453125,
+          "height": 165.28125
+        },
+        "parts": [
+          {
+            "text": "specification",
+            "typography": {
+              "fontFamily": "Georgia, \"Times New Roman\", serif",
+              "fontSize": "100.8px",
+              "fontWeight": "400",
+              "fontStyle": "italic",
+              "letterSpacing": "-7.56px",
+              "lineHeight": "82.656px",
+              "paddingTop": "0px",
+              "paddingBottom": "0px",
+              "marginTop": "0px",
+              "marginLeft": "0px"
+            },
+            "box": {
+              "x": 57.59375,
+              "y": 6881.6875,
+              "width": 416.78125,
+              "height": 112
+            }
+          }
+        ],
+        "lines": [
+          6799.046875,
+          6881.6875
+        ],
+        "glyphs": [
+          {
+            "text": "A",
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 6799.046875,
+                "width": 59.671875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 73,
+              "ascent": 67,
+              "descent": 0
+            }
+          },
+          {
+            "text": " ",
+            "rects": [
+              {
+                "x": 117.25,
+                "y": 6799.046875,
+                "width": 17.65625,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 0,
+              "ascent": 0,
+              "descent": 0
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 134.890625,
+                "y": 6799.046875,
+                "width": 31.6875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 36,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "h",
+            "rects": [
+              {
+                "x": 166.5625,
+                "y": 6799.046875,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 50,
+              "ascent": 71,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 209.40625,
+                "y": 6799.046875,
+                "width": 42.84375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 47,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "r",
+            "rects": [
+              {
+                "x": 252.234375,
+                "y": 6799.046875,
+                "width": 26.03125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 33,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 278.25,
+                "y": 6799.046875,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 28,
+              "ascent": 58,
+              "descent": 1
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 6881.6875,
+                "width": 31.671875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 37,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "p",
+            "rects": [
+              {
+                "x": 89.25,
+                "y": 6881.6875,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 6,
+              "right": 48,
+              "ascent": 48,
+              "descent": 22
+            }
+          },
+          {
+            "text": "e",
+            "rects": [
+              {
+                "x": 132.09375,
+                "y": 6881.6875,
+                "width": 37.1875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 43,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 169.265625,
+                "y": 6881.6875,
+                "width": 37.203125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 44,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 206.453125,
+                "y": 6881.6875,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 25,
+              "ascent": 68,
+              "descent": 0
+            }
+          },
+          {
+            "text": "f",
+            "rects": [
+              {
+                "x": 226.890625,
+                "y": 6881.6875,
+                "width": 20.46875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 40,
+              "ascent": 71,
+              "descent": 22
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 247.34375,
+                "y": 6881.6875,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 25,
+              "ascent": 68,
+              "descent": 0
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 267.78125,
+                "y": 6881.6875,
+                "width": 37.1875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 44,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "a",
+            "rects": [
+              {
+                "x": 304.953125,
+                "y": 6881.6875,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 47,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 347.796875,
+                "y": 6881.6875,
+                "width": 20.46875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 31,
+              "ascent": 58,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 368.25,
+                "y": 6881.6875,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 25,
+              "ascent": 68,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 388.6875,
+                "y": 6881.6875,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 48,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "n",
+            "rects": [
+              {
+                "x": 431.53125,
+                "y": 6881.6875,
+                "width": 42.84375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 47,
+              "ascent": 48,
+              "descent": 0
+            }
+          }
+        ]
+      },
+      "location": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 608.234375,
+            "y": 6790.140625,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 870.5625,
+            "y": 6790.140625,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        }
+      ],
+      "terms": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 608.234375,
+            "y": 6790.140625,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 870.5625,
+            "y": 6790.140625,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Day-to-day work",
+          "box": {
+            "x": 608.234375,
+            "y": 6865.921875,
+            "width": 230.328125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Front-end development and interface design for institutional FX and other complex, real-time information",
+          "box": {
+            "x": 870.5625,
+            "y": 6865.921875,
+            "width": 511.828125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Tools",
+          "box": {
+            "x": 608.234375,
+            "y": 6968.484375,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "JavaScript, React, CSS, and Figma",
+          "box": {
+            "x": 870.5625,
+            "y": 6968.484375,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Current explorations",
+          "box": {
+            "x": 608.234375,
+            "y": 7044.265625,
+            "width": 230.328125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "AI agents, practical machine learning, Raspberry Pi experiments, and WebGL/interface motion",
+          "box": {
+            "x": 870.5625,
+            "y": 7044.265625,
+            "width": 511.828125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Background",
+          "box": {
+            "x": 608.234375,
+            "y": 7146.828125,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Graphic design and UI/UX",
+          "box": {
+            "x": 870.5625,
+            "y": 7146.828125,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        }
+      ],
+      "overflow": [],
+      "factOverlap": false,
+      "sectionScrollWidth": 1440,
+      "lastFactReachable": true,
+      "errors": [
+        "WebSocket connection to 'ws://127.0.0.1:5173/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_BLOCKED_BY_LOCAL_NETWORK_ACCESS_CHECKS",
+        "WebSocket connection to 'ws://127.0.0.1:0/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_UNSAFE_PORT",
+        "[vite] failed to connect to websocket.\nyour current setup:\n  (browser) 127.0.0.1:5173/ <--[HTTP]--> 127.0.0.1:0/ (server)\n  (browser) 127.0.0.1:5173/ <--[WebSocket (failing)]--> 127.0.0.1:0/ (server)\nCheck out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr ."
+      ],
+      "missing": []
+    },
+    {
+      "name": "enlarged-desktop",
+      "width": 1440,
+      "height": 900,
+      "scale": 200,
+      "js": true,
+      "entryScrollY": 11376,
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1
+      },
+      "rootFont": "32px",
+      "layout": "css",
+      "section": {
+        "x": 0,
+        "y": 11554.859375,
+        "width": 1440,
+        "height": 1450.71875
+      },
+      "masthead": {
+        "x": 57.59375,
+        "y": 11714.859375,
+        "width": 435.453125,
+        "height": 1130.71875
+      },
+      "title": {
+        "box": {
+          "x": 57.59375,
+          "y": 11809.65625,
+          "width": 435.453125,
+          "height": 275.484375
+        },
+        "parts": [
+          {
+            "text": "specification",
+            "typography": {
+              "fontFamily": "Georgia, \"Times New Roman\", serif",
+              "fontSize": "112px",
+              "fontWeight": "400",
+              "fontStyle": "italic",
+              "letterSpacing": "-8.4px",
+              "lineHeight": "91.84px",
+              "paddingTop": "0px",
+              "paddingBottom": "0px",
+              "marginTop": "0px",
+              "marginLeft": "0px"
+            },
+            "box": {
+              "x": 57.59375,
+              "y": 11884.484375,
+              "width": 415.515625,
+              "height": 215.828125
+            }
+          }
+        ],
+        "lines": [
+          11792.65625,
+          11884.484375,
+          11976.3125
+        ],
+        "glyphs": [
+          {
+            "text": "A",
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 11792.65625,
+                "width": 66.3125,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 81,
+              "ascent": 75,
+              "descent": 0
+            }
+          },
+          {
+            "text": " ",
+            "rects": [
+              {
+                "x": 123.890625,
+                "y": 11792.65625,
+                "width": 19.609375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 0,
+              "ascent": 0,
+              "descent": 0
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 143.484375,
+                "y": 11792.65625,
+                "width": 35.203125,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 40,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "h",
+            "rects": [
+              {
+                "x": 178.671875,
+                "y": 11792.65625,
+                "width": 47.625,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 55,
+              "ascent": 79,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 226.28125,
+                "y": 11792.65625,
+                "width": 47.609375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 52,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "r",
+            "rects": [
+              {
+                "x": 273.875,
+                "y": 11792.65625,
+                "width": 28.90625,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 37,
+              "ascent": 53,
+              "descent": 0
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 302.765625,
+                "y": 11792.65625,
+                "width": 22.734375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 31,
+              "ascent": 64,
+              "descent": 1
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 11884.484375,
+                "width": 35.1875,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 41,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "p",
+            "rects": [
+              {
+                "x": 92.765625,
+                "y": 11884.484375,
+                "width": 47.625,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": 7,
+              "right": 53,
+              "ascent": 53,
+              "descent": 24
+            }
+          },
+          {
+            "text": "e",
+            "rects": [
+              {
+                "x": 140.375,
+                "y": 11884.484375,
+                "width": 41.328125,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 48,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 181.6875,
+                "y": 11884.484375,
+                "width": 41.328125,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 49,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 223,
+                "y": 11884.484375,
+                "width": 22.734375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -6,
+              "right": 28,
+              "ascent": 75,
+              "descent": 0
+            }
+          },
+          {
+            "text": "f",
+            "rects": [
+              {
+                "x": 245.71875,
+                "y": 11884.484375,
+                "width": 22.71875,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 45,
+              "ascent": 79,
+              "descent": 24
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 268.421875,
+                "y": 11884.484375,
+                "width": 22.734375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -6,
+              "right": 28,
+              "ascent": 75,
+              "descent": 0
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 291.140625,
+                "y": 11884.484375,
+                "width": 41.328125,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 49,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "a",
+            "rects": [
+              {
+                "x": 332.453125,
+                "y": 11884.484375,
+                "width": 47.625,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 52,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 380.0625,
+                "y": 11884.484375,
+                "width": 22.734375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 34,
+              "ascent": 64,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 402.78125,
+                "y": 11884.484375,
+                "width": 22.71875,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -6,
+              "right": 28,
+              "ascent": 75,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 425.484375,
+                "y": 11884.484375,
+                "width": 47.625,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 53,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "n",
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 11976.3125,
+                "width": 47.609375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 52,
+              "ascent": 54,
+              "descent": 0
+            }
+          }
+        ]
+      },
+      "location": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 608.234375,
+            "y": 11763.859375,
+            "width": 256,
+            "height": 99.1875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 928.234375,
+            "y": 11763.859375,
+            "width": 454.171875,
+            "height": 99.1875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        }
+      ],
+      "terms": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 608.234375,
+            "y": 11763.859375,
+            "width": 256,
+            "height": 99.1875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 928.234375,
+            "y": 11763.859375,
+            "width": 454.171875,
+            "height": 99.1875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Day-to-day work",
+          "box": {
+            "x": 608.234375,
+            "y": 11960.046875,
+            "width": 256,
+            "height": 198.375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Front-end development and interface design for institutional FX and other complex, real-time information",
+          "box": {
+            "x": 928.234375,
+            "y": 11960.046875,
+            "width": 454.171875,
+            "height": 198.375
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Tools",
+          "box": {
+            "x": 608.234375,
+            "y": 12255.421875,
+            "width": 256,
+            "height": 99.1875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "JavaScript, React, CSS, and Figma",
+          "box": {
+            "x": 928.234375,
+            "y": 12255.421875,
+            "width": 454.171875,
+            "height": 99.1875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Current explorations",
+          "box": {
+            "x": 608.234375,
+            "y": 12451.609375,
+            "width": 256,
+            "height": 198.375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "AI agents, practical machine learning, Raspberry Pi experiments, and WebGL/interface motion",
+          "box": {
+            "x": 928.234375,
+            "y": 12451.609375,
+            "width": 454.171875,
+            "height": 198.375
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Background",
+          "box": {
+            "x": 608.234375,
+            "y": 12746.984375,
+            "width": 256,
+            "height": 49.59375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Graphic design and UI/UX",
+          "box": {
+            "x": 928.234375,
+            "y": 12746.984375,
+            "width": 454.171875,
+            "height": 49.59375
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        }
+      ],
+      "overflow": [],
+      "factOverlap": false,
+      "sectionScrollWidth": 1440,
+      "lastFactReachable": true,
+      "errors": [
+        "WebSocket connection to 'ws://127.0.0.1:5173/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_BLOCKED_BY_LOCAL_NETWORK_ACCESS_CHECKS",
+        "WebSocket connection to 'ws://127.0.0.1:0/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_UNSAFE_PORT",
+        "[vite] failed to connect to websocket.\nyour current setup:\n  (browser) 127.0.0.1:5173/ <--[HTTP]--> 127.0.0.1:0/ (server)\n  (browser) 127.0.0.1:5173/ <--[WebSocket (failing)]--> 127.0.0.1:0/ (server)\nCheck out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr ."
+      ],
+      "missing": []
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "scale": 100,
+      "js": true,
+      "entryScrollY": 5387,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1
+      },
+      "rootFont": "16px",
+      "layout": "css",
+      "section": {
+        "x": 0,
+        "y": 5483.3125,
+        "width": 390,
+        "height": 937.09375
+      },
+      "masthead": {
+        "x": 20,
+        "y": 5563.3125,
+        "width": 350,
+        "height": 155.5
+      },
+      "title": {
+        "box": {
+          "x": 20,
+          "y": 5610.09375,
+          "width": 350,
+          "height": 108.71875
+        },
+        "parts": [
+          {
+            "text": "specification",
+            "typography": {
+              "fontFamily": "Georgia, \"Times New Roman\", serif",
+              "fontSize": "66.3px",
+              "fontWeight": "400",
+              "fontStyle": "italic",
+              "letterSpacing": "-4.9725px",
+              "lineHeight": "54.366px",
+              "paddingTop": "0px",
+              "paddingBottom": "0px",
+              "marginTop": "0px",
+              "marginLeft": "0px"
+            },
+            "box": {
+              "x": 20,
+              "y": 5654.453125,
+              "width": 274.140625,
+              "height": 73
+            }
+          }
+        ],
+        "lines": [
+          5600.09375,
+          5654.453125
+        ],
+        "glyphs": [
+          {
+            "text": "A",
+            "rects": [
+              {
+                "x": 20,
+                "y": 5600.09375,
+                "width": 39.25,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 48,
+              "ascent": 43,
+              "descent": 0
+            }
+          },
+          {
+            "text": " ",
+            "rects": [
+              {
+                "x": 59.234375,
+                "y": 5600.09375,
+                "width": 11.625,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 0,
+              "ascent": 0,
+              "descent": 0
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 70.84375,
+                "y": 5600.09375,
+                "width": 20.84375,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 24,
+              "ascent": 31,
+              "descent": 1
+            }
+          },
+          {
+            "text": "h",
+            "rects": [
+              {
+                "x": 91.671875,
+                "y": 5600.09375,
+                "width": 28.1875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 33,
+              "ascent": 46,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 119.84375,
+                "y": 5600.09375,
+                "width": 28.1875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 31,
+              "ascent": 31,
+              "descent": 1
+            }
+          },
+          {
+            "text": "r",
+            "rects": [
+              {
+                "x": 148.015625,
+                "y": 5600.09375,
+                "width": 17.125,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 22,
+              "ascent": 31,
+              "descent": 0
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 165.125,
+                "y": 5600.09375,
+                "width": 13.46875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 19,
+              "ascent": 37,
+              "descent": 1
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 20,
+                "y": 5654.453125,
+                "width": 20.828125,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 24,
+              "ascent": 31,
+              "descent": 1
+            }
+          },
+          {
+            "text": "p",
+            "rects": [
+              {
+                "x": 40.8125,
+                "y": 5654.453125,
+                "width": 28.203125,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": 4,
+              "right": 32,
+              "ascent": 32,
+              "descent": 14
+            }
+          },
+          {
+            "text": "e",
+            "rects": [
+              {
+                "x": 69,
+                "y": 5654.453125,
+                "width": 24.46875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 28,
+              "ascent": 31,
+              "descent": 1
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 93.453125,
+                "y": 5654.453125,
+                "width": 24.46875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 29,
+              "ascent": 31,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 117.90625,
+                "y": 5654.453125,
+                "width": 13.453125,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 17,
+              "ascent": 43,
+              "descent": 0
+            }
+          },
+          {
+            "text": "f",
+            "rects": [
+              {
+                "x": 131.34375,
+                "y": 5654.453125,
+                "width": 13.46875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 27,
+              "ascent": 47,
+              "descent": 14
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 144.796875,
+                "y": 5654.453125,
+                "width": 13.46875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 17,
+              "ascent": 43,
+              "descent": 0
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 158.25,
+                "y": 5654.453125,
+                "width": 24.46875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 29,
+              "ascent": 31,
+              "descent": 1
+            }
+          },
+          {
+            "text": "a",
+            "rects": [
+              {
+                "x": 182.703125,
+                "y": 5654.453125,
+                "width": 28.1875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 31,
+              "ascent": 31,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 210.875,
+                "y": 5654.453125,
+                "width": 13.453125,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 20,
+              "ascent": 37,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 224.3125,
+                "y": 5654.453125,
+                "width": 13.46875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 17,
+              "ascent": 43,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 237.765625,
+                "y": 5654.453125,
+                "width": 28.1875,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 32,
+              "ascent": 31,
+              "descent": 1
+            }
+          },
+          {
+            "text": "n",
+            "rects": [
+              {
+                "x": 265.9375,
+                "y": 5654.453125,
+                "width": 28.203125,
+                "height": 73
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 31,
+              "ascent": 31,
+              "descent": 0
+            }
+          }
+        ]
+      },
+      "location": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 20,
+            "y": 5791.8125,
+            "width": 350,
+            "height": 17.84375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 20,
+            "y": 5817.65625,
+            "width": 350,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        }
+      ],
+      "terms": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 20,
+            "y": 5791.8125,
+            "width": 350,
+            "height": 17.84375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 20,
+            "y": 5817.65625,
+            "width": 350,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Day-to-day work",
+          "box": {
+            "x": 20,
+            "y": 5891.453125,
+            "width": 350,
+            "height": 17.84375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Front-end development and interface design for institutional FX and other complex, real-time information",
+          "box": {
+            "x": 20,
+            "y": 5917.296875,
+            "width": 350,
+            "height": 74.390625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Tools",
+          "box": {
+            "x": 20,
+            "y": 6040.6875,
+            "width": 350,
+            "height": 17.84375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "JavaScript, React, CSS, and Figma",
+          "box": {
+            "x": 20,
+            "y": 6066.53125,
+            "width": 350,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Current explorations",
+          "box": {
+            "x": 20,
+            "y": 6140.328125,
+            "width": 350,
+            "height": 17.84375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "AI agents, practical machine learning, Raspberry Pi experiments, and WebGL/interface motion",
+          "box": {
+            "x": 20,
+            "y": 6166.171875,
+            "width": 350,
+            "height": 49.59375
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Background",
+          "box": {
+            "x": 20,
+            "y": 6264.765625,
+            "width": 350,
+            "height": 17.84375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Graphic design and UI/UX",
+          "box": {
+            "x": 20,
+            "y": 6290.609375,
+            "width": 350,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        }
+      ],
+      "overflow": [],
+      "factOverlap": false,
+      "sectionScrollWidth": 390,
+      "lastFactReachable": true,
+      "errors": [
+        "WebSocket connection to 'ws://127.0.0.1:5173/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_BLOCKED_BY_LOCAL_NETWORK_ACCESS_CHECKS",
+        "WebSocket connection to 'ws://127.0.0.1:0/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_UNSAFE_PORT",
+        "[vite] failed to connect to websocket.\nyour current setup:\n  (browser) 127.0.0.1:5173/ <--[HTTP]--> 127.0.0.1:0/ (server)\n  (browser) 127.0.0.1:5173/ <--[WebSocket (failing)]--> 127.0.0.1:0/ (server)\nCheck out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr ."
+      ],
+      "missing": []
+    },
+    {
+      "name": "short-nojs",
+      "width": 844,
+      "height": 390,
+      "scale": 100,
+      "js": false,
+      "entryScrollY": 5574,
+      "viewport": {
+        "width": 844,
+        "height": 390,
+        "dpr": 1
+      },
+      "rootFont": "16px",
+      "layout": "css",
+      "section": {
+        "x": 0,
+        "y": 5670.15625,
+        "width": 844,
+        "height": 654.828125
+      },
+      "masthead": {
+        "x": 33.75,
+        "y": 5762.984375,
+        "width": 255.234375,
+        "height": 469.171875
+      },
+      "title": {
+        "box": {
+          "x": 33.75,
+          "y": 5810.640625,
+          "width": 255.234375,
+          "height": 96.875
+        },
+        "parts": [
+          {
+            "text": "specification",
+            "typography": {
+              "fontFamily": "Georgia, \"Times New Roman\", serif",
+              "fontSize": "59.08px",
+              "fontWeight": "400",
+              "fontStyle": "italic",
+              "letterSpacing": "-4.431px",
+              "lineHeight": "48.4456px",
+              "paddingTop": "0px",
+              "paddingBottom": "0px",
+              "marginTop": "0px",
+              "marginLeft": "0px"
+            },
+            "box": {
+              "x": 33.75,
+              "y": 5850.078125,
+              "width": 244.28125,
+              "height": 66
+            }
+          }
+        ],
+        "lines": [
+          5801.640625,
+          5850.078125
+        ],
+        "glyphs": [
+          {
+            "text": "A",
+            "rects": [
+              {
+                "x": 33.75,
+                "y": 5801.640625,
+                "width": 34.984375,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 43,
+              "ascent": 39,
+              "descent": 0
+            }
+          },
+          {
+            "text": " ",
+            "rects": [
+              {
+                "x": 68.71875,
+                "y": 5801.640625,
+                "width": 10.34375,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 0,
+              "ascent": 0,
+              "descent": 0
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 79.046875,
+                "y": 5801.640625,
+                "width": 18.578125,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 21,
+              "ascent": 28,
+              "descent": 1
+            }
+          },
+          {
+            "text": "h",
+            "rects": [
+              {
+                "x": 97.609375,
+                "y": 5801.640625,
+                "width": 25.125,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 29,
+              "ascent": 41,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 122.71875,
+                "y": 5801.640625,
+                "width": 25.125,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 28,
+              "ascent": 28,
+              "descent": 1
+            }
+          },
+          {
+            "text": "r",
+            "rects": [
+              {
+                "x": 147.828125,
+                "y": 5801.640625,
+                "width": 15.265625,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 20,
+              "ascent": 28,
+              "descent": 0
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 163.078125,
+                "y": 5801.640625,
+                "width": 12,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 17,
+              "ascent": 34,
+              "descent": 1
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 33.75,
+                "y": 5850.078125,
+                "width": 18.5625,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 22,
+              "ascent": 28,
+              "descent": 1
+            }
+          },
+          {
+            "text": "p",
+            "rects": [
+              {
+                "x": 52.296875,
+                "y": 5850.078125,
+                "width": 25.125,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": 4,
+              "right": 28,
+              "ascent": 28,
+              "descent": 13
+            }
+          },
+          {
+            "text": "e",
+            "rects": [
+              {
+                "x": 77.40625,
+                "y": 5850.078125,
+                "width": 21.8125,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 25,
+              "ascent": 28,
+              "descent": 1
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 99.203125,
+                "y": 5850.078125,
+                "width": 21.796875,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 26,
+              "ascent": 28,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 120.984375,
+                "y": 5850.078125,
+                "width": 12,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 15,
+              "ascent": 39,
+              "descent": 0
+            }
+          },
+          {
+            "text": "f",
+            "rects": [
+              {
+                "x": 132.96875,
+                "y": 5850.078125,
+                "width": 12,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 24,
+              "ascent": 42,
+              "descent": 13
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 144.953125,
+                "y": 5850.078125,
+                "width": 12,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 15,
+              "ascent": 39,
+              "descent": 0
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 156.9375,
+                "y": 5850.078125,
+                "width": 21.8125,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 26,
+              "ascent": 28,
+              "descent": 1
+            }
+          },
+          {
+            "text": "a",
+            "rects": [
+              {
+                "x": 178.734375,
+                "y": 5850.078125,
+                "width": 25.125,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 28,
+              "ascent": 28,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 203.84375,
+                "y": 5850.078125,
+                "width": 12,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 18,
+              "ascent": 34,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 215.828125,
+                "y": 5850.078125,
+                "width": 11.984375,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 15,
+              "ascent": 39,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 227.796875,
+                "y": 5850.078125,
+                "width": 25.125,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 28,
+              "ascent": 28,
+              "descent": 1
+            }
+          },
+          {
+            "text": "n",
+            "rects": [
+              {
+                "x": 252.90625,
+                "y": 5850.078125,
+                "width": 25.125,
+                "height": 66
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 28,
+              "ascent": 28,
+              "descent": 0
+            }
+          }
+        ]
+      },
+      "location": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 356.5,
+            "y": 5787.984375,
+            "width": 130.875,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 519.375,
+            "y": 5787.984375,
+            "width": 290.875,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        }
+      ],
+      "terms": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 356.5,
+            "y": 5787.984375,
+            "width": 130.875,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 519.375,
+            "y": 5787.984375,
+            "width": 290.875,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Day-to-day work",
+          "box": {
+            "x": 356.5,
+            "y": 5861.78125,
+            "width": 130.875,
+            "height": 74.390625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Front-end development and interface design for institutional FX and other complex, real-time information",
+          "box": {
+            "x": 519.375,
+            "y": 5861.78125,
+            "width": 290.875,
+            "height": 74.390625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Tools",
+          "box": {
+            "x": 356.5,
+            "y": 5985.171875,
+            "width": 130.875,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "JavaScript, React, CSS, and Figma",
+          "box": {
+            "x": 519.375,
+            "y": 5985.171875,
+            "width": 290.875,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Current explorations",
+          "box": {
+            "x": 356.5,
+            "y": 6058.96875,
+            "width": 130.875,
+            "height": 74.390625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "AI agents, practical machine learning, Raspberry Pi experiments, and WebGL/interface motion",
+          "box": {
+            "x": 519.375,
+            "y": 6058.96875,
+            "width": 290.875,
+            "height": 74.390625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Background",
+          "box": {
+            "x": 356.5,
+            "y": 6182.359375,
+            "width": 130.875,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Graphic design and UI/UX",
+          "box": {
+            "x": 519.375,
+            "y": 6182.359375,
+            "width": 290.875,
+            "height": 24.796875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "24.8px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        }
+      ],
+      "overflow": [],
+      "factOverlap": false,
+      "sectionScrollWidth": 844,
+      "lastFactReachable": true,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "name": "short-enlarged-nojs",
+      "width": 844,
+      "height": 390,
+      "scale": 200,
+      "js": false,
+      "entryScrollY": 11113,
+      "viewport": {
+        "width": 844,
+        "height": 390,
+        "dpr": 1
+      },
+      "rootFont": "32px",
+      "layout": "css",
+      "section": {
+        "x": 0,
+        "y": 11305.390625,
+        "width": 844,
+        "height": 3384.875
+      },
+      "masthead": {
+        "x": 40,
+        "y": 11465.390625,
+        "width": 240.46875,
+        "height": 3064.875
+      },
+      "title": {
+        "box": {
+          "x": 40,
+          "y": 11558.953125,
+          "width": 240.46875,
+          "height": 367.3125
+        },
+        "parts": [
+          {
+            "text": "specification",
+            "typography": {
+              "fontFamily": "Georgia, \"Times New Roman\", serif",
+              "fontSize": "112px",
+              "fontWeight": "400",
+              "fontStyle": "italic",
+              "letterSpacing": "-8.4px",
+              "lineHeight": "91.84px",
+              "paddingTop": "0px",
+              "paddingBottom": "0px",
+              "marginTop": "0px",
+              "marginLeft": "0px"
+            },
+            "box": {
+              "x": 40,
+              "y": 11725.609375,
+              "width": 233.5625,
+              "height": 215.828125
+            }
+          }
+        ],
+        "lines": [
+          11541.953125,
+          11633.78125,
+          11725.609375,
+          11817.4375
+        ],
+        "glyphs": [
+          {
+            "text": "A",
+            "rects": [
+              {
+                "x": 40,
+                "y": 11541.953125,
+                "width": 66.3125,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 81,
+              "ascent": 75,
+              "descent": 0
+            }
+          },
+          {
+            "text": " ",
+            "rects": [
+              {
+                "x": 106.296875,
+                "y": 11541.953125,
+                "width": 0,
+                "height": 124
+              },
+              {
+                "x": 40,
+                "y": 11633.78125,
+                "width": 0,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 0,
+              "ascent": 0,
+              "descent": 0
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 40,
+                "y": 11633.78125,
+                "width": 35.1875,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 40,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "h",
+            "rects": [
+              {
+                "x": 75.171875,
+                "y": 11633.78125,
+                "width": 47.625,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 55,
+              "ascent": 79,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 122.78125,
+                "y": 11633.78125,
+                "width": 47.609375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 52,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "r",
+            "rects": [
+              {
+                "x": 170.375,
+                "y": 11633.78125,
+                "width": 28.921875,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 37,
+              "ascent": 53,
+              "descent": 0
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 199.28125,
+                "y": 11633.78125,
+                "width": 22.734375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 31,
+              "ascent": 64,
+              "descent": 1
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 40,
+                "y": 11725.609375,
+                "width": 35.1875,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 41,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "p",
+            "rects": [
+              {
+                "x": 75.171875,
+                "y": 11725.609375,
+                "width": 47.625,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": 7,
+              "right": 53,
+              "ascent": 53,
+              "descent": 24
+            }
+          },
+          {
+            "text": "e",
+            "rects": [
+              {
+                "x": 122.78125,
+                "y": 11725.609375,
+                "width": 41.328125,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 48,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 164.09375,
+                "y": 11725.609375,
+                "width": 41.328125,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 49,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 205.40625,
+                "y": 11725.609375,
+                "width": 22.734375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -6,
+              "right": 28,
+              "ascent": 75,
+              "descent": 0
+            }
+          },
+          {
+            "text": "f",
+            "rects": [
+              {
+                "x": 228.125,
+                "y": 11725.609375,
+                "width": 22.71875,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 45,
+              "ascent": 79,
+              "descent": 24
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 250.828125,
+                "y": 11725.609375,
+                "width": 22.734375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -6,
+              "right": 28,
+              "ascent": 75,
+              "descent": 0
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 40,
+                "y": 11817.4375,
+                "width": 41.3125,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 49,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "a",
+            "rects": [
+              {
+                "x": 81.296875,
+                "y": 11817.4375,
+                "width": 47.625,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 52,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 128.90625,
+                "y": 11817.4375,
+                "width": 22.734375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 34,
+              "ascent": 64,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 151.625,
+                "y": 11817.4375,
+                "width": 22.734375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -6,
+              "right": 28,
+              "ascent": 75,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 174.34375,
+                "y": 11817.4375,
+                "width": 47.609375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 53,
+              "ascent": 53,
+              "descent": 1
+            }
+          },
+          {
+            "text": "n",
+            "rects": [
+              {
+                "x": 221.9375,
+                "y": 11817.4375,
+                "width": 47.609375,
+                "height": 124
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 52,
+              "ascent": 54,
+              "descent": 0
+            }
+          }
+        ]
+      },
+      "location": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 376.46875,
+            "y": 11514.390625,
+            "width": 256,
+            "height": 297.5625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 11.390625
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 696.46875,
+            "y": 11514.390625,
+            "width": 107.53125,
+            "height": 297.5625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 11.390625
+        }
+      ],
+      "terms": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 376.46875,
+            "y": 11514.390625,
+            "width": 256,
+            "height": 297.5625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 696.46875,
+            "y": 11514.390625,
+            "width": 107.53125,
+            "height": 297.5625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Day-to-day work",
+          "box": {
+            "x": 376.46875,
+            "y": 11908.953125,
+            "width": 256,
+            "height": 892.6875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Front-end development and interface design for institutional FX and other complex, real-time information",
+          "box": {
+            "x": 696.46875,
+            "y": 11908.953125,
+            "width": 107.53125,
+            "height": 892.6875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Tools",
+          "box": {
+            "x": 376.46875,
+            "y": 12898.640625,
+            "width": 256,
+            "height": 297.5625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "JavaScript, React, CSS, and Figma",
+          "box": {
+            "x": 696.46875,
+            "y": 12898.640625,
+            "width": 107.53125,
+            "height": 297.5625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Current explorations",
+          "box": {
+            "x": 376.46875,
+            "y": 13293.203125,
+            "width": 256,
+            "height": 843.09375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "AI agents, practical machine learning, Raspberry Pi experiments, and WebGL/interface motion",
+          "box": {
+            "x": 696.46875,
+            "y": 13293.203125,
+            "width": 107.53125,
+            "height": 843.09375
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Background",
+          "box": {
+            "x": 376.46875,
+            "y": 14233.296875,
+            "width": 256,
+            "height": 247.96875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Graphic design and UI/UX",
+          "box": {
+            "x": 696.46875,
+            "y": 14233.296875,
+            "width": 107.53125,
+            "height": 247.96875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        }
+      ],
+      "overflow": [],
+      "factOverlap": false,
+      "sectionScrollWidth": 844,
+      "lastFactReachable": true,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "name": "narrow-enlarged-nojs",
+      "width": 320,
+      "height": 800,
+      "scale": 200,
+      "js": false,
+      "entryScrollY": 13147,
+      "viewport": {
+        "width": 320,
+        "height": 800,
+        "dpr": 1
+      },
+      "rootFont": "32px",
+      "layout": "css",
+      "section": {
+        "x": 0,
+        "y": 13339.046875,
+        "width": 320,
+        "height": 2876.03125
+      },
+      "masthead": {
+        "x": 40,
+        "y": 13499.046875,
+        "width": 240,
+        "height": 439.875
+      },
+      "title": {
+        "box": {
+          "x": 40,
+          "y": 13592.609375,
+          "width": 240,
+          "height": 346.3125
+        },
+        "parts": [
+          {
+            "text": "specification",
+            "typography": {
+              "fontFamily": "Georgia, \"Times New Roman\", serif",
+              "fontSize": "105.6px",
+              "fontWeight": "400",
+              "fontStyle": "italic",
+              "letterSpacing": "-7.92px",
+              "lineHeight": "86.592px",
+              "paddingTop": "0px",
+              "paddingBottom": "0px",
+              "marginTop": "0px",
+              "marginLeft": "0px"
+            },
+            "box": {
+              "x": 40,
+              "y": 13749.765625,
+              "width": 220.203125,
+              "height": 203.578125
+            }
+          }
+        ],
+        "lines": [
+          13576.609375,
+          13663.1875,
+          13749.765625,
+          13836.34375
+        ],
+        "glyphs": [
+          {
+            "text": "A",
+            "rects": [
+              {
+                "x": 40,
+                "y": 13576.609375,
+                "width": 62.515625,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 76,
+              "ascent": 70,
+              "descent": 0
+            }
+          },
+          {
+            "text": " ",
+            "rects": [
+              {
+                "x": 102.5,
+                "y": 13576.609375,
+                "width": 0,
+                "height": 117
+              },
+              {
+                "x": 40,
+                "y": 13663.1875,
+                "width": 0,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 0,
+              "ascent": 0,
+              "descent": 0
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 40,
+                "y": 13663.1875,
+                "width": 33.1875,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 38,
+              "ascent": 50,
+              "descent": 1
+            }
+          },
+          {
+            "text": "h",
+            "rects": [
+              {
+                "x": 73.171875,
+                "y": 13663.1875,
+                "width": 44.890625,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 52,
+              "ascent": 74,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 118.046875,
+                "y": 13663.1875,
+                "width": 44.890625,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 49,
+              "ascent": 50,
+              "descent": 1
+            }
+          },
+          {
+            "text": "r",
+            "rects": [
+              {
+                "x": 162.921875,
+                "y": 13663.1875,
+                "width": 27.25,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 35,
+              "ascent": 51,
+              "descent": 0
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 190.15625,
+                "y": 13663.1875,
+                "width": 21.4375,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 29,
+              "ascent": 60,
+              "descent": 1
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 40,
+                "y": 13749.765625,
+                "width": 33.1875,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 38,
+              "ascent": 50,
+              "descent": 1
+            }
+          },
+          {
+            "text": "p",
+            "rects": [
+              {
+                "x": 73.171875,
+                "y": 13749.765625,
+                "width": 44.890625,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": 7,
+              "right": 50,
+              "ascent": 50,
+              "descent": 23
+            }
+          },
+          {
+            "text": "e",
+            "rects": [
+              {
+                "x": 118.046875,
+                "y": 13749.765625,
+                "width": 38.953125,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 45,
+              "ascent": 50,
+              "descent": 1
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 156.984375,
+                "y": 13749.765625,
+                "width": 38.96875,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 46,
+              "ascent": 50,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 195.9375,
+                "y": 13749.765625,
+                "width": 21.4375,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 27,
+              "ascent": 71,
+              "descent": 0
+            }
+          },
+          {
+            "text": "f",
+            "rects": [
+              {
+                "x": 217.359375,
+                "y": 13749.765625,
+                "width": 21.421875,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 42,
+              "ascent": 75,
+              "descent": 23
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 238.765625,
+                "y": 13749.765625,
+                "width": 21.4375,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 27,
+              "ascent": 71,
+              "descent": 0
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 40,
+                "y": 13836.34375,
+                "width": 38.953125,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 46,
+              "ascent": 50,
+              "descent": 1
+            }
+          },
+          {
+            "text": "a",
+            "rects": [
+              {
+                "x": 78.9375,
+                "y": 13836.34375,
+                "width": 44.890625,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 49,
+              "ascent": 50,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 123.8125,
+                "y": 13836.34375,
+                "width": 21.4375,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 32,
+              "ascent": 60,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 145.234375,
+                "y": 13836.34375,
+                "width": 21.4375,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 27,
+              "ascent": 71,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 166.65625,
+                "y": 13836.34375,
+                "width": 44.890625,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 50,
+              "ascent": 51,
+              "descent": 1
+            }
+          },
+          {
+            "text": "n",
+            "rects": [
+              {
+                "x": 211.53125,
+                "y": 13836.34375,
+                "width": 44.890625,
+                "height": 117
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 49,
+              "ascent": 50,
+              "descent": 0
+            }
+          }
+        ]
+      },
+      "location": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 40,
+            "y": 14083.921875,
+            "width": 240,
+            "height": 35.71875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 136.921875
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 40,
+            "y": 14135.640625,
+            "width": 240,
+            "height": 148.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 188.640625
+        }
+      ],
+      "terms": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 40,
+            "y": 14083.921875,
+            "width": 240,
+            "height": 35.71875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 40,
+            "y": 14135.640625,
+            "width": 240,
+            "height": 148.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Day-to-day work",
+          "box": {
+            "x": 40,
+            "y": 14381.421875,
+            "width": 240,
+            "height": 35.71875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Front-end development and interface design for institutional FX and other complex, real-time information",
+          "box": {
+            "x": 40,
+            "y": 14433.140625,
+            "width": 240,
+            "height": 396.75
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Tools",
+          "box": {
+            "x": 40,
+            "y": 14926.890625,
+            "width": 240,
+            "height": 35.71875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "JavaScript, React, CSS, and Figma",
+          "box": {
+            "x": 40,
+            "y": 14978.609375,
+            "width": 240,
+            "height": 148.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Current explorations",
+          "box": {
+            "x": 40,
+            "y": 15224.390625,
+            "width": 240,
+            "height": 71.4375
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "AI agents, practical machine learning, Raspberry Pi experiments, and WebGL/interface motion",
+          "box": {
+            "x": 40,
+            "y": 15311.828125,
+            "width": 240,
+            "height": 446.34375
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Background",
+          "box": {
+            "x": 40,
+            "y": 15855.171875,
+            "width": 240,
+            "height": 35.71875
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "23.04px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "1.8432px",
+            "lineHeight": "35.712px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Graphic design and UI/UX",
+          "box": {
+            "x": 40,
+            "y": 15906.890625,
+            "width": 240,
+            "height": 99.1875
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "32px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "49.6px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        }
+      ],
+      "overflow": [],
+      "factOverlap": false,
+      "sectionScrollWidth": 320,
+      "lastFactReachable": true,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "name": "boundary-640",
+      "width": 1440,
+      "height": 640,
+      "scale": 100,
+      "js": true,
+      "entryScrollY": 6224,
+      "viewport": {
+        "width": 1440,
+        "height": 640,
+        "dpr": 1
+      },
+      "rootFont": "16px",
+      "layout": "css",
+      "section": {
+        "x": 0,
+        "y": 6319.859375,
+        "width": 1440,
+        "height": 750.25
+      },
+      "masthead": {
+        "x": 57.59375,
+        "y": 6478.25,
+        "width": 435.453125,
+        "height": 433.46875
+      },
+      "title": {
+        "box": {
+          "x": 57.59375,
+          "y": 6527.15625,
+          "width": 435.453125,
+          "height": 165.28125
+        },
+        "parts": [
+          {
+            "text": "specification",
+            "typography": {
+              "fontFamily": "Georgia, \"Times New Roman\", serif",
+              "fontSize": "100.8px",
+              "fontWeight": "400",
+              "fontStyle": "italic",
+              "letterSpacing": "-7.56px",
+              "lineHeight": "82.656px",
+              "paddingTop": "0px",
+              "paddingBottom": "0px",
+              "marginTop": "0px",
+              "marginLeft": "0px"
+            },
+            "box": {
+              "x": 57.59375,
+              "y": 6594.796875,
+              "width": 416.78125,
+              "height": 112
+            }
+          }
+        ],
+        "lines": [
+          6512.15625,
+          6594.796875
+        ],
+        "glyphs": [
+          {
+            "text": "A",
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 6512.15625,
+                "width": 59.671875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 73,
+              "ascent": 67,
+              "descent": 0
+            }
+          },
+          {
+            "text": " ",
+            "rects": [
+              {
+                "x": 117.25,
+                "y": 6512.15625,
+                "width": 17.65625,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 0,
+              "ascent": 0,
+              "descent": 0
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 134.890625,
+                "y": 6512.15625,
+                "width": 31.6875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 36,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "h",
+            "rects": [
+              {
+                "x": 166.5625,
+                "y": 6512.15625,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 50,
+              "ascent": 71,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 209.40625,
+                "y": 6512.15625,
+                "width": 42.84375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 47,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "r",
+            "rects": [
+              {
+                "x": 252.234375,
+                "y": 6512.15625,
+                "width": 26.03125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 33,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 278.25,
+                "y": 6512.15625,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 28,
+              "ascent": 58,
+              "descent": 1
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 6594.796875,
+                "width": 31.671875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 37,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "p",
+            "rects": [
+              {
+                "x": 89.25,
+                "y": 6594.796875,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 6,
+              "right": 48,
+              "ascent": 48,
+              "descent": 22
+            }
+          },
+          {
+            "text": "e",
+            "rects": [
+              {
+                "x": 132.09375,
+                "y": 6594.796875,
+                "width": 37.1875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 43,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 169.265625,
+                "y": 6594.796875,
+                "width": 37.203125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 44,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 206.453125,
+                "y": 6594.796875,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 25,
+              "ascent": 68,
+              "descent": 0
+            }
+          },
+          {
+            "text": "f",
+            "rects": [
+              {
+                "x": 226.890625,
+                "y": 6594.796875,
+                "width": 20.46875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 40,
+              "ascent": 71,
+              "descent": 22
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 247.34375,
+                "y": 6594.796875,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 25,
+              "ascent": 68,
+              "descent": 0
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 267.78125,
+                "y": 6594.796875,
+                "width": 37.1875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 44,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "a",
+            "rects": [
+              {
+                "x": 304.953125,
+                "y": 6594.796875,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 47,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 347.796875,
+                "y": 6594.796875,
+                "width": 20.46875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 31,
+              "ascent": 58,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 368.25,
+                "y": 6594.796875,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 25,
+              "ascent": 68,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 388.6875,
+                "y": 6594.796875,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 48,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "n",
+            "rects": [
+              {
+                "x": 431.53125,
+                "y": 6594.796875,
+                "width": 42.84375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 47,
+              "ascent": 48,
+              "descent": 0
+            }
+          }
+        ]
+      },
+      "location": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 608.234375,
+            "y": 6503.25,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 870.5625,
+            "y": 6503.25,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        }
+      ],
+      "terms": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 608.234375,
+            "y": 6503.25,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 870.5625,
+            "y": 6503.25,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Day-to-day work",
+          "box": {
+            "x": 608.234375,
+            "y": 6579.03125,
+            "width": 230.328125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Front-end development and interface design for institutional FX and other complex, real-time information",
+          "box": {
+            "x": 870.5625,
+            "y": 6579.03125,
+            "width": 511.828125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Tools",
+          "box": {
+            "x": 608.234375,
+            "y": 6681.59375,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "JavaScript, React, CSS, and Figma",
+          "box": {
+            "x": 870.5625,
+            "y": 6681.59375,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Current explorations",
+          "box": {
+            "x": 608.234375,
+            "y": 6757.375,
+            "width": 230.328125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "AI agents, practical machine learning, Raspberry Pi experiments, and WebGL/interface motion",
+          "box": {
+            "x": 870.5625,
+            "y": 6757.375,
+            "width": 511.828125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Background",
+          "box": {
+            "x": 608.234375,
+            "y": 6859.9375,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Graphic design and UI/UX",
+          "box": {
+            "x": 870.5625,
+            "y": 6859.9375,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        }
+      ],
+      "overflow": [],
+      "factOverlap": false,
+      "sectionScrollWidth": 1440,
+      "lastFactReachable": true,
+      "errors": [
+        "WebSocket connection to 'ws://127.0.0.1:5173/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_BLOCKED_BY_LOCAL_NETWORK_ACCESS_CHECKS",
+        "WebSocket connection to 'ws://127.0.0.1:0/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_UNSAFE_PORT",
+        "[vite] failed to connect to websocket.\nyour current setup:\n  (browser) 127.0.0.1:5173/ <--[HTTP]--> 127.0.0.1:0/ (server)\n  (browser) 127.0.0.1:5173/ <--[WebSocket (failing)]--> 127.0.0.1:0/ (server)\nCheck out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr ."
+      ],
+      "missing": []
+    },
+    {
+      "name": "boundary-641",
+      "width": 1440,
+      "height": 641,
+      "scale": 100,
+      "js": true,
+      "entryScrollY": 5969,
+      "viewport": {
+        "width": 1440,
+        "height": 641,
+        "dpr": 1
+      },
+      "rootFont": "16px",
+      "layout": "css",
+      "section": {
+        "x": 0,
+        "y": 6063.1875,
+        "width": 1440,
+        "height": 750.25
+      },
+      "masthead": {
+        "x": 57.59375,
+        "y": 6221.578125,
+        "width": 435.453125,
+        "height": 433.46875
+      },
+      "title": {
+        "box": {
+          "x": 57.59375,
+          "y": 6270.484375,
+          "width": 435.453125,
+          "height": 165.28125
+        },
+        "parts": [
+          {
+            "text": "specification",
+            "typography": {
+              "fontFamily": "Georgia, \"Times New Roman\", serif",
+              "fontSize": "100.8px",
+              "fontWeight": "400",
+              "fontStyle": "italic",
+              "letterSpacing": "-7.56px",
+              "lineHeight": "82.656px",
+              "paddingTop": "0px",
+              "paddingBottom": "0px",
+              "marginTop": "0px",
+              "marginLeft": "0px"
+            },
+            "box": {
+              "x": 57.59375,
+              "y": 6338.125,
+              "width": 416.78125,
+              "height": 112
+            }
+          }
+        ],
+        "lines": [
+          6255.484375,
+          6338.125
+        ],
+        "glyphs": [
+          {
+            "text": "A",
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 6255.484375,
+                "width": 59.671875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 73,
+              "ascent": 67,
+              "descent": 0
+            }
+          },
+          {
+            "text": " ",
+            "rects": [
+              {
+                "x": 117.25,
+                "y": 6255.484375,
+                "width": 17.65625,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 0,
+              "ascent": 0,
+              "descent": 0
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 134.890625,
+                "y": 6255.484375,
+                "width": 31.6875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 36,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "h",
+            "rects": [
+              {
+                "x": 166.5625,
+                "y": 6255.484375,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 50,
+              "ascent": 71,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 209.40625,
+                "y": 6255.484375,
+                "width": 42.84375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 47,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "r",
+            "rects": [
+              {
+                "x": 252.234375,
+                "y": 6255.484375,
+                "width": 26.03125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -2,
+              "right": 33,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 278.25,
+                "y": 6255.484375,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 0,
+              "right": 28,
+              "ascent": 58,
+              "descent": 1
+            }
+          },
+          {
+            "text": "s",
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 6338.125,
+                "width": 31.671875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 37,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "p",
+            "rects": [
+              {
+                "x": 89.25,
+                "y": 6338.125,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": 6,
+              "right": 48,
+              "ascent": 48,
+              "descent": 22
+            }
+          },
+          {
+            "text": "e",
+            "rects": [
+              {
+                "x": 132.09375,
+                "y": 6338.125,
+                "width": 37.1875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 43,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 169.265625,
+                "y": 6338.125,
+                "width": 37.203125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 44,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 206.453125,
+                "y": 6338.125,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 25,
+              "ascent": 68,
+              "descent": 0
+            }
+          },
+          {
+            "text": "f",
+            "rects": [
+              {
+                "x": 226.890625,
+                "y": 6338.125,
+                "width": 20.46875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -1,
+              "right": 40,
+              "ascent": 71,
+              "descent": 22
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 247.34375,
+                "y": 6338.125,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 25,
+              "ascent": 68,
+              "descent": 0
+            }
+          },
+          {
+            "text": "c",
+            "rects": [
+              {
+                "x": 267.78125,
+                "y": 6338.125,
+                "width": 37.1875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 44,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "a",
+            "rects": [
+              {
+                "x": 304.953125,
+                "y": 6338.125,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 47,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "t",
+            "rects": [
+              {
+                "x": 347.796875,
+                "y": 6338.125,
+                "width": 20.46875,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -4,
+              "right": 31,
+              "ascent": 58,
+              "descent": 1
+            }
+          },
+          {
+            "text": "i",
+            "rects": [
+              {
+                "x": 368.25,
+                "y": 6338.125,
+                "width": 20.453125,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -5,
+              "right": 25,
+              "ascent": 68,
+              "descent": 0
+            }
+          },
+          {
+            "text": "o",
+            "rects": [
+              {
+                "x": 388.6875,
+                "y": 6338.125,
+                "width": 42.859375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 48,
+              "ascent": 48,
+              "descent": 1
+            }
+          },
+          {
+            "text": "n",
+            "rects": [
+              {
+                "x": 431.53125,
+                "y": 6338.125,
+                "width": 42.84375,
+                "height": 112
+              }
+            ],
+            "inkMetrics": {
+              "left": -3,
+              "right": 47,
+              "ascent": 48,
+              "descent": 0
+            }
+          }
+        ]
+      },
+      "location": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 608.234375,
+            "y": 6246.578125,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 870.5625,
+            "y": 6246.578125,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          },
+          "additionalScrollToAppear": 0
+        }
+      ],
+      "terms": [
+        {
+          "tag": "DT",
+          "text": "Location",
+          "box": {
+            "x": 608.234375,
+            "y": 6246.578125,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Vancouver Island, British Columbia",
+          "box": {
+            "x": 870.5625,
+            "y": 6246.578125,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Day-to-day work",
+          "box": {
+            "x": 608.234375,
+            "y": 6322.359375,
+            "width": 230.328125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Front-end development and interface design for institutional FX and other complex, real-time information",
+          "box": {
+            "x": 870.5625,
+            "y": 6322.359375,
+            "width": 511.828125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Tools",
+          "box": {
+            "x": 608.234375,
+            "y": 6424.921875,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "JavaScript, React, CSS, and Figma",
+          "box": {
+            "x": 870.5625,
+            "y": 6424.921875,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Current explorations",
+          "box": {
+            "x": 608.234375,
+            "y": 6500.703125,
+            "width": 230.328125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "AI agents, practical machine learning, Raspberry Pi experiments, and WebGL/interface motion",
+          "box": {
+            "x": 870.5625,
+            "y": 6500.703125,
+            "width": 511.828125,
+            "height": 53.5625
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DT",
+          "text": "Background",
+          "box": {
+            "x": 608.234375,
+            "y": 6603.265625,
+            "width": 230.328125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+            "fontSize": "11.52px",
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "letterSpacing": "0.9216px",
+            "lineHeight": "17.856px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        },
+        {
+          "tag": "DD",
+          "text": "Graphic design and UI/UX",
+          "box": {
+            "x": 870.5625,
+            "y": 6603.265625,
+            "width": 511.828125,
+            "height": 26.78125
+          },
+          "typography": {
+            "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+            "fontSize": "17.28px",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "letterSpacing": "normal",
+            "lineHeight": "26.784px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "marginTop": "0px",
+            "marginLeft": "0px"
+          }
+        }
+      ],
+      "overflow": [],
+      "factOverlap": false,
+      "sectionScrollWidth": 1440,
+      "lastFactReachable": true,
+      "errors": [
+        "WebSocket connection to 'ws://127.0.0.1:5173/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_BLOCKED_BY_LOCAL_NETWORK_ACCESS_CHECKS",
+        "WebSocket connection to 'ws://127.0.0.1:0/?token=5o0Yhu6m_pGL' failed: Error in connection establishment: net::ERR_UNSAFE_PORT",
+        "[vite] failed to connect to websocket.\nyour current setup:\n  (browser) 127.0.0.1:5173/ <--[HTTP]--> 127.0.0.1:0/ (server)\n  (browser) 127.0.0.1:5173/ <--[WebSocket (failing)]--> 127.0.0.1:0/ (server)\nCheck out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr ."
+      ],
+      "missing": []
+    }
+  ]
+}

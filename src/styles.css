@@ -75,8 +75,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .introduction { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 4rem 2rem; overflow: visible; }
 .introduction > .chapter-number { flex: .55 1 8rem; }
 .introduction > .intro-copy { flex: 1.6 1 48rem; min-width: 0; }
-.intro-copy h2, .work-header h2, .outside h2, .about h2, .elsewhere h2 { margin: 0; font-family: var(--serif); font-size: clamp(3.8rem, 9vw, 9rem); font-weight: 400; letter-spacing: -.075em; line-height: .82; }
-.intro-copy h2 em, .work-header h2 em, .outside h2 em, .about h2 em, .elsewhere h2 em { font-weight: 400; }
+.intro-copy h2, .work-header h2, .outside h2, .elsewhere h2 { margin: 0; font-family: var(--serif); font-size: clamp(3.8rem, 9vw, 9rem); font-weight: 400; letter-spacing: -.075em; line-height: .82; }
+.intro-copy h2 em, .work-header h2 em, .outside h2 em, .elsewhere h2 em { font-weight: 400; }
 /* Full-width lower composition: rem bases yield to complete text before art. */
 .introduction .intro-composition { flex: 0 0 100%; width: 100%; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4rem; }
 .introduction .intro-composition > p { flex: 1 1 32rem; min-width: 0; max-width: 38rem; margin: 0; font-size: clamp(1.15rem, 1.4vw, 1.45rem); line-height: 1.7; }
@@ -166,12 +166,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .outside#outside { scroll-margin-block-start: min(6rem, 20svh); }
 }
 
-.about { display: grid; grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); gap: clamp(3rem, 8vw, 9rem); }
-.about h2 { margin-top: 2rem; font-size: clamp(3.5rem, 7vw, 7rem); }
-.about-list { margin: 0; border-top: 1px solid var(--green); }
-.about-list div { display: grid; grid-template-columns: minmax(8rem, .45fr) minmax(0, 1fr); gap: 2rem; padding: 1.5rem 0; border-bottom: 1px solid rgb(41 60 43 / 45%); }
-.about-list dt { font-family: var(--mono); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.about-list dd { margin: 0; font-size: clamp(1rem, 1.2vw, 1.22rem); }
 
 #elsewhere { scroll-margin-block-start: min(6rem, 20svh); }
 .elsewhere { padding-bottom: 3rem; background: var(--green); color: var(--cream); }
@@ -212,11 +206,10 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .hero-name { margin-top: 1rem; }
   .hero-name h1 { font-size: clamp(5.2rem, 24vw, 9.5rem); line-height: .7; }
   .hero-name h1 span:last-child { margin-left: .17em; }
-  .introduction, .work-header, .outside, .about { grid-template-columns: minmax(0, 1fr); }
+  .introduction, .work-header, .outside { grid-template-columns: minmax(0, 1fr); }
   .introduction { min-height: auto; gap: 4rem; }
   .work-header { align-items: start; }
   .work-header > p:last-child { margin-left: 12%; }
-  .about-list div { grid-template-columns: 1fr; gap: .5rem; }
 }
 
 @media (max-width: 480px) {
@@ -233,7 +226,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .hero-name h1 { font-size: min(clamp(4.8rem, 26vw, 7.5rem), 28vw); }
   .scroll-cue { display: none; }
   .chapter { padding-block: 5rem; }
-  .intro-copy h2, .work-header h2, .outside h2, .about h2, .elsewhere h2 { font-size: clamp(3.3rem, 17vw, 5rem); }
+  .intro-copy h2, .work-header h2, .outside h2, .elsewhere h2 { font-size: clamp(3.3rem, 17vw, 5rem); }
   .outside-copy > p:last-child, .work-header > p:last-child { margin-left: 0; }
   .project-copy h3 { font-size: 3.5rem; overflow-wrap: break-word; }
   .project-object { max-height: 22rem; }
@@ -283,4 +276,83 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   @container (max-width: 10rem) {
     #project-agents h3 { font-size: clamp(1.75rem, calc(1rem + 7.5vw), 3.5rem); }
   }
+}
+
+/* F-020: isolated editorial About forme. */
+.about { overflow:visible; --cell-pad:32px; padding:46px clamp(20px,4.444vw,64px) 64px; }
+.about-label { margin:0 0 30px; font:700 .75rem/1.4 Consolas,"Liberation Mono",monospace; letter-spacing:.14em; text-transform:uppercase; }
+.about-forme { border:1px solid var(--green); container-type:inline-size; container-name:about-forme; }
+.about-masthead { position:relative; padding:30px 38px 34px; border-bottom:1px solid var(--green); container-type:inline-size; }
+.about-masthead::before { content:""; position:absolute; top:35px; right:35px; width:14px; height:78px; background:var(--coral); }
+.about h2 { margin:0; font-family:Georgia,"Times New Roman",serif; font-weight:400; letter-spacing:-.075em; }
+.about h2 > span { display:block; font-size:min(6.5rem,35cqw); line-height:1; padding-right:1.5rem; overflow-wrap:normal; }
+.about h2 em { display:block; margin:.12em 0 0 44px; font-size:min(11.875rem,42cqw); font-weight:400; line-height:1.1; hyphens:manual; overflow-wrap:normal; }
+.about-facts { --facts-display:block; --side-rule:0px; --tools-bottom:1px; --current-bottom:1px; display:var(--facts-display); grid-template-columns:repeat(12,minmax(0,1fr)); margin:0; }
+.about-fact { min-width:0; padding:30px var(--cell-pad) 36px; border-bottom:1px solid var(--green); }
+.about dt { margin:0 0 22px; font:700 .6875rem/1.4 Consolas,"Liberation Mono",monospace; letter-spacing:.13em; text-transform:uppercase; overflow-wrap:normal; }
+.about dd { margin:0; font:400 2.125rem/1.13 Georgia,"Times New Roman",serif; letter-spacing:-.035em; overflow-wrap:break-word; }
+.about-location { grid-column:1/5; border-right:var(--side-rule) solid var(--green); }
+.about-location dd { max-width:11ch; font-size:2.625rem; }
+.about-work { grid-column:5/13; }
+.about-work dd { max-width:35ch; line-height:1.22; }
+.about-tools { grid-column:1/9; grid-row:2; background:var(--green); color:var(--cream); padding-block:29px 34px; border-bottom-width:var(--tools-bottom); }
+.about-tools dd { max-width:16ch; font-size:4.75rem; letter-spacing:-.055em; line-height:1.02; }
+.about-current { grid-column:9/13; grid-row:2/4; border-left:var(--side-rule) solid var(--green); background:var(--cream); border-bottom-width:var(--current-bottom); }
+.about-current dd { font-size:2rem; line-height:1.2; }
+.about-background { grid-column:1/9; grid-row:3; padding-block:24px 28px; border-bottom:0; }
+.about-background dt { margin-bottom:14px; }
+/* CSS alone chooses a conservative, content-relative lockup threshold. */
+@container (min-width:75rem) {
+ .about-facts { --facts-display:grid; --side-rule:1px; --tools-bottom:0px; --current-bottom:0px; }
+}
+/* Pretext selects a layout only. It never changes a fact's font size. */
+.about[data-layout="grid"] .about-facts { --facts-display:grid; --side-rule:1px; --tools-bottom:0px; --current-bottom:0px; }
+.about[data-layout="reading"] .about-facts { --facts-display:block; --side-rule:0px; --tools-bottom:1px; --current-bottom:1px; }
+@media (max-width:1100px) {
+ .about h2 em { font-size:min(6.25rem,42cqw); margin-left:0; }
+}
+@media (max-width:800px) {
+ .about { --cell-pad:20px; padding:32px 20px; }
+ .about-label { margin-bottom:23px; }
+ .about-masthead { padding:25px 20px 30px; }
+ .about-masthead::before { top:24px; right:20px; width:8px; height:36px; }
+ .about h2 > span { font-size:min(2.625rem,35cqw); }
+ .about h2 em { font-size:min(3.29rem,42cqw); }
+ .about-fact { padding-block:25px 29px; }
+ .about dt { margin-bottom:14px; }
+ .about-location dd { max-width:none; font-size:2rem; }
+ .about-work dd,.about-current dd,.about-background dd { font-size:1.625rem; }
+ .about-tools dd { font-size:2.375rem; }
+}
+@media (max-width:360px) {
+ .about { --cell-pad:6px; padding-inline:4px; }
+ .about-masthead { padding-inline:10px; }
+}
+@container (max-width:12rem) {
+ /* Release decoration space before sacrificing enlarged word recognition. */
+ .about-facts { --cramped-pad:2px; }
+ .about-fact { padding-inline:var(--cramped-pad); }
+ .about-masthead { padding-inline:10px; }
+}
+@media (max-height:640px) {
+ .about .about-facts { --facts-display:block; --side-rule:0px; --tools-bottom:1px; --current-bottom:1px; }
+}
+
+.about-font-sentinel { position:absolute; visibility:hidden; pointer-events:none; width:1rem; height:1rem; }
+
+/* F-021: shorten only the fallback title pause, never the type or fact bays.
+   Enhanced layouts use actual reading mode. CSS-only layouts use the same
+   conservative threshold as the facts, excluding the grid at exactly 75rem.
+   The desktop width guard leaves ordinary stacked mobile spacing unchanged. */
+@media (min-width:1101px) {
+ .about[data-layout="reading"] .about-masthead { padding-block:12px 14px; }
+ .about[data-layout="reading"] h2 em { margin-top:.02em; }
+ @container about-forme (width < 75rem) {
+  .about:not([data-layout]) .about-masthead { padding-block:12px 14px; }
+  .about:not([data-layout]) h2 em { margin-top:.02em; }
+ }
+}
+@media (max-height:640px) {
+ .about-masthead { padding-block:12px 14px; }
+ .about h2 em { margin-top:.02em; }
 }
