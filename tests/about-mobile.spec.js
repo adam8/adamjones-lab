@@ -1,3 +1,4 @@
+import { chapterLink, openChapters } from './navigation.js';
 import { test, expect } from '@playwright/test';
 
 async function safety(page) {
@@ -85,8 +86,8 @@ test('mobile live enlargement, idle, native reachability and navigation',async({
   await page.waitForTimeout(400);
   expect(await page.evaluate(()=>[window.aboutReads,window.switches])).toEqual(settled);
   expect(settled[1]).toBe(3);
-  await page.locator('[data-chapter-item="elsewhere"]').click();
-  await page.locator('[data-chapter-item="about"]').focus(); await page.keyboard.press('Enter');
+  await (await chapterLink(page, 'elsewhere')).click();
+  await (await chapterLink(page, 'about')).focus(); await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#about$/);
   await expect(page.locator('#about-title')).toBeInViewport();
   for(let i=0;i<6;i++) {
@@ -94,7 +95,7 @@ test('mobile live enlargement, idle, native reachability and navigation',async({
     await page.mouse.wheel(0,120); await page.waitForTimeout(150);
   }
   await expect(page.locator('.about-background dd')).toBeInViewport();
-  await page.locator('[data-chapter-item="elsewhere"]').click();
+  await (await chapterLink(page, 'elsewhere')).click();
   await page.goBack(); await expect(page).toHaveURL(/#about$/);
   await page.goForward(); await expect(page).toHaveURL(/#elsewhere$/);
 });
@@ -107,8 +108,9 @@ for (const javaScriptEnabled of [true, false]) for (const width of [375, 390, 41
     // scroll the target into view before asserting native anchor arrival.
     await page.goto(`${baseURL}/#elsewhere`);
     await expect(page.locator('#elsewhere h2')).toBeInViewport();
-    const link = page.locator('[data-chapter-item="about"]');
-    await link.focus();
+    const link = await chapterLink(page, 'about');
+    await openChapters(page);
+        await link.focus();
     await page.keyboard.press('Shift+Tab');
     await page.keyboard.press('Tab');
     await expect(link).toBeFocused();

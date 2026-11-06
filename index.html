@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="/src/styles.css" />
     <title>Adam Jones — JavaScript developer and designer</title>
   </head>
-  <body>
+  <body id="top">
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="reading-progress" aria-hidden="true"></div>
 
-    <header class="site-header" id="top">
+    <header class="site-header">
       <a class="wordmark" href="#top" aria-label="Adam Jones, home">aj.</a>
-      <nav aria-label="Primary navigation">
+      <nav class="desktop-navigation" aria-label="Primary navigation">
         <ul class="nav-list">
           <li><a href="#work">Selected work</a></li>
           <li><a href="#outside">Outside work</a></li>
@@ -23,6 +23,18 @@
           <li><a href="#elsewhere">Elsewhere</a></li>
         </ul>
       </nav>
+      <details id="mobile-chapters">
+        <summary aria-label="Open navigation"><svg class="navigation-icon" width="24" height="18" viewBox="0 0 24 18" aria-hidden="true" focusable="false"><path d="M1 1h22M1 9h22M1 17h22" /></svg></summary>
+        <nav aria-label="Mobile chapters">
+          <ol class="mobile-chapter-list">
+            <li><a href="#introduction"><span>01</span> Introduction</a></li>
+            <li><a href="#work"><span>02</span> Work</a></li>
+            <li><a href="#outside"><span>03</span> Outside</a></li>
+            <li><a href="#about"><span>04</span> About</a></li>
+            <li><a href="#elsewhere"><span>05</span> Elsewhere</a></li>
+          </ol>
+        </nav>
+      </details>
     </header>
 
     <main id="main-content" tabindex="-1">
@@ -55,7 +67,6 @@
       <div class="chapter-index-slot">
         <span class="chapter-index-sentinel" aria-hidden="true"></span>
         <nav class="chapter-index label" aria-label="Chapter index">
-          <span class="chapter-index-title">Chapter /</span>
           <ol class="chapter-index-list">
             <li><a class="chapter-index-item" data-chapter-item="introduction" href="#introduction"><span>01</span> Introduction</a></li>
             <li><a class="chapter-index-item" data-chapter-item="work" href="#work"><span>02</span> Work</a></li>

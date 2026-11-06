@@ -324,6 +324,37 @@ projectPermalinks.forEach((permalink) => {
   });
 });
 
+// Navigation state stays local; native anchors own scrolling, focus and history.
+const mobileChapters = document.querySelector('#mobile-chapters');
+mobileChapters?.addEventListener('click', event => {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (event.target.closest('a[href^="#"]')) mobileChapters.open = false;
+});
+mobileChapters?.addEventListener('toggle', () => scheduleUpdate({ measure: true }));
+// Observe only the local header. No root styles or About ancestors are written.
+const mobileHeader = mobileChapters?.closest('header');
+if (mobileHeader) {
+  // Reserve seven closed rows for the row, five links and panel breathing room.
+  // A conservative, state-independent budget avoids sticky -> in-flow jumps
+  // on opening. Observe the stable summary, not the expanding header.
+  const summary = mobileChapters.querySelector('summary');
+  const checkHeaderFit = () => {
+    const safeArea = parseFloat(getComputedStyle(mobileHeader).paddingTop) || 0;
+    mobileHeader.classList.toggle('is-tall', summary.offsetHeight * 7 + safeArea > innerHeight * .8);
+  };
+  checkHeaderFit();
+  new ResizeObserver(checkHeaderFit).observe(summary);
+  mobileHeader.classList.add('chapters-ready');
+  window.addEventListener('resize', checkHeaderFit, { passive: true });
+}
+
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape' || !mobileChapters?.open) return;
+  const fromInside = mobileChapters.contains(event.target);
+  mobileChapters.open = false;
+  if (fromInside) mobileChapters.querySelector('summary').focus();
+});
+
 window.addEventListener('scroll', scheduleUpdate, { passive: true });
 window.addEventListener('resize', () => scheduleUpdate({ measure: true }), { passive: true });
 projectTrack?.addEventListener('focusout', () => scheduleUpdate({ measure: true }));

@@ -1,3 +1,4 @@
+import { chapterLink, openChapters } from './navigation.js';
 import { expect, test } from '@playwright/test';
 
 const chapters = [
@@ -50,11 +51,12 @@ for (const viewport of [
   { width: 768, height: 1024 },
   { width: 844, height: 390 },
 ]) {
-  test(`chapter index stays in normal flow at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+  test(`responsive chapter navigation remains usable at ${viewport.width}x${viewport.height}`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.goto('/');
 
-    const index = page.getByRole('navigation', { name: 'Chapter index' });
+    await openChapters(page);
+    const index = page.getByRole('navigation', { name: viewport.width <= 800 ? 'Mobile chapters' : 'Chapter index', exact: true });
     await expect(index).toHaveCSS('position', 'static');
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight / 2));
     await expect(index).toHaveCSS('position', 'static');
@@ -132,7 +134,8 @@ test('native Enter activation uses no scripted focus and clears the fixed index'
   await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
 
   const link = page.getByRole('link', { name: '04 About', exact: true });
-  await link.focus();
+  await openChapters(page);
+        await link.focus();
   await expect(link).toBeFocused();
   await expect(link).toHaveCSS('outline-style', 'solid');
   const focusCalls = await page.evaluate(() => window.__focusCalls);
@@ -175,13 +178,14 @@ for (const javaScriptEnabled of [true, false]) {
         if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
 
         await page.goto('/#about');
-        const link = page.getByRole('link', { name: '01 Introduction', exact: true });
+        const link = await chapterLink(page, 'introduction');
         await link.click();
         await expect(page).toHaveURL(/#introduction$/);
         await expect(page.locator('#intro-title')).toBeInViewport();
         if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
 
         await page.goto('/#outside');
+        await openChapters(page);
         await link.focus();
         // Switch from the earlier pointer interaction to actual keyboard focus.
         await page.keyboard.press('Shift+Tab');

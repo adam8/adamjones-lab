@@ -1,3 +1,4 @@
+import { openChapters } from './navigation.js';
 import { expect, test } from '@playwright/test';
 
 async function expectNoHorizontalOverflow(page) {
@@ -71,8 +72,9 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto('/');
 
+    await openChapters(page);
     const targets = [
-      ...await page.locator('.nav-list a').all(),
+      ...await page.locator(viewport.width <= 800 ? '#mobile-chapters a' : '.nav-list a').all(),
       page.getByRole('link', { name: 'View selected work' }),
       page.getByRole('link', { name: /View repository/ }),
       page.getByRole('link', { name: /Back to top/ }),

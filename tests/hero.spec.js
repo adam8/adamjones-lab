@@ -10,7 +10,7 @@ async function headerClearance(page) {
   const header = await page.locator('.site-header').boundingBox();
   const index = await page.locator('.hero-index').boundingBox();
   expect(index.y, 'hero index must remain below the complete header').toBeGreaterThanOrEqual(header.y + header.height);
-  for (const link of await page.locator('.site-header a').all()) {
+  for (const link of await page.locator('.site-header a:visible').all()) {
     const box = await link.boundingBox();
     expect(box.y + box.height, 'header hit targets must not cover the hero annotation').toBeLessThanOrEqual(index.y);
   }
@@ -99,7 +99,7 @@ for (const viewport of [{ width: 844, height: 390 }, { width: 961, height: 641 }
     // Check readable downstream content directly: existing chapter clipping must
     // not conceal min-content grid overflow when text is enlarged.
     for (const selector of ['.chapter-index', '.chapter-index-item', '.project-copy', '.project-permalink', '.about-facts', '.elsewhere-links']) {
-      for (const box of await page.locator(selector).all()) {
+      for (const box of await page.locator(`${selector}:visible`).all()) {
         const bounds = await box.boundingBox();
         expect(bounds.x).toBeGreaterThanOrEqual(0);
         expect(bounds.x + bounds.width).toBeLessThanOrEqual(viewport.width);
