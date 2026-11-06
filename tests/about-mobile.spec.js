@@ -88,7 +88,7 @@ test('mobile live enlargement, idle, native reachability and navigation',async({
   await page.locator('[data-chapter-item="elsewhere"]').click();
   await page.locator('[data-chapter-item="about"]').focus(); await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#about$/);
-  await page.waitForTimeout(500);
+  await expect(page.locator('#about-title')).toBeInViewport();
   for(let i=0;i<6;i++) {
     if(await page.locator('.about-background dd').evaluate(el=>{const r=el.getBoundingClientRect();return r.top>=0 && r.bottom<=innerHeight;})) break;
     await page.mouse.wheel(0,120); await page.waitForTimeout(150);
@@ -98,6 +98,36 @@ test('mobile live enlargement, idle, native reachability and navigation',async({
   await page.goBack(); await expect(page).toHaveURL(/#about$/);
   await page.goForward(); await expect(page).toHaveURL(/#elsewhere$/);
 });
+
+for (const javaScriptEnabled of [true, false]) for (const width of [375, 390, 414, 1440]) {
+  test(`native About keyboard arrival ${width}px JS ${javaScriptEnabled}`, async ({browser, baseURL}) => {
+    const context = await browser.newContext({ javaScriptEnabled, viewport: {width, height:844} });
+    const page = await context.newPage();
+    // Fresh entry from a later chapter; do not override scroll behavior or
+    // scroll the target into view before asserting native anchor arrival.
+    await page.goto(`${baseURL}/#elsewhere`);
+    await expect(page.locator('#elsewhere h2')).toBeInViewport();
+    const link = page.locator('[data-chapter-item="about"]');
+    await link.focus();
+    await page.keyboard.press('Shift+Tab');
+    await page.keyboard.press('Tab');
+    await expect(link).toBeFocused();
+    await expect(link).toHaveCSS('outline-style', 'solid');
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/#about$/);
+    await expect(page.locator('#about-title')).toBeInViewport();
+    // Also catch a delayed focus-scroll completion overwriting anchor arrival.
+    await page.waitForTimeout(1000);
+    await expect(page.locator('#about-title')).toBeInViewport();
+    await page.goBack();
+    await expect(page).toHaveURL(/#elsewhere$/);
+    await expect(page.locator('#elsewhere h2')).toBeInViewport();
+    await page.goForward();
+    await expect(page).toHaveURL(/#about$/);
+    await expect(page.locator('#about-title')).toBeInViewport();
+    await context.close();
+  });
+}
 
 test('mobile fonts, DPR, and runtime failure settle safely',async({page})=>{
   await page.setViewportSize({width:390,height:900}); await page.goto('/#about');

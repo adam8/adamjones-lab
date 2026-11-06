@@ -217,6 +217,10 @@ function paint() {
   frameRequest = 0;
   if (needsMeasurement) measureGeometry();
   applyPendingProject();
+  // Instant native navigation can jump over the one-pixel sentinel without
+  // changing its intersection state. Resolve persistence on scheduled scroll
+  // updates too, rather than depending on intermediate smooth-scroll frames.
+  updateChapterPersistence();
 
   const scrollY = window.scrollY;
   const direction = Math.sign(scrollY - previousScrollY);

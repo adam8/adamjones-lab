@@ -17,7 +17,9 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* Keep focus scrolling and fragment navigation immediate: overlapping native
+   smooth scrolls can leave a new hash at the focused link instead of its target. */
+html { scroll-behavior: auto; }
 body { min-width: min(20rem, 100%); margin: 0; overflow-x: clip; background: var(--paper); color: var(--green); line-height: 1.55; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; text-underline-offset: .22em; }
