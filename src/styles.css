@@ -123,6 +123,11 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .project-copy > p:not(.label) { max-width: 34rem; margin: 0; font-size: clamp(1.05rem, 1.3vw, 1.3rem); line-height: 1.65; }
 .external-link { display: inline-block; margin-top: 2rem; font-family: var(--mono); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .project-object { width: 100%; max-height: 34rem; fill: none; stroke: var(--green); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
+/* Agent artwork keeps the supplied SVG drawing defaults, not icon defaults.
+   The figure remains intrinsic content for the existing panel fit controller. */
+#project-agents .agent-figure { min-width: 0; width: 100%; max-width: 34rem; margin: 0; justify-self: center; }
+#project-agents .agent-object { height: auto; max-height: none; fill: black; stroke: none; stroke-width: 1; stroke-linecap: butt; stroke-linejoin: miter; }
+#project-agents figcaption { margin-top: 1rem; color: var(--green); font-family: var(--mono); font-size: .875rem; line-height: 1.6; }
 .object-fill { fill: var(--cream); }
 .object-ground { stroke-width: 1.5; }
 .chart-line { fill: none; stroke: var(--coral); stroke-width: 6; }

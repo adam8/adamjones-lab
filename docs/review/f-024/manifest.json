@@ -1,0 +1,608 @@
+{
+  "created": "2026-11-06T21:00:16.124Z",
+  "browser": "156.0.8078.4",
+  "base": "http://127.0.0.1:5173",
+  "entry": "direct /#project-agents; root percentage injected into HTML response before load",
+  "status": "Supplementary candidate only; no accepted-side or canonical review claim",
+  "files": {
+    "index.html": "a4bad640a9b4e5ac17b0d8afff44b60a12bdb146ff77f1b6018d2270100294b5",
+    "src/styles.css": "1798fe883a0c252575738a95ee0a7abc96ef6b5f412b8a2107dc886fd30ce2f6",
+    "src/main.js": "66b572e7e8aec9eb3a8516fa8895584b1541b701907ddee6fc9098d00a584539",
+    "tests/agent-paper-loop.spec.js": "1ed938544683fbf1a14a11a72d131986d4493754cb638c52eeb8eb711bc8d2e1",
+    "/opt/factory-reference/paper-loop.svg": "084f759f271dda61b90bb1b41b1d36c133b84709426995e1e4771ca1f0b3a126",
+    "dist/assets/about-typesetter-sMbLFlcT.js": "4c475a71082a4168b8880ee8317d425245a41c9fd6e182637c4a244686b2c9b5",
+    "dist/assets/home-1ENDRPQ-.js": "7ae98339d2b81a2f6984622f1f8b326ee9155bedf601e118baf179a71ee34294",
+    "dist/assets/home-BorSt0AC.css": "3cea35e235f71db94721c71279878402a20aab963208f65a3fffadeef114d2d3",
+    "dist/assets/layout-Ckjc4Syh.js": "2ba555140f34280dfe445c5d02de080f25e8c08c01829b00ecc8de3ba3d6bac9",
+    "dist/favicon.svg": "415b47fa8030a6288a5cd57e175620a486324dd961f0e441842650e195589cca",
+    "dist/index.html": "e15ad86292e0275250ad60984fa74a81efafd0a37693c833f4a4e152d7b7831d",
+    "dist/licenses/pretext.txt": "b0bc6870efb4e667f911d5f6b52fc9b321d634a0469a17464e35da244c28f128",
+    "docs/review/f-024/capture.mjs": "b52ca7ec86200f078fd6f3b98c2a4c27c8db5f690bb44bb198d020e88053ce5d"
+  },
+  "conditions": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "rootPercent": 100,
+      "javaScript": true,
+      "geometry": {
+        "scrollY": 3720,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "false",
+          "true",
+          "false"
+        ],
+        "classes": "js motion-ok projects-staged",
+        "root": "16px",
+        "boxes": {
+          ".project-copy": {
+            "x": 392.671875,
+            "y": 292.25,
+            "width": 481.796875,
+            "height": 316.484375,
+            "top": 292.25,
+            "right": 874.46875,
+            "bottom": 608.734375,
+            "left": 392.671875
+          },
+          ".agent-object": {
+            "x": 946.46875,
+            "y": 285.4375,
+            "width": 435.921875,
+            "height": 291.71875,
+            "top": 285.4375,
+            "right": 1382.390625,
+            "bottom": 577.15625,
+            "left": 946.46875
+          },
+          "figcaption": {
+            "x": 946.46875,
+            "y": 593.15625,
+            "width": 435.921875,
+            "height": 22.390625,
+            "top": 593.15625,
+            "right": 1382.390625,
+            "bottom": 615.546875,
+            "left": 946.46875
+          }
+        },
+        "panel": {
+          "x": 392.671875,
+          "y": 99,
+          "width": 989.734375,
+          "height": 702,
+          "top": 99,
+          "right": 1382.40625,
+          "bottom": 801,
+          "left": 392.671875
+        },
+        "scrollWidth": 1440
+      },
+      "images": [
+        {
+          "file": "desktop-direct.png",
+          "sha256": "2a3f43e665523de9196ca1c36d1be1a8f0524892a579e295f2054756f7a2c23a"
+        },
+        {
+          "file": "desktop-panel.png",
+          "sha256": "2d7141bcf354d033c108deb150087359f87d52d2dc726fbb99d8337a41e66759"
+        }
+      ]
+    },
+    {
+      "name": "desktop-enlarged",
+      "width": 1440,
+      "height": 900,
+      "rootPercent": 200,
+      "javaScript": true,
+      "geometry": {
+        "scrollY": 5696,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "false",
+          "true",
+          "false"
+        ],
+        "classes": "js motion-ok",
+        "root": "32px",
+        "boxes": {
+          ".project-copy": {
+            "x": 57.59375,
+            "y": 324,
+            "width": 1324.8125,
+            "height": 352.109375,
+            "top": 324,
+            "right": 1382.40625,
+            "bottom": 676.109375,
+            "left": 57.59375
+          },
+          ".agent-object": {
+            "x": 176,
+            "y": 748.109375,
+            "width": 1088,
+            "height": 728.109375,
+            "top": 748.109375,
+            "right": 1264,
+            "bottom": 1476.21875,
+            "left": 176
+          },
+          "figcaption": {
+            "x": 176,
+            "y": 1508.21875,
+            "width": 1088,
+            "height": 44.796875,
+            "top": 1508.21875,
+            "right": 1264,
+            "bottom": 1553.015625,
+            "left": 176
+          }
+        },
+        "panel": {
+          "x": 57.59375,
+          "y": 243,
+          "width": 1324.8125,
+          "height": 1390.015625,
+          "top": 243,
+          "right": 1382.40625,
+          "bottom": 1633.015625,
+          "left": 57.59375
+        },
+        "scrollWidth": 1440
+      },
+      "images": [
+        {
+          "file": "desktop-enlarged-direct.png",
+          "sha256": "5e01e28c3c75c32bc4f3cc7e20fb1528b415430a4809f33e7df809beb417c71e"
+        },
+        {
+          "file": "desktop-enlarged-panel.png",
+          "sha256": "aa8c49deffc6a0e4cf98fc3405883e0fa99dcb09788e18d3b9f0d70a34bb804f"
+        }
+      ]
+    },
+    {
+      "name": "desktop-enlarged-nojs",
+      "width": 1440,
+      "height": 900,
+      "rootPercent": 200,
+      "javaScript": false,
+      "geometry": {
+        "scrollY": 5138,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "true",
+          "false",
+          "false"
+        ],
+        "classes": "",
+        "root": "32px",
+        "boxes": {
+          ".project-copy": {
+            "x": 57.59375,
+            "y": 336.90625,
+            "width": 1324.8125,
+            "height": 352.109375,
+            "top": 336.90625,
+            "right": 1382.40625,
+            "bottom": 689.015625,
+            "left": 57.59375
+          },
+          ".agent-object": {
+            "x": 176,
+            "y": 761.015625,
+            "width": 1088,
+            "height": 728.109375,
+            "top": 761.015625,
+            "right": 1264,
+            "bottom": 1489.125,
+            "left": 176
+          },
+          "figcaption": {
+            "x": 176,
+            "y": 1521.125,
+            "width": 1088,
+            "height": 44.796875,
+            "top": 1521.125,
+            "right": 1264,
+            "bottom": 1565.921875,
+            "left": 176
+          }
+        },
+        "panel": {
+          "x": 57.59375,
+          "y": 255.90625,
+          "width": 1324.8125,
+          "height": 1390.015625,
+          "top": 255.90625,
+          "right": 1382.40625,
+          "bottom": 1645.921875,
+          "left": 57.59375
+        },
+        "scrollWidth": 1440
+      },
+      "images": [
+        {
+          "file": "desktop-enlarged-nojs-direct.png",
+          "sha256": "fe420f16f30fd42a587f58c6e67bc3788340ea651be5b87f96eb87310096428e"
+        },
+        {
+          "file": "desktop-enlarged-nojs-panel.png",
+          "sha256": "683b83e4b2657e132b9dfbe617d71d85944f5a8ebf4da8ad54c8d4aef109a693"
+        }
+      ]
+    },
+    {
+      "name": "boundary",
+      "width": 961,
+      "height": 641,
+      "rootPercent": 100,
+      "javaScript": true,
+      "geometry": {
+        "scrollY": 2989,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "false",
+          "true",
+          "false"
+        ],
+        "classes": "js motion-ok projects-staged",
+        "root": "16px",
+        "boxes": {
+          ".project-copy": {
+            "x": 294.484375,
+            "y": 178.96875,
+            "width": 304.515625,
+            "height": 284.0625,
+            "top": 178.96875,
+            "right": 599,
+            "bottom": 463.03125,
+            "left": 294.484375
+          },
+          ".agent-object": {
+            "x": 647.046875,
+            "y": 209.625,
+            "width": 275.5,
+            "height": 184.359375,
+            "top": 209.625,
+            "right": 922.546875,
+            "bottom": 393.984375,
+            "left": 647.046875
+          },
+          "figcaption": {
+            "x": 647.046875,
+            "y": 409.984375,
+            "width": 275.5,
+            "height": 22.390625,
+            "top": 409.984375,
+            "right": 922.546875,
+            "bottom": 432.375,
+            "left": 647.046875
+          }
+        },
+        "panel": {
+          "x": 294.484375,
+          "y": 70.515625,
+          "width": 628.078125,
+          "height": 499.96875,
+          "top": 70.515625,
+          "right": 922.5625,
+          "bottom": 570.484375,
+          "left": 294.484375
+        },
+        "scrollWidth": 961
+      },
+      "images": [
+        {
+          "file": "boundary-direct.png",
+          "sha256": "b6bf047327ca45f278f21b9c644def8a49b5770982346bbecf1db997ff2c4346"
+        },
+        {
+          "file": "boundary-panel.png",
+          "sha256": "922e02564461abf8d6f98c722191deac7955bf8384d5f586f8a68c4ac3c8663f"
+        }
+      ]
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "rootPercent": 100,
+      "javaScript": true,
+      "geometry": {
+        "scrollY": 2800,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "false",
+          "true",
+          "false"
+        ],
+        "classes": "js",
+        "root": "16px",
+        "boxes": {
+          ".project-copy": {
+            "x": 20,
+            "y": 169,
+            "width": 350,
+            "height": 251.625,
+            "top": 169,
+            "right": 370,
+            "bottom": 420.625,
+            "left": 20
+          },
+          ".agent-object": {
+            "x": 20,
+            "y": 452.625,
+            "width": 350,
+            "height": 234.21875,
+            "top": 452.625,
+            "right": 370,
+            "bottom": 686.84375,
+            "left": 20
+          },
+          "figcaption": {
+            "x": 20,
+            "y": 702.84375,
+            "width": 350,
+            "height": 22.390625,
+            "top": 702.84375,
+            "right": 370,
+            "bottom": 725.234375,
+            "left": 20
+          }
+        },
+        "panel": {
+          "x": 20,
+          "y": 128,
+          "width": 350,
+          "height": 637.234375,
+          "top": 128,
+          "right": 370,
+          "bottom": 765.234375,
+          "left": 20
+        },
+        "scrollWidth": 390
+      },
+      "images": [
+        {
+          "file": "mobile-direct.png",
+          "sha256": "df2039686e618bc5f5657a2963473adf381960fc44b42ce754fc29565b973aa7"
+        },
+        {
+          "file": "mobile-panel.png",
+          "sha256": "6ef62a69c1b09fede81b5af064dad608327f726bcc3630d46b9cf60d6f63ba61"
+        }
+      ]
+    },
+    {
+      "name": "mobile-enlarged",
+      "width": 390,
+      "height": 844,
+      "rootPercent": 200,
+      "javaScript": true,
+      "geometry": {
+        "scrollY": 5876,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "false",
+          "true",
+          "false"
+        ],
+        "classes": "js",
+        "root": "32px",
+        "boxes": {
+          ".project-copy": {
+            "x": 40,
+            "y": 337.453125,
+            "width": 310,
+            "height": 788.3125,
+            "top": 337.453125,
+            "right": 350,
+            "bottom": 1125.765625,
+            "left": 40
+          },
+          ".agent-object": {
+            "x": 40,
+            "y": 1189.765625,
+            "width": 310,
+            "height": 207.453125,
+            "top": 1189.765625,
+            "right": 350,
+            "bottom": 1397.21875,
+            "left": 40
+          },
+          "figcaption": {
+            "x": 40,
+            "y": 1429.21875,
+            "width": 310,
+            "height": 89.59375,
+            "top": 1429.21875,
+            "right": 350,
+            "bottom": 1518.8125,
+            "left": 40
+          }
+        },
+        "panel": {
+          "x": 40,
+          "y": 256.453125,
+          "width": 310,
+          "height": 1342.359375,
+          "top": 256.453125,
+          "right": 350,
+          "bottom": 1598.8125,
+          "left": 40
+        },
+        "scrollWidth": 390
+      },
+      "images": [
+        {
+          "file": "mobile-enlarged-direct.png",
+          "sha256": "1078919a930c845b2b4e0eea0d5e078b5fb1347ca0bbb83eec082ffa1faa7b9e"
+        },
+        {
+          "file": "mobile-enlarged-panel.png",
+          "sha256": "93edeb487148a0d311b181218640c2abbde708db7a0a38deb74da35e6cd84236"
+        }
+      ]
+    },
+    {
+      "name": "narrow-enlarged-nojs",
+      "width": 320,
+      "height": 800,
+      "rootPercent": 200,
+      "javaScript": false,
+      "geometry": {
+        "scrollY": 6926,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "true",
+          "false",
+          "false"
+        ],
+        "classes": "",
+        "root": "32px",
+        "boxes": {
+          ".project-copy": {
+            "x": 40,
+            "y": 337.359375,
+            "width": 240,
+            "height": 945.640625,
+            "top": 337.359375,
+            "right": 280,
+            "bottom": 1283,
+            "left": 40
+          },
+          ".agent-object": {
+            "x": 40,
+            "y": 1347,
+            "width": 240,
+            "height": 160.609375,
+            "top": 1347,
+            "right": 280,
+            "bottom": 1507.609375,
+            "left": 40
+          },
+          "figcaption": {
+            "x": 40,
+            "y": 1539.609375,
+            "width": 240,
+            "height": 134.390625,
+            "top": 1539.609375,
+            "right": 280,
+            "bottom": 1674,
+            "left": 40
+          }
+        },
+        "panel": {
+          "x": 40,
+          "y": 256.359375,
+          "width": 240,
+          "height": 1497.640625,
+          "top": 256.359375,
+          "right": 280,
+          "bottom": 1754,
+          "left": 40
+        },
+        "scrollWidth": 320
+      },
+      "images": [
+        {
+          "file": "narrow-enlarged-nojs-direct.png",
+          "sha256": "2b7a64f79de02d4612a6c9bf98a621ea21953a560dc8d5e0abb061b47f09de0b"
+        },
+        {
+          "file": "narrow-enlarged-nojs-panel.png",
+          "sha256": "7a17215f3a26de19667abc4b5994c721ac9fcd341d922a1813eccd541109a59f"
+        }
+      ]
+    },
+    {
+      "name": "landscape",
+      "width": 844,
+      "height": 390,
+      "rootPercent": 100,
+      "javaScript": true,
+      "geometry": {
+        "scrollY": 2737,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "false",
+          "true",
+          "false"
+        ],
+        "classes": "js",
+        "root": "16px",
+        "boxes": {
+          ".project-copy": {
+            "x": 33.75,
+            "y": 171.421875,
+            "width": 776.5,
+            "height": 176.46875,
+            "top": 171.421875,
+            "right": 810.25,
+            "bottom": 347.890625,
+            "left": 33.75
+          },
+          ".agent-object": {
+            "x": 150,
+            "y": 390.078125,
+            "width": 544,
+            "height": 364.046875,
+            "top": 390.078125,
+            "right": 694,
+            "bottom": 754.125,
+            "left": 150
+          },
+          "figcaption": {
+            "x": 150,
+            "y": 770.125,
+            "width": 544,
+            "height": 22.390625,
+            "top": 770.125,
+            "right": 694,
+            "bottom": 792.515625,
+            "left": 150
+          }
+        },
+        "panel": {
+          "x": 33.75,
+          "y": 128.234375,
+          "width": 776.5,
+          "height": 706.46875,
+          "top": 128.234375,
+          "right": 810.25,
+          "bottom": 834.703125,
+          "left": 33.75
+        },
+        "scrollWidth": 844
+      },
+      "images": [
+        {
+          "file": "landscape-direct.png",
+          "sha256": "40eb74de86b94ddcd0e28f2a9625875dd7ff36b5b97daaf1fb1830a67fa7a2d7"
+        },
+        {
+          "file": "landscape-panel.png",
+          "sha256": "2688e1c2bb3250c762876e743dcdbe589a31a4778385e7cf16858f94dc6e2ab0"
+        }
+      ]
+    }
+  ]
+}
