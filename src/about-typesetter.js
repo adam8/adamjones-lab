@@ -38,10 +38,18 @@ export async function startAbout() {
       try {
         const width = frame.clientWidth;
         // All reads precede the single mode write. Proposed widths never depend on mode.
+        const mobile = innerWidth <= 800;
         const fields = [...section.querySelectorAll('.about-fact')].map(field => {
           const el = field.querySelector('dd'), css = getComputedStyle(el), box = getComputedStyle(field);
           return {
-            field, text: textOf(el), font: `${css.fontStyle} ${css.fontWeight} ${css.fontSize} ${css.fontFamily}`,
+            field, text: textOf(el),
+            term: mobile ? (() => {
+              const term = field.querySelector('dt'), css = getComputedStyle(term);
+              const text = textOf(term);
+              return { text: css.textTransform === 'uppercase' ? text.toUpperCase() : text,
+                font: `${css.fontStyle} ${css.fontWeight} ${css.fontSize} ${css.fontFamily}`,
+                spacing: parseFloat(css.letterSpacing) || 0, lineHeight: parseFloat(css.lineHeight) };
+            })() : null, font: `${css.fontStyle} ${css.fontWeight} ${css.fontSize} ${css.fontFamily}`,
             spacing: parseFloat(css.letterSpacing) || 0, lineHeight: parseFloat(css.lineHeight),
             maxWidth: parseFloat(css.maxWidth), pad: parseFloat(box.paddingLeft) + parseFloat(box.paddingRight),
           };
@@ -51,7 +59,24 @@ export async function startAbout() {
           fields.map(({ field, ...metrics }) => metrics)]);
         if (key === lastKey) return;
         lastKey = key;
-        let fits = width >= 800 && innerHeight > 640;
+        let fits = (mobile ? innerWidth >= 375 : width >= 800) && innerHeight > 640;
+        // Mobile budgets bound reading density, not total viewport height. Four
+        // Location/Tools lines, seven Work, nine Explorations, three Background;
+        // labels may wrap to two lines. Widths include the proposed shared rule.
+        // Typography/padding are identical in reading and grid modes.
+        const mobileShares = [.4, .6, .48, .52, .48];
+        const mobileLimits = [4, 7, 4, 9, 3];
+        if (mobile) for (const [i, m] of fields.entries()) {
+          const target = Math.floor((width * mobileShares[i] - m.pad - ([0,3].includes(i) ? 1 : 0)) * 4) / 4;
+          for (const [metrics, limit] of [[m, mobileLimits[i]], [m.term, 2]]) {
+            const handle = getPrepared(metrics.text, metrics.font, metrics.spacing);
+            const lines = target > 0 ? layout(handle, target, metrics.lineHeight).lineCount : Infinity;
+            const widest = Math.max(0, ...metrics.text.split(/[\s\u200b]+/).filter(Boolean)
+              .map(word => measureNaturalWidth(getPrepared(word, metrics.font, metrics.spacing))));
+            fits &&= target > 0 && widest + 2 <= target && lines <= limit;
+          }
+        }
+        else
         for (const m of fields) {
           const narrow = m.field.matches('.about-location, .about-current');
           const target = Math.floor(Math.min(width * (narrow ? 1/3 : 2/3) - m.pad - (narrow ? 1 : 0),

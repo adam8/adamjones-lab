@@ -356,3 +356,22 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
  .about-masthead { padding-block:12px 14px; }
  .about h2 em { margin-top:.02em; }
 }
+
+/* End F-021 spacing. */
+
+/* F-022: one upright mobile fact sheet. CSS alone remains a reading column;
+   enhancement opts into the same 40/60 then 48/52 candidate it measures. */
+@media (max-width:800px) {
+ .about-facts { --facts-display:block; --side-rule:0px; --tools-bottom:1px; --current-bottom:1px; grid-template-columns:repeat(25,minmax(0,1fr)); }
+ .about-fact { padding:16px min(var(--cell-pad),10px) 18px; }
+ .about dt { font-size:.75rem; line-height:1.4; margin-bottom:10px; }
+ .about dd { max-width:none; font-size:1rem; line-height:1.35; letter-spacing:-.035em; }
+ .about-location dd { font-size:1.125rem; }
+ .about-tools dd { font-size:1.5rem; line-height:1.35; letter-spacing:-.035em; }
+ .about-location { grid-column:1/11; }
+ .about-work { grid-column:11/26; }
+ .about-tools,.about-background { grid-column:1/13; }
+ .about-current { grid-column:13/26; }
+ .about[data-layout="grid"] .about-tools { border-bottom-width:1px; }
+ .about-background dt { margin-bottom:10px; }
+}
