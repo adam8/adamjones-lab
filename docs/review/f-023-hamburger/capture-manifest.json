@@ -1,0 +1,196 @@
+{
+  "capturedAt": "2026-11-06T19:06:21.688Z",
+  "sourceCommit": "ddca5db5dbba00ff14895146a0b3ad77552ca738",
+  "browser": "156.0.8078.4",
+  "sourceHashes": {
+    "index.html": "0d656c8894cdce9e2f09e1076dc0af365c67a83cf96cff4efb73079f0b2b2c01",
+    "src/main.js": "66b572e7e8aec9eb3a8516fa8895584b1541b701907ddee6fc9098d00a584539",
+    "src/styles.css": "8a7a0408b7871b163c7e8d8fe06373b409a9c925299efc3bdc4db035b70e1585"
+  },
+  "builtAssetHashes": {
+    "dist/index.html": "ad4bbd77d46b58ebffd13ce04f054b272264564327899188fba530fff8ae2b12",
+    "dist/assets/about-typesetter-BmSgtXIz.js": "baaa435c4f8fdacd7dcd84af30526fac01cd5795e0bd064e1eb1935262585c9b",
+    "dist/assets/home-BtND0LMW.css": "d4fe4002d8a6c3e3baccbfffa5524b2e9ed6abed81c1fed4a4396203e7b17ac4",
+    "dist/assets/home-DTdMRdFG.js": "8fd7f67ea5e215cf271b8ad48e5326de02f7e233cab7ebc302df9e9cbd72bf29",
+    "dist/assets/layout-Ckjc4Syh.js": "2ba555140f34280dfe445c5d02de080f25e8c08c01829b00ecc8de3ba3d6bac9"
+  },
+  "records": [
+    {
+      "file": "390-closed.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "javaScriptEnabled": true,
+      "rootPercent": 100,
+      "sha256": "64371c3fb24b97d7c245f9554531bc91eda098ba98958fcc5635d2b813683d02",
+      "url": "http://127.0.0.1:4187/",
+      "scrollY": 0,
+      "rootFont": "16px",
+      "open": false,
+      "headerPosition": "sticky",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 65
+      },
+      "focus": "<body id=\"top\">\n    <a class=\"skip-link\" href=\"#main-content\">Skip to main content</a>\n    <div class=\"reading-progress\" aria-hidden=\"true\"></div>\n\n    <header class=\"site-header chapters-ready\">\n      <a class=\"wordmark\" href=\"#top\" aria-label=\"Adam Jones, home\">aj.</a>\n      <nav class=\"desktop-navigation\" aria-label=\"Primary navigation\">\n        <ul class=\"nav-list\">\n          <li><a href=\"#wor"
+    },
+    {
+      "file": "390-open.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "javaScriptEnabled": true,
+      "rootPercent": 100,
+      "sha256": "1c6761a342cb883373c4329934b9365f4d04a31bc1bb62cde4685421c0449eee",
+      "url": "http://127.0.0.1:4187/",
+      "scrollY": 0,
+      "rootFont": "16px",
+      "open": true,
+      "headerPosition": "sticky",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 314
+      },
+      "focus": "<summary aria-label=\"Open navigation\"><svg class=\"navigation-icon\" width=\"24\" height=\"18\" viewBox=\"0 0 24 18\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M1 1h22M1 9h22M1 17h22\"></path></svg></summary>"
+    },
+    {
+      "file": "390-about-arrival.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "javaScriptEnabled": true,
+      "rootPercent": 100,
+      "sha256": "154d05ce1fd3b20bbefb6c5a64dc802d5facdf686660c76c0b26bed65674fe1a",
+      "url": "http://127.0.0.1:4187/#about",
+      "scrollY": 5241,
+      "rootFont": "16px",
+      "open": false,
+      "headerPosition": "sticky",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 65
+      },
+      "focus": "<body id=\"top\">\n    <a class=\"skip-link\" href=\"#main-content\">Skip to main content</a>\n    <div class=\"reading-progress\" aria-hidden=\"true\"></div>\n\n    <header class=\"site-header chapters-ready\">\n      <a class=\"wordmark\" href=\"#top\" aria-label=\"Adam Jones, home\">aj.</a>\n      <nav class=\"desktop-navigation\" aria-label=\"Primary navigation\">\n        <ul class=\"nav-list\">\n          <li><a href=\"#wor"
+    },
+    {
+      "file": "390-midpage-keyboard.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "javaScriptEnabled": true,
+      "rootPercent": 100,
+      "sha256": "9b752f2c03a6e0323b54b03df2cf08eff6e5eff45043d0828c92e49eee5afb2e",
+      "url": "http://127.0.0.1:4187/#about",
+      "scrollY": 5490,
+      "rootFont": "16px",
+      "open": true,
+      "headerPosition": "sticky",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 314
+      },
+      "focus": "<a href=\"#introduction\"><span>01</span> Introduction</a>"
+    },
+    {
+      "file": "320-enlarged-nojs-closed.png",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "javaScriptEnabled": false,
+      "rootPercent": 200,
+      "sha256": "a1ad1404761bf96bf132614838b085354ff734f1bfbd84173f2ff768399c9806",
+      "url": "http://127.0.0.1:4187/",
+      "scrollY": 0,
+      "rootFont": "32px",
+      "open": false,
+      "headerPosition": "relative",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 129
+      },
+      "focus": "<body id=\"top\">\n    <a class=\"skip-link\" href=\"#main-content\">Skip to main content</a>\n    <div class=\"reading-progress\" aria-hidden=\"true\"></div>\n\n    <header class=\"site-header\">\n      <a class=\"wordmark\" href=\"#top\" aria-label=\"Adam Jones, home\">aj.</a>\n      <nav class=\"desktop-navigation\" aria-label=\"Primary navigation\">\n        <ul class=\"nav-list\">\n          <li><a href=\"#work\">Selected wor"
+    },
+    {
+      "file": "320-enlarged-nojs-open.png",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "javaScriptEnabled": false,
+      "rootPercent": 200,
+      "sha256": "108e0cb5cbbd95656c79133854fa0d8ee94733e54caad67aaabdb38c62f68f8f",
+      "url": "http://127.0.0.1:4187/",
+      "scrollY": 0,
+      "rootFont": "32px",
+      "open": true,
+      "headerPosition": "relative",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 613.109375
+      },
+      "focus": "<summary aria-label=\"Open navigation\"><svg class=\"navigation-icon\" width=\"24\" height=\"18\" viewBox=\"0 0 24 18\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M1 1h22M1 9h22M1 17h22\"></path></svg></summary>"
+    },
+    {
+      "file": "640-short-nojs-closed.png",
+      "viewport": {
+        "width": 640,
+        "height": 390
+      },
+      "javaScriptEnabled": false,
+      "rootPercent": 100,
+      "sha256": "28b72eb32b6646a5a9b154f8723fa1b9f6d86f98438a5cde1648f3044e63b337",
+      "url": "http://127.0.0.1:4187/",
+      "scrollY": 0,
+      "rootFont": "16px",
+      "open": false,
+      "headerPosition": "relative",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 640,
+        "height": 65
+      },
+      "focus": "<body id=\"top\">\n    <a class=\"skip-link\" href=\"#main-content\">Skip to main content</a>\n    <div class=\"reading-progress\" aria-hidden=\"true\"></div>\n\n    <header class=\"site-header\">\n      <a class=\"wordmark\" href=\"#top\" aria-label=\"Adam Jones, home\">aj.</a>\n      <nav class=\"desktop-navigation\" aria-label=\"Primary navigation\">\n        <ul class=\"nav-list\">\n          <li><a href=\"#work\">Selected wor"
+    },
+    {
+      "file": "640-short-nojs-open.png",
+      "viewport": {
+        "width": 640,
+        "height": 390
+      },
+      "javaScriptEnabled": false,
+      "rootPercent": 100,
+      "sha256": "06302402addb0629cdaaf089fe8b1209ccf99e62bfc0d2000cc985925ac29632",
+      "url": "http://127.0.0.1:4187/",
+      "scrollY": 0,
+      "rootFont": "16px",
+      "open": true,
+      "headerPosition": "relative",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 640,
+        "height": 314
+      },
+      "focus": "<summary aria-label=\"Open navigation\"><svg class=\"navigation-icon\" width=\"24\" height=\"18\" viewBox=\"0 0 24 18\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M1 1h22M1 9h22M1 17h22\"></path></svg></summary>"
+    }
+  ],
+  "provenance": "Supplementary local source captures; no independent review verdict. Baseline disclosure states unavailable."
+}

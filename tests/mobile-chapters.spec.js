@@ -12,7 +12,7 @@ test('native mobile chapters, keyboard, arrivals, history and idle scheduler', a
   await page.goto('/');
   const menu = page.locator('#mobile-chapters');
   const summary = menu.locator(':scope > summary');
-  await expect(summary).toHaveAccessibleName('Chapters');
+  await expect(summary).toHaveAccessibleName('Open navigation');
   await expect(page.locator('.desktop-navigation')).toBeHidden();
   await expect(page.locator('.chapter-index-slot')).toBeHidden();
   await summary.focus(); await summary.press('Space');
@@ -142,5 +142,34 @@ for (const mode of ['nojs', 'failure', 'short', 'enlarged']) test(`${mode} relea
   await summary.click();
   await expect(summary).toBeInViewport();
   await expect(header).toHaveCSS('position', 'relative');
+  await context.close();
+});
+
+for (const javaScriptEnabled of [true, false]) test(`three-line navigation trigger, JS ${javaScriptEnabled}`, async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ javaScriptEnabled, viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  await page.goto(baseURL);
+  const menu = page.locator('#mobile-chapters');
+  const summary = menu.locator(':scope > summary');
+  const icon = summary.locator('svg');
+  for (const open of [false, true]) {
+    await expect(summary).toHaveAccessibleName('Open navigation');
+    await expect(summary).toHaveText('');
+    await expect(icon).toBeVisible();
+    await expect(icon).toHaveAttribute('aria-hidden', 'true');
+    await expect(icon).toHaveAttribute('focusable', 'false');
+    await expect(icon.locator('path')).toHaveAttribute('d', 'M1 1h22M1 9h22M1 17h22');
+    expect(await summary.evaluate(el => getComputedStyle(el, '::before').content)).toBe('none');
+    expect(await summary.evaluate(el => getComputedStyle(el, '::after').content)).toBe('none');
+    const bounds = await summary.boundingBox();
+    expect(bounds.width).toBeGreaterThanOrEqual(44);
+    expect(bounds.height).toBe(64);
+    if (open) await expect(menu).toHaveAttribute('open', '');
+    else await expect(menu).not.toHaveAttribute('open');
+    if (!open) {
+      expect((await page.locator('.site-header').boundingBox()).height).toBe(65);
+      await summary.press('Enter');
+    }
+  }
   await context.close();
 });

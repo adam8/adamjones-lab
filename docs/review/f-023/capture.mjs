@@ -1,9 +1,10 @@
 // Supplementary source captures only; run from repository root after npm run build.
 import { chromium, expect } from '@playwright/test';
 import { spawn, execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-const directory = 'docs/review/f-023';
+const directory = process.argv[2] || 'docs/review/f-023';
+mkdirSync(directory, { recursive: true });
 const hash = path => createHash('sha256').update(readFileSync(path)).digest('hex');
 const sources = ['index.html', 'src/main.js', 'src/styles.css'];
 const sourceHashes = Object.fromEntries(sources.map(path => [path, hash(path)]));

@@ -1,3 +1,61 @@
+# F-023 human-requested hamburger revision
+
+## Current candidate (uncommitted on reviewed `ddca5db5`)
+
+Only the visible mobile trigger changed: a static three-horizontal-line,
+currentColor SVG replaces Chapters and its plus/minus. The decorative SVG is
+hidden from assistive technology; the direct native summary is named **Open
+navigation**. The 44px minimum width, 4rem summary, 65px default closed header,
+five native anchors, controller, fallback policy and chapter content remain.
+No JavaScript, dependencies, Worker configuration or desktop navigation changed.
+
+Current supplementary evidence is **`f-023-hamburger/`**, not `f-023/`.
+All eight PNGs were freshly generated from the revised build and actually viewed:
+390 closed/open, About arrival, mid-page keyboard focus, 320 enlarged/no-JS
+closed/open, and 640 short/no-JS closed/open. The four supplied reference PNGs
+were also viewed. Historical text-label captures and their manifest remain
+unchanged in `f-023/`; they are not current icon evidence. Baseline disclosure
+states are unavailable.
+
+Reproduce:
+
+```sh
+npm run build
+node docs/review/f-023/capture.mjs docs/review/f-023-hamburger
+```
+
+`f-023-hamburger/capture-manifest.json` contains all eight image hashes,
+built-asset hashes, source hashes, browser version and per-state geometry.
+Its sourceCommit is the base HEAD; sourceHashes identify this uncommitted revision.
+Current product SHA-256 hashes (also in `f-023-hamburger/source-sha256.txt`):
+
+```text
+0d656c8894cdce9e2f09e1076dc0af365c67a83cf96cff4efb73079f0b2b2c01  index.html
+66b572e7e8aec9eb3a8516fa8895584b1541b701907ddee6fc9098d00a584539  src/main.js
+8a7a0408b7871b163c7e8d8fe06373b409a9c925299efc3bdc4db035b70e1585  src/styles.css
+```
+
+### Checks actually run for the icon revision
+
+- Focused mobile suite: **14 passed (35.8s)**, workers=2, retries=0.
+  Existing navigation/history/focus/fallback/idle coverage retained; added closed
+  and open icon, accessible name, native toggle and target geometry checks with
+  JavaScript both enabled and disabled.
+- `npm run build`: passed.
+- Capture helper: eight built-product states captured and assertions passed,
+  Chromium 156.0.8078.4.
+- `git diff --check` and manifest source/build/image hash verification: passed.
+
+Full regression shards, packaging dry-run, trusted matched captures and independent
+technical/visual reviews are downstream, not claimed here. Physical Safari,
+assistive technology, actual browser zoom and real-device performance are
+unverified. Stop for fresh independent review and Adam’s candidate decision;
+no Keep, commit, PR, merge or deployment approval is implied.
+
+---
+
+## Historical text-label handoff (not current icon validation)
+
 # F-023 supplementary implementation handoff
 
 Candidate only. Independent reviews and Adam’s candidate decision are downstream;

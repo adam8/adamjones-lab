@@ -383,10 +383,9 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .site-header > .wordmark { position: absolute; top: calc(.5rem + env(safe-area-inset-top, 0px)); left: var(--gutter); display: inline-flex; min-width: 44px; min-height: 3rem; align-items: center; }
   .desktop-navigation, .chapter-index-slot { display: none; }
   #mobile-chapters { display: block; }
-  #mobile-chapters > summary { display: flex; width: fit-content; min-width: 44px; min-height: 4rem; align-items: center; gap: .65em; margin-left: auto; padding: .5rem 0; font: 700 .78rem/1.5 var(--mono); letter-spacing: .08em; cursor: pointer; list-style: none; }
+  #mobile-chapters > summary { display: flex; width: fit-content; min-width: 44px; min-height: 4rem; align-items: center; justify-content: center; margin-left: auto; padding: .5rem 0; font: 700 .78rem/1.5 var(--mono); letter-spacing: .08em; cursor: pointer; list-style: none; }
   #mobile-chapters > summary::-webkit-details-marker { display: none; }
-  .disclosure-glyph::before { content: "+"; }
-  #mobile-chapters[open] .disclosure-glyph::before { content: "−"; }
+  .navigation-icon { display: block; fill: none; stroke: currentColor; stroke-width: 2; }
   #mobile-chapters nav { margin-inline: calc(-1 * var(--gutter)); border-top: 1px solid var(--green); padding: .75rem var(--gutter) 1rem; background: var(--cream); }
   .mobile-chapter-list { margin: 0; padding: 0; list-style: none; }
   .mobile-chapter-list a { display: flex; min-width: 44px; min-height: 44px; align-items: center; gap: .75em; padding: .75rem .5rem; font: 700 .78rem/1.5 var(--mono); letter-spacing: .08em; text-decoration: none; }
