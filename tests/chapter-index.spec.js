@@ -175,7 +175,6 @@ for (const javaScriptEnabled of [true, false]) {
         if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
 
         await page.goto('/#about');
-        await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
         const link = page.getByRole('link', { name: '01 Introduction', exact: true });
         await link.click();
         await expect(page).toHaveURL(/#introduction$/);
@@ -183,7 +182,6 @@ for (const javaScriptEnabled of [true, false]) {
         if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
 
         await page.goto('/#outside');
-        await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
         await link.focus();
         // Switch from the earlier pointer interaction to actual keyboard focus.
         await page.keyboard.press('Shift+Tab');

@@ -20,7 +20,8 @@ async function inspect(page) {
     // Disable ancestor clipping: hidden overflow must not disguise a failed fit.
     for (let el = section; el; el = el.parentElement) el.style.overflow = 'visible';
     const errors = [];
-    for (const dd of section.querySelectorAll('dd')) {
+    for (const dd of section.querySelectorAll('dt,dd')) {
+      const cell = dd.closest('.about-fact').getBoundingClientRect();
       const walker = document.createTreeWalker(dd, NodeFilter.SHOW_TEXT);
       while (walker.nextNode()) {
         const node = walker.currentNode;
@@ -29,6 +30,7 @@ async function inspect(page) {
           range.setStart(node, match.index); range.setEnd(node, match.index + match[0].length);
           const rects = [...range.getClientRects()];
           if (rects.length !== 1) errors.push(`split word: ${match[0]}`);
+          if (rects.some(r => r.left < cell.left - 1 || r.right > cell.right + 1)) errors.push(`cell overflow: ${match[0]}`);
           if (rects.some(r => r.left < -1 || r.right > innerWidth + 1)) errors.push(`overflow: ${match[0]}`);
         }
       }
@@ -61,7 +63,7 @@ for (const width of [320,360,375,390,768,801,844,961,1100,1280,1440]) {
       if (state === 'enabled') await expect(page.locator('#about')).toHaveAttribute('data-layout', /grid|reading/);
       else await expect(page.locator('#about')).not.toHaveAttribute('data-layout');
       await inspect(page);
-      expect(await page.locator('.about-location dd').evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBe((width <= 800 ? 32 : 42) * scale / 100);
+      expect(await page.locator('.about-location dd').evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBe((width <= 800 ? 18 : 42) * scale / 100);
       await context.close();
     });
   }

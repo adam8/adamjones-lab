@@ -3,8 +3,13 @@ import { test, expect } from '@playwright/test';
 import { matrix, measure } from '../docs/review/f-021-capture.mjs';
 
 // Compare the transferred CSS and candidate in the same browser/font environment.
-// Removing this one trailing block restores the exact pinned component's spacing.
+// Removing only this bounded block restores the exact pinned component's spacing.
 const marker = '/* F-021: shorten only the fallback title pause';
+const stripSpacing = css => {
+  const start = css.indexOf(marker), end = css.indexOf('/* End F-021 spacing. */', start);
+  expect(start).toBeGreaterThanOrEqual(0); expect(end).toBeGreaterThan(start);
+  return css.slice(0,start) + css.slice(end);
+};
 const typeKeys = ['fontFamily','fontSize','fontWeight','fontStyle','letterSpacing','lineHeight'];
 const type = t => Object.fromEntries(typeKeys.map(k=>[k,t[k]]));
 // Discretionary-break metadata may differ; visible glyph geometry must not.
@@ -24,7 +29,7 @@ async function compare(browser, baseURL, width, height, scale, js, state='enable
     if(path==='/src/styles.css') {
       const body=await readFile('src/styles.css','utf8');
       expect(body).toContain(marker);
-      return route.fulfill({contentType:'text/css',body:baseline ? body.slice(0,body.indexOf(marker)) : body});
+      return route.fulfill({contentType:'text/css',body:baseline ? stripSpacing(body) : body});
     }
     if(path.includes('@chenglou_pretext') || path.includes('/@chenglou/pretext/')) {
       if(state==='blocked') return route.abort();
@@ -142,7 +147,7 @@ for(const [name,width,height,scale,js] of matrix) {
     await page.route('**/*',async route=>{
       if(new URL(route.request().url()).pathname==='/src/styles.css') {
         const css=await readFile('src/styles.css','utf8');
-        return route.fulfill({contentType:'text/css',body:css.slice(0,css.indexOf(marker))});
+        return route.fulfill({contentType:'text/css',body:stripSpacing(css)});
       }
       if(route.request().resourceType()!=='document') return route.continue();
       const response=await route.fetch(); let html=await response.text();
