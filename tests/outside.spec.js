@@ -1,3 +1,4 @@
+import { chapterLink, openChapters } from './navigation.js';
 import { test, expect } from '@playwright/test';
 
 const paragraph = 'Life on Vancouver Island includes running, gardening, family time outdoors, and small projects around the house.';
@@ -79,12 +80,13 @@ for (const javaScriptEnabled of [true,false]) {
         await current();
         await page.goto('/#about');
         await page.evaluate(()=>document.documentElement.style.scrollBehavior='auto');
-        const link=page.getByRole('link',{name:'03 Outside',exact:true});
+        const link=await chapterLink(page, 'outside');
         await link.click();
         await expect(page).toHaveURL(/#outside$/);
         await current();
         await page.goBack();
         await expect(page).toHaveURL(/#about$/);
+        await openChapters(page);
         await link.focus();
         await page.keyboard.press('Shift+Tab');await page.keyboard.press('Tab');
         await expect(link).toBeFocused();

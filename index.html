@@ -15,7 +15,7 @@
 
     <header class="site-header" id="top">
       <a class="wordmark" href="#top" aria-label="Adam Jones, home">aj.</a>
-      <nav aria-label="Primary navigation">
+      <nav class="desktop-navigation" aria-label="Primary navigation">
         <ul class="nav-list">
           <li><a href="#work">Selected work</a></li>
           <li><a href="#outside">Outside work</a></li>
@@ -23,6 +23,18 @@
           <li><a href="#elsewhere">Elsewhere</a></li>
         </ul>
       </nav>
+      <details id="mobile-chapters">
+        <summary>Chapters <span class="disclosure-glyph" aria-hidden="true"></span></summary>
+        <nav aria-label="Mobile chapters">
+          <ol class="mobile-chapter-list">
+            <li><a href="#introduction"><span>01</span> Introduction</a></li>
+            <li><a href="#work"><span>02</span> Work</a></li>
+            <li><a href="#outside"><span>03</span> Outside</a></li>
+            <li><a href="#about"><span>04</span> About</a></li>
+            <li><a href="#elsewhere"><span>05</span> Elsewhere</a></li>
+          </ol>
+        </nav>
+      </details>
     </header>
 
     <main id="main-content" tabindex="-1">
@@ -55,7 +67,6 @@
       <div class="chapter-index-slot">
         <span class="chapter-index-sentinel" aria-hidden="true"></span>
         <nav class="chapter-index label" aria-label="Chapter index">
-          <span class="chapter-index-title">Chapter /</span>
           <ol class="chapter-index-list">
             <li><a class="chapter-index-item" data-chapter-item="introduction" href="#introduction"><span>01</span> Introduction</a></li>
             <li><a class="chapter-index-item" data-chapter-item="work" href="#work"><span>02</span> Work</a></li>

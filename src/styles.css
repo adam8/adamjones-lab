@@ -23,7 +23,7 @@ html { scroll-behavior: auto; }
 body { min-width: min(20rem, 100%); margin: 0; overflow-x: clip; background: var(--paper); color: var(--green); line-height: 1.55; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; text-underline-offset: .22em; }
-a:focus-visible, button:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; box-shadow: 0 0 0 7px var(--cream); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; box-shadow: 0 0 0 7px var(--cream); }
 button { font: inherit; }
 svg { display: block; max-width: 100%; }
 h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
@@ -197,9 +197,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 
 @media (max-width: 800px) {
-  /* Let wrapped/enlarged navigation reserve its own space above the hero. */
-  .site-header { position: relative; align-items: flex-start; }
-  .nav-list { max-width: 15rem; }
+
   .hero-track { min-height: calc(100svh - var(--header-clearance)); }
   .hero-scene { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; min-height: calc(100svh - var(--header-clearance)); padding-top: 2.5rem; }
   .hero-specimen { width: 9rem; justify-self: end; }
@@ -215,8 +213,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 
 @media (max-width: 480px) {
-  .site-header { min-height: 7rem; padding-top: 1rem; }
-  .hero-track { --header-clearance: 7rem; }
   .hero-scene { padding-top: 1.5rem; }
   .chapter-index-slot { justify-content: stretch; }
   .chapter-index { width: 100%; align-items: flex-start; gap: 0 .35rem; padding-inline: .45rem; }
@@ -376,4 +372,30 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
  .about-current { grid-column:13/26; }
  .about[data-layout="grid"] .about-tools { border-bottom-width:1px; }
  .about-background dt { margin-bottom:10px; }
+}
+
+/* One mobile contents strip. Unenhanced open groups release into page flow.
+   Roomy enhanced groups stay available at the reader’s current position. */
+#mobile-chapters { display: none; }
+@media (max-width: 800px) {
+  body { --mobile-row: calc(4rem + env(safe-area-inset-top, 0px)); }
+  .site-header { position: sticky; top: 0; display: block; min-height: 0; padding: env(safe-area-inset-top, 0px) var(--gutter) 0; border-bottom: 1px solid var(--green); background: var(--paper); }
+  .site-header:has(#mobile-chapters[open]) { position: relative; }
+  .site-header > .wordmark { position: absolute; top: calc(.5rem + env(safe-area-inset-top, 0px)); left: var(--gutter); display: inline-flex; min-width: 44px; min-height: 3rem; align-items: center; }
+  .desktop-navigation, .chapter-index-slot { display: none; }
+  #mobile-chapters { display: block; }
+  #mobile-chapters > summary { display: flex; width: fit-content; min-width: 44px; min-height: 4rem; align-items: center; gap: .65em; margin-left: auto; padding: .5rem 0; font: 700 .78rem/1.5 var(--mono); letter-spacing: .08em; cursor: pointer; list-style: none; }
+  #mobile-chapters > summary::-webkit-details-marker { display: none; }
+  .disclosure-glyph::before { content: "+"; }
+  #mobile-chapters[open] .disclosure-glyph::before { content: "−"; }
+  #mobile-chapters nav { margin-inline: calc(-1 * var(--gutter)); border-top: 1px solid var(--green); padding: .75rem var(--gutter) 1rem; background: var(--cream); }
+  .mobile-chapter-list { margin: 0; padding: 0; list-style: none; }
+  .mobile-chapter-list a { display: flex; min-width: 44px; min-height: 44px; align-items: center; gap: .75em; padding: .75rem .5rem; font: 700 .78rem/1.5 var(--mono); letter-spacing: .08em; text-decoration: none; }
+  .mobile-chapter-list a:hover { text-decoration: underline; }
+  .hero-track { --header-clearance: calc(var(--mobile-row) + 1px); }
+  #introduction, #work, .outside#outside, #about, #elsewhere, #main-content { scroll-margin-block-start: calc(var(--mobile-row) + 1rem); }
+}
+
+@media (max-width: 800px) and (min-height: 641px) {
+  .site-header.chapters-ready:not(.is-tall):has(#mobile-chapters[open]) { position: sticky; }
 }

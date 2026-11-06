@@ -324,6 +324,30 @@ projectPermalinks.forEach((permalink) => {
   });
 });
 
+// Navigation state stays local; native anchors own scrolling, focus and history.
+const mobileChapters = document.querySelector('#mobile-chapters');
+mobileChapters?.addEventListener('click', event => {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (event.target.closest('a[href^="#"]')) mobileChapters.open = false;
+});
+mobileChapters?.addEventListener('toggle', () => scheduleUpdate({ measure: true }));
+// Observe only the local header. No root styles or About ancestors are written.
+const mobileHeader = mobileChapters?.closest('header');
+if (mobileHeader) {
+  const checkHeaderFit = () => mobileHeader.classList.toggle('is-tall', mobileHeader.offsetHeight > innerHeight * .8);
+  checkHeaderFit();
+  new ResizeObserver(checkHeaderFit).observe(mobileHeader);
+  mobileHeader.classList.add('chapters-ready');
+  window.addEventListener('resize', checkHeaderFit, { passive: true });
+}
+
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape' || !mobileChapters?.open) return;
+  const fromInside = mobileChapters.contains(event.target);
+  mobileChapters.open = false;
+  if (fromInside) mobileChapters.querySelector('summary').focus();
+});
+
 window.addEventListener('scroll', scheduleUpdate, { passive: true });
 window.addEventListener('resize', () => scheduleUpdate({ measure: true }), { passive: true });
 projectTrack?.addEventListener('focusout', () => scheduleUpdate({ measure: true }));

@@ -1,3 +1,4 @@
+import { chapterLink, openChapters } from './navigation.js';
 import { test, expect } from '@playwright/test';
 
 const facts = [
@@ -124,8 +125,8 @@ test('live changes settle; runtime failure releases enhancement; native navigati
   const y = await page.evaluate(() => scrollY); await page.mouse.wheel(0,300); await page.waitForTimeout(300);
   expect(await page.evaluate(() => scrollY)).toBeGreaterThan(y);
   await page.keyboard.press('PageUp'); await page.waitForTimeout(300);
-  await page.locator('[data-chapter-item="elsewhere"]').click(); await expect(page).toHaveURL(/#elsewhere$/);
-  await page.locator('[data-chapter-item="about"]').focus(); await page.keyboard.press('Enter'); await expect(page).toHaveURL(/#about$/);
+  await (await chapterLink(page, 'elsewhere')).click(); await expect(page).toHaveURL(/#elsewhere$/);
+  await (await chapterLink(page, 'about')).focus(); await page.keyboard.press('Enter'); await expect(page).toHaveURL(/#about$/);
   await page.goBack(); await expect(page).toHaveURL(/#elsewhere$/);
   await page.goForward(); await expect(page).toHaveURL(/#about$/);
 });
