@@ -89,3 +89,58 @@ for (const state of ['nojs', 'failure']) test(`${state} short/enlarged native di
   expect(Math.abs(await page.evaluate(() => scrollY) - scrollBefore)).toBeLessThan(2);
   await expect(page).toHaveURL(/#about$/);
 });
+
+for (const javaScriptEnabled of [true, false]) {
+  for (const width of [390, 1440]) test(`native #top arrival at ${width}px, JS ${javaScriptEnabled}`, async ({ browser, baseURL }) => {
+    const context = await browser.newContext({ javaScriptEnabled, viewport: { width, height: 844 } });
+    const page = await context.newPage();
+    await page.goto(`${baseURL}/#about`);
+    await expect(page.locator('#about-title')).toBeInViewport();
+    expect(await page.evaluate(() => scrollY)).toBeGreaterThan(1000);
+    await page.locator('.wordmark').click();
+    await expect(page).toHaveURL(/#top$/);
+    await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+    await expect(page.locator('#hero-title')).toBeInViewport();
+    await (await chapterLink(page, 'elsewhere')).click();
+    await expect(page.locator('#elsewhere h2')).toBeInViewport();
+    await page.getByRole('link', { name: 'Back to top' }).click();
+    await expect(page).toHaveURL(/#top$/);
+    await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+    await expect(page.locator('#hero-title')).toBeInViewport();
+    await context.close();
+  });
+}
+
+for (const mode of ['nojs', 'failure', 'short', 'enlarged']) test(`${mode} releases the whole header before opening`, async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ javaScriptEnabled: mode !== 'nojs', viewport: { width: 390, height: mode === 'short' ? 640 : 844 } });
+  const page = await context.newPage();
+  if (mode === 'failure') await page.route('**/src/main.js', route => route.abort());
+  await page.goto(baseURL);
+  if (mode === 'enlarged') await page.evaluate(() => document.documentElement.style.fontSize = '200%');
+  const header = page.locator('.site-header');
+  const menu = page.locator('#mobile-chapters');
+  const summary = menu.locator(':scope > summary');
+  await expect(header).toHaveCSS('position', 'relative');
+  const closed = await summary.boundingBox();
+  await summary.click();
+  await expect(menu).toHaveAttribute('open', '');
+  await expect(header).toHaveCSS('position', 'relative');
+  expect(Math.abs((await summary.boundingBox()).y - closed.y)).toBeLessThan(2);
+  await page.keyboard.press('Tab');
+  await expect(menu.locator('a[href="#introduction"]')).toBeFocused();
+  await expect(menu.locator('a[href="#introduction"]')).toBeInViewport();
+  await menu.locator('a[href="#elsewhere"]').focus();
+  await expect(menu.locator('a[href="#elsewhere"]')).toBeInViewport();
+  await menu.locator('a[href="#about"]').click();
+  await expect(page.locator('#about-title')).toBeInViewport();
+  // There is no misleading sticky control at mid-page that can vanish on open.
+  await expect(header).toHaveCSS('position', 'relative');
+  expect((await summary.boundingBox()).y).toBeLessThan(0);
+  await page.keyboard.press('Control+Home');
+  await expect(summary).toBeInViewport();
+  if (await menu.getAttribute('open') !== null) await summary.click();
+  await summary.click();
+  await expect(summary).toBeInViewport();
+  await expect(header).toHaveCSS('position', 'relative');
+  await context.close();
+});

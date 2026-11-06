@@ -18,14 +18,46 @@ push, PR, deployment, Access or DNS changes were made.
 - `README.md`: behavior/setup notes. No dependency, About typesetter, protected
   chapter-content or Wrangler configuration changes.
 
-The resumed work fixes the independently reported mid-page opening failure:
-roomy enhanced headers remain sticky when open. Unenhanced open headers release
-into flow; enhanced open headers also release at ≤640px height or when their
-height exceeds 80% of the viewport. A regression starts at native About, opens,
-Tabs into the visible list, dismisses with Escape, and verifies the heading and
-scroll position return within two pixels, not just that the hash survives.
+## Correctness repair of `a140476` (current uncommitted work)
 
-## Checks actually completed in this resumed call
+- Moved the public `#top` target from the sticky header to the nonsticky body.
+  Wordmark and footer anchors remain ordinary native links, with no scroll or
+  focus repair. Mobile and desktop tests verify actual scrollY=0 and visible hero
+  after both links, with JavaScript enabled and disabled.
+- Fallback headers now stay in flow in **both** closed and open states. This
+  covers disabled/failed startup, ≤640px heights, and enlarged layouts that fail
+  a conservative fit budget. There is no mid-page sticky control that disappears
+  above the viewport when opened.
+- Roomy enhanced headers remain sticky in both states. Fit uses seven closed-row
+  heights plus safe-area space against 80% of viewport height, independently of
+  disclosure state. Only the stable summary is size-observed; class toggling is
+  idempotent and no frame loop or root/About sizing writes were added.
+- Added native-top regressions and no-JS/startup-failure/short/enlarged fallback
+  regressions. Existing roomy mid-page keyboard/context and idle tests still pass.
+
+Checks actually run for this repair:
+
+- `npm run test:browser -- tests/mobile-chapters.spec.js --workers=2 --retries=0`:
+  **12 passed** (31.9s).
+- `npm run test:browser -- tests/chapter-index.spec.js tests/hero.spec.js --workers=2 --retries=0`:
+  **42 passed** (1.3m).
+- `npm run build`: passed (4.39s).
+- `git diff --check`: passed; rechecked after documentation.
+
+All five pinned accepted images were read. No new captures, full-suite run,
+independent review verdicts, install or dry-run are claimed for this repair.
+Earlier screenshots below predate these fixes and are not exact-candidate evidence.
+
+Repair source SHA-256:
+
+```text
+76634ac28974bb0dc2cfecb4f05306c821dccc9dfbf47aa9cfefe18b92876678  index.html
+66b572e7e8aec9eb3a8516fa8895584b1541b701907ddee6fc9098d00a584539  src/main.js
+74014a58d0fa745828c2adfe4f4e7f6a6a465c7bac2fd660caa7c01d82b651f7  src/styles.css
+ad7ce37469ba4480d421f52fe0ceb80c10a7c76a3c84b2010975a7cf0757df8c  tests/mobile-chapters.spec.js
+```
+
+## Historical initial-candidate checks (not rerun unless listed above)
 
 Pinned Playwright Chromium **156.0.8078.4**, without executable overrides:
 
@@ -45,7 +77,7 @@ and browser installation were not rerun; existing dependencies and the supplied
 pinned browser cache were used. This is not a new scaffold; no library upgrade
 or registry-version check was needed/performed.
 
-## Fresh supplementary captures
+## Historical supplementary captures (initial candidate only)
 
 Built `dist` served through Vite preview on a dedicated local port. Actual
 navigation is visible; no injected hiding or scrolling overrides. Root enlargement

@@ -374,13 +374,12 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
  .about-background dt { margin-bottom:10px; }
 }
 
-/* One mobile contents strip. Unenhanced open groups release into page flow.
-   Roomy enhanced groups stay available at the reader’s current position. */
+/* One mobile contents strip. Fallback headers remain in flow in BOTH states;
+   only roomy enhanced groups persist at the reader’s current position. */
 #mobile-chapters { display: none; }
 @media (max-width: 800px) {
   body { --mobile-row: calc(4rem + env(safe-area-inset-top, 0px)); }
-  .site-header { position: sticky; top: 0; display: block; min-height: 0; padding: env(safe-area-inset-top, 0px) var(--gutter) 0; border-bottom: 1px solid var(--green); background: var(--paper); }
-  .site-header:has(#mobile-chapters[open]) { position: relative; }
+  .site-header { position: relative; top: 0; display: block; min-height: 0; padding: env(safe-area-inset-top, 0px) var(--gutter) 0; border-bottom: 1px solid var(--green); background: var(--paper); }
   .site-header > .wordmark { position: absolute; top: calc(.5rem + env(safe-area-inset-top, 0px)); left: var(--gutter); display: inline-flex; min-width: 44px; min-height: 3rem; align-items: center; }
   .desktop-navigation, .chapter-index-slot { display: none; }
   #mobile-chapters { display: block; }
@@ -397,5 +396,5 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 
 @media (max-width: 800px) and (min-height: 641px) {
-  .site-header.chapters-ready:not(.is-tall):has(#mobile-chapters[open]) { position: sticky; }
+  .site-header.chapters-ready:not(.is-tall) { position: sticky; }
 }

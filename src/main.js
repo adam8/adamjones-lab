@@ -334,9 +334,16 @@ mobileChapters?.addEventListener('toggle', () => scheduleUpdate({ measure: true 
 // Observe only the local header. No root styles or About ancestors are written.
 const mobileHeader = mobileChapters?.closest('header');
 if (mobileHeader) {
-  const checkHeaderFit = () => mobileHeader.classList.toggle('is-tall', mobileHeader.offsetHeight > innerHeight * .8);
+  // Reserve seven closed rows for the row, five links and panel breathing room.
+  // A conservative, state-independent budget avoids sticky -> in-flow jumps
+  // on opening. Observe the stable summary, not the expanding header.
+  const summary = mobileChapters.querySelector('summary');
+  const checkHeaderFit = () => {
+    const safeArea = parseFloat(getComputedStyle(mobileHeader).paddingTop) || 0;
+    mobileHeader.classList.toggle('is-tall', summary.offsetHeight * 7 + safeArea > innerHeight * .8);
+  };
   checkHeaderFit();
-  new ResizeObserver(checkHeaderFit).observe(mobileHeader);
+  new ResizeObserver(checkHeaderFit).observe(summary);
   mobileHeader.classList.add('chapters-ready');
   window.addEventListener('resize', checkHeaderFit, { passive: true });
 }
