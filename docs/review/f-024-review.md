@@ -1,3 +1,5 @@
+> Historical SVG candidate report and captures below. Superseded for the WebP amendment by [f-024-webp/review.md](f-024-webp/review.md); old checks/images are not raster evidence.
+
 # F-024 — Agent paper-loop integration
 
 Candidate implementation complete; not publication or exact-candidate approval.

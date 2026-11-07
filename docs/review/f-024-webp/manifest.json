@@ -1,0 +1,353 @@
+{
+  "created": "2026-11-07T01:33:51.073Z",
+  "browser": "156.0.8078.4",
+  "base": "http://127.0.0.1:5173",
+  "entry": "direct /#project-agents; root percentage injected into HTML response before load",
+  "status": "Supplementary candidate only; no accepted-side or canonical review claim",
+  "files": {
+    "index.html": "f1324f3e0d43303a7175451fc7c9013fb4e442982b7b95464f741bd24584ffd2",
+    "src/styles.css": "93a60cdb9b57bcefc44a4802115f60a78711c52dbbcab44c9f849f10e6df94fa",
+    "src/main.js": "66b572e7e8aec9eb3a8516fa8895584b1541b701907ddee6fc9098d00a584539",
+    "tests/agent-paper-loop.spec.js": "c24b99cf8773ed4084683e6bdbfb9b0b9c08cc91a1ac1d8ba42d3d1a6c6dd8f5",
+    "src/assets/agent-paper-loop.webp": "794c5db0764cbca63539b059ebae5dbd93784a0a97b67e53e2b71fb102b5bf38",
+    "dist/assets/about-typesetter-BUlQpCFN.js": "9540d757cced088de6671117f1c8643372b84d695597f6e0a8733cb79b3d7522",
+    "dist/assets/agent-paper-loop-DK9OH_-Z.webp": "794c5db0764cbca63539b059ebae5dbd93784a0a97b67e53e2b71fb102b5bf38",
+    "dist/assets/home-D1sBAphT.js": "6f09d6ef8a64c50b708e9e42e006b7c6f355507a48caaf1e5ee5b526a2bddb25",
+    "dist/assets/home-D93MlQRU.css": "42033b53ef78af5cbdb5432ab90f20336594455bc9ae84cced1171186b9634cf",
+    "dist/assets/layout-Ckjc4Syh.js": "2ba555140f34280dfe445c5d02de080f25e8c08c01829b00ecc8de3ba3d6bac9",
+    "dist/favicon.svg": "415b47fa8030a6288a5cd57e175620a486324dd961f0e441842650e195589cca",
+    "dist/index.html": "6b797c722881bade44b87cff6472b83fc0d06e2008afb9443273261bab5c96a9",
+    "dist/licenses/pretext.txt": "b0bc6870efb4e667f911d5f6b52fc9b321d634a0469a17464e35da244c28f128",
+    "docs/review/f-024-webp/capture.mjs": "b557a5eb1991aa3bc665e474e2e37d6e26e094845ccb3046af1cdd10361e943d"
+  },
+  "conditions": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "rootPercent": 100,
+      "javaScript": true,
+      "geometry": {
+        "artifactKind": "raster",
+        "imageInfo": {
+          "src": "http://127.0.0.1:5173/src/assets/agent-paper-loop.webp",
+          "naturalWidth": 1536,
+          "naturalHeight": 1024,
+          "width": 436,
+          "height": 291,
+          "complete": true
+        },
+        "scrollY": 3720,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "false",
+          "true",
+          "false"
+        ],
+        "classes": "js motion-ok projects-staged",
+        "root": "16px",
+        "boxes": {
+          ".project-copy": {
+            "x": 392.671875,
+            "y": 292.25,
+            "width": 481.796875,
+            "height": 316.484375,
+            "top": 292.25,
+            "right": 874.46875,
+            "bottom": 608.734375,
+            "left": 392.671875
+          },
+          ".agent-object": {
+            "x": 946.46875,
+            "y": 286,
+            "width": 435.921875,
+            "height": 290.609375,
+            "top": 286,
+            "right": 1382.390625,
+            "bottom": 576.609375,
+            "left": 946.46875
+          },
+          "figcaption": {
+            "x": 946.46875,
+            "y": 592.609375,
+            "width": 435.921875,
+            "height": 22.390625,
+            "top": 592.609375,
+            "right": 1382.390625,
+            "bottom": 615,
+            "left": 946.46875
+          }
+        },
+        "panel": {
+          "x": 392.671875,
+          "y": 99,
+          "width": 989.734375,
+          "height": 702,
+          "top": 99,
+          "right": 1382.40625,
+          "bottom": 801,
+          "left": 392.671875
+        },
+        "scrollWidth": 1440
+      },
+      "images": [
+        {
+          "file": "desktop-direct.png",
+          "sha256": "403996165dce7221f4a4da7856cbc6d5387aeac6af6c81e1b2f1f891608c8a73"
+        },
+        {
+          "file": "desktop-panel.png",
+          "sha256": "977d428b7f1a5a29b90370da7d2a9ea0b81f01643a6046b36095aa8d8bd0d61d"
+        }
+      ]
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "rootPercent": 100,
+      "javaScript": true,
+      "geometry": {
+        "artifactKind": "raster",
+        "imageInfo": {
+          "src": "http://127.0.0.1:5173/src/assets/agent-paper-loop.webp",
+          "naturalWidth": 1536,
+          "naturalHeight": 1024,
+          "width": 350,
+          "height": 233,
+          "complete": true
+        },
+        "scrollY": 2800,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "false",
+          "true",
+          "false"
+        ],
+        "classes": "js",
+        "root": "16px",
+        "boxes": {
+          ".project-copy": {
+            "x": 20,
+            "y": 169,
+            "width": 350,
+            "height": 251.625,
+            "top": 169,
+            "right": 370,
+            "bottom": 420.625,
+            "left": 20
+          },
+          ".agent-object": {
+            "x": 20,
+            "y": 452.625,
+            "width": 350,
+            "height": 233.328125,
+            "top": 452.625,
+            "right": 370,
+            "bottom": 685.953125,
+            "left": 20
+          },
+          "figcaption": {
+            "x": 20,
+            "y": 701.953125,
+            "width": 350,
+            "height": 22.390625,
+            "top": 701.953125,
+            "right": 370,
+            "bottom": 724.34375,
+            "left": 20
+          }
+        },
+        "panel": {
+          "x": 20,
+          "y": 128,
+          "width": 350,
+          "height": 636.34375,
+          "top": 128,
+          "right": 370,
+          "bottom": 764.34375,
+          "left": 20
+        },
+        "scrollWidth": 390
+      },
+      "images": [
+        {
+          "file": "mobile-direct.png",
+          "sha256": "6756c82fd9b8c69c547c42bcca769fb9ed95b243bc4441dea4766a243085e25f"
+        },
+        {
+          "file": "mobile-panel.png",
+          "sha256": "1d4921798d23f3fcedc35fe5b386599c900b1f82482c5e1d348e31bd9d6c6238"
+        }
+      ]
+    },
+    {
+      "name": "narrow-enlarged-nojs",
+      "width": 320,
+      "height": 800,
+      "rootPercent": 200,
+      "javaScript": false,
+      "geometry": {
+        "artifactKind": "raster",
+        "imageInfo": {
+          "src": "http://127.0.0.1:5173/src/assets/agent-paper-loop.webp",
+          "naturalWidth": 1536,
+          "naturalHeight": 1024,
+          "width": 240,
+          "height": 160,
+          "complete": true
+        },
+        "scrollY": 6926,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "true",
+          "false",
+          "false"
+        ],
+        "classes": "",
+        "root": "32px",
+        "boxes": {
+          ".project-copy": {
+            "x": 40,
+            "y": 337.359375,
+            "width": 240,
+            "height": 945.640625,
+            "top": 337.359375,
+            "right": 280,
+            "bottom": 1283,
+            "left": 40
+          },
+          ".agent-object": {
+            "x": 40,
+            "y": 1347,
+            "width": 240,
+            "height": 160,
+            "top": 1347,
+            "right": 280,
+            "bottom": 1507,
+            "left": 40
+          },
+          "figcaption": {
+            "x": 40,
+            "y": 1539,
+            "width": 240,
+            "height": 134.390625,
+            "top": 1539,
+            "right": 280,
+            "bottom": 1673.390625,
+            "left": 40
+          }
+        },
+        "panel": {
+          "x": 40,
+          "y": 256.359375,
+          "width": 240,
+          "height": 1497.03125,
+          "top": 256.359375,
+          "right": 280,
+          "bottom": 1753.390625,
+          "left": 40
+        },
+        "scrollWidth": 320
+      },
+      "images": [
+        {
+          "file": "narrow-enlarged-nojs-direct.png",
+          "sha256": "2b7a64f79de02d4612a6c9bf98a621ea21953a560dc8d5e0abb061b47f09de0b"
+        },
+        {
+          "file": "narrow-enlarged-nojs-panel.png",
+          "sha256": "621d3bbe2b113e8f3224d555549d1d645b1b20a1f0e59e5e38225889fb6ef47e"
+        }
+      ]
+    },
+    {
+      "name": "short-nojs",
+      "width": 844,
+      "height": 390,
+      "rootPercent": 100,
+      "javaScript": false,
+      "geometry": {
+        "artifactKind": "raster",
+        "imageInfo": {
+          "src": "http://127.0.0.1:5173/src/assets/agent-paper-loop.webp",
+          "naturalWidth": 1536,
+          "naturalHeight": 1024,
+          "width": 544,
+          "height": 363,
+          "complete": true
+        },
+        "scrollY": 2737,
+        "hash": "#project-agents",
+        "historyLength": 2,
+        "focus": "BODY",
+        "selected": [
+          "true",
+          "false",
+          "false"
+        ],
+        "classes": "",
+        "root": "16px",
+        "boxes": {
+          ".project-copy": {
+            "x": 33.75,
+            "y": 171.421875,
+            "width": 776.5,
+            "height": 176.46875,
+            "top": 171.421875,
+            "right": 810.25,
+            "bottom": 347.890625,
+            "left": 33.75
+          },
+          ".agent-object": {
+            "x": 150,
+            "y": 390.078125,
+            "width": 544,
+            "height": 362.65625,
+            "top": 390.078125,
+            "right": 694,
+            "bottom": 752.734375,
+            "left": 150
+          },
+          "figcaption": {
+            "x": 150,
+            "y": 768.734375,
+            "width": 544,
+            "height": 22.390625,
+            "top": 768.734375,
+            "right": 694,
+            "bottom": 791.125,
+            "left": 150
+          }
+        },
+        "panel": {
+          "x": 33.75,
+          "y": 128.234375,
+          "width": 776.5,
+          "height": 705.078125,
+          "top": 128.234375,
+          "right": 810.25,
+          "bottom": 833.3125,
+          "left": 33.75
+        },
+        "scrollWidth": 844
+      },
+      "images": [
+        {
+          "file": "short-nojs-direct.png",
+          "sha256": "40eb74de86b94ddcd0e28f2a9625875dd7ff36b5b97daaf1fb1830a67fa7a2d7"
+        },
+        {
+          "file": "short-nojs-panel.png",
+          "sha256": "613e994804558ddef634e2d8ea026e187423ec2df48f1496d7b6a5b48a529d55"
+        }
+      ]
+    }
+  ]
+}
