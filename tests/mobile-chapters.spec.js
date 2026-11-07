@@ -167,7 +167,9 @@ for (const javaScriptEnabled of [true, false]) test(`three-line navigation trigg
     if (open) await expect(menu).toHaveAttribute('open', '');
     else await expect(menu).not.toHaveAttribute('open');
     if (!open) {
-      expect((await page.locator('.site-header').boundingBox()).height).toBe(65);
+      const footprint = (await page.locator('.site-header').boundingBox()).height;
+      expect(footprint).toBeGreaterThanOrEqual(bounds.height + 1);
+      expect(footprint).toBeLessThan(bounds.height + 20);
       await summary.press('Enter');
     }
   }

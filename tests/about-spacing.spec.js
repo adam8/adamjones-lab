@@ -161,7 +161,7 @@ for(const [name,width,height,scale,js] of matrix) {
       const metrics=await measure(page);
       // A tall title crop scrolls the page; exclude the unrelated persistent
       // chapter/progress overlays from this title-only raster comparison.
-      const pixels=await page.locator('#about-title').screenshot({style:'.chapter-index,.reading-progress{visibility:hidden!important}'});
+      const pixels=await page.locator('#about-title').screenshot({style:'.chapter-index{visibility:hidden!important}'});
       return {metrics,pixels};
     };
     const before=await capture(); original=false; const after=await capture();

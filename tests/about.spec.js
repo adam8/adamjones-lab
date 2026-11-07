@@ -160,7 +160,7 @@ test('unrelated motion writes do not measure About; inherited and local font cha
       document.documentElement.style.setProperty('--hero-object-y', `${i}vh`);
       document.documentElement.style.setProperty('--hero-object-rotate', `${i}deg`);
       document.documentElement.style.scrollBehavior = i % 2 ? 'auto' : '';
-      document.querySelector('.reading-progress').style.setProperty('transform', `scaleX(${i/20})`);
+      document.querySelectorAll('[data-chapter-fill]').forEach(fill => fill.style.setProperty('transform', `scaleX(${i/20})`));
       // A sibling class/style mutation must not cause an About measurement either.
       document.querySelector('#elsewhere').style.setProperty('--test-motion', String(i));
       await new Promise(requestAnimationFrame);

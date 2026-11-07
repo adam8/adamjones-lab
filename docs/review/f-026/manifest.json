@@ -1,0 +1,1216 @@
+{
+  "rendering": "Vite preview serving built dist artifacts; run npm run build before this helper. No dev server or baseline synthesis.",
+  "environment": {
+    "node": "v24.13.1",
+    "platform": "linux",
+    "browser": "156.0.8078.4"
+  },
+  "hashes": {
+    "index.html": "ff234c80066891cbd30991d9eb2f8f45fd00ef1c2fdb9d80b1c2dca58975fdb0",
+    "src/main.js": "87bb49041f14605d602f16b556d49479408110ba5a650caa7015ab8f8ffabff7",
+    "src/styles.css": "60116ab53682e36f22c236479cc2bdb2cf8eafaf3ef3ebc5bb6d3fb5cb3dec43",
+    "docs/review/f-026/capture.mjs": "6312228e559154fd21a2465011ad84c54184a78a4adfa250c626c30ec73353e7",
+    "dist/assets/about-typesetter-B-XaCj6S.js": "6fdbbbcae74f07f8c2b76dc0c1a0acdbacd74a45173ee412f55e72a5b6dd7c5e",
+    "dist/assets/agent-paper-loop-DK9OH_-Z.webp": "794c5db0764cbca63539b059ebae5dbd93784a0a97b67e53e2b71fb102b5bf38",
+    "dist/assets/home-BDTU0BZo.css": "e99ceecedb8d00ae3a8c70d6ecc2a05e93af6c881b4997d895bbe9a12c0cf675",
+    "dist/assets/home-BZ_a_ht-.js": "4df8ea00a9bf502d305f033fcd10c278983519b7108e25d9686ac5cbb1d54e8a",
+    "dist/assets/layout-Ckjc4Syh.js": "2ba555140f34280dfe445c5d02de080f25e8c08c01829b00ecc8de3ba3d6bac9",
+    "dist/favicon.svg": "415b47fa8030a6288a5cd57e175620a486324dd961f0e441842650e195589cca",
+    "dist/index.html": "4e9cf76cb32e8b28b3116f1b9f2e9be34521f79c80624f54fe786e0eddeda779",
+    "dist/licenses/pretext.txt": "b0bc6870efb4e667f911d5f6b52fc9b321d634a0469a17464e35da244c28f128"
+  },
+  "captures": [
+    {
+      "name": "desktop-introduction-middle",
+      "width": 1440,
+      "height": 900,
+      "chapter": "introduction",
+      "file": "desktop-introduction-middle.png",
+      "sha256": "6a69303fc65e861effb80a431aefe639f82541530f8c3f4ae875df2e74d074bb",
+      "geometry": {
+        "scrollY": 1781,
+        "range": 8073,
+        "targets": [
+          {
+            "id": "introduction",
+            "bounds": {
+              "x": 0,
+              "y": -406,
+              "width": 1440,
+              "height": 968.234375
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "work",
+            "bounds": {
+              "x": 0,
+              "y": 562.234375,
+              "width": 1440,
+              "height": 3176.890625
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "outside",
+            "bounds": {
+              "x": 0,
+              "y": 3739.125,
+              "width": 1440,
+              "height": 1088.625
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "about",
+            "bounds": {
+              "x": 0,
+              "y": 4827.75,
+              "width": 1440,
+              "height": 1181.5625
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "elsewhere",
+            "bounds": {
+              "x": 0,
+              "y": 6009.3125,
+              "width": 1440,
+              "height": 1182.578125
+            },
+            "clearance": "78px"
+          }
+        ],
+        "active": [
+          "#introduction"
+        ],
+        "segments": [
+          {
+            "key": "introduction",
+            "track": {
+              "x": 859.921875,
+              "y": 59,
+              "width": 127.375,
+              "height": 2
+            },
+            "fill": {
+              "x": 859.921875,
+              "y": 59,
+              "width": 63.67205810546875,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "work",
+            "track": {
+              "x": 1004.0625,
+              "y": 59,
+              "width": 57.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 1004.0625,
+              "y": 59,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "outside",
+            "track": {
+              "x": 1078.625,
+              "y": 59,
+              "width": 83.890625,
+              "height": 2
+            },
+            "fill": {
+              "x": 1078.625,
+              "y": 59,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "about",
+            "track": {
+              "x": 1179.28125,
+              "y": 59,
+              "width": 66.5,
+              "height": 2
+            },
+            "fill": {
+              "x": 1179.28125,
+              "y": 59,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "elsewhere",
+            "track": {
+              "x": 1262.546875,
+              "y": 59,
+              "width": 101.28125,
+              "height": 2
+            },
+            "fill": {
+              "x": 1262.546875,
+              "y": 59,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          }
+        ]
+      }
+    },
+    {
+      "name": "desktop-work-middle",
+      "width": 1440,
+      "height": 900,
+      "chapter": "work",
+      "file": "desktop-work-middle.png",
+      "sha256": "458a03ccf33f1ebdef204d8161d0f331899d516d0e5ab45060400203d560fabb",
+      "geometry": {
+        "scrollY": 3854,
+        "range": 8073,
+        "targets": [
+          {
+            "id": "introduction",
+            "bounds": {
+              "x": 0,
+              "y": -2479,
+              "width": 1440,
+              "height": 968.234375
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "work",
+            "bounds": {
+              "x": 0,
+              "y": -1510.765625,
+              "width": 1440,
+              "height": 3176.890625
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "outside",
+            "bounds": {
+              "x": 0,
+              "y": 1666.125,
+              "width": 1440,
+              "height": 1088.625
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "about",
+            "bounds": {
+              "x": 0,
+              "y": 2754.75,
+              "width": 1440,
+              "height": 1181.5625
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "elsewhere",
+            "bounds": {
+              "x": 0,
+              "y": 3936.3125,
+              "width": 1440,
+              "height": 1182.578125
+            },
+            "clearance": "78px"
+          }
+        ],
+        "active": [
+          "#work"
+        ],
+        "segments": [
+          {
+            "key": "introduction",
+            "track": {
+              "x": 859.921875,
+              "y": 59,
+              "width": 127.375,
+              "height": 2
+            },
+            "fill": {
+              "x": 859.921875,
+              "y": 59,
+              "width": 127.375,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "work",
+            "track": {
+              "x": 1004.0625,
+              "y": 59,
+              "width": 57.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 1004.0625,
+              "y": 59,
+              "width": 28.904296875,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "outside",
+            "track": {
+              "x": 1078.625,
+              "y": 59,
+              "width": 83.890625,
+              "height": 2
+            },
+            "fill": {
+              "x": 1078.625,
+              "y": 59,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "about",
+            "track": {
+              "x": 1179.28125,
+              "y": 59,
+              "width": 66.5,
+              "height": 2
+            },
+            "fill": {
+              "x": 1179.28125,
+              "y": 59,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "elsewhere",
+            "track": {
+              "x": 1262.546875,
+              "y": 59,
+              "width": 101.28125,
+              "height": 2
+            },
+            "fill": {
+              "x": 1262.546875,
+              "y": 59,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          }
+        ]
+      }
+    },
+    {
+      "name": "desktop-end",
+      "width": 1440,
+      "height": 900,
+      "end": true,
+      "file": "desktop-end.png",
+      "sha256": "9aa167545f5bc36deb1c2ae5202834df48dddb8746912b91f8f710f3c07f40ee",
+      "geometry": {
+        "scrollY": 8073,
+        "range": 8073,
+        "targets": [
+          {
+            "id": "introduction",
+            "bounds": {
+              "x": 0,
+              "y": -6698,
+              "width": 1440,
+              "height": 968.234375
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "work",
+            "bounds": {
+              "x": 0,
+              "y": -5729.765625,
+              "width": 1440,
+              "height": 3176.890625
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "outside",
+            "bounds": {
+              "x": 0,
+              "y": -2552.875,
+              "width": 1440,
+              "height": 1088.625
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "about",
+            "bounds": {
+              "x": 0,
+              "y": -1464.25,
+              "width": 1440,
+              "height": 1181.5625
+            },
+            "clearance": "78px"
+          },
+          {
+            "id": "elsewhere",
+            "bounds": {
+              "x": 0,
+              "y": -282.6875,
+              "width": 1440,
+              "height": 1182.578125
+            },
+            "clearance": "78px"
+          }
+        ],
+        "active": [
+          "#elsewhere"
+        ],
+        "segments": [
+          {
+            "key": "introduction",
+            "track": {
+              "x": 859.921875,
+              "y": 59,
+              "width": 127.375,
+              "height": 2
+            },
+            "fill": {
+              "x": 859.921875,
+              "y": 59,
+              "width": 127.375,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "work",
+            "track": {
+              "x": 1004.0625,
+              "y": 59,
+              "width": 57.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 1004.0625,
+              "y": 59,
+              "width": 57.796875,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "outside",
+            "track": {
+              "x": 1078.625,
+              "y": 59,
+              "width": 83.890625,
+              "height": 2
+            },
+            "fill": {
+              "x": 1078.625,
+              "y": 59,
+              "width": 83.890625,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "about",
+            "track": {
+              "x": 1179.28125,
+              "y": 59,
+              "width": 66.5,
+              "height": 2
+            },
+            "fill": {
+              "x": 1179.28125,
+              "y": 59,
+              "width": 66.5,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "elsewhere",
+            "track": {
+              "x": 1262.546875,
+              "y": 59,
+              "width": 101.28125,
+              "height": 2
+            },
+            "fill": {
+              "x": 1262.546875,
+              "y": 59,
+              "width": 101.28125,
+              "height": 2
+            },
+            "visibility": "visible"
+          }
+        ]
+      }
+    },
+    {
+      "name": "mobile-work-closed",
+      "width": 390,
+      "height": 844,
+      "chapter": "work",
+      "file": "mobile-work-closed.png",
+      "sha256": "748e9156cab1483c3b99dac5718bb43f6cf1606b1493fc2f130568edd11c6362",
+      "geometry": {
+        "scrollY": 3047,
+        "range": 5836,
+        "targets": [
+          {
+            "id": "introduction",
+            "bounds": {
+              "x": 0,
+              "y": -2203,
+              "width": 390,
+              "height": 933.375
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "work",
+            "bounds": {
+              "x": 0,
+              "y": -1269.625,
+              "width": 390,
+              "height": 2715.703125
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "outside",
+            "bounds": {
+              "x": 0,
+              "y": 1446.078125,
+              "width": 390,
+              "height": 844
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "about",
+            "bounds": {
+              "x": 0,
+              "y": 2290.078125,
+              "width": 390,
+              "height": 679.125
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "elsewhere",
+            "bounds": {
+              "x": 0,
+              "y": 2969.203125,
+              "width": 390,
+              "height": 663.46875
+            },
+            "clearance": "88px"
+          }
+        ],
+        "active": [
+          "#work"
+        ],
+        "segments": [
+          {
+            "key": "introduction",
+            "track": {
+              "x": 20,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 20,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "work",
+            "track": {
+              "x": 90.796875,
+              "y": 64,
+              "width": 66.8125,
+              "height": 2
+            },
+            "fill": {
+              "x": 90.796875,
+              "y": 64,
+              "width": 33.40068054199219,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "outside",
+            "track": {
+              "x": 161.609375,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 161.609375,
+              "y": 64,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "about",
+            "track": {
+              "x": 232.40625,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 232.40625,
+              "y": 64,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "elsewhere",
+            "track": {
+              "x": 303.203125,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 303.203125,
+              "y": 64,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          }
+        ]
+      }
+    },
+    {
+      "name": "mobile-work-open",
+      "width": 390,
+      "height": 844,
+      "chapter": "work",
+      "open": true,
+      "file": "mobile-work-open.png",
+      "sha256": "2f146884c5c92130826854054b1306953155fbeb94c42e9aa234ea8da995c348",
+      "geometry": {
+        "scrollY": 3047,
+        "range": 5836,
+        "targets": [
+          {
+            "id": "introduction",
+            "bounds": {
+              "x": 0,
+              "y": -2203,
+              "width": 390,
+              "height": 933.375
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "work",
+            "bounds": {
+              "x": 0,
+              "y": -1269.625,
+              "width": 390,
+              "height": 2715.703125
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "outside",
+            "bounds": {
+              "x": 0,
+              "y": 1446.078125,
+              "width": 390,
+              "height": 844
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "about",
+            "bounds": {
+              "x": 0,
+              "y": 2290.078125,
+              "width": 390,
+              "height": 679.125
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "elsewhere",
+            "bounds": {
+              "x": 0,
+              "y": 2969.203125,
+              "width": 390,
+              "height": 663.46875
+            },
+            "clearance": "88px"
+          }
+        ],
+        "active": [
+          "#work"
+        ],
+        "segments": [
+          {
+            "key": "introduction",
+            "track": {
+              "x": 20,
+              "y": 321,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 20,
+              "y": 321,
+              "width": 66.796875,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "work",
+            "track": {
+              "x": 90.796875,
+              "y": 321,
+              "width": 66.8125,
+              "height": 2
+            },
+            "fill": {
+              "x": 90.796875,
+              "y": 321,
+              "width": 33.40068054199219,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "outside",
+            "track": {
+              "x": 161.609375,
+              "y": 321,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 161.609375,
+              "y": 321,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "about",
+            "track": {
+              "x": 232.40625,
+              "y": 321,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 232.40625,
+              "y": 321,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "elsewhere",
+            "track": {
+              "x": 303.203125,
+              "y": 321,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 303.203125,
+              "y": 321,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          }
+        ]
+      }
+    },
+    {
+      "name": "mobile-about-arrival",
+      "width": 390,
+      "height": 844,
+      "arrival": true,
+      "file": "mobile-about-arrival.png",
+      "sha256": "965c21c8f152b1ff3d3544ba65e3eb158a20fb7d11e525334ce75b26202bd5e8",
+      "geometry": {
+        "scrollY": 5249,
+        "range": 5836,
+        "targets": [
+          {
+            "id": "introduction",
+            "bounds": {
+              "x": 0,
+              "y": -4405,
+              "width": 390,
+              "height": 933.375
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "work",
+            "bounds": {
+              "x": 0,
+              "y": -3471.625,
+              "width": 390,
+              "height": 2715.703125
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "outside",
+            "bounds": {
+              "x": 0,
+              "y": -755.921875,
+              "width": 390,
+              "height": 844
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "about",
+            "bounds": {
+              "x": 0,
+              "y": 88.078125,
+              "width": 390,
+              "height": 679.125
+            },
+            "clearance": "88px"
+          },
+          {
+            "id": "elsewhere",
+            "bounds": {
+              "x": 0,
+              "y": 767.203125,
+              "width": 390,
+              "height": 663.46875
+            },
+            "clearance": "88px"
+          }
+        ],
+        "active": [
+          "#about"
+        ],
+        "segments": [
+          {
+            "key": "introduction",
+            "track": {
+              "x": 20,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 20,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "work",
+            "track": {
+              "x": 90.796875,
+              "y": 64,
+              "width": 66.8125,
+              "height": 2
+            },
+            "fill": {
+              "x": 90.796875,
+              "y": 64,
+              "width": 66.8125,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "outside",
+            "track": {
+              "x": 161.609375,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 161.609375,
+              "y": 64,
+              "width": 66.79069519042969,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "about",
+            "track": {
+              "x": 232.40625,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 232.40625,
+              "y": 64,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          },
+          {
+            "key": "elsewhere",
+            "track": {
+              "x": 303.203125,
+              "y": 64,
+              "width": 66.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 303.203125,
+              "y": 64,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "visible"
+          }
+        ]
+      }
+    },
+    {
+      "name": "narrow-enlarged-nojs-open",
+      "width": 320,
+      "height": 800,
+      "nojs": true,
+      "enlarged": true,
+      "open": true,
+      "file": "narrow-enlarged-nojs-open.png",
+      "sha256": "0f065ce5a291cab632f12db1fc7e987025720775bf56739618dfa4108e6c4678",
+      "geometry": {
+        "scrollY": 0,
+        "range": 16568,
+        "targets": [
+          {
+            "id": "introduction",
+            "bounds": {
+              "x": 0,
+              "y": 1951.546875,
+              "width": 320,
+              "height": 2643.015625
+            },
+            "clearance": "192px"
+          },
+          {
+            "id": "work",
+            "bounds": {
+              "x": 0,
+              "y": 4594.5625,
+              "width": 320,
+              "height": 7199.625
+            },
+            "clearance": "192px"
+          },
+          {
+            "id": "outside",
+            "bounds": {
+              "x": 0,
+              "y": 11794.1875,
+              "width": 320,
+              "height": 1751.8125
+            },
+            "clearance": "192px"
+          },
+          {
+            "id": "about",
+            "bounds": {
+              "x": 0,
+              "y": 13546,
+              "width": 320,
+              "height": 1742.203125
+            },
+            "clearance": "192px"
+          },
+          {
+            "id": "elsewhere",
+            "bounds": {
+              "x": 0,
+              "y": 15288.203125,
+              "width": 320,
+              "height": 2079.78125
+            },
+            "clearance": "192px"
+          }
+        ],
+        "active": [],
+        "segments": [
+          {
+            "key": "introduction",
+            "track": {
+              "x": 40,
+              "y": 612.109375,
+              "width": 44.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 40,
+              "y": 612.109375,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          },
+          {
+            "key": "work",
+            "track": {
+              "x": 88.796875,
+              "y": 612.109375,
+              "width": 44.8125,
+              "height": 2
+            },
+            "fill": {
+              "x": 88.796875,
+              "y": 612.109375,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          },
+          {
+            "key": "outside",
+            "track": {
+              "x": 137.609375,
+              "y": 612.109375,
+              "width": 44.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 137.609375,
+              "y": 612.109375,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          },
+          {
+            "key": "about",
+            "track": {
+              "x": 186.40625,
+              "y": 612.109375,
+              "width": 44.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 186.40625,
+              "y": 612.109375,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          },
+          {
+            "key": "elsewhere",
+            "track": {
+              "x": 235.203125,
+              "y": 612.109375,
+              "width": 44.796875,
+              "height": 2
+            },
+            "fill": {
+              "x": 235.203125,
+              "y": 612.109375,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          }
+        ]
+      }
+    },
+    {
+      "name": "short-nojs-open",
+      "width": 640,
+      "height": 390,
+      "nojs": true,
+      "open": true,
+      "file": "short-nojs-open.png",
+      "sha256": "e5f62d6d25c40aef63e83b9183e4a73f12d93120c3dec7aebd7caa4ebedeb056",
+      "geometry": {
+        "scrollY": 0,
+        "range": 6853,
+        "targets": [
+          {
+            "id": "introduction",
+            "bounds": {
+              "x": 0,
+              "y": 1010.984375,
+              "width": 640,
+              "height": 923.84375
+            },
+            "clearance": "96px"
+          },
+          {
+            "id": "work",
+            "bounds": {
+              "x": 0,
+              "y": 1934.828125,
+              "width": 640,
+              "height": 2899.453125
+            },
+            "clearance": "96px"
+          },
+          {
+            "id": "outside",
+            "bounds": {
+              "x": 0,
+              "y": 4834.28125,
+              "width": 640,
+              "height": 1013.265625
+            },
+            "clearance": "96px"
+          },
+          {
+            "id": "about",
+            "bounds": {
+              "x": 0,
+              "y": 5847.546875,
+              "width": 640,
+              "height": 684.78125
+            },
+            "clearance": "96px"
+          },
+          {
+            "id": "elsewhere",
+            "bounds": {
+              "x": 0,
+              "y": 6532.328125,
+              "width": 640,
+              "height": 710.84375
+            },
+            "clearance": "96px"
+          }
+        ],
+        "active": [],
+        "segments": [
+          {
+            "key": "introduction",
+            "track": {
+              "x": 25.59375,
+              "y": 313,
+              "width": 114.5625,
+              "height": 2
+            },
+            "fill": {
+              "x": 25.59375,
+              "y": 313,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          },
+          {
+            "key": "work",
+            "track": {
+              "x": 144.15625,
+              "y": 313,
+              "width": 114.5625,
+              "height": 2
+            },
+            "fill": {
+              "x": 144.15625,
+              "y": 313,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          },
+          {
+            "key": "outside",
+            "track": {
+              "x": 262.71875,
+              "y": 313,
+              "width": 114.5625,
+              "height": 2
+            },
+            "fill": {
+              "x": 262.71875,
+              "y": 313,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          },
+          {
+            "key": "about",
+            "track": {
+              "x": 381.28125,
+              "y": 313,
+              "width": 114.5625,
+              "height": 2
+            },
+            "fill": {
+              "x": 381.28125,
+              "y": 313,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          },
+          {
+            "key": "elsewhere",
+            "track": {
+              "x": 499.84375,
+              "y": 313,
+              "width": 114.5625,
+              "height": 2
+            },
+            "fill": {
+              "x": 499.84375,
+              "y": 313,
+              "width": 0,
+              "height": 2
+            },
+            "visibility": "hidden"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,5 +1,9 @@
 const root = document.documentElement;
-const progressRule = document.querySelector('.reading-progress');
+const chapterNav = document.querySelector('.chapter-index');
+const mobileHeader = document.querySelector('.site-header');
+const mobileSummary = document.querySelector('#mobile-chapters > summary');
+const mobileNav = document.querySelector('#mobile-chapters nav');
+const chapterFills = [...document.querySelectorAll('[data-chapter-progress]')].map(segment => ({ key: segment.dataset.chapterProgress, fill: segment.querySelector('[data-chapter-fill]') }));
 const heroTrack = document.querySelector('.hero-track');
 const chapterIndexSlot = document.querySelector('.chapter-index-slot');
 const chapterIndexSentinel = document.querySelector('.chapter-index-sentinel');
@@ -42,29 +46,71 @@ let readingProjectVisible = false;
 
 const clamp = (value, minimum = 0, maximum = 1) => Math.min(maximum, Math.max(minimum, value));
 
+// Scroll-only paints consume these cached native arrivals; no chapter reads.
+let chapterStarts = [];
+let persistenceStart = Infinity;
+let desktopFits = false;
+let currentChapter;
+const mobileItems = [...document.querySelectorAll('[data-mobile-chapter]')];
 function setCurrentChapter(key) {
-  chapterItems.forEach((item) => item.removeAttribute('aria-current'));
-  chapterItems.find((item) => item.dataset.chapterItem === key)?.setAttribute('aria-current', 'location');
-}
-
-function resolveCurrentChapter() {
-  const referenceLine = window.innerHeight * 0.22;
-  let currentKey = 'introduction';
-
-  chapterTargets.forEach(({ key, element }) => {
-    if (element.getBoundingClientRect().top <= referenceLine) currentKey = key;
+  if (currentChapter === key) return;
+  currentChapter = key;
+  [...chapterItems, ...mobileItems].forEach(item => {
+    if ((item.dataset.chapterItem || item.dataset.mobileChapter) === key) item.setAttribute('aria-current', 'location');
+    else item.removeAttribute('aria-current');
   });
-
-  setCurrentChapter(currentKey);
 }
-
 function updateChapterPersistence() {
-  const shouldPersist = Boolean(
-    enhancementQuery.matches &&
-    chapterIndexSentinel &&
-    chapterIndexSentinel.getBoundingClientRect().top < 16
-  );
-  chapterIndexSlot?.classList.toggle('is-persistent', shouldPersist);
+  chapterIndexSlot?.classList.toggle('is-persistent', desktopFits && scrollY > persistenceStart);
+}
+function setLocalProperty(element, name, value) {
+  if (element.style.getPropertyValue(name) !== value) element.style.setProperty(name, value);
+}
+function measureNavigation() {
+  const mobile = innerWidth <= 800;
+  const row = mobileSummary.offsetHeight;
+  const safeArea = parseFloat(getComputedStyle(mobileHeader).paddingTop) || 0;
+  // Stable closed-state budget: five links, row and breathing room, plus rule.
+  const tall = row * 7 + safeArea + 8 > innerHeight * .8;
+  mobileHeader.classList.toggle('is-tall', tall);
+  mobileHeader.classList.add('chapters-ready');
+  // The overlay's intrinsic height never contributes to chapter/document geometry.
+  if (mobile && document.querySelector('#mobile-chapters').open) {
+    setLocalProperty(mobileHeader, '--menu-height', `${mobileNav.offsetHeight}px`);
+  }
+  chapterIndexSlot.classList.remove('is-persistent');
+  const navHeight = chapterNav.offsetHeight;
+  const navWidth = chapterNav.getBoundingClientRect().width;
+  desktopFits = enhancementQuery.matches && navHeight + 32 < innerHeight * .35;
+  chapterIndexSlot.classList.toggle('can-persist', desktopFits);
+  if (!mobile) {
+    const style = getComputedStyle(chapterIndexSlot);
+    setLocalProperty(chapterIndexSlot, 'min-height', `${navHeight + parseFloat(style.paddingTop) + parseFloat(style.paddingBottom)}px`);
+    setLocalProperty(chapterNav, '--index-width', `${navWidth}px`);
+  }
+  persistenceStart = chapterIndexSlot.getBoundingClientRect().top + scrollY - 16;
+  const mobilePersistent = mobile && innerHeight >= 641 && !tall;
+  const clearance = mobilePersistent ? row + safeArea + 8 + 16 : (!mobile && desktopFits ? navHeight + 32 : Math.min(96, innerHeight * .2));
+  chapterTargets.forEach(({ element }) => setLocalProperty(element, '--chapter-clearance', `${clearance}px`));
+  updateChapterPersistence();
+}
+function paintChapterProgress(y) {
+  const terminal = y >= geometry.documentRange;
+  let key = null;
+  chapterStarts.forEach((start, index) => {
+    if (y + .5 >= start) key = chapterTargets[index].key;
+  });
+  if (terminal) key = chapterTargets.at(-1).key;
+  setCurrentChapter(key);
+  chapterFills.forEach(({ key: segmentKey, fill }) => {
+    const index = chapterTargets.findIndex(chapter => chapter.key === segmentKey);
+    const start = chapterStarts[index];
+    const end = chapterStarts[index + 1] ?? geometry.documentRange;
+    const value = terminal ? 1 : y < start ? 0 : end <= start ? 1 : clamp((y - start) / (end - start));
+    const transform = `scaleX(${value})`;
+    if (fill.style.transform !== transform) fill.style.transform = transform;
+  });
+  if (!root.classList.contains('progress-ready')) root.classList.add('progress-ready');
 }
 
 function measureProjectFit() {
@@ -108,13 +154,14 @@ function measureProjectFit() {
 
 function measureGeometry() {
   measureProjectFit();
+  measureNavigation();
   const scrollY = window.scrollY;
   const viewportHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   const heroBounds = heroTrack?.getBoundingClientRect();
   const projectBounds = projectTrack?.getBoundingClientRect();
 
-  geometry.documentRange = Math.max(1, documentHeight - viewportHeight);
+  geometry.documentRange = Math.max(0, documentHeight - viewportHeight);
 
   if (heroBounds) {
     geometry.heroStart = heroBounds.top + scrollY;
@@ -126,6 +173,12 @@ function measureGeometry() {
     geometry.projectRange = Math.max(1, projectBounds.height - viewportHeight);
   }
 
+  let previous = 0;
+  chapterStarts = chapterTargets.map(({ element }) => {
+    const arrival = element.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(element).scrollMarginBlockStart) || 0);
+    previous = Math.max(previous, clamp(arrival, 0, geometry.documentRange));
+    return previous;
+  });
   needsMeasurement = false;
 }
 
@@ -237,11 +290,9 @@ function paint() {
   const readingBounds = projectPanels[activeProject]?.getBoundingClientRect();
   readingProjectVisible = Boolean(readingBounds && readingBounds.top < innerHeight && readingBounds.bottom > 0);
 
-  if (!motionEnabled) return;
+  paintChapterProgress(scrollY);
 
-  if (progressRule) {
-    progressRule.style.transform = `scaleX(${clamp(scrollY / geometry.documentRange)})`;
-  }
+  if (!motionEnabled) return;
 
   const heroProgress = clamp((scrollY - geometry.heroStart) / geometry.heroRange);
   root.style.setProperty('--hero-object-y', `${(heroProgress * 4).toFixed(3)}vh`);
@@ -261,10 +312,8 @@ function scheduleUpdate({ measure = false } = {}) {
 
 function queueCurrentProjectFragment() {
   const index = projectIndexByFragment.get(window.location.hash);
-  if (index === undefined) return;
-
-  pendingProjectIndex = index;
-  scheduleUpdate();
+  if (index !== undefined) pendingProjectIndex = index;
+  scheduleUpdate({ measure: true });
 }
 
 function updateProjectFragment(index) {
@@ -286,7 +335,6 @@ function applyEnhancementState() {
   projectSelectionReady = false;
 
   if (!motionEnabled) {
-    progressRule?.style.removeProperty('transform');
     root.style.removeProperty('--hero-object-y');
     root.style.removeProperty('--hero-object-rotate');
   } else {
@@ -331,23 +379,6 @@ mobileChapters?.addEventListener('click', event => {
   if (event.target.closest('a[href^="#"]')) mobileChapters.open = false;
 });
 mobileChapters?.addEventListener('toggle', () => scheduleUpdate({ measure: true }));
-// Observe only the local header. No root styles or About ancestors are written.
-const mobileHeader = mobileChapters?.closest('header');
-if (mobileHeader) {
-  // Reserve seven closed rows for the row, five links and panel breathing room.
-  // A conservative, state-independent budget avoids sticky -> in-flow jumps
-  // on opening. Observe the stable summary, not the expanding header.
-  const summary = mobileChapters.querySelector('summary');
-  const checkHeaderFit = () => {
-    const safeArea = parseFloat(getComputedStyle(mobileHeader).paddingTop) || 0;
-    mobileHeader.classList.toggle('is-tall', summary.offsetHeight * 7 + safeArea > innerHeight * .8);
-  };
-  checkHeaderFit();
-  new ResizeObserver(checkHeaderFit).observe(summary);
-  mobileHeader.classList.add('chapters-ready');
-  window.addEventListener('resize', checkHeaderFit, { passive: true });
-}
-
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape' || !mobileChapters?.open) return;
   const fromInside = mobileChapters.contains(event.target);
@@ -360,21 +391,11 @@ window.addEventListener('resize', () => scheduleUpdate({ measure: true }), { pas
 projectTrack?.addEventListener('focusout', () => scheduleUpdate({ measure: true }));
 window.addEventListener('hashchange', queueCurrentProjectFragment);
 window.addEventListener('popstate', queueCurrentProjectFragment);
+window.addEventListener('pageshow', () => scheduleUpdate({ measure: true }));
+window.addEventListener('orientationchange', () => scheduleUpdate({ measure: true }));
+document.fonts?.ready.then(() => scheduleUpdate({ measure: true }));
+document.fonts?.addEventListener('loadingdone', () => scheduleUpdate({ measure: true }));
 enhancementQuery.addEventListener('change', applyEnhancementState);
-
-const chapterObserver = new IntersectionObserver(resolveCurrentChapter, {
-  rootMargin: '-22% 0px -77% 0px',
-  threshold: 0,
-});
-chapterTargets.forEach(({ element }) => chapterObserver.observe(element));
-
-if (chapterIndexSentinel) {
-  const persistenceObserver = new IntersectionObserver(updateChapterPersistence, {
-    rootMargin: '-16px 0px 0px',
-    threshold: 0,
-  });
-  persistenceObserver.observe(chapterIndexSentinel);
-}
 
 // Observe content, not the stretched panel boxes. Guard equality to avoid
 // observation loops from our own probe and mode changes; never poll at idle.
@@ -388,10 +409,9 @@ const contentObserver = new ResizeObserver(entries => {
   }
   if (changed) scheduleUpdate({ measure: true });
 });
-document.querySelectorAll('.project-copy, .project-object, .project-controls, .about-forme').forEach(el => contentObserver.observe(el));
+document.querySelectorAll('.project-copy, .project-object, .project-controls, .about-forme, .chapter-index, #mobile-chapters > summary, .hero-track, .introduction, #work, #outside, #about, #elsewhere').forEach(el => contentObserver.observe(el));
 
 root.classList.add('js');
-setCurrentChapter('introduction');
 applyEnhancementState();
 
 // Establish project geometry before the browser resolves its initial native chapter anchor.

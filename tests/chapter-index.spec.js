@@ -57,9 +57,9 @@ for (const viewport of [
 
     await openChapters(page);
     const index = page.getByRole('navigation', { name: viewport.width <= 800 ? 'Mobile chapters' : 'Chapter index', exact: true });
-    await expect(index).toHaveCSS('position', 'static');
+    await expect(index).toHaveCSS('position', viewport.width <= 800 ? 'absolute' : 'static');
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight / 2));
-    await expect(index).toHaveCSS('position', 'static');
+    await expect(index).toHaveCSS('position', viewport.width <= 800 ? 'absolute' : 'static');
 
     for (const link of await index.locator('a').all()) {
       const bounds = await link.boundingBox();
@@ -94,24 +94,24 @@ test('wide chapter index enters persistence after the hero and releases on retur
   await expect(index).toHaveCSS('position', 'static');
 });
 
-test('current chapter follows the reference line and keeps the full Work track together', async ({ page }) => {
+test('current chapter follows native arrivals and keeps the full Work track together', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
 
-  await expectCurrentChapter(page, 'introduction');
+  await expect(page.locator('[data-chapter-item][aria-current]')).toHaveCount(0);
 
   for (const chapter of chapters.slice(1)) {
     await page.locator(chapter.target).evaluate((element) => {
       const top = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo(0, top - window.innerHeight * 0.22 + 8);
+      window.scrollTo(0, top - parseFloat(getComputedStyle(element).scrollMarginBlockStart) + 2);
     });
     await expectCurrentChapter(page, chapter.key);
   }
 
   const workEnd = await page.locator('#work').evaluate((element) => {
-    const bounds = element.getBoundingClientRect();
-    return bounds.bottom + window.scrollY - window.innerHeight * 0.22 - 8;
+    const next = document.querySelector('#outside');
+    return next.getBoundingClientRect().top + window.scrollY - parseFloat(getComputedStyle(next).scrollMarginBlockStart) - 8;
   });
   await page.evaluate((top) => window.scrollTo(0, top), workEnd);
   await expectCurrentChapter(page, 'work');

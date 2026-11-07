@@ -30,8 +30,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 
 .skip-link { position: fixed; z-index: 100; top: .75rem; left: .75rem; padding: .7rem 1rem; background: var(--green); color: var(--cream); font-weight: 800; opacity: 0; pointer-events: none; transform: translateY(-150%); }
 .skip-link:focus { opacity: 1; pointer-events: auto; transform: none; }
-.reading-progress { position: fixed; z-index: 90; top: 0; left: 0; display: none; width: 100%; height: 5px; background: var(--coral); transform-origin: left; }
-.js.motion-ok .reading-progress { display: block; transform: scaleX(0); }
 .label { font-family: var(--mono); font-size: clamp(.66rem, .62rem + .15vw, .78rem); font-weight: 700; letter-spacing: .12em; line-height: 1.4; text-transform: uppercase; }
 
 .site-header { position: absolute; z-index: 20; top: 0; left: 0; display: flex; width: 100%; min-height: 6rem; align-items: center; justify-content: space-between; gap: clamp(.5rem, 2vw, 2rem); padding: 1.25rem var(--gutter); }
@@ -63,8 +61,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .chapter-index-list { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .15rem; margin: 0; padding: 0; list-style: none; }
 .chapter-index-item { position: relative; display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; gap: .35rem; padding: .35rem .45rem; text-decoration: none; white-space: nowrap; }
 .chapter-index-item > span { color: inherit; font-weight: 700; }
-.chapter-index-item[aria-current="location"] { border-bottom: 2px solid var(--coral); font-weight: 900; }
-.chapter-index-item[aria-current="location"]::before { position: absolute; top: 50%; left: -.1rem; width: 3px; height: 1rem; background: var(--coral); content: ""; transform: translateY(-50%); }
+.chapter-index-item[aria-current="location"] { font-weight: 900; }
+.chapter-index-item[aria-current="location"]::before { position: absolute; top: 50%; left: -.1rem; width: 3px; height: 1rem; background: var(--green); content: ""; transform: translateY(-50%); }
 .chapter-index-item:is(a):hover { text-decoration: underline; text-decoration-thickness: 2px; }
 #introduction, #work, #outside, #about, #elsewhere { scroll-margin-block-start: 6rem; }
 
@@ -249,7 +247,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 
 @media (min-width: 961px) and (min-height: 641px) {
-  .js.motion-ok .chapter-index-slot.is-persistent .chapter-index { position: fixed; z-index: 70; top: 1rem; right: var(--gutter); }
+  .js.motion-ok .chapter-index-slot.can-persist.is-persistent .chapter-index { position: fixed; z-index: 70; top: 1rem; right: var(--gutter); }
   .js.projects-staged .project-panel { transition: opacity 180ms ease, transform 180ms ease; }
 }
 
@@ -449,3 +447,30 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 #project-interface .study-key>span::before {content:"";display:inline-block;width:.75rem;height:.35rem;background:#293c2b;}
 #project-interface .study-key>span:nth-child(2)::before {background:#f4f0e5;border:1px solid #293c2b;}
 #project-interface .study-key>span:nth-child(3)::before {background:#fa8053;}
+
+/* Each desktop cell owns its rule, including on wrapped rows. Tracks reserve
+   their footprint before initialization, but never pretend to work without JS. */
+[data-chapter-progress] { display: block; height: 2px; background: rgb(41 60 43 / 18%); visibility: hidden; pointer-events: none; }
+[data-chapter-fill] { display: block; width: 100%; height: 100%; background: var(--coral); transform: scaleX(0); transform-origin: left; }
+.progress-ready [data-chapter-progress] { visibility: visible; }
+.chapter-index-item [data-chapter-progress] { position: absolute; bottom: 0; left: .45rem; right: .45rem; }
+.chapter-index-list { row-gap: .5rem; }
+.mobile-chapter-progress { display: none; }
+#introduction, #work, .outside#outside, #about, #elsewhere { scroll-margin-block-start: var(--chapter-clearance, 6rem); }
+@media (max-width: 800px) {
+  .mobile-chapter-progress { display: flex; gap: 4px; padding-block: 0 6px; }
+  .mobile-chapter-progress > span { flex: 1; min-width: 0; }
+  .hero-track { --header-clearance: calc(var(--mobile-row) + 9px); }
+  .mobile-chapter-list a[aria-current="location"] { font-weight: 900; border-left: 3px solid var(--green); }
+}
+@media (max-width: 800px) and (min-height: 641px) {
+  .site-header.chapters-ready:not(.is-tall) #mobile-chapters nav { position: absolute; top: 100%; left: var(--gutter); right: var(--gutter); }
+  .site-header.chapters-ready:not(.is-tall):has(#mobile-chapters[open]) .mobile-chapter-progress { position: absolute; top: calc(100% + var(--menu-height)); left: 0; right: 0; padding-inline: var(--gutter); background: var(--cream); }
+}
+
+.js.motion-ok .chapter-index-slot.can-persist.is-persistent .chapter-index { width: var(--index-width); max-width: calc(100% - 2 * var(--gutter)); }
+@media (max-width: 800px) and (min-height: 641px) {
+  .site-header.chapters-ready:not(.is-tall) { padding-bottom: 8px; }
+  .site-header.chapters-ready:not(.is-tall) .mobile-chapter-progress { position: absolute; bottom: 0; left: 0; right: 0; padding-inline: var(--gutter); }
+  .site-header.chapters-ready:not(.is-tall):has(#mobile-chapters[open]) .mobile-chapter-progress { bottom: auto; }
+}
