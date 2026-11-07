@@ -62,7 +62,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .chapter-index-item { position: relative; display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; gap: .35rem; padding: .35rem .45rem; text-decoration: none; white-space: nowrap; }
 .chapter-index-item > span { color: inherit; font-weight: 700; }
 .chapter-index-item[aria-current="location"] { font-weight: 900; }
-.chapter-index-item[aria-current="location"]::before { position: absolute; top: 50%; left: -.1rem; width: 3px; height: 1rem; background: var(--green); content: ""; transform: translateY(-50%); }
 .chapter-index-item:is(a):hover { text-decoration: underline; text-decoration-thickness: 2px; }
 #introduction, #work, #outside, #about, #elsewhere { scroll-margin-block-start: 6rem; }
 
@@ -461,7 +460,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .mobile-chapter-progress { display: flex; gap: 4px; padding-block: 0 6px; }
   .mobile-chapter-progress > span { flex: 1; min-width: 0; }
   .hero-track { --header-clearance: calc(var(--mobile-row) + 9px); }
-  .mobile-chapter-list a[aria-current="location"] { font-weight: 900; border-left: 3px solid var(--green); }
+  .mobile-chapter-list a[aria-current="location"] { font-weight: 900; }
 }
 @media (max-width: 800px) and (min-height: 641px) {
   .site-header.chapters-ready:not(.is-tall) #mobile-chapters nav { position: absolute; top: 100%; left: var(--gutter); right: var(--gutter); }
