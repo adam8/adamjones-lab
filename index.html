@@ -11,7 +11,6 @@
   </head>
   <body id="top">
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <div class="reading-progress" aria-hidden="true"></div>
 
     <header class="site-header">
       <a class="wordmark" href="#top" aria-label="Adam Jones, home">aj.</a>
@@ -27,14 +26,15 @@
         <summary aria-label="Open navigation"><svg class="navigation-icon" width="24" height="18" viewBox="0 0 24 18" aria-hidden="true" focusable="false"><path d="M1 1h22M1 9h22M1 17h22" /></svg></summary>
         <nav aria-label="Mobile chapters">
           <ol class="mobile-chapter-list">
-            <li><a href="#introduction"><span>01</span> Introduction</a></li>
-            <li><a href="#work"><span>02</span> Work</a></li>
-            <li><a href="#outside"><span>03</span> Outside</a></li>
-            <li><a href="#about"><span>04</span> About</a></li>
-            <li><a href="#elsewhere"><span>05</span> Elsewhere</a></li>
+            <li><a data-mobile-chapter="introduction" href="#introduction"><span>01</span> Introduction</a></li>
+            <li><a data-mobile-chapter="work" href="#work"><span>02</span> Work</a></li>
+            <li><a data-mobile-chapter="outside" href="#outside"><span>03</span> Outside</a></li>
+            <li><a data-mobile-chapter="about" href="#about"><span>04</span> About</a></li>
+            <li><a data-mobile-chapter="elsewhere" href="#elsewhere"><span>05</span> Elsewhere</a></li>
           </ol>
         </nav>
       </details>
+      <div class="mobile-chapter-progress" aria-hidden="true"><span data-chapter-progress="introduction"><span data-chapter-fill></span></span><span data-chapter-progress="work"><span data-chapter-fill></span></span><span data-chapter-progress="outside"><span data-chapter-fill></span></span><span data-chapter-progress="about"><span data-chapter-fill></span></span><span data-chapter-progress="elsewhere"><span data-chapter-fill></span></span></div>
     </header>
 
     <main id="main-content" tabindex="-1">
@@ -68,11 +68,11 @@
         <span class="chapter-index-sentinel" aria-hidden="true"></span>
         <nav class="chapter-index label" aria-label="Chapter index">
           <ol class="chapter-index-list">
-            <li><a class="chapter-index-item" data-chapter-item="introduction" href="#introduction"><span>01</span> Introduction</a></li>
-            <li><a class="chapter-index-item" data-chapter-item="work" href="#work"><span>02</span> Work</a></li>
-            <li><a class="chapter-index-item" data-chapter-item="outside" href="#outside"><span>03</span> Outside</a></li>
-            <li><a class="chapter-index-item" data-chapter-item="about" href="#about"><span>04</span> About</a></li>
-            <li><a class="chapter-index-item" data-chapter-item="elsewhere" href="#elsewhere"><span>05</span> Elsewhere</a></li>
+            <li><a class="chapter-index-item" data-chapter-item="introduction" href="#introduction"><span>01</span> Introduction<span data-chapter-progress="introduction" aria-hidden="true"><span data-chapter-fill></span></span></a></li>
+            <li><a class="chapter-index-item" data-chapter-item="work" href="#work"><span>02</span> Work<span data-chapter-progress="work" aria-hidden="true"><span data-chapter-fill></span></span></a></li>
+            <li><a class="chapter-index-item" data-chapter-item="outside" href="#outside"><span>03</span> Outside<span data-chapter-progress="outside" aria-hidden="true"><span data-chapter-fill></span></span></a></li>
+            <li><a class="chapter-index-item" data-chapter-item="about" href="#about"><span>04</span> About<span data-chapter-progress="about" aria-hidden="true"><span data-chapter-fill></span></span></a></li>
+            <li><a class="chapter-index-item" data-chapter-item="elsewhere" href="#elsewhere"><span>05</span> Elsewhere<span data-chapter-progress="elsewhere" aria-hidden="true"><span data-chapter-fill></span></span></a></li>
           </ol>
         </nav>
       </div>

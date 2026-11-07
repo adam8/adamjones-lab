@@ -227,14 +227,14 @@ test('enhancement boundaries switch sticky scenes and clear hidden project state
   await expect(page.locator('.hero-scene')).toHaveCSS('position', 'relative');
   await expect(page.locator('.project-stage')).not.toHaveCSS('position', 'sticky');
   await expect(page.locator('.project-controls')).toHaveCSS('display', 'none');
-  await expect(page.locator('.reading-progress')).toHaveCSS('display', 'none');
+  await expect(page.locator('.reading-progress')).toHaveCount(0);
 
   await page.setViewportSize({ width: 961, height: 641 });
   await expect(page.locator('html')).toHaveClass(/motion-ok/);
   await expect(page.locator('.hero-scene')).toHaveCSS('position', 'sticky');
   await expect(page.locator('.project-stage')).toHaveCSS('position', 'sticky');
   await expect(page.locator('.project-controls')).toHaveCSS('display', 'flex');
-  await expect(page.locator('.reading-progress')).toHaveCSS('display', 'block');
+  await expect(page.locator('.chapter-index [data-chapter-progress]').first()).toHaveCSS('visibility', 'visible');
   await expect(page.locator('#project-agents')).toHaveAttribute('aria-hidden', 'true');
   await expect(page.locator('#project-agents')).toHaveAttribute('inert', '');
 
@@ -317,19 +317,15 @@ for (const mode of [
   { name: 'narrow', viewport: { width: 390, height: 844 } },
   { name: 'short', viewport: { width: 844, height: 390 } },
 ]) {
-  test(`${mode.name} fallback does not run a scroll-linked progress transform`, async ({ page }) => {
+  test(`${mode.name} fallback retains attached chapter progress without hero motion`, async ({ page }) => {
     await page.setViewportSize(mode.viewport);
     await page.goto('/');
 
-    const progress = page.locator('.reading-progress');
-    await expect(progress).toHaveCSS('display', 'none');
-    await expect(progress).toHaveCSS('transform', 'none');
-
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight / 2));
-    await page.waitForTimeout(50);
-
-    await expect(progress).toHaveCSS('transform', 'none');
-    expect(await progress.evaluate((element) => element.style.transform)).toBe('');
+    const progress = page.locator(mode.name === 'narrow' ? '.mobile-chapter-progress [data-chapter-fill]' : '.chapter-index [data-chapter-fill]').first();
+    await expect(progress).toHaveCSS('transform', 'matrix(0, 0, 0, 1, 0, 0)');
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await expect(progress).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+    await expect(page.locator('html')).not.toHaveClass(/motion-ok/);
   });
 }
 
