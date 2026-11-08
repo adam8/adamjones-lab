@@ -114,42 +114,9 @@ function paintChapterProgress(y) {
 }
 
 function measureProjectFit() {
-  const previousMode = projectsStaged;
-  const focusedPanel = projectPanels.findIndex(panel => panel.contains(document.activeElement));
-  // Use the last painted reading state: by the time ResizeObserver runs,
-  // text reflow may already have moved the passage outside the viewport.
-  const readingProject = readingProjectVisible;
-  let fits = false;
-  if (motionEnabled) {
-    // Keep subsequent chapters and the document scroll range stationary while
-    // probing intrinsic desktop content. A temporary 300svh track can otherwise
-    // trigger scroll anchoring/clamping even when the final mode is unchanged.
-    projectTrack.style.setProperty('--project-probe-height', `${projectTrack.getBoundingClientRect().height}px`);
-    root.classList.add('projects-measuring');
-    const stage = document.querySelector('.project-stage');
-    const style = getComputedStyle(stage);
-    const panelSlot = document.querySelector('.project-panels').getBoundingClientRect();
-    const available = Math.min(panelSlot.height, innerHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom));
-    fits = projectPanels.every(panel => {
-      const heading = panel.querySelector('h3');
-      const copy = panel.querySelector('.project-copy');
-      return panel.getBoundingClientRect().height + 14 <= available &&
-        heading.scrollWidth <= heading.clientWidth + 1 && copy.scrollWidth <= copy.clientWidth + 1;
-    });
-    const controls = document.querySelector('.project-controls');
-    fits &&= controls.getBoundingClientRect().height + 14 <= innerHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
-    root.classList.remove('projects-measuring');
-    projectTrack.style.removeProperty('--project-probe-height');
-  }
-  // Do not re-enter staging if it would conceal a focused passage.
-  fits &&= focusedPanel < 0 || focusedPanel === activeProject;
-  projectsStaged = fits;
-  root.classList.toggle('projects-staged', fits);
-  if (previousMode !== fits) {
-    projectSelectionReady = false;
-    setActiveProject(activeProject);
-    if (readingProject) pendingProjectIndex = activeProject;
-  }
+  // F-029: Work panels scroll naturally. Lock only the sub-nav in place.
+  projectsStaged = false;
+  root.classList.remove('projects-staged', 'projects-measuring');
 }
 
 function measureGeometry() {
@@ -279,7 +246,10 @@ function paint() {
   const direction = Math.sign(scrollY - previousScrollY);
   previousScrollY = scrollY;
 
-  if (!projectsStaged) {
+  if (!projectsStaged && direction !== 0) {
+    // Only update the active project while the user is actually scrolling.
+    // Resize/reflow (e.g. font zoom) without scroll keeps the current selection
+    // so explicit links and permalinks do not drift.
     let next = 0;
     projectPanels.forEach((panel, index) => {
       if (panel.getBoundingClientRect().top <= innerHeight * .5) next = index;

@@ -128,12 +128,15 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .js.motion-ok .hero-track { min-height: 145svh; }
 .js.motion-ok .hero-scene { position: sticky; top: 0; }
 .js.motion-ok .hero-specimen { transform: translate3d(0, var(--hero-object-y, 0), 0) rotate(var(--hero-object-rotate, 0deg)); }
-.js.projects-staged .project-track { height: 300svh; }
-.js.motion-ok .project-controls { display: flex; }
-.js.projects-staged .project-stage { grid-template-columns: minmax(13rem, .42fr) minmax(0, 1.58fr); gap: clamp(2rem, 5vw, 6rem); position: sticky; top: 0; height: 100svh; align-items: center; padding-block: clamp(2rem, 5vh, 4rem); }
-.js.projects-staged .project-panels { position: relative; min-height: min(45rem, 78vh); }
-.js.projects-staged .project-panel { position: absolute; inset: 0; min-height: 100%; margin: 0; opacity: 0; pointer-events: none; transform: translateY(2rem); }
-.js.projects-staged .project-panel.is-active { opacity: 1; pointer-events: auto; transform: none; }
+@media (min-width: 1100px) and (min-height: 641px) {
+  .js.motion-ok .project-stage { display: grid; grid-template-columns: minmax(13rem, .35fr) minmax(0, 1.65fr); gap: clamp(2rem, 5vw, 6rem); padding-top: 7rem; }
+  .js.motion-ok .project-controls { display: flex; position: sticky; top: 2rem; }
+}
+@media (min-width: 961px) and (max-width: 1099px) and (min-height: 641px) {
+  .js.motion-ok .project-stage { padding-top: 7rem; }
+  .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: wrap; gap: 1rem; }
+  .js.motion-ok .project-controls button { flex: 1 1 12rem; }
+}
 
 /* Intrinsic rem-based bases release the complete diorama below enlarged copy. */
 .outside { display: flex; flex-wrap: wrap; min-height: 100svh; align-items: flex-start; gap: clamp(3rem, 5vw, 5rem); overflow: visible; }
@@ -231,36 +234,25 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 @media (max-height: 640px) {
   .site-header { position: relative; }
   .hero-track, .js.motion-ok .hero-track { height: auto; min-height: calc(100svh - var(--header-clearance)); }
-  .js.projects-staged .project-track { height: auto; min-height: 100svh; }
-  .hero-scene, .js.motion-ok .hero-scene, .js.projects-staged .project-stage { position: relative; top: auto; height: auto; }
+  .hero-scene, .js.motion-ok .hero-scene { position: relative; top: auto; height: auto; }
   .hero-scene { min-height: calc(100svh - var(--header-clearance)); padding-top: 1.5rem; }
-  .project-stage, .js.projects-staged .project-stage { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .project-stage, .js.motion-ok .project-stage { display: grid; grid-template-columns: minmax(0, 1fr); }
   .project-panels { grid-column: 1 / -1; }
   .hero-specimen { transform: none !important; }
   .scroll-cue { display: none; }
-  .js.projects-staged .project-panel { position: relative; inset: auto; min-height: auto; margin-top: 2rem; opacity: 1; pointer-events: auto; transform: none; }
   .project-controls { display: none; }
 }
 
 @media (min-width: 961px) and (min-height: 641px) {
   .js.motion-ok .chapter-index-slot.can-persist.is-persistent .chapter-index { position: fixed; z-index: 70; top: 1rem; right: var(--gutter); }
-  .js.projects-staged .project-panel { transition: opacity 180ms ease, transform 180ms ease; }
 }
 
 /* Intrinsic probes use the desktop widths even while the real layout is in flow.
    No clone, assigned panel height, or flow geometry is used as evidence of fit. */
-.js.projects-measuring .project-track { height: var(--project-probe-height); }
-.js.projects-measuring .project-stage { position: sticky; top: 0; height: 100svh; grid-template-columns: minmax(13rem, .42fr) minmax(0, 1.58fr); padding-block: clamp(2rem, 5vh, 4rem); align-items: center; }
-.js.projects-measuring .project-panels { position: relative; min-height: min(45rem, 78vh); }
-.js.projects-measuring .project-panel { position: absolute; inset: 0 0 auto; min-height: 0; height: auto; margin: 0; transition: none; }
-.js:is(.projects-staged, .projects-measuring) #project-agents { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
 @container (max-width: 65rem) {
-  html:not(.projects-staged):not(.projects-measuring) .project-panel { grid-template-columns: minmax(0, 1fr); min-height: auto; }
-  html:not(.projects-staged):not(.projects-measuring) .project-object { max-width: 34rem; margin-inline: auto; }
+  .js.motion-ok .project-panel { grid-template-columns: minmax(0, 1fr); min-height: auto; }
+  .js.motion-ok .project-object { max-width: 34rem; margin-inline: auto; }
 }
-.js.motion-ok:not(.projects-staged):not(.projects-measuring) .project-stage { padding-top: 7rem; }
-.js.motion-ok:not(.projects-staged):not(.projects-measuring) .project-controls { flex-direction: row; flex-wrap: wrap; gap: 1rem; }
-.js.motion-ok:not(.projects-staged):not(.projects-measuring) .project-controls button { flex: 1 1 12rem; }
 .project-panel { scroll-margin-block-start: 8rem; }
 
 /* Carry forward complete-word Agent typography without the rejected inner scroller.
