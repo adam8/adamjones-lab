@@ -133,9 +133,12 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .js.motion-ok .project-controls { display: flex; position: sticky; top: 2rem; }
 }
 @media (min-width: 961px) and (max-width: 1099px) and (min-height: 641px) {
-  .js.motion-ok .project-stage { padding-top: 7rem; }
-  .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: wrap; gap: 1rem; position: sticky; top: 0; }
-  .js.motion-ok .project-controls button { flex: 1 1 12rem; }
+  .js.motion-ok .project-stage { padding-top: 2rem; }
+  .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-end; gap: .5rem; position: sticky; top: calc(var(--chapter-clearance, 0) - 1rem); right: 0; z-index: 5; width: fit-content; margin-left: auto; padding: .5rem .75rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; border: 1px solid rgb(41 60 43 / 25%); border-radius: 9999px; background: var(--blue); }
+  .js.motion-ok .project-controls::-webkit-scrollbar { display: none; }
+  .js.motion-ok .project-controls button { flex: 0 0 auto; display: inline-flex; align-items: center; gap: .35rem; min-height: 2.75rem; padding: .35rem .9rem; border: 1px solid rgb(41 60 43 / 25%); border-radius: 999px; background: rgb(244 240 229 / 22%); font-size: .75rem; font-weight: 750; white-space: nowrap; }
+  .js.motion-ok .project-controls button[aria-pressed="true"] { border-color: var(--coral); background: var(--cream); font-family: var(--serif); font-size: .85rem; font-style: italic; box-shadow: none; padding-left: .9rem; border-left-width: 1px; }
+  .js.motion-ok .project-controls button span { font-size: .62rem; }
 }
 
 /* Intrinsic rem-based bases release the complete diorama below enlarged copy. */
