@@ -60,8 +60,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .chapter-index-item > span { color: inherit; font-weight: 700; }
 .chapter-index-item[aria-current="location"] { font-weight: 900; }
 .chapter-index-item:is(a):hover { text-decoration: underline; text-decoration-thickness: 2px; }
-#introduction, #work, #outside, #about, #elsewhere { scroll-margin-block-start: 6rem; scroll-snap-align: start; }
-html { scroll-snap-type: y proximity; }
+#introduction, #work, #outside, #about, #elsewhere { scroll-margin-block-start: 6rem; }
 
 .chapter { position: relative; padding: clamp(5rem, 11vw, 11rem) var(--gutter); overflow: clip; }
 .chapter--cream { background: var(--cream); }

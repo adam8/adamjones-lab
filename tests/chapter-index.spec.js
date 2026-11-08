@@ -97,7 +97,7 @@ test('wide chapter index enters persistence after the hero and releases on retur
 test('current chapter follows native arrivals and keeps the full Work track together', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
-  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; document.documentElement.style.scrollSnapType = 'none'; });
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
 
   await expect(page.locator('[data-chapter-item][aria-current]')).toHaveCount(0);
 
