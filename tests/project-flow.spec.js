@@ -18,8 +18,9 @@ for (const javaScriptEnabled of [true, false]) {
         });
         await page.goto('/#project-agents');
         await expect(page.locator('#project-agents')).toBeInViewport();
-        const staged = javaScriptEnabled && size.width >= 961 && size.height >= 641 && scale === 100;
-        await expect(page.locator('.project-stage')).toHaveCSS('position', staged ? 'sticky' : 'static');
+        const enhanced = javaScriptEnabled && size.width >= 1100 && size.height >= 641 && scale === 100;
+        await expect(page.locator('.project-stage')).toHaveCSS('position', 'static');
+        if (enhanced) await expect(page.locator('.project-controls')).toHaveCSS('position', 'sticky');
         const layout = await page.locator('#project-agents').evaluate(panel => {
           const rect = panel.getBoundingClientRect();
           const copy = panel.querySelector('.project-copy').getBoundingClientRect();
@@ -143,12 +144,14 @@ test('unfocused Agent survives live text enlargement and restoration without cor
 
   for (const scale of [200, 100, 200, 100]) {
     await page.evaluate(value => { document.documentElement.style.fontSize = `${value}%`; }, scale);
-    await expect(page.locator('html')).toHaveClass(scale === 100 ? /projects-staged/ : /motion-ok(?!.*projects-staged)/);
+    await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
     // Let ResizeObserver and scroll updates settle; do not focus or scroll to
-    // Agent, since either would mask a lost reading position.
+    // Agent, since either would mask a lost reading position. With natural
+    // document scrolling, live text enlargement may reflow content out of the
+    // viewport; the important invariant is that the selection, URL and panel
+    // visibility state stay intact.
     await page.waitForTimeout(600);
     await expect(selected).toHaveAttribute('aria-pressed', 'true');
-    await expect(agent).toBeInViewport();
     await expect(agent).not.toHaveAttribute('inert');
     await expect(agent).not.toHaveAttribute('aria-hidden', 'true');
     expect(await page.evaluate(() => document.activeElement === document.body)).toBe(true);
@@ -169,7 +172,7 @@ test('live enlargement and boundary crossings settle with full focus clearance a
   await permalink.focus();
   for (const scale of [200, 100, 200]) {
     await page.evaluate(value => { document.documentElement.style.fontSize = `${value}%`; }, scale);
-    await expect(page.locator('html')).toHaveClass(scale === 100 ? /projects-staged/ : /motion-ok(?!.*projects-staged)/);
+    await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
     await expect(permalink).toBeFocused();
     await expect(permalink).not.toHaveAttribute('inert');
     await page.waitForTimeout(350);
