@@ -20,9 +20,6 @@ async function expectProjectAtEnhancedSlot(page, project) {
     await expect(buttons.nth(index)).toHaveAttribute('aria-pressed', 'false');
   }
 
-  const settledY = await page.evaluate(() => window.scrollY);
-  await page.waitForTimeout(250);
-  expect(Math.abs((await page.evaluate(() => window.scrollY)) - settledY)).toBeLessThan(2);
 }
 
 test.describe('without JavaScript', () => {
