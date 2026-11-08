@@ -134,7 +134,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 @media (min-width: 961px) and (max-width: 1099px) and (min-height: 641px) {
   .js.motion-ok .project-stage { padding-top: 7rem; }
-  .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: wrap; gap: 1rem; }
+  .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: wrap; gap: 1rem; position: sticky; top: 0; }
   .js.motion-ok .project-controls button { flex: 1 1 12rem; }
 }
 
