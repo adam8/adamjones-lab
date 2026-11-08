@@ -8,27 +8,21 @@ const projects = [
 
 async function expectProjectAtEnhancedSlot(page, project) {
   const buttons = page.locator('[data-project-button]');
-  const panels = page.locator('[data-project-panel]');
+  const panel = page.locator(project.hash);
 
   await expect(buttons.nth(project.index)).toHaveAttribute('aria-pressed', 'true');
-  await expect(panels.nth(project.index)).toHaveAttribute('aria-hidden', 'false');
-  await expect(panels.nth(project.index)).not.toHaveAttribute('inert');
+  await expect(panel).toHaveClass(/is-active/);
+  await expect(panel).toBeInViewport();
+  await expect(panel.locator('h3')).toBeInViewport();
 
   for (let index = 0; index < projects.length; index += 1) {
     if (index === project.index) continue;
     await expect(buttons.nth(index)).toHaveAttribute('aria-pressed', 'false');
-    await expect(panels.nth(index)).toHaveAttribute('aria-hidden', 'true');
-    await expect(panels.nth(index)).toHaveAttribute('inert', '');
   }
 
-  await expect.poll(async () => page.evaluate((index) => {
-    const track = document.querySelector('.project-track');
-    const bounds = track.getBoundingClientRect();
-    const start = bounds.top + window.scrollY;
-    const range = bounds.height - window.innerHeight;
-    const expected = start + (index / 2) * range;
-    return Math.abs(window.scrollY - expected);
-  }, project.index)).toBeLessThan(3);
+  const settledY = await page.evaluate(() => window.scrollY);
+  await page.waitForTimeout(250);
+  expect(Math.abs((await page.evaluate(() => window.scrollY)) - settledY)).toBeLessThan(2);
 }
 
 test.describe('without JavaScript', () => {
@@ -144,8 +138,8 @@ test('project buttons activate chapters, retain focus, update history once, and 
   expect(await page.evaluate(() => history.length)).toBe(initialHistoryLength + 1);
   await expect(second).toHaveAttribute('aria-pressed', 'true');
   await expect(buttons.nth(0)).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.locator('#project-agents')).not.toHaveAttribute('aria-hidden', 'true');
-  await expect(page.locator('#project-boss-hog')).toHaveAttribute('inert', '');
+  await expect(page.locator('#project-agents')).toHaveClass(/is-active/);
+  await expect(page.locator('#project-boss-hog')).not.toHaveClass(/is-active/);
 
   const track = page.locator('.project-track');
   const geometry = await track.evaluate((element) => {
@@ -174,6 +168,7 @@ test('back and forward restore project fragments without programmatic focus move
   });
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/#project-boss-hog');
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
   await expectProjectAtEnhancedSlot(page, projects[0]);
 
   const buttons = page.locator('[data-project-button]');
@@ -200,7 +195,7 @@ test('same-hash permalink returns to its enhanced scroll slot without adding his
   await expectProjectAtEnhancedSlot(page, projects[0]);
   const historyLength = await page.evaluate(() => history.length);
 
-  await page.evaluate(() => window.scrollBy(0, 240));
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; window.scrollBy(0, 240); });
   await page.getByRole('link', { name: projects[0].permalink }).click();
 
   await expectProjectAtEnhancedSlot(page, projects[0]);
@@ -232,28 +227,27 @@ test('enhancement boundaries switch sticky scenes and clear hidden project state
   await page.setViewportSize({ width: 961, height: 641 });
   await expect(page.locator('html')).toHaveClass(/motion-ok/);
   await expect(page.locator('.hero-scene')).toHaveCSS('position', 'sticky');
-  await expect(page.locator('.project-stage')).toHaveCSS('position', 'sticky');
+  await expect(page.locator('.project-controls')).toHaveCSS('position', 'sticky');
   await expect(page.locator('.project-controls')).toHaveCSS('display', 'flex');
   await expect(page.locator('.chapter-index [data-chapter-progress]').first()).toHaveCSS('visibility', 'visible');
-  await expect(page.locator('#project-agents')).toHaveAttribute('aria-hidden', 'true');
-  await expect(page.locator('#project-agents')).toHaveAttribute('inert', '');
+  await expect(page.locator('#project-agents')).not.toHaveAttribute('aria-hidden');
+  await expect(page.locator('#project-agents')).not.toHaveAttribute('inert');
 
   // Project fit is independent of the wide/tall hero enhancement.
   await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
   await expect(page.locator('.hero-scene')).toHaveCSS('position', 'sticky');
-  await expect(page.locator('.project-stage')).not.toHaveCSS('position', 'sticky');
   await expect(page.locator('.project-controls')).toHaveCSS('display', 'flex');
   for (const panel of await page.locator('[data-project-panel]').all()) {
     await expect(panel).not.toHaveAttribute('aria-hidden');
     await expect(panel).not.toHaveAttribute('inert');
   }
   await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
-  await expect(page.locator('.project-stage')).toHaveCSS('position', 'sticky');
+  await expect(page.locator('.project-controls')).toHaveCSS('position', 'sticky');
 
   await page.setViewportSize({ width: 1440, height: 640 });
   await expect(page.locator('html')).not.toHaveClass(/motion-ok/);
   await expect(page.locator('.hero-scene')).toHaveCSS('position', 'relative');
-  await expect(page.locator('.project-stage')).not.toHaveCSS('position', 'sticky');
+  await expect(page.locator('.project-controls')).toHaveCSS('display', 'none');
   await expect(page.locator('.hero-invitation')).toHaveCSS('position', 'relative');
   await expect(page.locator('.scroll-cue')).toHaveCSS('display', 'none');
 
