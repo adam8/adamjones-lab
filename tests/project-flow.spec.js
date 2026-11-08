@@ -205,7 +205,7 @@ test('live enlargement and boundary crossings settle with full focus clearance a
 test('flow fit probes preserve subsequent chapter reading position on resize', async ({ page }) => {
   await page.setViewportSize(sizes[0]);
   await page.goto('/#project-agents');
-  await page.addStyleTag({ content: 'html {font-size:200%; scroll-behavior:auto}' });
+  await page.addStyleTag({ content: 'html {font-size:200%; scroll-behavior:auto; scroll-snap-type:none}' });
   await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
   await page.locator('[data-chapter-item="outside"]').click();
   await expect(page.locator('#outside')).toBeInViewport();
