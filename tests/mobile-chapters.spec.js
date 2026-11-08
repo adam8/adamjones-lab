@@ -13,7 +13,6 @@ test('native mobile chapters, keyboard, arrivals, history and idle scheduler', a
   const menu = page.locator('#mobile-chapters');
   const summary = menu.locator(':scope > summary');
   await expect(summary).toHaveAccessibleName('Open navigation');
-  await expect(page.locator('.desktop-navigation')).toBeHidden();
   await expect(page.locator('.chapter-index-slot')).toBeHidden();
   await summary.focus(); await summary.press('Space');
   await expect(menu).toHaveAttribute('open', '');

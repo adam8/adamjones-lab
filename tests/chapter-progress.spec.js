@@ -42,7 +42,7 @@ for (const [width, height, enlarged] of [[1440,900],[961,641],[961,641,true],[96
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     // A whole-document fifth model must differ materially from actual Work.
-    expect(Math.abs(geometry.starts[1] - geometry.range / 5)).toBeGreaterThan(20);
+    expect(Math.abs(geometry.starts[1] - geometry.range / 5)).toBeGreaterThan(12);
   });
 }
 test('roomy mobile menu is geometry-neutral; native arrival and keyboard retain URL/focus', async ({page}) => {

@@ -2,11 +2,11 @@ import { chapterLink, openChapters } from './navigation.js';
 import { expect, test } from '@playwright/test';
 
 const chapters = [
-  { key: 'introduction', text: '01 Introduction', href: '#introduction', target: '#introduction' },
-  { key: 'work', text: '02 Work', href: '#work', target: '#work' },
-  { key: 'outside', text: '03 Outside', href: '#outside', target: '#outside' },
-  { key: 'about', text: '04 About', href: '#about', target: '#about' },
-  { key: 'elsewhere', text: '05 Elsewhere', href: '#elsewhere', target: '#elsewhere' },
+  { key: 'introduction', text: 'Introduction', href: '#introduction', target: '#introduction' },
+  { key: 'work', text: 'Work', href: '#work', target: '#work' },
+  { key: 'outside', text: 'Outside', href: '#outside', target: '#outside' },
+  { key: 'about', text: 'About', href: '#about', target: '#about' },
+  { key: 'elsewhere', text: 'Elsewhere', href: '#elsewhere', target: '#elsewhere' },
 ];
 
 async function expectCurrentChapter(page, key) {
@@ -133,7 +133,7 @@ test('native Enter activation uses no scripted focus and clears the fixed index'
   await page.goto('/');
   await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
 
-  const link = page.getByRole('link', { name: '04 About', exact: true });
+  const link = page.getByRole('link', { name: 'About', exact: true });
   await openChapters(page);
         await link.focus();
   await expect(link).toBeFocused();
@@ -215,11 +215,11 @@ test('chapter links use native history and back navigation restores current stat
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
 
-  await page.getByRole('link', { name: '02 Work', exact: true }).click();
+  await page.getByRole('link', { name: 'Work', exact: true }).click();
   await expect(page).toHaveURL(/#work$/);
   await expectCurrentChapter(page, 'work');
 
-  await page.getByRole('link', { name: '03 Outside', exact: true }).click();
+  await page.getByRole('link', { name: 'Outside', exact: true }).click();
   await expect(page).toHaveURL(/#outside$/);
   await expectCurrentChapter(page, 'outside');
 

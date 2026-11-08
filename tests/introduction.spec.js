@@ -38,7 +38,7 @@ for (const javaScriptEnabled of [true,false]) {
         await page.goto('/#introduction');
         await expect(page.locator('#intro-title')).toHaveText('I design interfaces.And build them.');
         await expect(page.locator('#intro-title em')).toHaveText('And build them.');
-        await expect(page.locator('#introduction .label')).toHaveText('01 / Introduction');
+        await expect(page.locator('#introduction .label')).toHaveText('Introduction');
         await expect(page.locator('.intro-composition > p')).toHaveText(paragraph);
         const svg=page.locator('.intro-sheet');
         await expect(svg).toHaveAttribute('aria-hidden','true');

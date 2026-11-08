@@ -16,7 +16,7 @@ for (const javaScriptEnabled of [true,false]) {
           await route.fulfill({response,body:(await response.text()).replace('</head>',`<style>html{font-size:${scale}%;scroll-behavior:auto}</style></head>`)});
         });
         await page.goto('/#outside');
-        await expect(page.locator('.outside-copy > .label')).toHaveText('03 / Outside work');
+        await expect(page.locator('.outside-copy > .label')).toHaveText('Outside work');
         await expect(page.locator('#outside-title')).toHaveText('Islandtime');
         await expect(page.locator('.outside-copy > p:last-child')).toHaveText(paragraph);
         await expect(page.locator('.outside figcaption')).toHaveText('An imagined island landscape.');
