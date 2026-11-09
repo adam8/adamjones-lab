@@ -28,6 +28,7 @@ A lightweight, filesystem-based wiki for verified project knowledge. Read this i
 | WIKI-6 | [testing-strategy](wiki/testing-strategy.md) | confirmed | testing, playwright, ci | Playwright config, JS-on/JS-off matrix, viewport sizes, review capture workflow. |
 | WIKI-7 | [design-principles](wiki/design-principles.md) | confirmed | design, taste, aesthetics | Distilled creative principles from `design/TASTE.md` and approved decisions. |
 | WIKI-8 | [visual-direction](wiki/visual-direction.md) | confirmed | design, illustration | Diorama, floating island, drawing-to-object, typographic Elsewhere, typesetter experiments. |
+| WIKI-9 | [local-preview](wiki/local-preview.md) | confirmed | tooling, ipad | How to preview the Markdown wiki on an iPad via a Pi-hosted server. |
 
 ---
 
