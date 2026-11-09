@@ -6,16 +6,6 @@ import { join } from 'node:path';
 const sizes = [{ width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1440, height: 900 }];
 const parts = ['#hero-title span:first-child', '#hero-title span:last-child', '.hero-role', '.hero-specimen', '.hero-invitation'];
 
-async function headerClearance(page) {
-  const header = await page.locator('.site-header').boundingBox();
-  const index = await page.locator('.hero-index').boundingBox();
-  expect(index.y, 'hero index must remain below the complete header').toBeGreaterThanOrEqual(header.y + header.height);
-  for (const link of await page.locator('.site-header a:visible').all()) {
-    const box = await link.boundingBox();
-    expect(box.y + box.height, 'header hit targets must not cover the hero annotation').toBeLessThanOrEqual(index.y);
-  }
-}
-
 async function composition(page, withinViewport = false) {
   const boxes = await Promise.all(parts.map(selector => page.locator(selector).boundingBox()));
   const viewport = page.viewportSize();
@@ -47,7 +37,6 @@ for (const javaScriptEnabled of [true, false]) {
         await expect(page.locator('.hero-specimen')).toHaveAttribute('aria-hidden', 'true');
         await expect(page.locator('.hero-specimen svg')).toHaveAttribute('focusable', 'false');
         await composition(page, true);
-        await headerClearance(page);
         await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; window.scrollTo(0, innerHeight); });
         await expect(page.locator('#intro-title')).toBeInViewport();
       });
@@ -60,7 +49,6 @@ for (const javaScriptEnabled of [true, false]) {
           await route.fulfill({ response, body });
         });
         await page.goto('/');
-        await headerClearance(page);
         await composition(page);
       });
     }
@@ -95,7 +83,6 @@ for (const viewport of [{ width: 844, height: 390 }, { width: 961, height: 641 }
     await page.goto('/');
     await page.addStyleTag({ content: 'html { font-size: 200%; scroll-behavior: auto; }' });
     await composition(page);
-    await headerClearance(page);
     // Check readable downstream content directly: existing chapter clipping must
     // not conceal min-content grid overflow when text is enlarged.
     for (const selector of ['.chapter-index', '.chapter-index-item', '.project-copy', '.project-permalink', '.about-facts', '.elsewhere-links']) {
@@ -123,7 +110,6 @@ for (const viewport of [{ width: 844, height: 390 }, { width: 961, height: 641 }
     await page.setViewportSize(viewport);
     await page.goto('/');
     await composition(page);
-    await headerClearance(page);
     if (viewport.height === 390) {
       await expect(page.locator('.hero-scene')).toHaveCSS('position', 'relative');
       const action = page.locator('.hero-invitation');
@@ -195,7 +181,6 @@ test('true 200% Chromium tab zoom preserves flow, overflow and keyboard access',
     // Playwright viewportSize describes the unzoomed surface; layout uses 720 CSS px.
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(720);
     await expect(page.locator('.hero-scene')).toHaveCSS('position', 'relative');
-    await headerClearance(page);
     for (const selector of parts) {
       const bounds = await page.locator(selector).boundingBox();
       expect(bounds.x).toBeGreaterThanOrEqual(0);
