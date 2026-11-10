@@ -1,8 +1,7 @@
 const root = document.documentElement;
 const chapterNav = document.querySelector('.chapter-index');
 const mobileHeader = document.querySelector('.site-header');
-const mobileSummary = document.querySelector('#mobile-chapters > summary');
-const mobileNav = document.querySelector('#mobile-chapters nav');
+const mobileChapters = document.querySelector('#mobile-chapters');
 const chapterFills = [...document.querySelectorAll('[data-chapter-progress]')].map(segment => ({ key: segment.dataset.chapterProgress, fill: segment.querySelector('[data-chapter-fill]') }));
 const heroTrack = document.querySelector('.hero-track');
 const chapterIndexSlot = document.querySelector('.chapter-index-slot');
@@ -59,6 +58,12 @@ function setCurrentChapter(key) {
     if ((item.dataset.chapterItem || item.dataset.mobileChapter) === key) item.setAttribute('aria-current', 'location');
     else item.removeAttribute('aria-current');
   });
+  scrollActiveMobileChapterIntoView();
+}
+function scrollActiveMobileChapterIntoView() {
+  if (!mobileChapters?.offsetParent) return;
+  const active = mobileChapters.querySelector('a[aria-current="location"]');
+  if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 }
 function updateChapterPersistence() {
   chapterIndexSlot?.classList.toggle('is-persistent', desktopFits && scrollY > persistenceStart);
@@ -68,16 +73,12 @@ function setLocalProperty(element, name, value) {
 }
 function measureNavigation() {
   const mobile = innerWidth <= 800;
-  const row = mobileSummary.offsetHeight;
+  const row = mobileChapters.offsetHeight;
   const safeArea = parseFloat(getComputedStyle(mobileHeader).paddingTop) || 0;
-  // Stable closed-state budget: five links, row and breathing room, plus rule.
-  const tall = row * 7 + safeArea + 8 > innerHeight * .8;
+  // Stable budget: wordmark + one row of horizontal pills + progress rule.
+  const tall = row * 3 + safeArea + 8 > innerHeight * .5;
   mobileHeader.classList.toggle('is-tall', tall);
   mobileHeader.classList.add('chapters-ready');
-  // The overlay's intrinsic height never contributes to chapter/document geometry.
-  if (mobile && document.querySelector('#mobile-chapters').open) {
-    setLocalProperty(mobileHeader, '--menu-height', `${mobileNav.offsetHeight}px`);
-  }
   chapterIndexSlot.classList.remove('is-persistent');
   const navHeight = chapterNav.offsetHeight;
   const navWidth = chapterNav.getBoundingClientRect().width;
@@ -342,19 +343,7 @@ projectPermalinks.forEach((permalink) => {
   });
 });
 
-// Navigation state stays local; native anchors own scrolling, focus and history.
-const mobileChapters = document.querySelector('#mobile-chapters');
-mobileChapters?.addEventListener('click', event => {
-  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-  if (event.target.closest('a[href^="#"]')) mobileChapters.open = false;
-});
-mobileChapters?.addEventListener('toggle', () => scheduleUpdate({ measure: true }));
-document.addEventListener('keydown', event => {
-  if (event.key !== 'Escape' || !mobileChapters?.open) return;
-  const fromInside = mobileChapters.contains(event.target);
-  mobileChapters.open = false;
-  if (fromInside) mobileChapters.querySelector('summary').focus();
-});
+// Native anchors own scrolling, focus and history; the header pills scroll horizontally with the active chapter.
 
 window.addEventListener('scroll', scheduleUpdate, { passive: true });
 window.addEventListener('resize', () => scheduleUpdate({ measure: true }), { passive: true });
@@ -379,7 +368,7 @@ const contentObserver = new ResizeObserver(entries => {
   }
   if (changed) scheduleUpdate({ measure: true });
 });
-document.querySelectorAll('.project-copy, .project-object, .project-controls, .about-forme, .chapter-index, #mobile-chapters > summary, .hero-track, .introduction, #work, #outside, #about, #elsewhere').forEach(el => contentObserver.observe(el));
+document.querySelectorAll('.project-copy, .project-object, .project-controls, .about-forme, .chapter-index, #mobile-chapters, .hero-track, .introduction, #work, #outside, #about, #elsewhere').forEach(el => contentObserver.observe(el));
 
 root.classList.add('js');
 applyEnhancementState();
