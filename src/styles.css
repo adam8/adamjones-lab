@@ -379,9 +379,9 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 @media (max-width: 800px) {
   body { --mobile-row: calc(4rem + env(safe-area-inset-top, 0px)); }
   .site-header { position: relative; top: 0; display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: .25rem 1rem; min-height: 0; padding: env(safe-area-inset-top, 0px) var(--gutter) 0; border-bottom: 1px solid var(--green); background: var(--paper); }
-  .site-header > .wordmark { position: static; top: auto; left: auto; display: inline-flex; min-width: 44px; min-height: 3rem; align-items: center; }
+  .site-header > .wordmark { display: none; }
   .chapter-index-slot { display: none; }
-  #mobile-chapters { display: block; flex: 1 1 auto; min-width: 0; margin-left: auto; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; scrollbar-width: none; -ms-overflow-style: none; }
+  #mobile-chapters { display: block; flex: 1 1 auto; min-width: 0; margin-left: 0; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; scrollbar-width: none; -ms-overflow-style: none; }
   #mobile-chapters::-webkit-scrollbar { display: none; }
   .mobile-chapter-list { display: flex; gap: .35rem; margin: 0; padding: .25rem 0; list-style: none; }
   .mobile-chapter-list-item { flex: 0 0 auto; scroll-snap-align: start; }
@@ -392,7 +392,10 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .mobile-chapter-link[aria-current="location"],
   .mobile-chapter-link:hover,
   .mobile-chapter-link:focus { opacity: 1; font-weight: 900; background: var(--cream); }
-  .mobile-chapter-link:hover { text-decoration: underline; }
+  .mobile-chapter-link--home { font: 700 1.5rem/1 var(--serif); font-style: italic; letter-spacing: normal; text-transform: none; }
+  @media (hover: hover) {
+    .mobile-chapter-link:hover { text-decoration: underline; }
+  }
   .mobile-chapter-link:hover > [data-chapter-progress] { background: var(--green); }
   .mobile-chapter-link[aria-current="location"] > [data-chapter-progress] { height: 4px; background: var(--green); }
   .hero-track { --header-clearance: calc(var(--mobile-row) + 1px); }
