@@ -56,8 +56,11 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .chapter-index { display: flex; flex-wrap: wrap; max-width: 100%; align-items: center; gap: .35rem .75rem; border: 1px solid var(--green); padding: .35rem .75rem; border-radius: 9999px; background: var(--cream); color: var(--green); }
 .chapter-index-title { flex: 0 0 auto; }
 .chapter-index-list { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .15rem; margin: 0; padding: 0; list-style: none; }
-.chapter-index-item { position: relative; display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; gap: .35rem; padding: .35rem .45rem; font-weight: 400; text-decoration: none; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+.chapter-index-item { position: relative; display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; gap: .35rem; padding: .35rem .45rem; font-weight: 400; text-decoration: none; white-space: nowrap; opacity: .7; transition: opacity .2s ease, font-weight .2s ease; -webkit-tap-highlight-color: transparent; }
 .chapter-index-item > span { color: inherit; }
+.chapter-index-item[aria-current="location"],
+.chapter-index-item:is(a):hover,
+.chapter-index-item:is(a):focus { opacity: 1; }
 .chapter-index-item[aria-current="location"],
 .chapter-index-item[aria-current="location"] > span { font-weight: 900; }
 .chapter-index-item[aria-current="location"] [data-chapter-progress] { height: 5px; background: var(--green); }
@@ -106,8 +109,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .project-track { position: relative; }
 .project-stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 5vw, 6rem); padding-bottom: clamp(5rem, 10vw, 9rem); }
 .project-controls { display: none; flex-direction: column; align-self: start; border-top: 1px solid var(--green); }
-.project-controls button { display: grid; min-height: 4.5rem; grid-template-columns: 2.5rem 1fr; align-items: center; border: 0; border-bottom: 1px solid rgb(41 60 43 / 40%); background: transparent; color: var(--green); cursor: pointer; font-size: .85rem; font-weight: 750; text-align: left; }
-.project-controls button[aria-pressed="true"] { border-left: .45rem solid var(--green); padding-left: .75rem; box-shadow: inset .16rem 0 var(--coral); font-family: var(--serif); font-size: 1.1rem; font-style: italic; }
+.project-controls button { display: grid; min-height: 4.5rem; grid-template-columns: 2.5rem 1fr; align-items: center; border: 0; border-bottom: 1px solid rgb(41 60 43 / 40%); background: transparent; color: var(--green); cursor: pointer; font-size: .85rem; font-weight: 750; text-align: left; opacity: .85; transition: opacity .2s ease, background-color .2s ease; }
+.project-controls button[aria-pressed="true"] { opacity: 1; border-left: .45rem solid var(--green); padding-left: .75rem; box-shadow: inset .16rem 0 var(--coral); font-family: var(--serif); font-size: 1.1rem; font-style: italic; }
 .project-controls button span { font-family: var(--mono); font-size: .68rem; font-style: normal; }
 .project-panels { min-width: 0; container-type: inline-size; }
 .project-panel { display: grid; min-height: min(45rem, 78vh); grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(2rem, 5vw, 6rem); border-top: 1px solid var(--green); padding: clamp(2.5rem, 5vw, 5rem) 0; scroll-margin-block-start: 2rem; }
@@ -139,8 +142,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .js.motion-ok .project-stage { padding-top: 2rem; }
   .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-end; gap: .5rem; position: sticky; top: calc(var(--chapter-clearance, 0) - 11px); right: 0; z-index: 5; width: fit-content; margin-left: auto; padding: 0; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; border: none; border-radius: 9999px 0 0 9999px; background: var(--blue); }
   .js.motion-ok .project-controls::-webkit-scrollbar { display: none; }
-  .js.motion-ok .project-controls button { flex: 0 0 auto; display: inline-flex; align-items: center; gap: .35rem; min-height: 2.75rem; padding: .35rem .9rem; border: 0; border-radius: 999px; background: rgb(244 240 229 / 22%); font-size: .75rem; font-weight: 750; white-space: nowrap; }
-  .js.motion-ok .project-controls button[aria-pressed="true"] { background: var(--cream); font-family: var(--serif); font-size: .85rem; font-style: italic; box-shadow: none; padding-left: .9rem; }
+  .js.motion-ok .project-controls button { flex: 0 0 auto; display: inline-flex; align-items: center; gap: .35rem; min-height: 2.75rem; padding: .35rem .9rem; border: 0; border-radius: 999px; background: rgb(244 240 229 / 22%); font-size: .75rem; font-weight: 750; white-space: nowrap; opacity: .85; transition: opacity .2s ease, background-color .2s ease; }
+  .js.motion-ok .project-controls button[aria-pressed="true"] { opacity: 1; background: var(--cream); font-family: var(--serif); font-size: .85rem; font-style: italic; box-shadow: none; padding-left: .9rem; }
   .js.motion-ok .project-controls button span { font-size: .62rem; }
 }
 
@@ -384,8 +387,10 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .navigation-icon { display: block; fill: none; stroke: currentColor; stroke-width: 2; }
   #mobile-chapters nav { margin-inline: calc(-1 * var(--gutter)); border-top: 1px solid var(--green); padding: .75rem var(--gutter) 1rem; background: var(--cream); }
   .mobile-chapter-list { margin: 0; padding: 0; list-style: none; }
-  .mobile-chapter-list a { display: flex; min-width: 44px; min-height: 44px; align-items: center; gap: .75em; padding: .75rem .5rem; font: 400 .78rem/1.5 var(--mono); letter-spacing: .08em; text-decoration: none; }
-  .mobile-chapter-list a[aria-current="location"] { font-weight: 900; }
+  .mobile-chapter-list a { display: flex; min-width: 44px; min-height: 44px; align-items: center; gap: .75em; padding: .75rem .5rem; font: 400 .78rem/1.5 var(--mono); letter-spacing: .08em; text-decoration: none; opacity: .7; transition: opacity .2s ease, font-weight .2s ease; }
+  .mobile-chapter-list a[aria-current="location"],
+  .mobile-chapter-list a:hover,
+  .mobile-chapter-list a:focus { opacity: 1; font-weight: 900; }
   .mobile-chapter-list a:hover { text-decoration: underline; }
   .hero-track { --header-clearance: calc(var(--mobile-row) + 1px); }
   #introduction, #work, .outside#outside, #about, #elsewhere, #main-content { scroll-margin-block-start: calc(var(--mobile-row) + 1rem); }
