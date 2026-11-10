@@ -68,8 +68,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .chapter-index-item[aria-current="location"],
 .chapter-index-item[aria-current="location"] > span { font-weight: 900; }
 .chapter-index-item[aria-current="location"] [data-chapter-progress] { height: 6px; background: var(--green); }
-.chapter-index-item:is(a):hover, .chapter-index-item:is(a):active, .chapter-index-item:is(a):focus { text-decoration: underline; text-decoration-thickness: 2px; }
-.chapter-index-item:is(a):active, .chapter-index-item:is(a):focus { text-decoration: none; }
 #introduction, #work, #outside, #about, #elsewhere { scroll-margin-block-start: 6rem; }
 
 .chapter { position: relative; padding: clamp(5rem, 11vw, 11rem) var(--gutter); overflow: clip; }
