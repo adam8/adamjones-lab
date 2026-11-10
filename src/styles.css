@@ -140,7 +140,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 @media (min-width: 961px) and (max-width: 1099px) and (min-height: 641px) {
   .js.motion-ok .project-stage { padding-top: 2rem; }
-  .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-end; gap: .25rem; position: sticky; top: calc(var(--chapter-clearance, 0) - 11px); right: 0; z-index: 5; width: fit-content; margin-left: auto; padding: .35rem .5rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; border: none; border-radius: 9999px; background: var(--blue); }
+  .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-end; gap: .25rem; position: sticky; top: var(--chapter-clearance, 0); right: 0; z-index: 5; width: fit-content; margin-left: auto; padding: .35rem .5rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; border: none; border-radius: 9999px; background: var(--blue); }
   .js.motion-ok .project-controls::-webkit-scrollbar { display: none; }
   .js.motion-ok .project-controls button { flex: 0 0 auto; display: inline-flex; align-items: center; gap: .35rem; min-height: 2.75rem; padding: .35rem .9rem; border: 0; border-radius: 999px; background: rgb(244 240 229 / 22%); font-size: .75rem; font-weight: 750; white-space: nowrap; opacity: .85; transition: opacity .2s ease, background-color .2s ease; }
   .js.motion-ok .project-controls button[aria-pressed="true"] { opacity: 1; background: var(--cream); font-family: var(--serif); font-size: .85rem; font-style: italic; box-shadow: none; padding-left: .9rem; }
