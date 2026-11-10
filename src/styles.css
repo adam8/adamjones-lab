@@ -378,7 +378,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 #mobile-chapters { display: none; }
 @media (max-width: 800px) {
   body { --mobile-row: calc(4rem + env(safe-area-inset-top, 0px)); }
-  .site-header { position: relative; top: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .25rem 1rem; min-height: 0; padding: env(safe-area-inset-top, 0px) var(--gutter) 0; border-bottom: 1px solid var(--green); background: var(--paper); }
+  .site-header { position: relative; top: 0; display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: .25rem 1rem; min-height: 0; padding: env(safe-area-inset-top, 0px) var(--gutter) 0; border-bottom: 1px solid var(--green); background: var(--paper); }
   .site-header > .wordmark { position: static; top: auto; left: auto; display: inline-flex; min-width: 44px; min-height: 3rem; align-items: center; }
   .chapter-index-slot { display: none; }
   #mobile-chapters { display: block; flex: 1 1 auto; min-width: 0; margin-left: auto; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; scrollbar-width: none; -ms-overflow-style: none; }
