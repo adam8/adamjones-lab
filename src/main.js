@@ -63,7 +63,15 @@ function setCurrentChapter(key) {
 function scrollActiveMobileChapterIntoView() {
   if (!mobileChapters?.offsetParent) return;
   const active = mobileChapters.querySelector('a[aria-current="location"]');
-  if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  if (!active) return;
+  const container = mobileChapters;
+  const linkRect = active.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  const overflow = linkRect.left < containerRect.left || linkRect.right > containerRect.right;
+  if (overflow) {
+    const target = Math.max(0, active.offsetLeft - (container.clientWidth - active.clientWidth) / 2);
+    container.scrollTo({ left: target, behavior: 'smooth' });
+  }
 }
 function updateChapterPersistence() {
   chapterIndexSlot?.classList.toggle('is-persistent', desktopFits && scrollY > persistenceStart);
