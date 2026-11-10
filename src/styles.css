@@ -397,10 +397,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .mobile-chapter-link:hover,
   .mobile-chapter-link:focus { opacity: 1; font-weight: 900; background: var(--cream); }
   .mobile-chapter-link--home { font: 700 1.5rem/1 var(--serif); font-style: italic; letter-spacing: normal; text-transform: none; }
-  @media (hover: hover) {
-    .mobile-chapter-link:hover { text-decoration: underline; }
-  }
-  .mobile-chapter-link:hover > [data-chapter-progress] { background: var(--green); }
+  .mobile-chapter-link:hover > [data-chapter-progress],
+  .mobile-chapter-link:focus-visible > [data-chapter-progress] { background: var(--green); }
   .mobile-chapter-link[aria-current="location"] > [data-chapter-progress] { height: 4px; background: var(--green); }
   .hero-track { --header-clearance: calc(var(--mobile-row) + 1px); }
   #introduction, #work, .outside#outside, #about, #elsewhere, #main-content { scroll-margin-block-start: calc(var(--mobile-row) + 1rem); }
