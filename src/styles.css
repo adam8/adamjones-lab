@@ -381,11 +381,11 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .site-header { position: relative; top: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .25rem 1rem; min-height: 0; padding: env(safe-area-inset-top, 0px) var(--gutter) 0; border-bottom: 1px solid var(--green); background: var(--paper); }
   .site-header > .wordmark { position: static; top: auto; left: auto; display: inline-flex; min-width: 44px; min-height: 3rem; align-items: center; }
   .chapter-index-slot { display: none; }
-  #mobile-chapters { display: block; flex: 1 1 auto; min-width: 0; margin-left: auto; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
+  #mobile-chapters { display: block; flex: 1 1 auto; min-width: 0; margin-left: auto; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; scrollbar-width: none; -ms-overflow-style: none; }
   #mobile-chapters::-webkit-scrollbar { display: none; }
-  .mobile-chapter-list { display: flex; justify-content: flex-end; gap: .35rem; margin: 0; padding: .25rem 0; list-style: none; }
+  .mobile-chapter-list { display: flex; gap: .35rem; margin: 0; padding: .25rem 0; list-style: none; }
   .mobile-chapter-list-item { flex: 0 0 auto; scroll-snap-align: start; }
-  .mobile-chapter-link { display: flex; min-width: 44px; min-height: 44px; align-items: center; padding: .35rem .75rem; border-radius: 999px; background: rgb(244 240 229 / 55%); color: var(--green); font: 400 .78rem/1.5 var(--mono); letter-spacing: .08em; text-decoration: none; opacity: .9; transition: opacity .2s ease, font-weight .2s ease, background-color .25s ease; }
+  .mobile-chapter-link { display: flex; min-width: 44px; min-height: 44px; align-items: center; padding: .35rem .75rem; border-radius: 999px; background: rgb(244 240 229 / 55%); color: var(--green); font: 400 .78rem/1.5 var(--mono); letter-spacing: .08em; text-decoration: none; white-space: nowrap; opacity: .9; transition: opacity .2s ease, font-weight .2s ease, background-color .25s ease; }
   .mobile-chapter-link[aria-current="location"],
   .mobile-chapter-link:hover,
   .mobile-chapter-link:focus { opacity: 1; font-weight: 900; background: var(--cream); }
