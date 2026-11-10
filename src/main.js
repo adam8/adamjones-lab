@@ -98,7 +98,7 @@ function measureNavigation() {
     setLocalProperty(chapterNav, '--index-width', `${navWidth}px`);
   }
   persistenceStart = chapterIndexSlot.getBoundingClientRect().top + scrollY - 16;
-  const mobilePersistent = mobile && innerHeight >= 641 && !tall;
+  const mobilePersistent = mobile && !tall;
   const clearance = mobilePersistent ? row + safeArea + 8 + 16 : (!mobile && desktopFits ? navHeight + 32 : Math.min(96, innerHeight * .2));
   chapterTargets.forEach(({ element }) => setLocalProperty(element, '--chapter-clearance', `${clearance}px`));
   updateChapterPersistence();
