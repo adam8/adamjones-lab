@@ -73,6 +73,13 @@ function scrollActiveMobileChapterIntoView() {
     container.scrollTo({ left: target, behavior: 'smooth' });
   }
 }
+function updateMobileOverflowIndicator() {
+  if (!mobileChapters?.offsetParent) return;
+  const hasOverflow = mobileChapters.scrollWidth > mobileChapters.clientWidth + 1;
+  const atEnd = hasOverflow && mobileChapters.scrollLeft + mobileChapters.clientWidth >= mobileChapters.scrollWidth - 1;
+  mobileChapters.classList.toggle('has-overflow', hasOverflow);
+  mobileChapters.classList.toggle('at-end', atEnd);
+}
 function updateChapterPersistence() {
   chapterIndexSlot?.classList.toggle('is-persistent', desktopFits && scrollY > persistenceStart);
 }
@@ -102,6 +109,7 @@ function measureNavigation() {
   const clearance = mobilePersistent ? row + safeArea + 8 + 16 : (!mobile && desktopFits ? navHeight + 32 : Math.min(96, innerHeight * .2));
   chapterTargets.forEach(({ element }) => setLocalProperty(element, '--chapter-clearance', `${clearance}px`));
   updateChapterPersistence();
+  updateMobileOverflowIndicator();
 }
 function paintChapterProgress(y) {
   const terminal = y >= geometry.documentRange;
@@ -355,6 +363,7 @@ projectPermalinks.forEach((permalink) => {
 
 window.addEventListener('scroll', scheduleUpdate, { passive: true });
 window.addEventListener('resize', () => scheduleUpdate({ measure: true }), { passive: true });
+mobileChapters?.addEventListener('scroll', updateMobileOverflowIndicator, { passive: true });
 projectTrack?.addEventListener('focusout', () => scheduleUpdate({ measure: true }));
 window.addEventListener('hashchange', queueCurrentProjectFragment);
 window.addEventListener('popstate', queueCurrentProjectFragment);
