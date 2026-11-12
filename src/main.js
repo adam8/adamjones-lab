@@ -106,6 +106,10 @@ function measureNavigation() {
   }
   persistenceStart = chapterIndexSlot.getBoundingClientRect().top + scrollY - 16;
   const mobilePersistent = mobile && !tall;
+  const mobileHeaderHeight = mobilePersistent ? mobileHeader.offsetHeight : 0;
+  setLocalProperty(root, '--mobile-sticky-header-height', `${mobileHeaderHeight}px`);
+  const mobileProjectControls = document.querySelector('.project-controls');
+  setLocalProperty(root, '--mobile-project-controls-height', `${mobile && mobileProjectControls ? mobileProjectControls.offsetHeight : 0}px`);
   const clearance = mobilePersistent ? row + safeArea + 8 + 16 : (!mobile && desktopFits ? navHeight + 32 : Math.min(96, innerHeight * .2));
   chapterTargets.forEach(({ element }) => setLocalProperty(element, '--chapter-clearance', `${clearance}px`));
   updateChapterPersistence();

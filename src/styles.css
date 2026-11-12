@@ -406,6 +406,14 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 
 @media (max-width: 800px) {
   .site-header.chapters-ready:not(.is-tall) { position: -webkit-sticky; position: sticky; top: 0; }
+  /* Keep the compact Work selector in flow without JS; enhanced controls
+     stick below the measured chapter header and end with the Work section. */
+  .js .project-controls { display: flex; flex-direction: row; gap: .2rem; position: sticky; top: var(--mobile-sticky-header-height, 0px); z-index: 5; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; border: 0; padding: .2rem; background: var(--blue); }
+  .js .project-controls::-webkit-scrollbar { display: none; }
+  .js .project-controls button { display: inline-flex; flex: 0 0 auto; align-items: center; gap: .3rem; min-height: 44px; padding: .2rem .45rem; border: 0; border-radius: 7px; background: transparent; font-size: .75rem; font-weight: 400; white-space: nowrap; }
+  .js .project-controls button[aria-pressed="true"] { padding-left: .45rem; border: 0; box-shadow: none; background: var(--cream); font-family: inherit; font-size: .75rem; font-style: normal; font-weight: 900; }
+  .js .project-controls button span { font-size: .62rem; }
+  .js .project-panel { scroll-margin-block-start: calc(var(--mobile-sticky-header-height, 0px) + var(--mobile-project-controls-height, 0px) + 1rem); }
 }
 
 /* Standalone original static illustration. No transitions, motion or new controls. */
