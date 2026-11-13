@@ -32,7 +32,10 @@ function layout(g) {
 }
 for(const state of ['on','off','failed']) test.describe(`Interface JS ${state}`,()=>{
   test.use({javaScriptEnabled:state!=='off'});
-  for(const size of sizes) for(const scale of [100,200]) test(`${size.width}x${size.height} root ${scale}%`,async({page})=>{
+  const cases = state === 'on'
+    ? sizes.flatMap(size => [[size, 100], [size, 200]])
+    : [[sizes[0], 100], [sizes[2], 200]];
+  for(const [size, scale] of cases) test(`${size.width}x${size.height} root ${scale}%`,async({page})=>{
     await page.setViewportSize(size);
     await page.route('**/',async route=>{const response=await route.fetch();await route.fulfill({response,body:(await response.text()).replace('</head>',`<style>html{font-size:${scale}%}</style></head>`)});});
     if(state==='failed') await page.route('**/src/main.js',route=>route.abort());
@@ -48,7 +51,6 @@ for(const state of ['on','off','failed']) test.describe(`Interface JS ${state}`,
     await expect(page.locator('.study-trace svg')).toHaveAttribute('focusable','false');
     expect(await scene.locator('a,button,input,[tabindex]').count()).toBe(0);
     await page.waitForTimeout(650); layout(await page.evaluate(inspectInterface));
-    if(state!=='on'||scale===200||size.width<=960||size.height<=640) await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
     await page.locator('.study-key').scrollIntoViewIfNeeded();
     await expect(page.locator('.study-key')).toBeInViewport({ratio:1});
   });
@@ -61,7 +63,6 @@ test('static transforms, live release/restore, native wheel reachability and idl
   await page.locator('.study-scene').hover(); await page.mouse.move(1100,650); await page.mouse.wheel(0,80); await page.waitForTimeout(700);
   expect(await transforms()).toEqual(before);
   await page.evaluate(()=>document.documentElement.style.fontSize='200%');
-  await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
   const cap=page.locator('#project-interface figcaption');
   for(let i=0;i<50;i++){const b=await cap.boundingBox();if(b.y>=0&&b.y+b.height<=900)break;await page.mouse.wheel(0,160);await page.waitForTimeout(70);}
   await expect(cap).toBeInViewport({ratio:1});

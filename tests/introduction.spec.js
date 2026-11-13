@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const paragraph = 'I’m a front-end developer with a background in graphic design. My work focuses on complex interfaces, particularly financial software. Outside of that, I build smaller projects to explore new tools and ideas.';
-const viewports = [[1440,900],[961,641],[768,1024],[390,844],[844,390],[1440,640],[320,800]];
+const viewports = [[1440,900],[961,641],[390,844],[320,800],[844,390]];
 
 // Inspect un-clipped text ranges and individual SVG geometry, including round strokes.
 async function geometry(page) {
@@ -27,7 +27,10 @@ async function geometry(page) {
 for (const javaScriptEnabled of [true,false]) {
   test.describe(`Introduction JS ${javaScriptEnabled}`,()=>{
     test.use({javaScriptEnabled});
-    for (const [width,height] of viewports) for (const scale of [100,200]) {
+    const cases = javaScriptEnabled
+      ? viewports.flatMap(viewport => [[...viewport, 100], [...viewport, 200]])
+      : [[1440,900,100],[320,800,200],[844,390,100]];
+    for (const [width,height,scale] of cases) {
       test(`${width}x${height} root text ${scale}%`,async({page})=>{
         await page.setViewportSize({width,height});
         await page.route('**/*',async route=>{

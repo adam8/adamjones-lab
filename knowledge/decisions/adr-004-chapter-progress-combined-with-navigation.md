@@ -8,7 +8,7 @@ The site originally had a top-of-page reading progress bar and a separate chapte
 
 ## Decision
 
-Replace the single document-level progress bar with **per-chapter progress tracks** positioned below each chapter link in both the desktop chapter index and the mobile disclosure navigation.
+Replace the single document-level progress bar with **per-chapter progress tracks** positioned below each chapter link in both the desktop chapter index and the horizontal mobile chapter strip.
 
 ## Consequences
 

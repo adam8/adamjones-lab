@@ -16,7 +16,7 @@ Adam Island Workshop is a static single-page site built with **Vite** as a multi
 | Runtime markup | Static HTML | Essential copy and links live in `index.html`. |
 | Styling | Vanilla CSS | `src/styles.css`; no CSS-in-JS or utility framework. |
 | Scripting | Vanilla ES modules | `src/main.js` + `src/about-typesetter.js`. |
-| Graphics | Inline SVG | Lightweight studies, not screenshots or live data. [README.md: Implementation notes](../../README.md) |
+| Graphics | Inline SVG, CSS, local WebP | Lightweight studies, not screenshots or live data. [README.md: Implementation notes](../../README.md) |
 | Testing | Playwright | Browser tests with and without JavaScript across multiple viewports. |
 | Deployment target | Cloudflare Workers static assets | `wrangler.jsonc` packages `dist/`; dry-run only in this repo. [README.md: Cloudflare static assets](../../README.md) |
 
@@ -37,7 +37,7 @@ design/                 # Creative memory and decisions (local-only)
 
 - **No backend.** The Worker is named `adamjones-lab` but has no routes, custom hostnames, or backend code. [README.md: Cloudflare static assets](../../README.md)
 - **No runtime service.** Fonts are not loaded remotely; everything is self-contained.
-- **No automatic merge or deploy.** Publishing, DNS, custom domains, and production deployment require Adam's explicit approval. [AGENTS.md](../../AGENTS.md)
+- **No direct deployment command.** Adam merges manually; approved Cloudflare Git builds may deploy merged `main`. DNS and production configuration remain outside repository tasks. [AGENTS.md](../../AGENTS.md)
 
 ## Validation commands
 
@@ -54,8 +54,8 @@ design/                 # Creative memory and decisions (local-only)
 - `story.spec.js` — native scrolling and chapter semantics.
 - `chapter-index.spec.js` + `chapter-progress.spec.js` + `chapter-progress-layout.spec.js` — chapter navigation and progress meters.
 - `project-flow.spec.js` — project selector keyboard and scroll behavior.
-- `about-mobile.spec.js` + `about.spec.js` + `about-spacing.spec.js` — About lockup and Pretext behavior.
-- `mobile-chapters.spec.js` — disclosure navigation behavior.
+- `about-mobile.spec.js` + `about.spec.js` — About lockup, Pretext behavior, and failure fallbacks.
+- `mobile-chapters.spec.js` — horizontal mobile chapter navigation, native anchors, and no-JS behavior.
 
 ## Hypotheses
 

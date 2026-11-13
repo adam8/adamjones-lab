@@ -11,7 +11,7 @@ Chapter navigation and progress were combined in F-026. A horizontal track now s
 ## What changed in F-026
 
 - Removed the single top-of-page reading progress bar.
-- Added a small horizontal progress track under each desktop chapter link and inside the mobile disclosure.
+- Added a small horizontal progress track under each desktop chapter link and each mobile chapter-strip link.
 - Tracks are hidden until the first valid initialized paint and remain hidden if JavaScript fails.
 
 ## Behavior rules

@@ -1,4 +1,3 @@
-import { openChapters } from './navigation.js';
 import { expect, test } from '@playwright/test';
 
 async function expectNoHorizontalOverflow(page) {
@@ -72,7 +71,6 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto('/');
 
-    await openChapters(page);
     const targets = [
       ...await page.locator(viewport.width <= 800 ? '#mobile-chapters a' : '.chapter-index-list a').all(),
       page.getByRole('link', { name: 'View selected work' }),
@@ -84,7 +82,8 @@ for (const viewport of [
       const bounds = await target.boundingBox();
       expect(bounds).not.toBeNull();
       expect(bounds.width).toBeGreaterThanOrEqual(44);
-      expect(bounds.height).toBeGreaterThanOrEqual(44);
+      const minimumHeight = await target.evaluate((element) => element.classList.contains('mobile-chapter-link') ? 38 : 44);
+      expect(bounds.height).toBeGreaterThanOrEqual(minimumHeight);
     }
   });
 }

@@ -18,20 +18,18 @@ A lightweight, filesystem-based wiki for verified project knowledge. Read this i
 
 ## Wiki pages
 
-**Freshness note:** Navigation changed after several pages were written. See the [cleanup handoff](wiki/cleanup-handoff.md) and check current source before relying on disclosure-era descriptions.
-
 | ID | Page | Status | Tags | Summary |
 |----|------|--------|------|---------|
 | WIKI-1 | [architecture](wiki/architecture.md) | confirmed | build, vite, testing, cloudflare | Tech stack, file layout, build/test/deploy boundaries. |
 | WIKI-2 | [scroll-scheduler](wiki/scroll-scheduler.md) | confirmed | javascript, performance, main.js | Single passive-scroll / `requestAnimationFrame` scheduler for hero transforms, chapter progress, and project selection. |
 | WIKI-3 | [chapter-progress](wiki/chapter-progress.md) | confirmed | navigation, f-026, accessibility | Per-chapter progress tracks, cached native-anchor arrivals, current-link sync, no-JS fallback. |
-| WIKI-4 | [responsive-enhancement](wiki/responsive-enhancement.md) | confirmed | css, layout, accessibility | Viewport thresholds, disclosure navigation, content-fit observation, graceful degradation. |
+| WIKI-4 | [responsive-enhancement](wiki/responsive-enhancement.md) | confirmed | css, layout, accessibility | Viewport thresholds, mobile chapter strip, project controls, graceful degradation. |
 | WIKI-5 | [factory-workflow](wiki/factory-workflow.md) | confirmed | process, git, design-review | `factory/f-NNN-*` branch lifecycle, human merge gate, Greta/Rook design review. |
 | WIKI-6 | [testing-strategy](wiki/testing-strategy.md) | confirmed | testing, playwright, ci | Playwright config, JS-on/JS-off matrix, viewport sizes, review capture workflow. |
 | WIKI-7 | [design-principles](wiki/design-principles.md) | confirmed | design, taste, aesthetics | Distilled creative principles from `design/TASTE.md` and approved decisions. |
 | WIKI-8 | [visual-direction](wiki/visual-direction.md) | confirmed | design, illustration | Diorama, floating island, drawing-to-object, typographic Elsewhere, typesetter experiments. |
 | WIKI-9 | [local-preview](wiki/local-preview.md) | confirmed | tooling, ipad | How to preview the Markdown wiki on an iPad via a Pi-hosted server. |
-| WIKI-10 | [cleanup-handoff](wiki/cleanup-handoff.md) | draft | handoff, navigation, testing, factory | Current-state starting point and known follow-ups for a fresh cleanup session. |
+| WIKI-10 | [cleanup status](wiki/cleanup-handoff.md) | draft | cleanup, navigation, testing, factory | F-049 candidate scope, validation, and remaining factory design-review follow-up. |
 
 ---
 
@@ -43,7 +41,7 @@ A lightweight, filesystem-based wiki for verified project knowledge. Read this i
 | ADR-2 | [Native scroll only](decisions/adr-002-native-scroll-only.md) | confirmed | interaction, accessibility | Document follows native scrolling; no scroll hijacking. |
 | ADR-3 | [JavaScript is enhancement, not requirement](decisions/adr-003-javascript-enhancement-not-requirement.md) | confirmed | progressive-enhancement, accessibility | Essential copy lives in `index.html`; JS adds sticky storytelling and progress. |
 | ADR-4 | [Combine chapter progress with navigation](decisions/adr-004-chapter-progress-combined-with-navigation.md) | confirmed | navigation, f-026 | Replace document-level reading bar with per-chapter tracks under chapter links. |
-| ADR-5 | [No prefers-reduced-motion mode](decisions/adr-005-no-prefers-reduced-motion.md) | confirmed | accessibility, motion | Adam explicitly removed reduced-motion support; other safeguards remain. |
+| ADR-5 | [No site-wide reduced-motion mode](decisions/adr-005-no-prefers-reduced-motion.md) | confirmed | accessibility, motion | Keep bounded hero motion; make native anchor scrolling instant for reduced motion and short viewports. |
 | ADR-6 | [Mandatory Greta × Rook design review](decisions/adr-006-design-review-gating.md) | confirmed | process, design-review | Independent critics inspect screenshots before Adam decides. |
 | ADR-7 | [Explicit human creative approval](decisions/adr-007-explicit-human-creative-approval.md) | confirmed | process, governance | Only Adam approves creative changes; reviews are advisory. |
 | ADR-8 | [Surreal visuals, plainspoken writing](decisions/adr-008-surreal-visuals-plainspoken-writing.md) | confirmed | design, copy, aesthetics | Core creative voice: imaginative visuals with factual, plain text. |

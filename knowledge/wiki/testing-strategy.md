@@ -13,8 +13,8 @@ Browser tests run with Playwright against Chromium. The suite exercises the site
 | Setting | Value |
 |---------|-------|
 | Browser | Chromium only (Desktop Chrome device) |
-| Base URL | `http://127.0.0.1:4173` |
-| Server | `npm run dev -- --host 127.0.0.1 --port 4173 --strictPort` |
+| Base URL | A free loopback port reserved by `scripts/run-browser-tests.js` |
+| Server | Vite on that reserved `127.0.0.1` port with `--strictPort` |
 | Parallel | Yes (`fullyParallel: true`) |
 | Retries | 0 locally, 2 in CI |
 | Trace | On first retry |
@@ -31,7 +31,7 @@ Common sizes across specs:
 
 ## JavaScript-off coverage
 
-Many specs loop over `[true, false]` for `javaScriptEnabled` to verify that essential layout and links still work without JS.
+Representative specs run with JavaScript disabled or the entry module blocked to verify that essential layout and links still work without enhancement.
 
 ## What gets validated
 
@@ -46,7 +46,7 @@ Many specs loop over `[true, false]` for `javaScriptEnabled` to verify that esse
 
 ## Review captures
 
-Many factory tasks include a `docs/review/f-NNN/capture.mjs` script that produces desktop/mobile/no-JS screenshots and a `manifest.json` with hashes. These are used by Greta/Rook design review.
+Historical task captures live under `docs/review/`. Current Greta/Rook evidence is produced by the separate factory design-review pipeline and retained in local `design/` memory.
 
 ## Hypotheses
 
