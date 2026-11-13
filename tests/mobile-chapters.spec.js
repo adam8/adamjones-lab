@@ -56,6 +56,10 @@ test('active chapters remain visible in the horizontal snap strip', async ({ pag
 test('keyboard activation uses native anchors and keeps focus visible', async ({ page }) => {
   await page.goto('/#outside');
   await expect(page.locator('#outside-title')).toBeInViewport();
+  await expect.poll(() => page.locator('#outside').evaluate((element) => {
+    const margin = parseFloat(getComputedStyle(element).scrollMarginBlockStart);
+    return Math.abs(element.getBoundingClientRect().top - margin);
+  })).toBeLessThan(2);
   const about = page.locator('[data-mobile-chapter="about"]');
   await about.focus();
   await expect(about).toBeFocused();

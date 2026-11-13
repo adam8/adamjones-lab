@@ -17,6 +17,7 @@ The visual language evolved through a sequence of approved experiments: a floati
 | F-018 | Typographic Elsewhere footer | Choice **E** (Keep) at 2026-11-04 | Merged in [990864060...](https://github.com/adam8/adamjones-lab/commit/990864060157cea6af641e2536ad8f0e6651768e), with taller desktop finale tradeoff. [F-018 decision](../../design/DECISIONS.md) |
 | F-019 | Typesetter lockup for About | Choice **D** (Discard) at 2024-11-04 | Rejected due to enlarged-narrow readability regression. [F-019 decision](../../design/DECISIONS.md) |
 | F-020 | Pretext About lockup | Choice **B** (Rook spacing) at 2026-11-05, then accepted | Merged in [725f32211...](https://github.com/adam8/adamjones-lab/commit/725f3221194346581151b0688f2306b464d98bb2). [F-020 decision](../../design/DECISIONS.md) |
+| F-050 | Professional sketch accents | Candidate awaiting evidence review | Adam approved restrained handwritten labels and static uneven rules while protecting editorial headings, body copy, layout, and interaction. The evidence gate is currently blocked by critic-provider authentication, not waived. [F-050 direction](../../design/DECISIONS.md) |
 
 ## Rejected experiments are preserved
 
