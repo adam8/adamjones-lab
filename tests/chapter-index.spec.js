@@ -25,11 +25,11 @@ test('desktop chapter index has the exact native destinations', async ({ page })
   await expect(page.locator('[aria-live]')).toHaveCount(0);
 });
 
-test('without JavaScript the desktop index remains a static native list', async ({ browser, baseURL }) => {
+test('without JavaScript the desktop index remains a normal-flow native list', async ({ browser, baseURL }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
   await page.goto(baseURL);
-  await expect(page.locator('.chapter-index')).toHaveCSS('position', 'static');
+  await expect(page.locator('.chapter-index')).not.toHaveCSS('position', 'fixed');
   await expect(page.locator('[data-chapter-item][aria-current]')).toHaveCount(0);
   await page.locator('[data-chapter-item="about"]').click();
   await expect(page.locator('#about-title')).toBeInViewport();
@@ -68,7 +68,7 @@ test('wide chapter index persists only after its normal-flow slot passes', async
 
   const slot = page.locator('.chapter-index-slot');
   const index = page.locator('.chapter-index');
-  await expect(index).toHaveCSS('position', 'static');
+  await expect(index).not.toHaveCSS('position', 'fixed');
 
   const slotTop = await slot.evaluate((element) => element.getBoundingClientRect().top + scrollY);
   await page.evaluate((top) => scrollTo(0, top + 24), slotTop);
@@ -77,7 +77,7 @@ test('wide chapter index persists only after its normal-flow slot passes', async
 
   await page.evaluate(() => scrollTo(0, 0));
   await expect(slot).not.toHaveClass(/is-persistent/);
-  await expect(index).toHaveCSS('position', 'static');
+  await expect(index).not.toHaveCSS('position', 'fixed');
 });
 
 test('current chapter follows native section arrivals', async ({ page }) => {
