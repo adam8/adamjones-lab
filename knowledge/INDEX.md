@@ -18,6 +18,8 @@ A lightweight, filesystem-based wiki for verified project knowledge. Read this i
 
 ## Wiki pages
 
+**Freshness note:** Navigation changed after several pages were written. See the [cleanup handoff](wiki/cleanup-handoff.md) and check current source before relying on disclosure-era descriptions.
+
 | ID | Page | Status | Tags | Summary |
 |----|------|--------|------|---------|
 | WIKI-1 | [architecture](wiki/architecture.md) | confirmed | build, vite, testing, cloudflare | Tech stack, file layout, build/test/deploy boundaries. |
@@ -29,6 +31,7 @@ A lightweight, filesystem-based wiki for verified project knowledge. Read this i
 | WIKI-7 | [design-principles](wiki/design-principles.md) | confirmed | design, taste, aesthetics | Distilled creative principles from `design/TASTE.md` and approved decisions. |
 | WIKI-8 | [visual-direction](wiki/visual-direction.md) | confirmed | design, illustration | Diorama, floating island, drawing-to-object, typographic Elsewhere, typesetter experiments. |
 | WIKI-9 | [local-preview](wiki/local-preview.md) | confirmed | tooling, ipad | How to preview the Markdown wiki on an iPad via a Pi-hosted server. |
+| WIKI-10 | [cleanup-handoff](wiki/cleanup-handoff.md) | draft | handoff, navigation, testing, factory | Current-state starting point and known follow-ups for a fresh cleanup session. |
 
 ---
 
