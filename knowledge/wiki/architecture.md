@@ -16,7 +16,7 @@ Adam Island Workshop is a static single-page site built with **Vite** as a multi
 | Runtime markup | Static HTML | Essential copy and links live in `index.html`. |
 | Styling | Vanilla CSS | `src/styles.css`; no CSS-in-JS or utility framework. |
 | Scripting | Vanilla ES modules | `src/main.js` + `src/about-typesetter.js`. |
-| Graphics and accent type | Inline SVG, CSS, local WebP/WOFF2 | Lightweight studies, a fixed sketch rule, and a self-hosted hand-drawn label face; no screenshots, live data, or remote font request. [README.md: Implementation notes](../../README.md) |
+| Graphics and accent type | Inline SVG, CSS, local WebP/TTF | Lightweight studies, a fixed sketch rule, and a self-hosted technical-drawing label face; no screenshots, live data, or remote font request. [README.md: Implementation notes](../../README.md) |
 | Testing | Playwright | Browser tests with and without JavaScript across multiple viewports. |
 | Deployment target | Cloudflare Workers static assets | `wrangler.jsonc` packages `dist/`; dry-run only in this repo. [README.md: Cloudflare static assets](../../README.md) |
 

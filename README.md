@@ -43,7 +43,7 @@ The browser suite checks the core story with and without JavaScript, chapter-ind
 - `src/main.js` uses one passive-scroll/requestAnimationFrame scheduler for chapter progress, hero transforms, and active-project state. Chapter progress and current links share cached native-anchor arrivals. Scroll-only updates do not remeasure chapter boundaries; viewport, font, and observed content-size changes invalidate geometry. No frames are requested while idle.
 - Narrow and short layouts keep the hero and projects in normal document flow. Fragments, selectors, and history do not relocate focus automatically.
 - Visuals use inline SVG, a CSS-composed interface study, one local WebP illustration, and a fixed sketch-rule SVG; there are no product screenshots or live data.
-- Hand-drawn accents use a self-hosted Shantell Sans Medium WOFF2 for short labels and the wordmark. Long-form copy and large editorial headings retain the established typefaces. The font is licensed under the SIL Open Font License 1.1 in `public/fonts/OFL-Shantell-Sans.txt`; no font is requested from a remote service.
+- Drafted accents use a self-hosted Routed Gothic font for short labels and navigation. The `aj.` wordmark, long-form copy, and large editorial headings retain the established typefaces. Routed Gothic is licensed under the SIL Open Font License 1.1 in `public/fonts/OFL-Routed-Gothic.md`; no font is requested from a remote service.
 
 ## Cloudflare static assets
 
