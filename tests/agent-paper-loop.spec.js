@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
-import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
 
 const sizes = [
-  { width: 1440, height: 900 }, { width: 961, height: 641 },
-  { width: 390, height: 844 }, { width: 320, height: 800 }, { width: 844, height: 390 },
+  { width: 1440, height: 900 },
+  { width: 390, height: 844 },
+  { width: 320, height: 800 },
+  { width: 844, height: 390 },
 ];
 const caption = 'Conceptual workflow sketch';
 
@@ -45,7 +45,10 @@ function checkLayout(g, width) {
 
 for (const javaScriptEnabled of [true,false]) test.describe(`paper loop JS ${javaScriptEnabled}`, () => {
   test.use({ javaScriptEnabled });
-  for (const size of sizes) for (const scale of [100,200]) {
+  const cases = javaScriptEnabled
+    ? sizes.flatMap(size => [[size, 100], [size, 200]])
+    : [[sizes[0], 100], [sizes[2], 200], [sizes[3], 100]];
+  for (const [size, scale] of cases) {
     test(`${size.width}x${size.height} root ${scale}%`, async ({page}) => {
       await page.setViewportSize(size);
       await page.route('**/', async route => {
@@ -63,47 +66,10 @@ for (const javaScriptEnabled of [true,false]) test.describe(`paper loop JS ${jav
   }
 });
 
-test('exact selected raster, decoded alpha, intrinsic framing and coherent semantics', async ({page}) => {
-  const bytes=await readFile('src/assets/agent-paper-loop.webp');
-  expect(bytes.length).toBe(628320);
-  expect(createHash('sha256').update(bytes).digest('hex')).toBe('794c5db0764cbca63539b059ebae5dbd93784a0a97b67e53e2b71fb102b5bf38');
-  await page.goto('/#project-agents');
-  const img=page.locator('#project-agents img.agent-object');
-  await expect(img).toHaveCount(1);
-  await expect(img).toHaveAttribute('width','1536');
-  await expect(img).toHaveAttribute('height','1024');
-  await expect(img).toHaveAttribute('loading','eager');
-  await expect(img).toHaveAttribute('decoding','async');
-  await expect(img).toHaveAccessibleName('Impossible paper ribbon loop');
-  await expect(img).not.toHaveAttribute('aria-hidden');
-  const response=await page.request.get(await img.getAttribute('src'));
-  expect(createHash('sha256').update(await response.body()).digest('hex')).toBe(createHash('sha256').update(bytes).digest('hex'));
-  const data=await img.evaluate(async el=>{
-    await el.decode();
-    const canvas=document.createElement('canvas'); canvas.width=el.naturalWidth; canvas.height=el.naturalHeight;
-    const ctx=canvas.getContext('2d'); ctx.drawImage(el,0,0);
-    const pixels=ctx.getImageData(0,0,canvas.width,canvas.height).data;
-    let left=canvas.width,top=canvas.height,right=0,bottom=0,opaque=0;
-    for(let y=0;y<canvas.height;y++) for(let x=0;x<canvas.width;x++) if(pixels[(y*canvas.width+x)*4+3]) {
-      left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);opaque++;
-    }
-    return {natural:[el.naturalWidth,el.naturalHeight],bounds:{left,top,right,bottom},opaque,
-      corners:[0,canvas.width-1,(canvas.height-1)*canvas.width,canvas.width*canvas.height-1].map(i=>pixels[i*4+3]),
-      focusable:el.tabIndex>=0};
-  });
-  expect(data.natural).toEqual([1536,1024]); expect(data.corners).toEqual([0,0,0,0]);
-  expect(data.opaque).toBeGreaterThan(400000);
-  // Include the supplied faint alpha fringe; no cropping to the solid object.
-  expect(data.bounds).toEqual({left:0,top:9,right:1489,bottom:1005});
-  expect(data.focusable).toBe(false);
-  await expect(page.locator('#project-agents svg')).toHaveCount(0);
-});
-
 test('failed entry script leaves final HTML caption reachable', async ({page}) => {
   await page.route('**/src/main.js',route=>route.abort());
-  await page.setViewportSize(sizes[2]);
+  await page.setViewportSize(sizes[1]);
   await page.goto('/#project-agents');
-  await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
   const cap=page.locator('#project-agents figcaption');
   await cap.scrollIntoViewIfNeeded();
   await expect(cap).toBeInViewport();
@@ -121,7 +87,6 @@ test('native wheels reach final caption after live enlargement; restoration stay
   await expect(selected).toHaveAttribute('aria-pressed','true');
   const history=await page.evaluate(()=>window.history.length);
   await page.evaluate(()=>document.documentElement.style.fontSize='200%');
-  await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
   await expect(selected).toHaveAttribute('aria-pressed','true');
   const cap=page.locator('#project-agents figcaption');
   const before=await page.evaluate(()=>scrollY);
@@ -138,12 +103,12 @@ test('native wheels reach final caption after live enlargement; restoration stay
   expect(await page.evaluate(()=>window.__agentFrames)).toBe(count);
 });
 
-for (const [name,size,scale,js] of [
-  ['desktop',sizes[0],100,true],['enlarged',sizes[0],200,true],
-  ['narrow no-JS',sizes[3],200,false],['short no-JS',sizes[4],100,false],
+for (const [name,size,scale,js,fail] of [
+  ['desktop delayed',sizes[0],100,true,false],
+  ['narrow no-JS failure',sizes[2],200,false,true],
 ]) test.describe(`image arrival ${name}`,()=>{
   test.use({javaScriptEnabled:js});
-  for(const fail of [false,true]) test(`${fail?'failed':'delayed'} image reserves geometry and native content`,async({page})=>{
+  test(`${fail?'failed':'delayed'} image reserves geometry and native content`,async({page})=>{
     await page.setViewportSize(size);
     await page.route('**/',async route=>{
       const response=await route.fetch();

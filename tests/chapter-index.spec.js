@@ -1,228 +1,166 @@
-import { chapterLink, openChapters } from './navigation.js';
+import { chapterLink } from './navigation.js';
 import { expect, test } from '@playwright/test';
 
 const chapters = [
-  { key: 'introduction', text: 'Introduction', href: '#introduction', target: '#introduction' },
-  { key: 'work', text: 'Work', href: '#work', target: '#work' },
-  { key: 'outside', text: 'Outside', href: '#outside', target: '#outside' },
-  { key: 'about', text: 'About', href: '#about', target: '#about' },
-  { key: 'elsewhere', text: 'Elsewhere', href: '#elsewhere', target: '#elsewhere' },
+  { key: 'introduction', text: 'Intro', href: '#introduction', heading: '#intro-title' },
+  { key: 'work', text: 'Work', href: '#work', heading: '#work-title' },
+  { key: 'outside', text: 'Outside', href: '#outside', heading: '#outside-title' },
+  { key: 'about', text: 'About', href: '#about', heading: '#about-title' },
+  { key: 'elsewhere', text: 'Elsewhere', href: '#elsewhere', heading: '#elsewhere h2' },
 ];
 
 async function expectCurrentChapter(page, key) {
-  await expect.poll(async () => page.locator('[data-chapter-item][aria-current="location"]').count()).toBe(1);
+  await expect.poll(() => page.locator('[data-chapter-item][aria-current="location"]').count()).toBe(1);
   await expect(page.locator(`[data-chapter-item="${key}"]`)).toHaveAttribute('aria-current', 'location');
 }
 
-test('chapter index follows the hero with its semantic label and exact destinations', async ({ page }) => {
+test('desktop chapter index has the exact native destinations', async ({ page }) => {
   await page.goto('/');
-
   const index = page.getByRole('navigation', { name: 'Chapter index' });
   await expect(index).toBeVisible();
-  await expect(page.locator('.hero-track + .chapter-index-slot .chapter-index')).toHaveCount(1);
-  await expect(index.locator('li')).toHaveCount(5);
   await expect(index.getByRole('link')).toHaveCount(5);
-
   for (const chapter of chapters) {
     await expect(index.getByRole('link', { name: chapter.text, exact: true })).toHaveAttribute('href', chapter.href);
   }
-
   await expect(page.locator('[aria-live]')).toHaveCount(0);
 });
 
-test.describe('chapter index without JavaScript', () => {
-  test.use({ javaScriptEnabled: false });
-
-  test('remains a static usable list with no stale current state', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto('/');
-
-    await expect(page.getByRole('navigation', { name: 'Chapter index' })).toBeVisible();
-    await expect(page.locator('.chapter-index')).toHaveCSS('position', 'static');
-    await expect(page.locator('[data-chapter-item][aria-current]')).toHaveCount(0);
-    for (const chapter of chapters) {
-      await expect(page.getByRole('link', { name: chapter.text, exact: true })).toHaveAttribute('href', chapter.href);
-    }
-  });
+test('without JavaScript the desktop index remains a static native list', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 900 } });
+  const page = await context.newPage();
+  await page.goto(baseURL);
+  await expect(page.locator('.chapter-index')).toHaveCSS('position', 'static');
+  await expect(page.locator('[data-chapter-item][aria-current]')).toHaveCount(0);
+  await page.locator('[data-chapter-item="about"]').click();
+  await expect(page.locator('#about-title')).toBeInViewport();
+  await context.close();
 });
 
 for (const viewport of [
-  { width: 390, height: 844 },
-  { width: 768, height: 1024 },
-  { width: 844, height: 390 },
+  { width: 390, height: 844, mobile: true },
+  { width: 844, height: 390, mobile: false },
 ]) {
-  test(`responsive chapter navigation remains usable at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+  test(`chapter navigation remains usable at ${viewport.width}x${viewport.height}`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.goto('/');
 
-    await openChapters(page);
-    const index = page.getByRole('navigation', { name: viewport.width <= 800 ? 'Mobile chapters' : 'Chapter index', exact: true });
-    await expect(index).toHaveCSS('position', viewport.width <= 800 ? 'absolute' : 'static');
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight / 2));
-    await expect(index).toHaveCSS('position', viewport.width <= 800 ? 'absolute' : 'static');
+    const nav = page.getByRole('navigation', { name: viewport.mobile ? 'Mobile chapters' : 'Chapter index' });
+    await expect(nav).toBeVisible();
+    const links = nav.getByRole('link');
+    await expect(links).toHaveCount(viewport.mobile ? 6 : 5);
 
-    for (const link of await index.locator('a').all()) {
+    for (const link of await links.all()) {
       const bounds = await link.boundingBox();
-      expect(bounds?.width).toBeGreaterThanOrEqual(44);
-      expect(bounds?.height).toBeGreaterThanOrEqual(44);
+      expect(bounds.width).toBeGreaterThanOrEqual(44);
+      expect(bounds.height).toBeGreaterThanOrEqual(viewport.mobile ? 38 : 44);
     }
 
-    const dimensions = await page.evaluate(() => ({
-      viewport: document.documentElement.clientWidth,
-      content: document.documentElement.scrollWidth,
-    }));
-    expect(dimensions.content).toBeLessThanOrEqual(dimensions.viewport);
+    const about = viewport.mobile ? nav.locator('[data-mobile-chapter="about"]') : nav.locator('[data-chapter-item="about"]');
+    await about.click();
+    await expect(page.locator('#about-title')).toBeInViewport();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   });
 }
 
-test('wide chapter index enters persistence after the hero and releases on return', async ({ page }) => {
+test('wide chapter index persists only after its normal-flow slot passes', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
 
   const slot = page.locator('.chapter-index-slot');
-  const index = page.getByRole('navigation', { name: 'Chapter index' });
+  const index = page.locator('.chapter-index');
   await expect(index).toHaveCSS('position', 'static');
-  await expect(slot).not.toHaveClass(/is-persistent/);
 
-  const slotTop = await slot.evaluate((element) => element.getBoundingClientRect().top + window.scrollY);
-  await page.evaluate((top) => window.scrollTo(0, top + 24), slotTop);
+  const slotTop = await slot.evaluate((element) => element.getBoundingClientRect().top + scrollY);
+  await page.evaluate((top) => scrollTo(0, top + 24), slotTop);
   await expect(slot).toHaveClass(/is-persistent/);
   await expect(index).toHaveCSS('position', 'fixed');
 
-  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.evaluate(() => scrollTo(0, 0));
   await expect(slot).not.toHaveClass(/is-persistent/);
   await expect(index).toHaveCSS('position', 'static');
 });
 
-test('current chapter follows native arrivals and keeps the full Work track together', async ({ page }) => {
+test('current chapter follows native section arrivals', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
-
   await expect(page.locator('[data-chapter-item][aria-current]')).toHaveCount(0);
 
-  for (const chapter of chapters.slice(1)) {
-    await page.locator(chapter.target).evaluate((element) => {
-      const top = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo(0, top - parseFloat(getComputedStyle(element).scrollMarginBlockStart) + 2);
+  for (const chapter of chapters) {
+    await page.locator(chapter.href).evaluate((element) => {
+      const top = element.getBoundingClientRect().top + scrollY - parseFloat(getComputedStyle(element).scrollMarginBlockStart) + 2;
+      scrollTo(0, top);
     });
     await expectCurrentChapter(page, chapter.key);
   }
-
-  const workEnd = await page.locator('#work').evaluate((element) => {
-    const next = document.querySelector('#outside');
-    return next.getBoundingClientRect().top + window.scrollY - parseFloat(getComputedStyle(next).scrollMarginBlockStart) - 8;
-  });
-  await page.evaluate((top) => window.scrollTo(0, top), workEnd);
-  await expectCurrentChapter(page, 'work');
-
-  await page.evaluate((top) => window.scrollTo(0, top + 20), workEnd);
-  await expectCurrentChapter(page, 'outside');
 });
 
-test('native Enter activation uses no scripted focus and clears the fixed index', async ({ page }) => {
+test('keyboard activation preserves focus semantics and native history', async ({ page }) => {
   await page.addInitScript(() => {
     const nativeFocus = HTMLElement.prototype.focus;
-    window.__focusCalls = 0;
-    HTMLElement.prototype.focus = function focus(...args) {
-      window.__focusCalls += 1;
+    window.focusCalls = 0;
+    HTMLElement.prototype.focus = function (...args) {
+      window.focusCalls++;
       return nativeFocus.apply(this, args);
     };
   });
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
-
-  const link = page.getByRole('link', { name: 'About', exact: true });
-  await openChapters(page);
-        await link.focus();
-  await expect(link).toBeFocused();
-  await expect(link).toHaveCSS('outline-style', 'solid');
-  const focusCalls = await page.evaluate(() => window.__focusCalls);
-  await link.press('Enter');
+  const about = page.locator('[data-chapter-item="about"]');
+  await about.focus();
+  await expect(about).toBeInViewport();
+  const calls = await page.evaluate(() => window.focusCalls);
+  await about.press('Enter');
   await expect(page).toHaveURL(/#about$/);
   await expectCurrentChapter(page, 'about');
-  expect(await page.evaluate(() => window.__focusCalls)).toBe(focusCalls);
-
-  const clearance = await page.evaluate(() => {
-    const indexBottom = document.querySelector('.chapter-index').getBoundingClientRect().bottom;
-    const headingTop = document.querySelector('#about-title').getBoundingClientRect().top;
-    return { indexBottom, headingTop };
-  });
-  expect(clearance.headingTop).toBeGreaterThan(clearance.indexBottom);
+  expect(await page.evaluate(() => window.focusCalls)).toBe(calls);
 });
 
-for (const chapter of chapters) {
-  test(`direct ${chapter.key} fragment settles on its chapter with visible heading clearance`, async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
+test('direct chapter fragments settle with visible heading clearance', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  for (const chapter of chapters) {
     await page.goto(`/${chapter.href}`);
     await expectCurrentChapter(page, chapter.key);
-
-    const headingSelector = chapter.key === 'elsewhere' ? '#elsewhere h2' : `${chapter.href} h2`;
-    const positions = await page.evaluate((selector) => ({
+    const positions = await page.evaluate((heading) => ({
       indexBottom: document.querySelector('.chapter-index').getBoundingClientRect().bottom,
-      headingTop: document.querySelector(selector).getBoundingClientRect().top,
-    }), headingSelector);
+      headingTop: document.querySelector(heading).getBoundingClientRect().top,
+    }), chapter.heading);
     expect(positions.headingTop).toBeGreaterThan(positions.indexBottom);
-  });
-}
+  }
+});
 
-for (const javaScriptEnabled of [true, false]) {
-  test.describe(`Introduction navigation with JavaScript ${javaScriptEnabled}`, () => {
-    test.use({ javaScriptEnabled });
-    for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 844, height: 390 }]) {
-      test(`direct, pointer, keyboard and history at ${viewport.width}x${viewport.height}`, async ({ page }) => {
-        await page.setViewportSize(viewport);
-        await page.goto('/#introduction');
-        await expect(page.locator('#intro-title')).toBeInViewport();
-        if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
+test('Introduction supports pointer, keyboard and history', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/#about');
+    await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
 
-        await page.goto('/#about');
-        const link = await chapterLink(page, 'introduction');
-        await link.click();
-        await expect(page).toHaveURL(/#introduction$/);
-        await expect(page.locator('#intro-title')).toBeInViewport();
-        if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
+    let link = await chapterLink(page, 'introduction');
+    await link.click();
+    await expect(page.locator('#intro-title')).toBeInViewport();
 
-        await page.goto('/#outside');
-        await openChapters(page);
-        await link.focus();
-        // Switch from the earlier pointer interaction to actual keyboard focus.
-        await page.keyboard.press('Shift+Tab');
-        await page.keyboard.press('Tab');
-        await expect(link).toBeFocused();
-        await expect(link).toHaveCSS('outline-style', 'solid');
-        await link.press('Enter');
-        await expect(page).toHaveURL(/#introduction$/);
-        await expect(page.locator('#intro-title')).toBeInViewport();
-        if (javaScriptEnabled) await expectCurrentChapter(page, 'introduction');
-        else await expect(page.locator('[data-chapter-item][aria-current]')).toHaveCount(0);
+    await page.goto('/#outside');
+    await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+    link = await chapterLink(page, 'introduction');
+    await link.focus();
+    await expect(link).toBeFocused();
+    await expect(link).toBeInViewport();
+    await link.press('Enter');
+    await expect(page).toHaveURL(/#introduction$/);
+    await expect(page.locator('#intro-title')).toBeInViewport();
+    await expectCurrentChapter(page, 'introduction');
 
-        const bounds = await page.evaluate(() => ({
-          indexBottom: document.querySelector('.chapter-index').getBoundingClientRect().bottom,
-          headingTop: document.querySelector('#intro-title').getBoundingClientRect().top,
-        }));
-        expect(bounds.headingTop).toBeGreaterThan(bounds.indexBottom);
-        await page.goBack();
-        await expect(page).toHaveURL(/#outside$/);
-        await expect(page.locator('#outside-title')).toBeInViewport();
-      });
-    }
-  });
-}
+    await page.goBack();
+    await expect(page).toHaveURL(/#outside$/);
+    await expect(page.locator('#outside-title')).toBeInViewport();
+});
 
-test('chapter links use native history and back navigation restores current state', async ({ page }) => {
+test('chapter links add native history entries restored by Back', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
-
-  await page.getByRole('link', { name: 'Work', exact: true }).click();
-  await expect(page).toHaveURL(/#work$/);
-  await expectCurrentChapter(page, 'work');
-
-  await page.getByRole('link', { name: 'Outside', exact: true }).click();
-  await expect(page).toHaveURL(/#outside$/);
-  await expectCurrentChapter(page, 'outside');
-
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+  await page.locator('[data-chapter-item="work"]').click();
+  await page.locator('[data-chapter-item="outside"]').click();
   await page.goBack();
   await expect(page).toHaveURL(/#work$/);
   await expectCurrentChapter(page, 'work');

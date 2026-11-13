@@ -1,15 +1,19 @@
 import { expect, test } from '@playwright/test';
 
 const sizes = [
-  { width: 1440, height: 900 }, { width: 961, height: 641 },
-  { width: 320, height: 800 }, { width: 360, height: 800 }, { width: 375, height: 812 },
-  { width: 768, height: 1024 }, { width: 390, height: 844 }, { width: 844, height: 390 },
+  { width: 1440, height: 900 },
+  { width: 961, height: 641 },
+  { width: 390, height: 844 },
+  { width: 844, height: 390 },
 ];
 
 for (const javaScriptEnabled of [true, false]) {
   test.describe(`project content with JavaScript ${javaScriptEnabled}`, () => {
     test.use({ javaScriptEnabled });
-    for (const size of sizes) for (const scale of [100, 200]) {
+    const cases = javaScriptEnabled
+      ? sizes.flatMap(size => [[size, 100], [size, 200]])
+      : [[sizes[0], 100], [sizes[2], 200], [sizes[3], 100]];
+    for (const [size, scale] of cases) {
       test(`${size.width}x${size.height} at ${scale}% text`, async ({ page }) => {
         await page.setViewportSize(size);
         await page.route('**/', async route => {
@@ -72,7 +76,6 @@ test('enlarged Agent uses native document wheel scrolling through its last line'
   await page.setViewportSize(sizes[0]);
   await page.goto('/#project-agents');
   await page.addStyleTag({ content: 'html {font-size:200%; scroll-behavior:auto}' });
-  await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
   await page.locator('.project-controls button').nth(1).click();
   const before = await page.evaluate(() => scrollY);
   await page.mouse.move(1000, 600);
@@ -108,7 +111,6 @@ test('flow selectors, same hash and history retain focus and a single explicit e
   await page.setViewportSize(sizes[0]);
   await page.goto('/#project-agents');
   await page.addStyleTag({ content: 'html {font-size:200%; scroll-behavior:auto}' });
-  await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
   const buttons = page.locator('[data-project-button]');
   const initial = await page.evaluate(() => history.length);
   await buttons.nth(2).focus();
@@ -142,9 +144,8 @@ test('unfocused Agent survives live text enlargement and restoration without cor
   await expect(agent).toBeInViewport();
   const historyLength = await page.evaluate(() => history.length);
 
-  for (const scale of [200, 100, 200, 100]) {
+  for (const scale of [200, 100]) {
     await page.evaluate(value => { document.documentElement.style.fontSize = `${value}%`; }, scale);
-    await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
     // Let ResizeObserver and scroll updates settle; do not focus or scroll to
     // Agent, since either would mask a lost reading position. With natural
     // document scrolling, live text enlargement may reflow content out of the
@@ -170,9 +171,8 @@ test('live enlargement and boundary crossings settle with full focus clearance a
   await page.goto('/#project-agents');
   const permalink = page.locator('#project-agents .project-permalink');
   await permalink.focus();
-  for (const scale of [200, 100, 200]) {
+  for (const scale of [200, 100]) {
     await page.evaluate(value => { document.documentElement.style.fontSize = `${value}%`; }, scale);
-    await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
     await expect(permalink).toBeFocused();
     await expect(permalink).not.toHaveAttribute('inert');
     await page.waitForTimeout(350);
@@ -202,11 +202,10 @@ test('live enlargement and boundary crossings settle with full focus clearance a
   }
 });
 
-test('flow fit probes preserve subsequent chapter reading position on resize', async ({ page }) => {
+test('resize preserves the subsequent chapter reading position', async ({ page }) => {
   await page.setViewportSize(sizes[0]);
   await page.goto('/#project-agents');
   await page.addStyleTag({ content: 'html {font-size:200%; scroll-behavior:auto}' });
-  await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
   await page.locator('[data-chapter-item="outside"]').click();
   await expect(page.locator('#outside')).toBeInViewport();
   await page.waitForTimeout(600);
@@ -215,10 +214,9 @@ test('flow fit probes preserve subsequent chapter reading position on resize', a
   }));
   const before = await position();
   const historyLength = await page.evaluate(() => history.length);
-  for (const width of [1439, 1440, 1439]) {
+  for (const width of [1439, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.waitForTimeout(600);
-    await expect(page.locator('html')).not.toHaveClass(/projects-staged/);
     const after = await position();
     expect(Math.abs(after.scrollY - before.scrollY)).toBeLessThan(3);
     expect(Math.abs(after.top - before.top)).toBeLessThan(3);

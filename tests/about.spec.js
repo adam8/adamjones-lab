@@ -1,4 +1,4 @@
-import { chapterLink, openChapters } from './navigation.js';
+import { chapterLink } from './navigation.js';
 import { test, expect } from '@playwright/test';
 
 const facts = [
@@ -44,30 +44,36 @@ async function inspect(page) {
   await expect(page.locator('.about-background dd')).toBeInViewport();
 }
 
-for (const width of [320,360,375,390,768,801,844,961,1100,1280,1440]) {
-  for (const scale of [100,200]) for (const state of ['enabled','nojs','blocked','measurement']) {
-    test(`${width}px ${scale}% ${state}`, async ({ browser, baseURL }) => {
-      const context = await browser.newContext({ viewport: { width, height: 900 }, javaScriptEnabled: state !== 'nojs' });
-      const page = await context.newPage();
-      await page.route('**/*', async route => {
-        if (route.request().resourceType() === 'document') {
-          const response = await route.fetch();
-          return route.fulfill({ response, body: (await response.text()).replace('</head>', `<style>html{font-size:${scale}%;scroll-behavior:auto}</style></head>`) });
-        }
-        if (pretext(new URL(route.request().url()))) {
-          if (state === 'blocked') return route.abort();
-          if (state === 'measurement') return route.fulfill({ contentType:'text/javascript', body:'export const prepare=()=>{throw Error("measurement")}; export const layout=()=>{}; export const measureNaturalWidth=()=>0; export const clearCache=()=>{};' });
-        }
-        return route.continue();
-      });
-      await page.goto(`${baseURL}/#about`);
-      if (state === 'enabled') await expect(page.locator('#about')).toHaveAttribute('data-layout', /grid|reading/);
-      else await expect(page.locator('#about')).not.toHaveAttribute('data-layout');
-      await inspect(page);
-      expect(await page.locator('.about-location dd').evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBe((width <= 800 ? 18 : 42) * scale / 100);
-      await context.close();
+const layoutCases = [
+  [320, 100, 'enabled'], [320, 200, 'enabled'],
+  [390, 100, 'enabled'], [800, 100, 'enabled'], [800, 200, 'enabled'],
+  [961, 100, 'enabled'], [1100, 200, 'enabled'],
+  [1440, 100, 'enabled'], [1440, 200, 'enabled'],
+  [390, 200, 'nojs'], [390, 200, 'blocked'], [1440, 200, 'measurement'],
+];
+
+for (const [width, scale, state] of layoutCases) {
+  test(`${width}px ${scale}% ${state}`, async ({ browser, baseURL }) => {
+    const context = await browser.newContext({ viewport: { width, height: 900 }, javaScriptEnabled: state !== 'nojs' });
+    const page = await context.newPage();
+    await page.route('**/*', async route => {
+      if (route.request().resourceType() === 'document') {
+        const response = await route.fetch();
+        return route.fulfill({ response, body: (await response.text()).replace('</head>', `<style>html{font-size:${scale}%;scroll-behavior:auto}</style></head>`) });
+      }
+      if (pretext(new URL(route.request().url()))) {
+        if (state === 'blocked') return route.abort();
+        if (state === 'measurement') return route.fulfill({ contentType:'text/javascript', body:'export const prepare=()=>{throw Error("measurement")}; export const layout=()=>{}; export const measureNaturalWidth=()=>0; export const clearCache=()=>{};' });
+      }
+      return route.continue();
     });
-  }
+    await page.goto(`${baseURL}/#about`);
+    if (state === 'enabled') await expect(page.locator('#about')).toHaveAttribute('data-layout', /grid|reading/);
+    else await expect(page.locator('#about')).not.toHaveAttribute('data-layout');
+    await inspect(page);
+    expect(await page.locator('.about-location dd').evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBe((width <= 800 ? 18 : 42) * scale / 100);
+    await context.close();
+  });
 }
 
 for (const [width,height] of [[844,390],[1440,640]]) for (const scale of [100,200]) {

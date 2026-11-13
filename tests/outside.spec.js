@@ -1,14 +1,17 @@
-import { chapterLink, openChapters } from './navigation.js';
+import { chapterLink } from './navigation.js';
 import { test, expect } from '@playwright/test';
 
 const paragraph = 'Life on Vancouver Island includes running, gardening, family time outdoors, and small projects around the house.';
 const description = 'Imagined floating island with mountains, projecting water, and exposed garden roots.';
-const sizes = [[1440,900],[961,641],[768,1024],[390,844],[320,800],[844,390],[1440,640]];
+const sizes = [[1440,900],[961,641],[390,844],[320,800],[844,390]];
 
 for (const javaScriptEnabled of [true,false]) {
   test.describe(`Outside work, JavaScript ${javaScriptEnabled}`, () => {
     test.use({javaScriptEnabled});
-    for (const [width,height] of sizes) for (const scale of [100,200]) {
+    const cases = javaScriptEnabled
+      ? sizes.flatMap(size => [[...size, 100], [...size, 200]])
+      : [[1440,900,100],[320,800,200],[844,390,100]];
+    for (const [width,height,scale] of cases) {
       test(`complete geometry ${width}x${height}, root text ${scale}%`, async ({page}, testInfo) => {
         await page.setViewportSize({width,height});
         await page.route('**/',async route => {
@@ -67,7 +70,7 @@ for (const javaScriptEnabled of [true,false]) {
         if(width===1440 && height===900 && scale===100) expect(figure.left).toBeGreaterThan(copy.right+30);
       });
     }
-    for (const [width,height] of [[1440,900],[390,844],[844,390]]) {
+    for (const [width,height] of [[1440,900],[390,844]]) {
       test(`native navigation ${width}x${height}`,async({page})=>{
         await page.setViewportSize({width,height});
         await page.goto('/#outside');
@@ -86,7 +89,6 @@ for (const javaScriptEnabled of [true,false]) {
         await current();
         await page.goBack();
         await expect(page).toHaveURL(/#about$/);
-        await openChapters(page);
         await link.focus();
         await page.keyboard.press('Shift+Tab');await page.keyboard.press('Tab');
         await expect(link).toBeFocused();

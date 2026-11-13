@@ -2,39 +2,44 @@
 
 Status: **confirmed**
 
-Source: [README.md: Implementation notes](../../README.md), [src/styles.css](../../src/styles.css)
+Source: [README.md: Implementation notes](../../README.md), [src/styles.css](../../src/styles.css), [src/main.js](../../src/main.js)
 
 ## TL;DR
 
-The site uses ordinary document flow everywhere, then layers on sticky hero storytelling and persistent navigation only when the viewport is wide and tall enough.
+The site keeps all chapters and projects in ordinary document flow, then adds a sticky hero, chapter navigation, progress, and project controls only where they fit.
 
 ## Breakpoints
 
 | Width × Height | Behavior |
 |----------------|----------|
-| ≤ 800 px width | Disclosure navigation replaces desktop links; one sticky `aj.` / three-line button with native `details/summary`. |
-| > 960 px width **and** > 640 px height | Sticky hero storytelling and persistent chapter index can activate. |
-| Below enhancement threshold | Hero and projects flow normally; all chapter anchors still work. |
-| Short heights | Header stays in ordinary flow; disclosure open/closed states both remain usable. |
+| ≤ 800 px width | Horizontal mobile chapter strip replaces the desktop chapter index. |
+| > 960 px width **and** > 640 px height | Sticky hero motion and persistent desktop chapter index can activate. |
+| 961–1099 px and tall | Work controls form a compact sticky row. |
+| ≥ 1100 px and tall | Work controls form a sticky side column. |
+| Short heights | Hero and projects remain in normal flow; document anchor scrolling is instant. |
 
-## Disclosing navigation (≤ 800 px)
+## Mobile chapter strip (≤ 800 px)
 
-- The button label is `Open navigation` and uses a simple SVG hamburger icon.
-- JavaScript closes the disclosure before native navigation and supports Escape dismissal.
-- No scripted scrolling, no scripted focus relocation, no destination focus manipulation.
-- Header remains in normal flow when JS is disabled, at short heights, or when a conservative expanded-height budget would not fit. [README.md: Implementation notes](../../README.md)
+- Contains native links for `aj.`, Intro, Work, Outside, About, and Elsewhere.
+- Scrolls horizontally with proximity snap and no document-level scroll interception.
+- Carries each chapter's progress track inside its link.
+- JavaScript marks the current chapter, keeps an off-screen active item visible, and adds an overflow-edge cue.
+- The complete strip remains usable if JavaScript is disabled or fails.
+- The header becomes sticky only after measurement confirms the compact row fits its height budget.
 
-## Project fit guard
+## Work navigation
 
-- Wide/tall sticky project passages also require an **intrinsic content-fit check** (panel padding + focus clearance).
-- If they cannot fit, all three existing passages contribute their full height to the document; there is no nested scroller or artificial project track.
-- A guarded content-size observer rechecks fit after live text enlargement, using staged widths independently of the current layout. [README.md: Implementation notes](../../README.md)
+- All three project passages always remain in the document.
+- Enhanced controls navigate to native project fragments and update `aria-pressed` state.
+- On mobile, controls stick below the measured chapter header.
+- On tall desktop layouts, controls become either a compact row or side column.
+- Without JavaScript, controls are hidden and project content remains readable.
 
 ## Fragment handling
 
-Fragments, selectors, and history use **mode-specific destinations** without automatic history entries or focus relocation.
+Chapter and project fragments use native document destinations and history. JavaScript updates active state and measured clearance without moving destination focus.
 
 ## Hypotheses
 
-- **Likely:** The 960×640 threshold was chosen empirically so the hero specimen and project panels can coexist without overlapping controls.
-- **Likely:** The disclosure height-budget guard is what prevents the open menu from pushing content into impossible states on very short phones.
+- **Likely:** The 960×640 enhancement boundary was chosen empirically to protect the hero composition and controls.
+- **Confirmed:** Project content no longer has a staged/locked presentation; it scrolls naturally at every viewport. [F-029 review](../../docs/review/f-029/review.md)

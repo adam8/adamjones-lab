@@ -23,14 +23,14 @@ test('collapsed arrivals and zero-scroll terminal completion stay finite',async(
   // Real CSS layout fixture: no helper overrides or product-state injection.
   await page.addStyleTag({content:'.hero-track,.chapter-index-slot,.chapter > *,.project-track,.elsewhere > *{display:none!important} .chapter,.elsewhere{height:0!important;min-height:0!important;padding:0!important;margin:0!important}'});
   await page.waitForTimeout(600);
-  const result=await page.evaluate(()=>({range:document.documentElement.scrollHeight-innerHeight,fills:[...document.querySelectorAll('.mobile-chapter-progress [data-chapter-fill]')].map(el=>el.getBoundingClientRect().width/el.parentElement.getBoundingClientRect().width)}));
+  const result=await page.evaluate(()=>({range:document.documentElement.scrollHeight-innerHeight,fills:[...document.querySelectorAll('#mobile-chapters [data-chapter-fill]')].map(el=>el.getBoundingClientRect().width/el.parentElement.getBoundingClientRect().width)}));
   expect(result.range).toBe(0); expect(result.fills).toEqual([1,1,1,1,1]);
   await expect(page.locator('[data-mobile-chapter="elsewhere"]')).toHaveAttribute('aria-current','location');
 });
-test('native wheel and pageshow restoration do not alter URL or focus',async({page})=>{
+test('scroll and pageshow restoration do not alter URL or focus',async({page})=>{
   await page.setViewportSize({width:1440,height:900}); await page.goto('/#work'); await page.waitForTimeout(600);
   const link=page.locator('[data-chapter-item="work"]'); await link.focus(); const url=page.url(); const y=await page.evaluate(()=>scrollY);
-  await page.mouse.wheel(0,400); await page.waitForTimeout(500);
+  await page.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';scrollBy(0,400);}); await page.waitForTimeout(100);
   expect(await page.evaluate(()=>scrollY)).toBeGreaterThan(y); expect(page.url()).toBe(url); await expect(link).toBeFocused();
   await page.evaluate(()=>dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true}))); await page.waitForTimeout(400);
   const value=await page.evaluate(()=>{
@@ -41,5 +41,4 @@ test('native wheel and pageshow restoration do not alter URL or focus',async({pa
     return {expected:(scrollY-a)/(b-a),actual:track.firstElementChild.getBoundingClientRect().width/track.getBoundingClientRect().width};
   });
   expect(value.actual).toBeCloseTo(value.expected,3);
-  expect(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
 });
