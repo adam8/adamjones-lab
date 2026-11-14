@@ -113,7 +113,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .work { padding-bottom: 0; }
 .work-header { display: grid; grid-template-columns: minmax(8rem, .55fr) minmax(0, 1fr) minmax(15rem, .55fr); gap: 2rem; align-items: end; padding-bottom: clamp(5rem, 9vw, 9rem); }
 .work-header h2 { font-size: clamp(4rem, 8vw, 8rem); }
-.work-header > p:last-child { max-width: 31ch; margin: 0; font-size: 1.05rem; }
+.work-header > p:last-child { max-width: 31ch; margin: 0; font-family: var(--draft); font-size: 1.05rem; }
 .project-track { position: relative; }
 .project-stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 5vw, 6rem); padding-bottom: clamp(5rem, 10vw, 9rem); }
 .project-controls { display: none; flex-direction: column; align-self: start; border-top: 0; padding-top: 3px; background: var(--sketch-rule) top center / 100% 4px no-repeat; }
@@ -129,7 +129,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .project-copy h3 { min-width: 0; max-width: calc(100% - 3.2rem - 7px); overflow-wrap: normal; margin: 0; font-family: var(--serif); font-size: clamp(3.4rem, 6vw, 6.5rem); font-weight: 400; letter-spacing: -.07em; line-height: .85; }
 .project-permalink { display: inline-grid; width: 2.75rem; min-width: 2.75rem; height: 2.75rem; flex: 0 0 2.75rem; align-items: center; justify-items: center; color: var(--green); font-family: var(--draft); font-size: .9rem; font-weight: 800; line-height: 1; text-decoration: none; }
 .project-permalink:hover { color: #b84320; text-decoration: underline; text-decoration-thickness: 2px; }
-.project-copy > p:not(.label) { max-width: 34rem; margin: 0; font-size: clamp(1.05rem, 1.3vw, 1.3rem); line-height: 1.65; }
+.project-copy > p:not(.label) { max-width: 34rem; margin: 0; font-family: var(--draft); font-size: clamp(1.05rem, 1.3vw, 1.3rem); line-height: 1.65; }
 .external-link { display: inline-block; margin-top: 2rem; font-family: var(--draft); font-size: .8rem; font-weight: 400; letter-spacing: .09em; text-transform: uppercase; }
 .project-object { width: 100%; max-height: 34rem; fill: none; stroke: var(--green); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
 /* Reserve the complete raster framing as intrinsic panel content. */
@@ -160,7 +160,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .outside { display: flex; flex-wrap: wrap; min-height: 100svh; align-items: flex-start; gap: clamp(3rem, 5vw, 5rem); overflow: visible; }
 .outside .outside-copy { flex: 1 1 22rem; min-width: 0; }
 .outside h2 { margin-top: 2rem; }
-.outside .outside-copy > p:last-child { max-width: 31rem; margin: clamp(3rem, 7vw, 6rem) 0 0; font-size: clamp(1.1rem, 1.4vw, 1.4rem); line-height: 1.7; }
+.outside .outside-copy > p:last-child { max-width: 31rem; margin: clamp(3rem, 7vw, 6rem) 0 0; font-family: var(--draft); font-size: clamp(1.1rem, 1.4vw, 1.4rem); line-height: 1.7; }
 .outside .island-diorama { flex: 1.6 1 36rem; min-width: 0; max-width: 48rem; margin: 4rem auto 0; }
 .outside .island-diorama svg { width: 100%; height: auto; overflow: visible; }
 .outside .island-diorama figcaption { margin-top: 1.5rem; text-align: center; }

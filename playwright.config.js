@@ -12,6 +12,7 @@ export default defineConfig({
   use: {
     baseURL,
     trace: 'on-first-retry',
+    launchOptions: process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {},
   },
   projects: [
     {
