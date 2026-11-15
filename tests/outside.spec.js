@@ -2,8 +2,41 @@ import { chapterLink } from './navigation.js';
 import { test, expect } from '@playwright/test';
 
 const paragraph = 'Life on Vancouver Island includes running, gardening, family time outdoors, and small projects around the house.';
-const description = 'Imagined floating island with mountains, projecting water, and exposed garden roots.';
+const description = 'A pencil-drawn floating island with mountains, water, trees and roots hanging below.';
 const sizes = [[1440,900],[961,641],[390,844],[320,800],[844,390]];
+
+test('island artwork is a transparent, locally hosted WebP', async ({page}) => {
+  await page.goto('/#outside');
+  const image = page.getByRole('img', {name: description, exact: true});
+  await expect.poll(() => image.evaluate(element => element.complete && element.naturalWidth > 0)).toBe(true);
+  const result = await image.evaluate(element => {
+    const canvas = document.createElement('canvas');
+    canvas.width = element.naturalWidth; canvas.height = element.naturalHeight;
+    const ctx = canvas.getContext('2d'); ctx.drawImage(element, 0, 0);
+    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    let transparent = 0, opaque = 0;
+    for (let i = 3; i < pixels.length; i += 4) {
+      if (pixels[i] === 0) transparent++;
+      if (pixels[i] === 255) opaque++;
+    }
+    return {src: new URL(element.currentSrc).pathname, transparent, opaque};
+  });
+  expect(result.src).toMatch(/\.webp$/);
+  expect(result.transparent).toBeGreaterThan(0);
+  expect(result.opaque).toBeGreaterThan(0);
+});
+
+test('island image failure retains alt text and reserved layout', async ({page}) => {
+  await page.route('**/island-pencil*.webp', route => route.abort());
+  await page.goto('/#outside');
+  const image = page.getByRole('img', {name: description, exact: true});
+  await expect(image).toBeVisible();
+  await expect.poll(() => image.evaluate(element => element.complete && element.naturalWidth === 0)).toBe(true);
+  const box = await image.boundingBox();
+  expect(box.width).toBeGreaterThan(0);
+  expect(box.height).toBeGreaterThan(0);
+  await expect(page.locator('.outside figcaption')).toBeVisible();
+});
 
 for (const javaScriptEnabled of [true,false]) {
   test.describe(`Outside work, JavaScript ${javaScriptEnabled}`, () => {
@@ -23,42 +56,31 @@ for (const javaScriptEnabled of [true,false]) {
         await expect(page.locator('#outside-title')).toHaveText('Islandtime');
         await expect(page.locator('.outside-copy > p:last-child')).toHaveText(paragraph);
         await expect(page.locator('.outside figcaption')).toHaveText('An imagined island landscape.');
-        await expect(page.getByRole('img',{name:description,exact:true})).toHaveCount(1);
+        const illustration = page.getByRole('img',{name:description,exact:true});
+        await expect(illustration).toHaveCount(1);
+        await expect.poll(() => illustration.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
         await expect(page.locator('.outside figure :is(a,button,input,select,textarea,[tabindex])')).toHaveCount(0);
         const geometry=await page.locator('#outside').evaluate(section => {
           const rect=el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
-          const copy=section.querySelector('.outside-copy'),figure=section.querySelector('figure'),svg=section.querySelector('svg');
-          const image=rect(svg),bounds=rect(section),view=svg.viewBox.baseVal;
-          const painted=[...svg.querySelectorAll('path,circle')].map(el=>{
-            const b=el.getBBox(),style=getComputedStyle(el),stroke=style.stroke==='none'?0:parseFloat(style.strokeWidth)/2;
-            const matrix=el.getScreenCTM();
-            const a=new DOMPoint(b.x-stroke,b.y-stroke).matrixTransform(matrix),z=new DOMPoint(b.x+b.width+stroke,b.y+b.height+stroke).matrixTransform(matrix);
-            return {left:a.x,right:z.x,top:a.y,bottom:z.y,inViewBox:b.x-stroke>=view.x && b.y-stroke>=view.y && b.x+b.width+stroke<=view.width && b.y+b.height+stroke<=view.height};
-          });
+          const copy=section.querySelector('.outside-copy'),figure=section.querySelector('figure'),img=section.querySelector('img');
+          const image=rect(img),bounds=rect(section);
           const text=[...section.querySelectorAll('p,h2,figcaption')].flatMap(el=>{
             const range=document.createRange();range.selectNodeContents(el);return [...range.getClientRects()].map(r=>({left:r.left,right:r.right,top:r.top,bottom:r.bottom}));
           });
           const nestedScroll=[section,...section.querySelectorAll('*')].some(el=>{
             const s=getComputedStyle(el);return /(auto|scroll|hidden|clip)/.test(s.overflowY+' '+s.overflowX) && (el.scrollHeight>el.clientHeight+1 || el.scrollWidth>el.clientWidth+1);
           });
-          return {bounds,copy:rect(copy),figure:rect(figure),image,painted,text,nestedScroll,heading:rect(section.querySelector('h2')),label:rect(section.querySelector('.label')),paragraph:rect(copy.lastElementChild),caption:rect(section.querySelector('figcaption')),about:rect(document.querySelector('#about')),viewport:innerWidth};
+          return {bounds,copy:rect(copy),figure:rect(figure),image,text,nestedScroll,heading:rect(section.querySelector('h2')),label:rect(section.querySelector('.label')),paragraph:rect(copy.lastElementChild),caption:rect(section.querySelector('figcaption')),about:rect(document.querySelector('#about')),viewport:innerWidth};
         });
         await testInfo.attach('outside-geometry', {body: JSON.stringify(geometry, null, 2), contentType: 'application/json'});
-        const {bounds,copy,figure,image,painted,text}=geometry;
-        for(const r of [copy,figure,image,...painted,...text]) {
+        const {bounds,copy,figure,image,text}=geometry;
+        for(const r of [copy,figure,image,...text]) {
           expect(r.left).toBeGreaterThanOrEqual(bounds.left-1);
           expect(r.right).toBeLessThanOrEqual(bounds.right+1);
           expect(r.top).toBeGreaterThanOrEqual(bounds.top-1);
           expect(r.bottom).toBeLessThanOrEqual(bounds.bottom+1);
           expect(r.left).toBeGreaterThanOrEqual(-1);
           expect(r.right).toBeLessThanOrEqual(width+1);
-        }
-        for(const r of painted) {
-          expect(r.inViewBox).toBe(true);
-          expect(r.left).toBeGreaterThan(image.left);
-          expect(r.right).toBeLessThan(image.right);
-          expect(r.top).toBeGreaterThan(image.top);
-          expect(r.bottom).toBeLessThan(image.bottom);
         }
         expect(figure.left>=copy.right+30 || figure.top>=copy.bottom+30).toBe(true);
         expect(geometry.label.bottom).toBeLessThan(geometry.heading.top);
