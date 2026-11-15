@@ -50,8 +50,12 @@ for(const state of ['on','off','failed']) test.describe(`Interface JS ${state}`,
     await expect(page.locator('.study-world')).toHaveAttribute('aria-hidden','true');
     await expect(page.locator('.study-trace svg')).toHaveAttribute('focusable','false');
     expect(await scene.locator('a,button,input,[tabindex]').count()).toBe(0);
+    await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(650); layout(await page.evaluate(inspectInterface));
-    await page.locator('.study-key').scrollIntoViewIfNeeded();
+    // scrollIntoViewIfNeeded can leave a fractional pixel outside the viewport
+    // when Chromium considers an edge-aligned element already visible. Center
+    // the key explicitly; retain the strict full-visibility assertion.
+    await page.locator('.study-key').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
     await expect(page.locator('.study-key')).toBeInViewport({ratio:1});
   });
 });

@@ -82,19 +82,26 @@ for (const [width, height, enlarged] of [
 test('horizontal chapter scrolling does not alter document geometry, URL, or focus', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/#work');
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    // This test isolates horizontal navigation scrolling, not the duration of
+    // the initial native smooth anchor scroll. Cancel that scroll at its target
+    // after font layout settles rather than sampling it after a fixed delay.
+    document.getElementById('work').scrollIntoView({ block: 'start', behavior: 'instant' });
+  });
   await nextPaint(page);
-  await page.waitForTimeout(500);
 
+  const link = page.locator('[data-mobile-chapter="work"]');
+  await link.evaluate(element => element.focus({ preventScroll: true }));
+  await expect(link).toBeFocused();
   const geometry = await measure(page);
   const y = await page.evaluate(() => scrollY);
-  const link = page.locator('[data-mobile-chapter="work"]');
-  await link.focus();
   const url = page.url();
   await page.locator('#mobile-chapters').evaluate((element) => element.scrollTo({ left: element.scrollWidth, behavior: 'auto' }));
   await nextPaint(page);
 
   expect(await measure(page)).toEqual(geometry);
-  expect(Math.abs(await page.evaluate(() => scrollY) - y)).toBeLessThan(16);
+  expect(Math.abs(await page.evaluate(() => scrollY) - y)).toBeLessThan(1);
   expect(page.url()).toBe(url);
   await expect(link).toBeFocused();
   await expectProgress(page, geometry);
