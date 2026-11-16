@@ -72,7 +72,12 @@ for (const [width, height, enlarged] of [
     for (const y of samples) {
       await page.evaluate((top) => scrollTo(0, top), y);
       await nextPaint(page);
-      await expectProgress(page, geometry);
+      // A sticky-index handoff can change document height by a fractional CSS
+      // pixel; compare each paint to its current native geometry, not the
+      // geometry sampled before that handoff.
+      await expect(async () => {
+        await expectProgress(page, await measure(page));
+      }).toPass({ timeout: 5000 });
     }
 
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

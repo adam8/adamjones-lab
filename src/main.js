@@ -312,7 +312,7 @@ const contentObserver = new ResizeObserver(entries => {
   }
   if (changed) scheduleUpdate({ measure: true });
 });
-document.querySelectorAll('.project-copy, .project-object, .project-controls, .about-forme, .chapter-index, #mobile-chapters, .hero-track, .introduction, #work, #outside, #about, #elsewhere').forEach(el => contentObserver.observe(el));
+document.querySelectorAll('.project-copy, .project-object, .project-controls, .about-forme, .chapter-index-slot, .chapter-index, #mobile-chapters, .hero-track, .introduction, #work, #outside, #about, #elsewhere').forEach(el => contentObserver.observe(el));
 
 root.classList.add('js');
 applyEnhancementState();

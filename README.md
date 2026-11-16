@@ -42,7 +42,7 @@ The browser suite checks the core story with and without JavaScript, chapter-ind
 - Above 800px, the chapter index stays in normal flow by default and becomes persistent at the wide/tall enhancement boundary after the hero clears. All five chapters retain native anchors and history.
 - `src/main.js` uses one passive-scroll/requestAnimationFrame scheduler for chapter progress, hero transforms, and active-project state. Chapter progress and current links share cached native-anchor arrivals. Scroll-only updates do not remeasure chapter boundaries; viewport, font, and observed content-size changes invalidate geometry. No frames are requested while idle.
 - Narrow and short layouts keep the hero and projects in normal document flow. Fragments, selectors, and history do not relocate focus automatically.
-- Visuals use inline SVG, a CSS-composed interface study, one local WebP illustration, and a fixed sketch-rule SVG; there are no product screenshots or live data.
+- Visuals use inline SVG, a CSS-composed interface study, two local WebP illustrations, and a fixed sketch-rule SVG; there are no product screenshots or live data.
 - A self-hosted Routed Gothic font is used for navigation, captions, labels, and the Introduction, Work, and Outside paragraphs. The `aj.` wordmark, hero copy, About facts, and large editorial headings retain the established typefaces. Routed Gothic is licensed under the SIL Open Font License 1.1 in `public/fonts/OFL-Routed-Gothic.md`; no font is requested from a remote service.
 
 ## Cloudflare static assets

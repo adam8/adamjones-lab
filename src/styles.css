@@ -162,21 +162,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .outside h2 { margin-top: 2rem; }
 .outside .outside-copy > p:last-child { max-width: 31rem; margin: clamp(3rem, 7vw, 6rem) 0 0; font-family: var(--draft); font-size: clamp(1.1rem, 1.4vw, 1.4rem); line-height: 1.7; }
 .outside .island-diorama { flex: 1.6 1 36rem; min-width: 0; max-width: 48rem; margin: 4rem auto 0; }
-.outside .island-diorama svg { width: 100%; height: auto; overflow: visible; }
+.outside .island-diorama img { display: block; width: 100%; height: auto; }
 .outside .island-diorama figcaption { margin-top: 1.5rem; text-align: center; }
-.outside .island-backdrop { fill: var(--cream); }
-.outside .sun { fill: var(--coral); }
-.outside .mountain-back { fill: #a8bca7; }
-.outside .mountain-facet { fill: #7f9a80; }
-.outside .mountain-front { fill: var(--green); }
-.outside .water { fill: var(--blue); }
-.outside .water-edge { fill: #a8bca7; }
-.outside .water-lines { fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; }
-.outside .island { fill: #b86844; }
-.outside .island-underside { fill: #8b4e35; }
-.outside .earth-facet { fill: #b86844; }
-.outside .roots { fill: none; stroke: #8b4e35; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
-.outside .garden { fill: none; stroke: var(--green); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
 @media (max-width: 960px), (max-height: 640px) {
   .outside { flex-direction: column; }
   .outside .outside-copy { flex: none; width: 100%; }
