@@ -2,7 +2,7 @@ import { chapterLink } from './navigation.js';
 import { test, expect } from '@playwright/test';
 
 const paragraph = 'Life on Vancouver Island includes running, gardening, family time outdoors, and small projects around the house.';
-const description = 'A pencil-drawn floating island with mountains, water, trees and roots hanging below.';
+const description = 'A tilted pencil-drawn floating island with mountains, water, trees and short roots below.';
 const sizes = [[1440,900],[961,641],[390,844],[320,800],[844,390]];
 
 test('island artwork is a transparent, locally hosted WebP', async ({page}) => {
