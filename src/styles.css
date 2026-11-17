@@ -281,7 +281,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .about-masthead::before { content:""; position:absolute; top:35px; right:35px; width:14px; height:78px; background:var(--coral); }
 .about h2 { margin:0; font-family:Georgia,"Times New Roman",serif; font-weight:400; letter-spacing:-.075em; }
 .about h2 > span { display:block; font-size:min(6.5rem,35cqw); line-height:1; padding-right:1.5rem; overflow-wrap:normal; }
-.about h2 em { display:block; margin:.12em 0 0 44px; font-size:min(11.875rem,42cqw); font-weight:400; line-height:1.1; hyphens:manual; overflow-wrap:normal; }
+.about h2 em { display:block; margin:.12em 0 0 44px; font-size:min(11.875rem,18.5cqw); font-weight:400; line-height:1.1; hyphens:manual; overflow-wrap:normal; }
 .about-facts { --facts-display:block; --side-rule:0px; --tools-bottom:1px; --current-bottom:1px; display:var(--facts-display); grid-template-columns:repeat(12,minmax(0,1fr)); margin:0; }
 .about-fact { min-width:0; padding:30px var(--cell-pad) 36px; border-bottom:1px solid var(--green); }
 .about dt { margin:0 0 22px; font:400 .7rem/1.4 var(--draft); letter-spacing:.085em; text-transform:uppercase; overflow-wrap:normal; }
@@ -304,7 +304,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .about[data-layout="grid"] .about-facts { --facts-display:grid; --side-rule:1px; --tools-bottom:0px; --current-bottom:0px; }
 .about[data-layout="reading"] .about-facts { --facts-display:block; --side-rule:0px; --tools-bottom:1px; --current-bottom:1px; }
 @media (max-width:1100px) {
- .about h2 em { font-size:min(6.25rem,42cqw); margin-left:0; }
+ .about h2 em { font-size:min(6.25rem,19cqw); margin-left:0; }
 }
 @media (max-width:800px) {
  .about { --cell-pad:20px; padding:32px 20px; }
