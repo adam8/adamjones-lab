@@ -18,13 +18,13 @@ test('late section layout and genuine wrapped navigation changes invalidate nati
   expect(result.target).toBeGreaterThan(result.nav); expect(result.fill).toBeLessThan(1); expect(result.slot).toBeGreaterThan(result.navHeight);
   await expect(page.locator('[data-chapter-item="about"]')).toHaveAttribute('aria-current','location');
 });
-test('collapsed arrivals and zero-scroll terminal completion stay finite',async({page})=>{
+test('collapsed arrivals keep only the terminal chapter complete',async({page})=>{
   await page.setViewportSize({width:390,height:844}); await page.goto('/');
   // Real CSS layout fixture: no helper overrides or product-state injection.
   await page.addStyleTag({content:'.hero-track,.chapter-index-slot,.chapter > *,.project-track,.elsewhere > *{display:none!important} .chapter,.elsewhere{height:0!important;min-height:0!important;padding:0!important;margin:0!important}'});
   await page.waitForTimeout(600);
   const result=await page.evaluate(()=>({range:document.documentElement.scrollHeight-innerHeight,fills:[...document.querySelectorAll('#mobile-chapters [data-chapter-fill]')].map(el=>el.getBoundingClientRect().width/el.parentElement.getBoundingClientRect().width)}));
-  expect(result.range).toBe(0); expect(result.fills).toEqual([1,1,1,1,1]);
+  expect(result.range).toBe(0); expect(result.fills).toEqual([0,0,0,0,1]);
   await expect(page.locator('[data-mobile-chapter="elsewhere"]')).toHaveAttribute('aria-current','location');
 });
 test('scroll and pageshow restoration do not alter URL or focus',async({page})=>{

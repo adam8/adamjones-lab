@@ -120,7 +120,7 @@ function paintChapterProgress(y) {
     const index = chapterTargets.findIndex(chapter => chapter.key === segmentKey);
     const start = chapterStarts[index];
     const end = chapterStarts[index + 1] ?? geometry.documentRange;
-    const value = terminal ? 1 : y < start ? 0 : end <= start ? 1 : clamp((y - start) / (end - start));
+    const value = segmentKey !== key ? 0 : terminal ? 1 : y < start ? 0 : end <= start ? 1 : clamp((y - start) / (end - start));
     const transform = `scaleX(${value})`;
     if (fill.style.transform !== transform) fill.style.transform = transform;
   });
