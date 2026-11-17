@@ -54,12 +54,12 @@ export async function startAbout() {
             maxWidth: parseFloat(css.maxWidth), pad: parseFloat(box.paddingLeft) + parseFloat(box.paddingRight),
           };
         });
-        const key = JSON.stringify([width, innerWidth, innerHeight <= 640, devicePixelRatio,
+        const key = JSON.stringify([width, innerWidth, devicePixelRatio,
           getComputedStyle(document.documentElement).fontSize, epoch,
           fields.map(({ field, ...metrics }) => metrics)]);
         if (key === lastKey) return;
         lastKey = key;
-        let fits = (mobile ? innerWidth >= 375 : width >= 800) && innerHeight > 640;
+        let fits = mobile ? innerWidth >= 375 : width >= 800;
         // Mobile budgets bound reading density, not total viewport height. Four
         // Location/Tools lines, seven Work, nine Explorations, three Background;
         // labels may wrap to two lines. Widths include the proposed shared rule.
