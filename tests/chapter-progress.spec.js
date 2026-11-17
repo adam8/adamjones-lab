@@ -27,6 +27,7 @@ async function readProgress(page) {
       y: scrollY,
       fills: [...nav.querySelectorAll('[data-chapter-progress]')].map((track) =>
         track.querySelector('[data-chapter-fill]').getBoundingClientRect().width / track.getBoundingClientRect().width),
+      visible: [...nav.querySelectorAll('[data-chapter-progress]')].map((track) => getComputedStyle(track).visibility === 'visible'),
       current: document.querySelector(innerWidth <= 800 ? '[data-mobile-chapter][aria-current]' : '[data-chapter-item][aria-current]')?.hash,
     };
   });
@@ -36,15 +37,20 @@ async function expectProgress(page, geometry) {
   const actual = await readProgress(page);
   const terminal = actual.y >= geometry.range;
   let current;
-
   geometry.starts.forEach((start, index) => {
     if (actual.y + 0.5 >= start) current = `#${keys[index]}`;
+  });
+  if (terminal) current = '#elsewhere';
+
+  geometry.starts.forEach((start, index) => {
+    const active = current === `#${keys[index]}`;
     const end = geometry.starts[index + 1] ?? geometry.range;
-    const expected = terminal ? 1 : actual.y < start ? 0 : end <= start ? 1 : Math.min(1, (actual.y - start) / (end - start));
+    const expected = !active ? 0 : terminal ? 1 : actual.y < start ? 0 : end <= start ? 1 : Math.min(1, (actual.y - start) / (end - start));
     expect(actual.fills[index]).toBeCloseTo(expected, 3);
+    expect(actual.visible[index]).toBe(active);
   });
 
-  expect(actual.current).toBe(terminal ? '#elsewhere' : current);
+  expect(actual.current).toBe(current);
 }
 
 for (const [width, height, enlarged] of [

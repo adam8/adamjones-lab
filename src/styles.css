@@ -387,14 +387,12 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .mobile-chapter-list { display: flex; align-items: center; gap: .35rem; margin: 0; padding: .25rem 0; list-style: none; }
   .mobile-chapter-list-item { flex: 0 0 auto; scroll-snap-align: start; }
   .mobile-chapter-link { position: relative; display: flex; min-width: 44px; min-height: 38px; flex-direction: column; align-items: center; justify-content: center; gap: .15rem; padding: .075rem .4rem; border-radius: 7px; background: transparent; color: var(--green); font: 400 .8rem/1.45 var(--draft); letter-spacing: .065em; text-decoration: none; white-space: nowrap; opacity: .9; transition: opacity .2s ease, font-weight .2s ease, background-color .25s ease; }
-  .mobile-chapter-link > [data-chapter-progress] { display: block; width: 100%; height: 3px; background: rgb(41 60 43 / 18%); visibility: hidden; }
-  .progress-ready .mobile-chapter-link > [data-chapter-progress] { visibility: visible; }
+  .mobile-chapter-link > [data-chapter-progress] { display: block; width: 100%; height: 3px; background: transparent; visibility: hidden; }
+  .progress-ready .mobile-chapter-link[aria-current="location"] > [data-chapter-progress] { visibility: visible; }
   .mobile-chapter-link[aria-current="location"],
   .mobile-chapter-link:hover,
   .mobile-chapter-link:focus { opacity: 1; font-weight: 900; background: var(--cream); }
   .mobile-chapter-link--home { font: italic 700 1.5rem/1 var(--serif); letter-spacing: normal; text-transform: none; }
-  .mobile-chapter-link:hover > [data-chapter-progress],
-  .mobile-chapter-link:focus-visible > [data-chapter-progress] { background: var(--green); }
   .mobile-chapter-link[aria-current="location"] > [data-chapter-progress] { height: 4px; background: var(--green); }
   #introduction, #work, .outside#outside, #about, #elsewhere, #main-content { scroll-margin-block-start: calc(var(--mobile-row) + 1rem); }
   .site-header.chapters-ready:not(.is-tall) { position: -webkit-sticky; position: sticky; top: 0; }
@@ -458,9 +456,9 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 
 /* Each desktop cell owns its rule, including on wrapped rows. Tracks reserve
    their footprint before initialization, but never pretend to work without JS. */
-[data-chapter-progress] { display: block; height: 2px; background: rgb(41 60 43 / 18%); visibility: hidden; pointer-events: none; }
+[data-chapter-progress] { display: block; height: 2px; background: transparent; visibility: hidden; pointer-events: none; }
 [data-chapter-fill] { display: block; width: 100%; height: 100%; background: var(--coral); transform: scaleX(0); transform-origin: left; }
-.progress-ready [data-chapter-progress] { visibility: visible; }
+.progress-ready [aria-current="location"] [data-chapter-progress] { visibility: visible; }
 .chapter-index-item [data-chapter-progress] { position: absolute; bottom: 0; left: .45rem; right: .45rem; }
 .chapter-index-list { row-gap: .5rem; }
 #introduction, #work, .outside#outside, #about, #elsewhere { scroll-margin-block-start: var(--chapter-clearance, 6rem); }
