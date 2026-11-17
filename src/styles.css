@@ -329,10 +329,6 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
  .about-fact { padding-inline:var(--cramped-pad); }
  .about-masthead { padding-inline:10px; }
 }
-@media (max-height:640px) {
- .about .about-facts { --facts-display:block; --side-rule:0px; --tools-bottom:1px; --current-bottom:1px; }
-}
-
 .about-font-sentinel { position:absolute; visibility:hidden; pointer-events:none; width:1rem; height:1rem; }
 
 /* F-021: shorten only the fallback title pause, never the type or fact bays.

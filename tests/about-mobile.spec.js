@@ -40,7 +40,8 @@ for (const width of [320,390,640,800]) for(const scale of [100,200]) {
 for(const [width,height] of [[390,640],[390,641]]) {
   test(`mobile height ${width}x${height}`,async({page})=>{
     await page.setViewportSize({width,height}); await page.goto('/#about');
-    await expect(page.locator('#about')).toHaveAttribute('data-layout',height<=640?'reading':'grid');
+    await expect(page.locator('#about')).toHaveAttribute('data-layout','grid');
+    await expect(page.locator('.about-facts')).toHaveCSS('display','grid');
     await safety(page);
   });
 }

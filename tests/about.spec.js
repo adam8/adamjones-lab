@@ -80,10 +80,22 @@ for (const [width,height] of [[844,390],[1440,640]]) for (const scale of [100,20
   test(`short ${width}x${height} ${scale}%`, async ({page}) => {
     await page.setViewportSize({width,height}); await page.goto('/#about');
     await page.evaluate(scale => document.documentElement.style.fontSize = `${scale}%`, scale);
-    await expect(page.locator('#about')).toHaveAttribute('data-layout','reading');
+    await expect(page.locator('#about')).toHaveAttribute('data-layout', width === 1440 && scale === 100 ? 'grid' : 'reading');
     await inspect(page);
   });
 }
+
+test('desktop height-only resize keeps the fitting grid in normal flow', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/#about');
+  await expect(page.locator('#about')).toHaveAttribute('data-layout', 'grid');
+  for (const height of [640, 390, 900]) {
+    await page.setViewportSize({ width: 1440, height });
+    await expect(page.locator('#about')).toHaveAttribute('data-layout', 'grid');
+    await expect(page.locator('.about-facts')).toHaveCSS('display', 'grid');
+    await inspect(page);
+  }
+});
 
 test('controller and library evaluation failures retain CSS and surrounding startup', async ({browser,baseURL}) => {
   for (const boundary of ['controller','library']) {
