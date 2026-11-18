@@ -58,11 +58,40 @@ for (const javaScriptEnabled of [true,false]) test.describe(`paper loop JS ${jav
       await page.goto('/#project-agents');
       await expect(page.locator('#project-agents')).toBeInViewport();
       await expect(page.locator('#project-agents figcaption')).toHaveText(caption);
+      const img = page.locator('#project-agents .agent-object');
+      await img.scrollIntoViewIfNeeded();
+      await expect(img).toHaveJSProperty('naturalWidth', 1536);
       const geometry=await inspect(page);
       expect(geometry.natural).toEqual([1536,1024]);
       checkLayout(geometry,size.width);
       if (scale === 100 && [1440,390].includes(size.width)) expect((await inspect(page)).art.width).toBeGreaterThan(300);
     });
+  }
+});
+
+test('all raster illustrations load lazily when placed far below the viewport', async ({ page }) => {
+  await page.setViewportSize(sizes[0]);
+  // Give native lazy loading a consistent offscreen distance independent of
+  // the browser's prefetch margin or the site's initial layout timing.
+  await page.route('**/', async route => {
+    const response = await route.fetch();
+    await route.fulfill({ response, body: (await response.text()).replace('</head>', '<style>#work { margin-top: 10000px }</style></head>') });
+  });
+  const requested = new Set();
+  page.on('request', request => {
+    if (request.resourceType() === 'image') requested.add(new URL(request.url()).pathname);
+  });
+  await page.goto('/');
+  const illustrations = page.locator('img');
+  await expect(illustrations).toHaveCount(2);
+  for (const img of await illustrations.all()) {
+    await expect(img).toHaveAttribute('loading', 'lazy');
+    const path = await img.evaluate(el => new URL(el.src).pathname);
+    expect(requested.has(path)).toBe(false);
+  }
+  for (const img of await illustrations.all()) {
+    await img.scrollIntoViewIfNeeded();
+    await expect.poll(() => img.evaluate(el => el.naturalWidth)).toBeGreaterThan(0);
   }
 });
 
