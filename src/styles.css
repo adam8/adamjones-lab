@@ -117,8 +117,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 .project-track { position: relative; }
 .project-stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 5vw, 6rem); padding-bottom: clamp(5rem, 10vw, 9rem); }
 .project-controls { display: none; flex-direction: column; align-self: start; border-top: 0; padding-top: 3px; background: var(--sketch-rule) top center / 100% 4px no-repeat; }
-.project-controls button { display: grid; min-height: 4.5rem; grid-template-columns: 2.5rem 1fr; align-items: center; border: 0; border-bottom: 1px solid rgb(41 60 43 / 40%); background: transparent; color: var(--green); cursor: pointer; font-size: .85rem; font-weight: 750; text-align: left; opacity: .85; transition: opacity .2s ease, background-color .25s ease; }
-.project-controls button[aria-pressed="true"] { opacity: 1; border-left: .45rem solid var(--green); padding-left: .75rem; box-shadow: inset .16rem 0 var(--coral); font-family: var(--serif); font-size: 1.1rem; font-style: italic; }
+.project-controls button { display: grid; min-width: 44px; min-height: 44px; grid-template-columns: 1.75rem 1fr; align-items: center; padding: .2rem .35rem; border: 0; border-bottom: 1px solid rgb(41 60 43 / 40%); background: transparent; color: var(--green); cursor: pointer; font: 400 .85rem/1.4 var(--draft); text-align: left; opacity: .85; transition: opacity .2s ease, background-color .25s ease; }
+.project-controls button[aria-pressed="true"] { opacity: 1; border-left: .45rem solid var(--green); box-shadow: inset .16rem 0 var(--coral); font-weight: 900; }
 .project-controls button span { font-family: var(--draft); font-size: .68rem; font-style: normal; }
 .project-panels { min-width: 0; container-type: inline-size; }
 .project-panel { position: relative; display: grid; min-height: min(45rem, 78vh); grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(2rem, 5vw, 6rem); border-top: 0; padding: clamp(2.5rem, 5vw, 5rem) 0; scroll-margin-block-start: 2rem; }
@@ -149,10 +149,10 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 }
 @media (min-width: 961px) and (max-width: 1099px) and (min-height: 641px) {
   .js.motion-ok .project-stage { padding-top: 2rem; }
-  .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-end; gap: .25rem; position: sticky; top: calc(var(--chapter-clearance, 0) - 1rem); right: 0; z-index: 5; width: fit-content; margin-left: auto; padding: .35rem .5rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; border: none; border-radius: 9999px; background: var(--blue); }
+  .js.motion-ok .project-controls { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-end; gap: .25rem; position: sticky; top: calc(var(--chapter-clearance, 0) - 1rem); right: 0; z-index: 5; width: fit-content; margin-left: auto; padding: .15rem .3rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain; border: none; border-radius: 9999px; background: var(--blue); }
   .js.motion-ok .project-controls::-webkit-scrollbar { display: none; }
-  .js.motion-ok .project-controls button { flex: 0 0 auto; display: inline-flex; align-items: center; gap: .35rem; min-height: 2.75rem; padding: .35rem .9rem; border: 0; border-radius: 999px; background: rgb(244 240 229 / 22%); font-size: .75rem; font-weight: 750; white-space: nowrap; opacity: .85; transition: opacity .2s ease, background-color .25s ease; }
-  .js.motion-ok .project-controls button[aria-pressed="true"] { opacity: 1; background: var(--cream); font-family: var(--serif); font-size: .85rem; font-style: italic; box-shadow: none; padding-left: .9rem; }
+  .js.motion-ok .project-controls button { flex: 0 0 auto; display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; padding: .15rem .5rem; border: 0; border-radius: 999px; background: rgb(244 240 229 / 22%); font-size: .8rem; white-space: nowrap; opacity: .85; transition: opacity .2s ease, background-color .25s ease; }
+  .js.motion-ok .project-controls button[aria-pressed="true"] { opacity: 1; background: var(--cream); box-shadow: none; }
   .js.motion-ok .project-controls button span { font-size: .62rem; }
 }
 
@@ -394,10 +394,10 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
   .site-header.chapters-ready:not(.is-tall) { position: -webkit-sticky; position: sticky; top: 0; }
   /* Keep the compact Work selector in flow without JS; enhanced controls
      stick below the measured chapter header and end with the Work section. */
-  .js .project-controls { display: flex; flex-direction: row; gap: .2rem; position: sticky; top: var(--mobile-sticky-header-height, 0px); z-index: 5; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; border: 0; padding: .2rem; background: var(--blue); }
+  .js .project-controls { display: flex; flex-direction: row; gap: .2rem; position: sticky; top: var(--mobile-sticky-header-height, 0px); z-index: 5; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; border: 0; padding: .1rem; background: var(--blue); }
   .js .project-controls::-webkit-scrollbar { display: none; }
-  .js .project-controls button { display: inline-flex; flex: 0 0 auto; align-items: center; gap: .3rem; min-height: 44px; padding: .2rem .45rem; border: 0; border-radius: 7px; background: transparent; font-size: .75rem; font-weight: 400; white-space: nowrap; }
-  .js .project-controls button[aria-pressed="true"] { padding-left: .45rem; border: 0; box-shadow: none; background: var(--cream); font-family: inherit; font-size: .75rem; font-style: normal; font-weight: 900; }
+  .js .project-controls button { display: inline-flex; flex: 0 0 auto; align-items: center; gap: .3rem; min-height: 44px; padding: .1rem .3rem; border: 0; border-radius: 7px; background: transparent; font-size: .8rem; white-space: nowrap; }
+  .js .project-controls button[aria-pressed="true"] { border: 0; box-shadow: none; background: var(--cream); }
   .js .project-controls button span { font-size: .62rem; }
   .js .project-panel { scroll-margin-block-start: calc(var(--mobile-sticky-header-height, 0px) + var(--mobile-project-controls-height, 0px) + 1rem); }
 }
@@ -452,8 +452,8 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 
 /* Each desktop cell owns its rule, including on wrapped rows. Tracks reserve
    their footprint before initialization, but never pretend to work without JS. */
-[data-chapter-progress] { display: block; height: 2px; background: transparent; visibility: hidden; pointer-events: none; }
-[data-chapter-fill] { display: block; width: 100%; height: 100%; background: var(--coral); transform: scaleX(0); transform-origin: left; }
+[data-chapter-progress] { display: block; height: 2px; border-radius: 999px; overflow: clip; background: transparent; visibility: hidden; pointer-events: none; }
+[data-chapter-fill] { display: block; width: 100%; height: 100%; border-radius: inherit; background: var(--coral); transform: scaleX(0); transform-origin: left; }
 .progress-ready [aria-current="location"] [data-chapter-progress] { visibility: visible; }
 .chapter-index-item [data-chapter-progress] { position: absolute; bottom: 0; left: .45rem; right: .45rem; }
 .chapter-index-list { row-gap: .5rem; }
