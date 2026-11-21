@@ -136,9 +136,7 @@ h1, h2, h3, p, dd, a, button { overflow-wrap: break-word; }
 #project-agents .agent-figure { min-width: 0; width: 100%; max-width: 34rem; margin: 0; justify-self: center; }
 #project-agents .agent-object { display: block; height: auto; max-height: none; aspect-ratio: 3 / 2; }
 #project-agents figcaption { margin-top: 1rem; color: var(--green); font-family: var(--draft); font-size: .875rem; line-height: 1.6; }
-.object-fill { fill: var(--cream); }
-.object-ground { stroke-width: 1.5; }
-.chart-line { fill: none; stroke: var(--coral); stroke-width: 6; }
+#project-boss-hog .hog-object { display: block; width: min(100%, 18rem); height: auto; max-height: none; justify-self: center; }
 
 .js.motion-ok .hero-track { min-height: 145svh; }
 .js.motion-ok .hero-scene { position: sticky; top: 0; }

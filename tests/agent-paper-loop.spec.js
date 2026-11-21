@@ -83,7 +83,7 @@ test('all raster illustrations load lazily when placed far below the viewport', 
   });
   await page.goto('/');
   const illustrations = page.locator('img');
-  await expect(illustrations).toHaveCount(2);
+  await expect(illustrations).toHaveCount(3);
   for (const img of await illustrations.all()) {
     await expect(img).toHaveAttribute('loading', 'lazy');
     const path = await img.evaluate(el => new URL(el.src).pathname);
